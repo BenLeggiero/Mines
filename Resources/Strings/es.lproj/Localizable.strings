@@ -1,0 +1,42 @@
+/* Mines - Localizable.strings (es)
+ __  __
+|  \/  | __  ____  ___  ____
+|      |(__)|    |/ -_)(__ <
+|__\/__||__||__|_|\___//___/
+Copyright © 2013 Manuel Sainz de Baranda y Goñi.
+Released under the terms of the GNU General Public License v3. */
+
+"Main.Menu.ShowMines"				= "Mostrar Minas";
+"Main.Menu.HideMines"				= "Ocultar Minas";
+"Main.WindowTitle"				= "Minas";
+"Main.Toolbar.Clean"				= "Resuelto";
+"Main.Toolbar.Remaining"			= "Restante";
+"GameOver.YouLose"				= "HAS PERDIDO";
+"GameOver.YouWin"				= "¡HAS GANADO!";
+"GameOver.ClickHereForANewGame"			= "Haz click aquí para jugar de nuevo";
+"Preferences.WindowTitle.General"		= "General";
+"Preferences.WindowTitle.Effects"		= "Efectos";
+"Preferences.WindowTitle.Theme"			= "Tema";
+"Preferences.NewThemeName"			= "Nuevo tema";
+"Error.File"					= "Error de archivo";
+"Error.FileDoesNotExist"			= "El archivo %@ no existe";
+"Error.UnableToLoadFile"			= "Imposible cargar el archivo \"%@\".";
+"Error.UnableToWriteToFile"			= "Imposible escribir en el archico \"%@\".";
+"Error.FatalBundleCorruption.Title"		= "Corrupción fatal";
+"Error.FatalBundleCorruption.Body"		= "Se ha producido una pérdida parcial de datos o corrupción de los mismos en el paquete de la aplicación. La aplicación terminará su ejecución.";
+"Error.PreviousVersionTheme.Title"		= "Error al actualizar el tema";
+"Error.PreviousVersionTheme.Body"		= "Ha ocurrido un error mientras se migraban los datos del tema personalizado de una versión anterior del juego.";
+"Error.InitialTheme.Title"			= "El tema es inválido";
+"Error.InitialTheme.Body"			= "Se restablecerán los valores por defecto.";
+"Error.BadSnapshot.Title"			= "Archivo de juego inválido";
+"Error.BadSnapshot.Body"			= "El formato de los datos o los valores del juego no son correctos.";
+"Error.BadImageFile.Title"			= "Archivo de imagen inválido";
+"Error.BadImageFile.Body"			= "El formato de los datos de la imagen es inválido o no está soportado.";
+"Alert.GameTooBigForDisplay.Title"		= "Tablero demasiado grande";
+"Alert.GameTooBigForDisplay.Body"		= "El número de celdillas del juego es demasiado alto como para poder visualizarse correctamente en pantalla (%lux%lu). ¿Estás seguro de querer iniciar un juego de estas dimensiones?";
+"Alert.GameTooBigForDisplay.PreferencesBody"	= "El número de celdillas del juego guardado en las preferencias es demasiado alto como para poder visualizarse correctamente en la pantalla (%lux%lu). ¿Prefieres jugar al juego por defecto en su lugar?";
+"Yes"						= "Sí";
+"No"						= "No";
+"Version"					= "Versión";
+"SourceCode"					= "Código fuente";
+"OldVersionCustomThemeName"			= "Tema personalizado";

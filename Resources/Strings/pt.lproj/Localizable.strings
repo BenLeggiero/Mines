@@ -1,0 +1,42 @@
+/* Mines - Localizable.strings (pt)
+ __  __
+|  \/  | __  ____  ___  ____
+|      |(__)|    |/ -_)(__ <
+|__\/__||__||__|_|\___//___/
+Copyright © 2013 Manuel Sainz de Baranda y Goñi.
+Released under the terms of the GNU General Public License v3. */
+
+"Main.Menu.ShowMines"				= "Mostrar Minas";
+"Main.Menu.HideMines"				= "Ocultar Minas";
+"Main.WindowTitle"				= "Minas";
+"Main.Toolbar.Clean"				= "Solved";
+"Main.Toolbar.Remaining"			= "Remaining";
+"GameOver.YouLose"				= "GAME OVER";
+"GameOver.YouWin"				= "YOU WIN!";
+"GameOver.ClickHereForANewGame"			= "Click here for a new game";
+"Preferences.WindowTitle.General"		= "General";
+"Preferences.WindowTitle.Effects"		= "Effects";
+"Preferences.WindowTitle.Theme"			= "Theme";
+"Preferences.NewThemeName"			= "New Theme";
+"Error.File"					= "File Error";
+"Error.FileDoesNotExist"			= "The file %@ does not exist";
+"Error.UnableToLoadFile"			= "Unable to load file \"%@\".";
+"Error.UnableToWriteToFile"			= "Unable to write to file \"%@\".";
+"Error.FatalBundleCorruption.Title"		= "Fatal corruption";
+"Error.FatalBundleCorruption.Body"		= "There is a partial loss of data or corruption in the files of the application's bundle. The application will terminate.";
+"Error.PreviousVersionTheme.Title"		= "Error updating theme";
+"Error.PreviousVersionTheme.Body"		= "An error occurred while migrating the custom theme data of a previous version of the game.";
+"Error.InitialTheme.Title"			= "The theme is invalid";
+"Error.InitialTheme.Body"			= "Default values will be restored.";
+"Error.BadSnapshot.Title"			= "Invalid game file";
+"Error.BadSnapshot.Body"			= "The data format or game values are not correct.";
+"Error.BadImageFile.Title"			= "Invalid image file";
+"Error.BadImageFile.Body"			= "The image data format is invalid or not supported.";
+"Alert.GameTooBigForDisplay.Title"		= "Board too big";
+"Alert.GameTooBigForDisplay.Body"		= "The number of cells for the game is too high to be displayed properly on the screen (%lux%lu). Are you sure you want to start a game of this size?";
+"Alert.GameTooBigForDisplay.PreferencesBody"	= "The number of cells for the game stored in the preferences is too high to be displayed properly on the screen (%lux%lu). Do you want to play the default game instead?";
+"Yes"						= "Yes";
+"No"						= "No";
+"Version"					= "Versão";
+"SourceCode"					= "Código fonte";
+"OldVersionCustomThemeName"			= "Tema personalizado";

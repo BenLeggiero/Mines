@@ -1,0 +1,98 @@
+v2.0 (In development)
+=====================
+
+(en)
+- Yosemite support.
+- Retina Display support.
+- Russian language support.
+- New theme editor: Now you can have several themes at a time.
+- Added a set of predefined themes.
+- Improved default theme.
+- Improved animations.
+- Resolved a bug which prevented the correct displaying of some animations in Mavericks and Yosemite.
+- Resolved a bug which caused incorrect font rendering in the "Game Over" message.
+- Minor UI tweaks.
+- Mines is now Free Software instead of Freeware (but it’s subject to Apple's Standard License Agreement if purchased in the Mac App Store).
+- Added a link to the source code in the “About Mines” window.
+
+(es)
+- Soporte para Yosemite.
+- Soporte para Retina Display.
+- Soporte para el lenguaje ruso.
+- Nuevo editor de temas: Ahora puedes tener varios temas al mismo tiempo.
+- Añadido un juego de temas predefinidos.
+- Mejorado el tema por defecto.
+- Animaciones mejoradas.
+- Corregido un bug que impedía la correcta visualización de algunas animaciones en Mavericks y Yosemite.
+- Corregido un bug que causaba un incorrecta renderización de la fuente tipográfica en el mensaje que aparece al final de la partida.
+- Ajustes menores del UI.
+- Minas es ahora Software Libre en lugar de Freeware (pero está sujeto al “Acuerdo de Licencia Estándar de Apple” si se compra a través de la Mac App Store).
+- Añadido un enlace al código fuente en la ventana de “Acerca de Minas”.
+
+
+v1.3.1 (2013-06-20)
+===================
+
+(en)
+- Because popular request, the values of the typical games have been changed.
+- Added alert for Retina Display.
+
+(es)
+- Los valores de los juegos típicos se han cambiado por petición popular.
+- Añadida una alerta para Retina Display.
+
+
+v1.3 (2013-06-09)
+=================
+
+(en)
+- Less memory usage.
+- Better random field generation.
+- Laser cannon behaviour has been changed to uncover an area, instead a sole cell, if it is used when the board is untouched yet.
+- Mouse drag behaviour has been changed to allow to discover cells or place flags if the button is released over the same cell where it was pressed initially (Thanks to Młody Pajac for the advice. The "reveal remaining cells" feature you request will be implemented in the next version).
+- Flags can not be placed before disclosing the first cell any more.
+- OpenAL is used now instead Cocoa to play sounds without any lag.
+- Minor aesthetic improvements and bug fixes.
+
+(es)
+- Menor uso de memoria.
+- Mejor generación aleatoria del tablero.
+- Cambiado el comportamiento del cañón láser para que destape un área, en lugar de una sola casilla, si se utiliza sobre un tablero nuevo.
+- Cambiado el comportamiento del arrastre del ratón, para permitir que se descubran celdillas o se coloquen banderas, si el botón es soltado sobre la misma celdilla sobre la que fue presionado (Gracias a Młody Pajac por el consejo. La funcionalidad de "destapar las celdillas restantes" que pides será implementada en la próxima versión).
+- Ya no se pueden poner banderas antes de destapar la primera celdilla.
+- Ahora se usa OpenAL en lugar de Cocoa para reproducir el sonido sin retardos.
+- Arreglos estéticos menores y corrección de bugs.
+
+
+v1.2 (2013-05-26)
+=================
+
+(en)
+- Mines is FREE. NOW and FOREVER! 
+- Better Snow Leopard compatibility.
+
+(es)
+- Ahora Minas es ¡GRATIS PARA SIEMPRE! 
+- Compatibilidad mejorada con Snow Leopard.
+
+
+v1.1 (2013-04-27)
+=================
+
+(en)
+- Partial support for French, German, Portuguese and Swedish. 
+- Added support for placing flags pressing SHIFT or by enabling the flag indicator in the status bar.
+
+(es)
+- Soporte parcial para Alemán, Francés, Portugués y Sueco. 
+- Añadido soporte para colocar banderas presionando la tecla SHIFT o activando el indicador de bandera de la barra de estado.
+
+
+v1.0 (2013-02-12)
+=================
+
+(en)
+Initial release.
+
+(es)
+Publicación inicial.
