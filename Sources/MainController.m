@@ -430,7 +430,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 		 change:		 (NSDictionary *) change
 		 context:		 (void	       *) context
 		{
-		id value = [[NSUserDefaultsController sharedUserDefaultsController] valueForKeyPath: keyPath];
+		id value = [defaultsController valueForKeyPath: keyPath];
 
 		if	([keyPath isEqualToString: @"values.DefaultCellSize"	      ]) _defaultCellSize		  = round([(NSNumber *)value doubleValue]);
 		else if ([keyPath isEqualToString: @"values.MaintainCellAspectRatio"  ]) _flags.maintainCellAspectRatio	  = [(NSNumber *)value boolValue];
@@ -854,7 +854,6 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 		//----------------------------------------------.
 		// Registramos listeners para las preferencias. |
 		//----------------------------------------------'
-		NSUserDefaultsController *defaultsController = [NSUserDefaultsController sharedUserDefaultsController];
 		const char **variableName = defaultsVariableNames;
 
 		while (*variableName != NULL) [defaultsController
@@ -1233,7 +1232,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 		}
 
 
-#	pragma mark - IB Actions
+#	pragma mark - IBAction
 
 
 	- (IBAction) about: (id) sender

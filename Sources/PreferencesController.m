@@ -209,7 +209,7 @@ Released under the terms of the GNU General Public License v3. */
 		// Desactivamos la sincronización automática de las preferencias. Solamente se guardarán |
 		// los cambios al salir de la pestaña, al cerrar la ventana o al salir de la apliación.	 |
 		//---------------------------------------------------------------------------------------'
-		//[[NSUserDefaultsController sharedUserDefaultsController] setAppliesImmediately: NO];
+		//defaultsController.appliesImmediately = NO;
 
 		//-------------------------------------------------------------.
 		// Cargamos los temas incluidos en el bundle de la aplicación. |
@@ -283,7 +283,7 @@ Released under the terms of the GNU General Public License v3. */
 		{
 		if (_flags.themeIsUnsaved || _flags.themeHasChanged) [self saveTheme];
 
-		id defaults = [(NSUserDefaultsController *)[NSUserDefaultsController sharedUserDefaultsController] values];
+		id defaults = [defaultsController values];
 		NSString *themeIdentifier = [_theme.name VFSSafeString];
 
 		if (![[defaults valueForKey: @"ThemeIdentifier"] isEqualToString: themeIdentifier])
@@ -602,7 +602,7 @@ Released under the terms of the GNU General Public License v3. */
 	- (id) initWithBoard: (Board *) board
 		{
 		if ((self = [super initWithWindowNibName: @"Preferences"])) _board = [board retain];
-		((NSUserDefaultsController *)[NSUserDefaultsController sharedUserDefaultsController]).appliesImmediately = NO;
+		defaultsController.appliesImmediately = NO;
 		return self;
 		}
 
@@ -616,12 +616,10 @@ Released under the terms of the GNU General Public License v3. */
 
 		if (_currentView == themeView) [self finalizeThemeTab];
 
-		NSUserDefaultsController *defaults = [NSUserDefaultsController sharedUserDefaultsController];
-
-		if ([defaults hasUnappliedChanges])
+		if ([defaultsController hasUnappliedChanges])
 			{
-			defaults.appliesImmediately = YES;
-			[defaults save: self];
+			defaultsController.appliesImmediately = YES;
+			[defaultsController save: self];
 			}
 
 		[super dealloc];

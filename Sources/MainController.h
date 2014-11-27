@@ -20,10 +20,12 @@ Released under the terms of the GNU General Public License v3. */
 	<NSApplicationDelegate, NSWindowDelegate, NSTextFieldDelegate,
 	 CannonDelegate, BoardDelegate> {
 
+	IBOutlet NSUserDefaultsController* defaultsController;
+
 	//-----------.
 	// Main menu |
 	//-----------'
-	IBOutlet NSMenuItem*	minesShownMenuItem;
+	IBOutlet NSMenuItem* minesShownMenuItem;
 
 	//---------.
 	// Toolbar |
@@ -41,11 +43,11 @@ Released under the terms of the GNU General Public License v3. */
 	//------------.
 	// Status bar |
 	//------------'
-	IBOutlet NSButton*	totalMinesSymbolButton;
-	IBOutlet NSTextField*	totalMinesValueTextField;
-	IBOutlet NSButton*	currentFlagsSymbolButton;
-	IBOutlet NSTextField*	currentFlagsValueTextField;
-	IBOutlet NSTextField*	timeElapsedValueTextField;
+	IBOutlet NSButton*    totalMinesSymbolButton;
+	IBOutlet NSTextField* totalMinesValueTextField;
+	IBOutlet NSButton*    currentFlagsSymbolButton;
+	IBOutlet NSTextField* currentFlagsValueTextField;
+	IBOutlet NSTextField* timeElapsedValueTextField;
 
 	//-----------------.
 	// New game window |
@@ -54,13 +56,11 @@ Released under the terms of the GNU General Public License v3. */
 	IBOutlet NSTabView*	gameTypeTabView;
 	IBOutlet NSTabViewItem*	typicalGameTabViewItem;
 	IBOutlet NSMatrix*	typicalGameMatrix;
-
 	IBOutlet NSTextField*	boardWidthATextField;
 	IBOutlet NSTextField*	boardWidthBTextField;
 	IBOutlet NSTextField*	boardHeightATextField;
 	IBOutlet NSTextField*	boardHeightBTextField;
 	IBOutlet NSTextField*	boardMineCountTextField;
-
 	IBOutlet NSTextField*	boardCustomWidthTextField;
 	IBOutlet NSTextField*	boardCustomHeightTextField;
 	IBOutlet NSTextField*	boardCustomMineCountTextField;
@@ -71,30 +71,30 @@ Released under the terms of the GNU General Public License v3. */
 	//---------------.
 	// Main controls |
 	//---------------'
-	IBOutlet GameOverView*	gameOverView;
-	IBOutlet NSWindow*	newGameWindow;
-	IBOutlet Board*		board;
+	IBOutlet GameOverView* gameOverView;
+	IBOutlet NSWindow*     newGameWindow;
+	IBOutlet Board*        board;
 
 	//-------------------.
 	// Private variables |
 	//-------------------'
-	Cannon*			_cannon;
-	Explosion*		_explosion;
-	Fireworks*		_fireworks;
-	ALSound*		_discloseSound;
-	ALSound*		_explosionSound;
-	ALSound*		_laserBeamSound;
-	ALSound*		_taDahSound;
-	Q2DSize			_hintCoordinates;
-	NSUInteger		_allowedTime;
-	NSUInteger		_timeLeft;
-	NSTimer*		_gameOverTimer;
-	NSString*		_snapshotPath;
-	AboutController*	_aboutController;
-	PreferencesController*	_preferencesController;
-	BOOL			_busy;
-	BOOL			_toolbarWasVisibleBeforeResize;
-	CGFloat			_defaultCellSize;
+	Cannon*		       _cannon;
+	Explosion*	       _explosion;
+	Fireworks*	       _fireworks;
+	ALSound*	       _discloseSound;
+	ALSound*	       _explosionSound;
+	ALSound*	       _laserBeamSound;
+	ALSound*	       _taDahSound;
+	Q2DSize		       _hintCoordinates;
+	NSUInteger	       _allowedTime;
+	NSUInteger	       _timeLeft;
+	NSTimer*	       _gameOverTimer;
+	NSString*	       _snapshotPath;
+	AboutController*       _aboutController;
+	PreferencesController* _preferencesController;
+	BOOL		       _busy;
+	BOOL		       _toolbarWasVisibleBeforeResize;
+	CGFloat		       _defaultCellSize;
 
 	struct {BOOL showMines			 :1;
 		BOOL toolbarHidden		 :1;

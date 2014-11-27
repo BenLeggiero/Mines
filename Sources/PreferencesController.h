@@ -15,6 +15,8 @@ Released under the terms of the GNU General Public License v3. */
 @interface PreferencesController : NSWindowController
 	<NSTableViewDataSource, TableViewDelegate, ImagePickerDelegate> {
 
+	IBOutlet NSUserDefaultsController* defaultsController;
+
 	//---------------.
 	// Content Views |
 	//---------------'

@@ -56,15 +56,16 @@ Released under the terms of the GNU General Public License v3. */
 		copyrightTextField.stringValue = [bundle objectForInfoDictionaryKey: @"NSHumanReadableCopyright"];
 
 		versionTextField.stringValue = STRING
-			(@"%@ %@", _("Version"),
-			 [bundle objectForInfoDictionaryKey: @"CFBundleShortVersionString"]);
+			(@"%@ %@ (%@)", _("Version"),
+			 [bundle objectForInfoDictionaryKey: @"CFBundleShortVersionString"],
+			 [bundle objectForInfoDictionaryKey: @"CFBundleVersion"]);
 
 		sourceCodeLinkLabel.stringValue = _("SourceCode");
 
 		NSSize textSize = sourceCodeLinkLabel.fittingSize;
 
 		sourceCodeLinkLabel.frame = NSMakeRect
-			(([self.window.contentView bounds].size.width - textSize.width)  / 2.0,
+			(round(([self.window.contentView bounds].size.width - textSize.width)  / 2.0),
 			 sourceCodeLinkLabel.frame.origin.y,
 			 textSize.width, textSize.height);
 		}

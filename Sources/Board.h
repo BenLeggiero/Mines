@@ -37,7 +37,7 @@ typedef uint8_t BoardButtonAction;
 #define kBoardColorPaletteSize	 6
 
 
-Q_INLINE BOOL GameValuesAreEqual(GameValues *a, const GameValues *b)
+NS_INLINE BOOL GameValuesAreEqual(GameValues *a, const GameValues *b)
 	{
 	return	a->width     == b->width	&&
 		a->height    == b->height	&&
