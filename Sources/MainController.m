@@ -14,7 +14,7 @@ Released under the terms of the GNU General Public License v3. */
 #import "migrations.h"
 #import "constants.h"
 #import "NSWindow+CocoPlus.h"
-#define kWindowMinimumWidth		259
+#define kWindowMinimumWidth 259
 #define LAST_UNFINISHED_GAME_PATH(base) STRING(@"%@/Last Unfinished Game.mines", base)
 
 static GameValues typicalGames[4];
@@ -479,8 +479,6 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 	- (void) applicationWillFinishLaunching: (NSNotification *) notification
 		{
-		//[[NSAlert alertWithError: ErrorForFile(_("Error.FileDoesNotExist"), @"paco")] runModal];
-
 		//-------------------------------------.
 		// Cargamos los XIBs con el interface. |
 		//-------------------------------------'
