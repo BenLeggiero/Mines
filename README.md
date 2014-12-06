@@ -47,7 +47,7 @@ CURRENCY|ADDRESS
     * WIP: Improved font rendering.
     * WIP: UI fixes for Snow Leopard.
 
-* __[v2.0](/redcode/Mines/releases/tag/v2.0)__ _(2014-11-05)_
+* __[v2.0](http://github.com/redcode/Mines/releases/tag/v2.0)__ _(2014-11-05)_
     * Yosemite support.
     * Retina Display support.
     * Russian language support.
