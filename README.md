@@ -41,7 +41,7 @@ CURRENCY|ADDRESS
 
 ### History
 
-* __v2.0__ _(2011-11-05)_
+* __v2.0__ _(2014-11-05)_
     * Yosemite support.
     * Retina Display support.
     * Russian language support.

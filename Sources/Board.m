@@ -211,8 +211,8 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		transform = [NSAffineTransform transform];
 
 		[transform
-			translateXBy: -frame.origin.x + _textureSize / 2.0 - frame.size.width  / 2.0
-			yBy:	      -frame.origin.y + _textureSize / 2.0 - frame.size.height / 2.0];
+			translateXBy: round(-frame.origin.x + _textureSize / 2.0 - frame.size.width  / 2.0)
+			yBy:	      round(-frame.origin.y + _textureSize / 2.0 - frame.size.height / 2.0)];
 
 		[path transformUsingAffineTransform: transform];
 		[[_theme colorForNumber: number] setFill];

@@ -111,7 +111,7 @@
                 <button id="374">
                     <rect key="frame" x="135" y="65" width="250" height="18"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="check" title="Mantener razón de aspecto perfecta" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="375">
+                    <buttonCell key="cell" type="check" title="Mantener razón de aspecto exacta" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="375">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
@@ -309,7 +309,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" id="g3e-eV-yoF" customClass="TableView">
-                                <rect key="frame" x="0.0" y="0.0" width="168" height="321"/>
+                                <rect key="frame" x="0.0" y="0.0" width="168" height="19"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

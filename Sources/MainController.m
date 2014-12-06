@@ -534,11 +534,13 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 		image = [totalMinesSymbolButton.image copy];
 		[image setTemplate: YES];
+		//image.size = NSMakeSize(16.0, 16.0);
 		totalMinesSymbolButton.image = image;
 		[image release];
 
 		image = [currentFlagsSymbolButton.image copy];
 		[image setTemplate: YES];
+		//image.size = NSMakeSize(16.0, 16.0);
 		currentFlagsSymbolButton.image = image;
 		[image release];
 
@@ -553,6 +555,26 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 			[currentFlagsValueTextField.cell  setBackgroundStyle: NSBackgroundStyleRaised];
 			[timeElapsedValueTextField.cell	  setBackgroundStyle: NSBackgroundStyleRaised];
 			}
+
+		/*if (IS_BELOW_LION)
+			{
+			//---------------------------------------------------------------------------------.
+			// En Snow Leopard, el escalado de las imágenes PDF en botonoes pequeños sin borde |
+			// parece que no funciona bien del todo. Hacemos los botones de la barra de estado |
+			// un poco más altos para evitar este fallo.					   |
+			//---------------------------------------------------------------------------------'
+			NSRect frame;
+
+			frame = totalMinesSymbolButton.frame;
+			frame.origin.y = 0.0;
+			frame.size.height = 24.0;
+			totalMinesSymbolButton.frame = frame;
+
+			frame = currentFlagsSymbolButton.frame;
+			frame.origin.y = 0.0;
+			frame.size.height = 24.0;
+			currentFlagsSymbolButton.frame = frame;
+			}*/
 
 		//------------------------------------------------------.
 		// Configuramos el callback para la vista de Game Over. |
