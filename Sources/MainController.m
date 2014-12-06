@@ -1033,7 +1033,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 	- (BOOL) application: (NSApplication *) application
 		 openFile:    (NSString	     *) fileName
 		{
-		if (!_busy)
+		if (!_flags.busy)
 			{
 			NSError *error;
 
@@ -1115,11 +1115,11 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 	- (void) cannonWantsToShoot: (Cannon *) cannon
 		{
-		if (!_busy && [board hintCoordinates: &_hintCoordinates])
+		if (!_flags.busy && [board hintCoordinates: &_hintCoordinates])
 			{
 			if (_flags.viewAnimationOnHint)
 				{
-				_busy = YES;
+				_flags.busy = YES;
 
 				NSRect frame = [board frameForCoordinates: _hintCoordinates];
 				frame.origin.x += frame.size.width  / 2.0;
@@ -1160,7 +1160,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 
 	- (void) cannonDidEnd: (Cannon *) cannon
-		{_busy = NO;}
+		{_flags.busy = NO;}
 
 
 #	pragma mark - BoardDelegate Protocol
@@ -1202,7 +1202,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 	- (void) explosionDidEnd: (Explosion *) explosion
 		{
-		_busy		    = NO;
+		_flags.busy	    = NO;
 		board.showMines	    = YES;
 		board.showGoodFlags = YES;
 		[gameOverView youLose];
@@ -1219,7 +1219,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 		if (_flags.viewAnimationOnMineFound)
 			{
-			_busy = YES;
+			_flags.busy = YES;
 
 			[_explosion
 				explodeAtPoint: [self.window convertPointToScreen: NSMakePoint
@@ -1289,7 +1289,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 	- (IBAction) new: (id) sender
 		{
-		_busy = YES;
+		_flags.busy = YES;
 		[self stopTimer];
 
 		boardCustomWidthTextField.stringValue     = STRING(@"%lu", (unsigned long)board.width	 );
@@ -1309,7 +1309,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 	- (IBAction) restart: (id) sender
 		{
-		if (!_busy)
+		if (!_flags.busy)
 			{
 			[board restart];
 			board.showMines = _flags.showMines;
@@ -1485,7 +1485,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 			[AlertForGameTooBig(values->width, values->height) runModal] == NSAlertAlternateReturn
 		)
 			{
-			_busy = NO;
+			_flags.busy = NO;
 			[NSApp endSheet: newGameWindow returnCode: 0];
 			[newGameWindow orderOut: self];
 
@@ -1505,7 +1505,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 	- (IBAction) cancelNewGame: (id) sender
 		{
-		_busy = NO;
+		_flags.busy = NO;
 		[NSApp endSheet: newGameWindow returnCode: 0];
 		[newGameWindow orderOut: self];
 		if (board.state == kBoardStateGame) [self startTimerIfNeeded];

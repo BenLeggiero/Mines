@@ -26,6 +26,7 @@ Released under the terms of the GNU General Public License v3. */
 	// Main menu |
 	//-----------'
 	IBOutlet NSMenuItem* minesShownMenuItem;
+	IBOutlet NSMenuItem* elapsedTimeShownMenuItem;
 
 	//---------.
 	// Toolbar |
@@ -92,24 +93,21 @@ Released under the terms of the GNU General Public License v3. */
 	NSString*	       _snapshotPath;
 	AboutController*       _aboutController;
 	PreferencesController* _preferencesController;
-	BOOL		       _busy;
-	BOOL		       _toolbarWasVisibleBeforeResize;
 	CGFloat		       _defaultCellSize;
 
-	struct {BOOL showMines			 :1;
-		BOOL toolbarHidden		 :1;
-		BOOL busy			 :1;
-		BOOL maintainCellAspectRatio	 :1;
-		BOOL rememberGameSettings	 :1;
-		BOOL resumeLastGameOnLaunch	 :1;
-		BOOL playSoundOnCellsDisclosed	 :1;
-		BOOL playSoundOnGameSolved	 :1;
-		BOOL playSoundOnMineFound	 :1;
-		BOOL playSoundOnHint		 :1;
-		BOOL viewAnimationOnGameSolved	 :1;
-		BOOL viewAnimationOnMineFound	 :1;
-		BOOL viewAnimationOnHint	 :1;
-		BOOL userDoesntCareSmallCellSize :1;
+	struct {BOOL showMines		       :1;
+		BOOL showElapsedTime	       :1;
+		BOOL busy		       :1;
+		BOOL maintainCellAspectRatio   :1;
+		BOOL rememberGameSettings      :1;
+		BOOL resumeLastGameOnLaunch    :1;
+		BOOL playSoundOnCellsDisclosed :1;
+		BOOL playSoundOnGameSolved     :1;
+		BOOL playSoundOnMineFound      :1;
+		BOOL playSoundOnHint	       :1;
+		BOOL viewAnimationOnGameSolved :1;
+		BOOL viewAnimationOnMineFound  :1;
+		BOOL viewAnimationOnHint       :1;
 	} _flags;
 }
 	//-------------------.
