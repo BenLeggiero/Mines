@@ -41,7 +41,13 @@ CURRENCY|ADDRESS
 
 ### History
 
-* __v2.0__ _(2014-11-05)_
+* __v2.1__ _(Under development)_
+    * WIP: Added time counter for games without time limit.
+    * WIP: Double-click technique support.
+    * WIP: Improved font rendering.
+    * WIP: UI fixes for Snow Leopard.
+
+* __[v2.0](releases/tag/v2.0)__ _(2014-11-05)_
     * Yosemite support.
     * Retina Display support.
     * Russian language support.
