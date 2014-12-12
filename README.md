@@ -36,6 +36,7 @@ Alternatively you can make a small donation to support the development of this s
 CURRENCY|ADDRESS
 :---:|:---:
 [Bitcoin](https://bitcoin.org)|`16Nu1Smx6Dymj9onnWmehPkACqs6xF3Bj4`
+[Litecoin](https://litecoin.org)|`LM31aXyh2nNJDNWF7j2Ds8QNemuP8eUHuN`
 [DogeCoin](http://dogecoin.com)|`DMpowbgKbgUbU73ABW9NwaVkvcc4fG5bUc`
 [MaxCoin](http://www.maxcoin.co.uk)|`mSk8Ji1K6YBqfrKHk1uMsjpnjx91hcCDwR`
 
