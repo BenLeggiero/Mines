@@ -737,11 +737,14 @@ Released under the terms of the GNU General Public License v3. */
 
 	- (IBAction) changeFont: (NSFontManager *) sender
 		{
-		NSFont *font = [sender convertFont: [NSFont systemFontOfSize: 11.0]];
+		if (_currentView == themeView && ![_bundleThemes containsObject: _theme])
+			{
+			NSFont *font = [sender convertFont: [NSFont systemFontOfSize: 11.0]];
 
-		fontNameTextField.stringValue = font.displayName;
-		_theme.fontName = font.fontName;
-		_flags.themeHasChanged = YES;
+			fontNameTextField.stringValue = font.displayName;
+			_theme.fontName = font.fontName;
+			_flags.themeHasChanged = YES;
+			}
 		}
 
 

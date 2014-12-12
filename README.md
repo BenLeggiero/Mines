@@ -46,6 +46,7 @@ CURRENCY|ADDRESS
     * WIP: Double-click technique support.
     * WIP: Improved font rendering.
     * WIP: UI fixes for Snow Leopard.
+    * Fixed a bug related to the font selection dialog.
 
 * __[v2.0](http://github.com/redcode/Mines/releases/tag/v2.0)__ _(2014-11-05)_
     * Yosemite support.
