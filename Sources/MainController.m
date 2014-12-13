@@ -1061,6 +1061,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 	- (void) windowWillClose: (NSNotification *) notification
 		{
+		[_explosion cancelExplosion];
 		[_aboutController	release];
 		[_preferencesController release];
 		_aboutController       = nil;
