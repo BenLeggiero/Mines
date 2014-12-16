@@ -48,6 +48,7 @@ CURRENCY|ADDRESS
     * WIP: Improved font rendering.
     * WIP: UI fixes for Snow Leopard.
     * Fixed a bug related to the font selection dialog.
+    * Improved default theme.
     * Several minor improvements.
 
 * __[v2.0](http://github.com/redcode/Mines/releases/tag/v2.0)__ _(2014-11-05)_
