@@ -40,9 +40,9 @@
 		{
 		return [NSString stringWithFormat:
 			@"%f:%f:%f",
-			[self redComponent],
-			[self greenComponent],
-			[self blueComponent]];
+			self.redComponent,
+			self.greenComponent,
+			self.blueComponent];
 		}
 
 
@@ -50,10 +50,10 @@
 		{
 		return [NSString stringWithFormat:
 			@"%f:%f:%f:%f",
-			[self redComponent],
-			[self greenComponent],
-			[self blueComponent],
-			[self alphaComponent]];
+			self.redComponent,
+			self.greenComponent,
+			self.blueComponent,
+			self.alphaComponent];
 		}
 
 

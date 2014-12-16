@@ -144,6 +144,8 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 			if ((color = [_theme imageColorForKey: key]))
 				{
+				color = [color colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]];
+
 				[image	drawInRect: frame
 					fromRect:   NSZeroRect
 					operation:  NSCompositeSourceOver
@@ -215,7 +217,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			yBy:	      round(-frame.origin.y + _textureSize / 2.0 - frame.size.height / 2.0)];
 
 		[path transformUsingAffineTransform: transform];
-		[[_theme colorForNumber: number] setFill];
+		[[[_theme colorForNumber: number] colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]] setFill];
 		[path fill];
 
 		_textureNames[number - 1] = [self createTextureFromBlock: [_bitmap bitmapData]];
@@ -245,7 +247,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 	- (void) updateCellColorsForKey: (NSUInteger) key
 		{
-		NSColor *color = [_theme colorForKey: key];
+		NSColor *color = [[_theme colorForKey: key] colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]];
 		CGFloat brightnessDelta = _theme.cellBrightnessDelta;
 		GLfloat *color1 = &_cellColors1[key * 3];
 		GLfloat *color2 = &_cellColors2[key * 3];
@@ -701,9 +703,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		(_theme = [theme retain]).owner = self;
 		_flags.alternateCells = theme.alternateCells;
 		_cellBrightnessDelta  = theme.cellBrightnessDelta;
-
-		for (NSUInteger key = 0; key < 6; key++)
-			[self updateCellColorsForKey: key];
+		for (NSUInteger key = 0; key < 6; key++) [self updateCellColorsForKey: key];
 
 		if (images && images != _themeImages)
 			{
