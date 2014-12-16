@@ -150,10 +150,10 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 					fraction:   color.alphaComponent];
 
 				[[NSColor
-					colorWithCalibratedRed: color.redComponent
-					green:			color.greenComponent
-					blue:			color.blueComponent
-					alpha:			1.0]
+					colorWithDeviceRed: color.redComponent
+					green:		    color.greenComponent
+					blue:		    color.blueComponent
+					alpha:		    1.0]
 				set];
 
 				NSRectFillUsingOperation(frame, NSCompositeSourceAtop);

@@ -15,7 +15,6 @@ Released under the terms of the GNU General Public License v3. */
 #	import <Cocoa/Cocoa.h>
 
 #	define STRING(...)		[NSString stringWithFormat: __VA_ARGS__]
-#	define COLOR(r, g, b, a)	[NSColor colorWithCalibratedRed: r green: g blue: b alpha: a]
 #	define _(string)		NSLocalizedString(@string, nil)
 #	define IS_BELOW_LION		(NSAppKitVersionNumber <  1138)
 #	define IS_BELOW_YOSEMITE	(NSAppKitVersionNumber <  1343.14)

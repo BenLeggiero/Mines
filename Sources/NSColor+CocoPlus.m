@@ -15,26 +15,24 @@
 
 	+ (NSColor *) colorFromFloatString: (NSString *) string
 		{
-		NSColor *color = nil;
-
 		if (string && [string isKindOfClass: [NSString class]])
 			{
 			NSArray *channels = [string componentsSeparatedByString: @":"];
 
-			if ([channels count] == 3) color = [NSColor
-				colorWithCalibratedRed: [[channels objectAtIndex: 0] floatValue]
-				green:			[[channels objectAtIndex: 1] floatValue]
-				blue:			[[channels objectAtIndex: 2] floatValue]
-				alpha:			1.0];
+			CGFloat components[4] = {
+				[[channels objectAtIndex: 0] doubleValue],
+				[[channels objectAtIndex: 1] doubleValue],
+				[[channels objectAtIndex: 2] doubleValue],
+				[channels count] == 3 ? 1.0 : [[channels objectAtIndex: 3] doubleValue]
+			};
 
-			else if ([channels count] == 4) color = [NSColor
-				colorWithCalibratedRed: [[channels objectAtIndex: 0] floatValue]
-				green:			[[channels objectAtIndex: 1] floatValue]
-				blue:			[[channels objectAtIndex: 2] floatValue]
-				alpha:			[[channels objectAtIndex: 3] floatValue]];
+			return [NSColor
+				colorWithColorSpace: [NSColorSpace genericRGBColorSpace]
+				components:	     components
+				count:		     4];
 			}
 
-		return color;
+		return nil;
 		}
 
 
@@ -61,12 +59,16 @@
 
 	- (NSColor *) opaqueGenericRGBColor
 		{
-		CGFloat red, green, blue, alpha;
+		NSColorSpace *colorSpace = [NSColorSpace genericRGBColorSpace];
+		CGFloat components[4];
 
-		[[self colorUsingColorSpaceName: NSCalibratedRGBColorSpace]
-			getRed: &red green: &green blue: &blue alpha: &alpha];
+		[[self colorUsingColorSpace: colorSpace]
+			getRed: &components[0]
+			green:	&components[1]
+			blue:	&components[2]
+			alpha:	&components[3]];
 
-		return [NSColor colorWithCalibratedRed: red green: green blue: blue alpha: 1.0];
+		return [NSColor colorWithColorSpace: colorSpace components: components count: 4];
 		}
 
 

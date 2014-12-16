@@ -16,7 +16,7 @@ Released under the terms of the GNU General Public License v3. */
 #import "geometry.h"
 
 #define SELECTED_USER_THEME_ROW      _bundleThemes.count + 1 + [_userThemes indexOfObject: _theme]
-#define DEFAULT_TEMPLATE_IMAGE_COLOR [NSColor colorWithCalibratedRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.5]
+#define DEFAULT_TEMPLATE_IMAGE_COLOR [NSColor colorWithDeviceRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.5]
 
 
 @implementation PreferencesController
@@ -68,10 +68,10 @@ Released under the terms of the GNU General Public License v3. */
 						fraction:   [color alphaComponent]];
 
 					[[NSColor
-						colorWithCalibratedRed: [color redComponent  ]
-						green:			[color greenComponent]
-						blue:			[color blueComponent ]
-						alpha:			1.0]
+						colorWithDeviceRed: [color redComponent  ]
+						green:		    [color greenComponent]
+						blue:		    [color blueComponent ]
+						alpha:		    1.0]
 							set];
 
 					NSRectFillUsingOperation(frame, NSCompositeSourceAtop);
@@ -129,6 +129,8 @@ Released under the terms of the GNU General Public License v3. */
 	- (void) updateThemeControlsContent
 		{
 		NSColor *color;
+
+		NSColorSpace *colorSpace = [NSColorSpace genericRGBColorSpace];
 
 		coveredColorWell.color	     = [_theme colorForKey: kThemeColorKeyCovered      ];
 		cleanColorWell.color	     = [_theme colorForKey: kThemeColorKeyClean	       ];
@@ -757,7 +759,7 @@ Released under the terms of the GNU General Public License v3. */
 
 	- (IBAction) changeImageTemplateColor: (NSColorWell *) sender
 		{
-		NSColor *color = [sender.color colorUsingColorSpaceName: NSCalibratedRGBColorSpace];
+		NSColor *color = [sender.color colorUsingColorSpaceName: NSDeviceRGBColorSpace];
 		NSUInteger key = sender.tag;
 
 		[self imageViewForKey: key].image = [self
