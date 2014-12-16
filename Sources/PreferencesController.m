@@ -807,7 +807,7 @@ Released under the terms of the GNU General Public License v3. */
 			[_userThemes removeObject: theme];
 			_theme = nil;
 
-			if ([theme remove: &error])
+			if (_flags.themeIsUnsaved || [theme remove: &error])
 				{
 				_flags.doNotSelectRow = YES;
 				themeList.allowsEmptySelection = YES;
