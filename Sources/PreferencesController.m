@@ -130,8 +130,6 @@ Released under the terms of the GNU General Public License v3. */
 		{
 		NSColor *color;
 
-		NSColorSpace *colorSpace = [NSColorSpace genericRGBColorSpace];
-
 		coveredColorWell.color	     = [_theme colorForKey: kThemeColorKeyCovered      ];
 		cleanColorWell.color	     = [_theme colorForKey: kThemeColorKeyClean	       ];
 		flagColorWell.color	     = [_theme colorForKey: kThemeColorKeyFlag	       ];
