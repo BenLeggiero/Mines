@@ -144,17 +144,19 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 			if ((color = [_theme imageColorForKey: key]))
 				{
-				color = [color colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]];
+				CGFloat components[4];
+
+				[[color colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]] getComponents: components];
 
 				[image	drawInRect: frame
 					fromRect:   NSZeroRect
 					operation:  NSCompositeSourceOver
-					fraction:   color.alphaComponent];
+					fraction:   components[3]];
 
 				[[NSColor
-					colorWithDeviceRed: color.redComponent
-					green:		    color.greenComponent
-					blue:		    color.blueComponent
+					colorWithDeviceRed: components[0]
+					green:		    components[1]
+					blue:		    components[2]
 					alpha:		    1.0]
 				set];
 
@@ -247,14 +249,17 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 	- (void) updateCellColorsForKey: (NSUInteger) key
 		{
-		NSColor *color = [[_theme colorForKey: key] colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]];
-		CGFloat brightnessDelta = _theme.cellBrightnessDelta;
-		GLfloat *color1 = &_cellColors1[key * 3];
-		GLfloat *color2 = &_cellColors2[key * 3];
+		CGFloat  brightnessDelta = _theme.cellBrightnessDelta;
+		GLfloat* color1		 = &_cellColors1[key * 3];
+		GLfloat* color2		 = &_cellColors2[key * 3];
+		CGFloat  components[4];
 
-		color2[0] = (color1[0] = [color redComponent  ]) + brightnessDelta;
-		color2[1] = (color1[1] = [color greenComponent]) + brightnessDelta;
-		color2[2] = (color1[2] = [color blueComponent ]) + brightnessDelta;
+		[[[_theme colorForKey: key] colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]]
+			getComponents: components];
+
+		color2[0] = (color1[0] = components[0]) + brightnessDelta;
+		color2[1] = (color1[1] = components[1]) + brightnessDelta;
+		color2[2] = (color1[2] = components[2]) + brightnessDelta;
 
 		if (color2[0] > 1.0) color2[0] = 1.0; else if (color2[0] < 0.0) color2[0] = 0.0;
 		if (color2[1] > 1.0) color2[1] = 1.0; else if (color2[1] < 0.0) color2[1] = 0.0;

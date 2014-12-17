@@ -53,7 +53,7 @@ Released under the terms of the GNU General Public License v3. */
 	@property (nonatomic, readwrite) CGFloat	 fontScaling;
 	@property (nonatomic, retain   ) NSString*	 fontName;
 	@property (nonatomic, readonly ) NSMutableArray* imageFileNames;
-	@property (nonatomic, readonly ) BOOL*		 imageInclusions NS_RETURNS_INNER_POINTER;
+	@property (nonatomic, readonly ) BOOL*		 imageInclusions /*NS_RETURNS_INNER_POINTER*/;
 
 	+ (NSArray *) internalDictionaries;
 

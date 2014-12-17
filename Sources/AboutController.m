@@ -61,13 +61,14 @@ Released under the terms of the GNU General Public License v3. */
 			 [bundle objectForInfoDictionaryKey: @"CFBundleVersion"]);
 
 		sourceCodeLinkLabel.stringValue = _("SourceCode");
+		[sourceCodeLinkLabel sizeToFit];
 
-		NSSize textSize = sourceCodeLinkLabel.fittingSize;
+		NSRect labelFrame = sourceCodeLinkLabel.frame;
 
 		sourceCodeLinkLabel.frame = NSMakeRect
-			(round(([self.window.contentView bounds].size.width - textSize.width)  / 2.0),
-			 sourceCodeLinkLabel.frame.origin.y,
-			 textSize.width, textSize.height);
+			(round(([self.window.contentView bounds].size.width - labelFrame.size.width)  / 2.0),
+			 labelFrame.origin.y,
+			 labelFrame.size.width, labelFrame.size.height);
 		}
 
 

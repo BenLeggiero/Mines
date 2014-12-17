@@ -38,6 +38,21 @@
 
 	- (NSString *) floatRGBString
 		{
+		NSInteger componentCount = self.numberOfComponents;
+
+		if (componentCount == 3 || componentCount == 4)
+			{
+			CGFloat components[4];
+
+			[self getComponents: components];
+
+			return [NSString stringWithFormat:
+				@"%f:%f:%f",
+				components[0],
+				components[1],
+				components[2]];
+			}
+
 		return [NSString stringWithFormat:
 			@"%f:%f:%f",
 			self.redComponent,
@@ -48,6 +63,20 @@
 
 	- (NSString *) floatRGBAString
 		{
+		if (self.numberOfComponents == 4)
+			{
+			CGFloat components[4];
+
+			[self getComponents: components];
+
+			return [NSString stringWithFormat:
+				@"%f:%f:%f:%f",
+				components[0],
+				components[1],
+				components[2],
+				components[3]];
+			}
+
 		return [NSString stringWithFormat:
 			@"%f:%f:%f:%f",
 			self.redComponent,

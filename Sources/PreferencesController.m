@@ -62,15 +62,19 @@ Released under the terms of the GNU General Public License v3. */
 				{
 				if (color)
 					{
+					CGFloat components[4];
+
+					[color getComponents: components];
+
 					[image	drawInRect: RectangleFitInCenter(frame, image.size)
 						fromRect:   NSZeroRect
 						operation:  NSCompositeSourceOver
-						fraction:   [color alphaComponent]];
+						fraction:   components[3]];
 
 					[[NSColor
-						colorWithDeviceRed: [color redComponent  ]
-						green:		    [color greenComponent]
-						blue:		    [color blueComponent ]
+						colorWithDeviceRed: components[0]
+						green:		    components[1]
+						blue:		    components[2]
 						alpha:		    1.0]
 							set];
 
