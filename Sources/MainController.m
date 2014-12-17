@@ -556,7 +556,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 			[timeElapsedValueTextField.cell	  setBackgroundStyle: NSBackgroundStyleRaised];
 			}
 
-		/*if (IS_BELOW_LION)
+		if (IS_BELOW_LION)
 			{
 			//---------------------------------------------------------------------------------.
 			// En Snow Leopard, el escalado de las imágenes PDF en botonoes pequeños sin borde |
@@ -574,7 +574,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 			frame.origin.y = 0.0;
 			frame.size.height = 24.0;
 			currentFlagsSymbolButton.frame = frame;
-			}*/
+			}
 
 		//------------------------------------------------------.
 		// Configuramos el callback para la vista de Game Over. |

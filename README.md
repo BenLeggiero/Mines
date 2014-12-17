@@ -46,7 +46,7 @@ CURRENCY|ADDRESS
     * WIP: Added time counter for games without time limit.
     * WIP: Double-click technique support.
     * WIP: Improved font rendering.
-    * WIP: UI fixes for Snow Leopard.
+    * UI fixes for Snow Leopard.
     * Fixed a bug related to the font selection dialog.
     * Improved default theme.
     * Several minor improvements and bug fixes.

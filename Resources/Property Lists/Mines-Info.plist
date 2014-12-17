@@ -46,7 +46,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>95</string>
+	<string>104</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.puzzle-games</string>
 	<key>LSMinimumSystemVersion</key>
