@@ -46,7 +46,7 @@
 			<object class="NSWindowTemplate" id="832560589">
 				<int key="NSWindowStyleMask">4111</int>
 				<int key="NSWindowBacking">2</int>
-				<string key="NSWindowRect">{{680, 520}, {320, 349}}</string>
+				<string key="NSWindowRect">{{1120, 800}, {320, 349}}</string>
 				<int key="NSWTFlags">1618477056</int>
 				<string key="NSWindowTitle">Mines</string>
 				<string key="NSWindowClass">NSWindow</string>
@@ -294,6 +294,7 @@
 							<string key="NSFrame">{{251, 2}, {51, 19}}</string>
 							<reference key="NSSuperview" ref="1005299439"/>
 							<reference key="NSWindow"/>
+							<reference key="NSNextKeyView"/>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSTextFieldCell" key="NSCell" id="952502024">
 								<int key="NSCellFlags">68157504</int>
@@ -367,7 +368,7 @@
 					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="1070215661"/>
 				</object>
-				<string key="NSScreenRect">{{0, 0}, {2560, 1417}}</string>
+				<string key="NSScreenRect">{{0, 0}, {1280, 778}}</string>
 				<string key="NSMaxSize">{1e+13, 1e+13}</string>
 				<bool key="NSAutorecalculatesContentBorderThicknessMinY">NO</bool>
 				<double key="NSContentBorderThicknessMinY">29</double>
