@@ -28,7 +28,7 @@
 		6454476216BF61FE00D3B28F /* Preferences - Effects.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6454476116BF61FE00D3B28F /* Preferences - Effects.pdf */; };
 		64585F9F175066940009470D /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64585F9E175066940009470D /* About.xib */; };
 		64585FA217507ABE0009470D /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64585FA117507ABE0009470D /* AboutController.m */; };
-		6459604316C465EF00A96830 /* File.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6459604216C465EF00A96830 /* File.pdf */; };
+		6459604316C465EF00A96830 /* File Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6459604216C465EF00A96830 /* File Template.pdf */; };
 		645A14B916A50E5500F1DF60 /* NSImage+CocoPlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 645A14B816A50E5500F1DF60 /* NSImage+CocoPlus.m */; };
 		645C42F21756A7D8005A720F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 645C42F11756A7D8005A720F /* OpenAL.framework */; };
 		645C42F51756AA34005A720F /* ALSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 645C42F41756AA34005A720F /* ALSound.m */; };
@@ -109,7 +109,7 @@
 		64585F9E175066940009470D /* About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
 		64585FA017507ABE0009470D /* AboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
 		64585FA117507ABE0009470D /* AboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutController.m; sourceTree = "<group>"; };
-		6459604216C465EF00A96830 /* File.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = File.pdf; sourceTree = "<group>"; };
+		6459604216C465EF00A96830 /* File Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "File Template.pdf"; sourceTree = "<group>"; };
 		645A14B716A50E5500F1DF60 /* NSImage+CocoPlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CocoPlus.h"; sourceTree = "<group>"; };
 		645A14B816A50E5500F1DF60 /* NSImage+CocoPlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+CocoPlus.m"; sourceTree = "<group>"; };
 		645C42F11756A7D8005A720F /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = /System/Library/Frameworks/OpenAL.framework; sourceTree = "<absolute>"; };
@@ -290,7 +290,7 @@
 				649FD1DB16C1A029004267D7 /* Balloon.pdf */,
 				649FD1DC16C1A029004267D7 /* Apple.pdf */,
 				649FD1DD16C1A029004267D7 /* Exploding Balloon.pdf */,
-				6459604216C465EF00A96830 /* File.pdf */,
+				6459604216C465EF00A96830 /* File Template.pdf */,
 				6400E82116C86D8900EDDBC7 /* Skull and Bones Placard.pdf */,
 				6400E82316C86D9200EDDBC7 /* Cloud.pdf */,
 				6400E82516C86D9B00EDDBC7 /* Moon.pdf */,
@@ -517,7 +517,7 @@
 				649FD1E416C1A029004267D7 /* Exploding Balloon.pdf in Resources */,
 				647F4EEA16C3FBC900E79B31 /* Laser.wav in Resources */,
 				6434A70318270D03008AB487 /* Themes.plist in Resources */,
-				6459604316C465EF00A96830 /* File.pdf in Resources */,
+				6459604316C465EF00A96830 /* File Template.pdf in Resources */,
 				6400E82216C86D8900EDDBC7 /* Skull and Bones Placard.pdf in Resources */,
 				6400E82416C86D9200EDDBC7 /* Cloud.pdf in Resources */,
 				6400E82616C86D9B00EDDBC7 /* Moon.pdf in Resources */,

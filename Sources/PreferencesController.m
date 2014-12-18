@@ -635,13 +635,19 @@ Released under the terms of the GNU General Public License v3. */
 		[super windowDidLoad];
 
 		NSWindow *window = self.window;
-		NSImage *image = [NSImage imageNamed: @"File.pdf"];
 
-		[image setTemplate: YES];
+		if (IS_BELOW_LION)
+			{
+			//------------------------------------------------------.
+			// En Snow Leopard no se centra correctamente la imagen |
+			// PDF del botón de selección de la fuente. Lo movemos	|
+			// un par de pixels hacia abajo para evitar este fallo.	|
+			//------------------------------------------------------'
+			NSRect frame = fontButton.frame;
 
-		flagImageButton.image      = image;
-		mineImageButton.image      = image;
-		explosionImageButton.image = image;
+			frame.origin.y -= 2.0;
+			fontButton.frame = frame;
+			}
 
 		window.title = _("Preferences.WindowTitle.General");
 		window.toolbar.selectedItemIdentifier =  @"General";

@@ -46,15 +46,13 @@ Released under the terms of the GNU General Public License v3. */
 	IBOutlet NSColorWell*	     warning7FontColorWell;
 	IBOutlet NSColorWell*	     warning8FontColorWell;
 	IBOutlet NSTextField*	     fontNameTextField;
+	IBOutlet NSButton*	     fontButton;
 	IBOutlet NSSlider*	     fontScalingSlider;
 	IBOutlet NSImageView*	     flagImageView;
-	IBOutlet NSButton*	     flagImageButton;
 	IBOutlet NSColorWell*	     flagImageColorWell;
 	IBOutlet NSImageView*	     mineImageView;
-	IBOutlet NSButton*	     mineImageButton;
 	IBOutlet NSColorWell*	     mineImageColorWell;
 	IBOutlet NSImageView*	     explosionImageView;
-	IBOutlet NSButton*	     explosionImageButton;
 	IBOutlet NSColorWell*	     explosionImageColorWell;
 
 	SeparatorCell*	_separatorCell;
@@ -68,9 +66,9 @@ Released under the terms of the GNU General Public License v3. */
 	NSColor*	_imageBackgroundColor;
 	ImagePicker*	_imagePicker;
 
-	struct {BOOL	doNotSelectRow;
-		BOOL	themeIsUnsaved;
-		BOOL	themeHasChanged;
+	struct {BOOL doNotSelectRow  :1;
+		BOOL themeIsUnsaved  :1;
+		BOOL themeHasChanged :1;
 	} _flags;
 }
 	- (id) initWithBoard: (Board *) board;
