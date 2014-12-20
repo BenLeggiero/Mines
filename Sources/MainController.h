@@ -26,7 +26,6 @@ Released under the terms of the GNU General Public License v3. */
 	// Main menu |
 	//-----------'
 	IBOutlet NSMenuItem* minesShownMenuItem;
-	IBOutlet NSMenuItem* elapsedTimeShownMenuItem;
 
 	//---------.
 	// Toolbar |

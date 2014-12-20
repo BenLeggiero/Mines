@@ -8,4 +8,4 @@ Released under the terms of the GNU General Public License v3. */
 
 CFBundleName		 = "Minor";
 CFBundleDisplayName	 = "Minor";
-NSHumanReadableCopyright = "Copyright © 2013-2014 Manuel Sainz de Baranda y Goñi.\nDistribueras under GNU General Public License v3.";
+NSHumanReadableCopyright = "Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.\nDistribueras under GNU General Public License v3.";

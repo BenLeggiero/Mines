@@ -58,14 +58,7 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 	- (void) mouseExited: (NSEvent *) event
-		{
-		NSMutableAttributedString *string = [[NSMutableAttributedString alloc]
-			initWithAttributedString: self.attributedStringValue];
-
-		[string	removeAttribute: NSUnderlineStyleAttributeName range: NSMakeRange(0, string.length)];
-		self.attributedStringValue = string;
-		[string release];
-		}
+		{self.stringValue = self.stringValue;}
 
 
 	- (void) mouseUp: (NSEvent *) event
@@ -76,5 +69,3 @@ Released under the terms of the GNU Lesser General Public License v3. */
 
 
 @end
-
-// EOF

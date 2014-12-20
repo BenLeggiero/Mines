@@ -386,6 +386,14 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 		}
 
 
+	- (void) closeSecondaryWindows
+		{
+		if (_aboutController	  ) [_aboutController.window	   performClose: self];
+		if (_preferencesController) [_preferencesController.window performClose: self];
+		[_explosion cancelExplosion];
+		}
+
+
 #	pragma mark - Callbacks
 
 
@@ -922,11 +930,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 	- (void) applicationWillTerminate: (NSNotification *) notification
 		{
-		//----------------------------------------.
-		// Liberamos los objetos de la instancia. |
-		//----------------------------------------'
-		if (_aboutController	  ) [_aboutController.window	   performClose: self];
-		if (_preferencesController) [_preferencesController.window performClose: self];
+		[self closeSecondaryWindows];
 
 		//[self.window release];
 		//[newGameWindow release];
@@ -1059,16 +1063,6 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 #	pragma mark - NSWindowDelegate Protocol
 
 
-	- (void) windowWillClose: (NSNotification *) notification
-		{
-		[_explosion cancelExplosion];
-		[_aboutController	release];
-		[_preferencesController release];
-		_aboutController       = nil;
-		_preferencesController = nil;
-		}
-
-
 	- (NSSize) windowWillResize: (NSWindow *) sender
 		   toSize:	     (NSSize	) size
 		{
@@ -1109,6 +1103,13 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 	- (void) windowDidResignMain:(NSNotification *)notification
 		{[_cannon setHidden: YES];}
+
+
+	- (BOOL) windowShouldClose: (id) sender
+		{
+		[self closeSecondaryWindows];
+		return YES;
+		}
 
 
 #	pragma mark - CannonDelegate Protocol

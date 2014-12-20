@@ -91,12 +91,8 @@
 		NSColorSpace *colorSpace = [NSColorSpace genericRGBColorSpace];
 		CGFloat components[4];
 
-		[[self colorUsingColorSpace: colorSpace]
-			getRed: &components[0]
-			green:	&components[1]
-			blue:	&components[2]
-			alpha:	&components[3]];
-
+		[[self colorUsingColorSpace: colorSpace] getComponents: components];
+		components[3] = 1.0;
 		return [NSColor colorWithColorSpace: colorSpace components: components count: 4];
 		}
 
