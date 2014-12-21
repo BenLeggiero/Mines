@@ -1,5 +1,21 @@
-v2.0 (In development)
-=====================
+v2.1 (2014-12-21)
+=================
+
+(en)
+- UI fixes for Snow Leopard.
+- Fixed a bug related to the font selection dialog.
+- Improved default theme.
+- Several minor improvements and bug fixes.
+
+(es)
+- Mejora del UI en Snow Leopard.
+- Corregido un bug relacionado con el diálogo de selección de tipografía.
+- Mejorado el tema por defecto.
+- Varias mejoras menores y corrección de bugs.
+
+
+v2.0 (2014-11-05)
+=================
 
 (en)
 - Yosemite support.
