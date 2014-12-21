@@ -606,7 +606,6 @@ Released under the terms of the GNU General Public License v3. */
 	- (id) initWithBoard: (Board *) board
 		{
 		if ((self = [super initWithWindowNibName: @"Preferences"])) _board = [board retain];
-		defaultsController.appliesImmediately = NO;
 		return self;
 		}
 
@@ -649,6 +648,7 @@ Released under the terms of the GNU General Public License v3. */
 			fontButton.frame = frame;
 			}
 
+		defaultsController.appliesImmediately = NO;
 		window.title = _("Preferences.WindowTitle.General");
 		window.toolbar.selectedItemIdentifier =  @"General";
 		[window replaceContentViewWithView: generalView animate: NO];
