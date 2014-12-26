@@ -970,7 +970,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 		while (*variableName != NULL) [defaultsController
 			removeObserver: self
-			forKeyPath:  [NSString stringWithFormat: @"values.%s", *variableName++]];
+			forKeyPath:	[NSString stringWithFormat: @"values.%s", *variableName++]];
 
 		//-----------------------------------------------------------------------.
 		// Si está activada la opción de continuar con el último juego inacabado |
