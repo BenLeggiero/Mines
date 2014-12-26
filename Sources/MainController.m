@@ -966,6 +966,12 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 		[defaults synchronize];
 
+		const char **variableName = defaultsVariableNames;
+
+		while (*variableName != NULL) [defaultsController
+			removeObserver: self
+			forKeyPath:  [NSString stringWithFormat: @"values.%s", *variableName++]];
+
 		//-----------------------------------------------------------------------.
 		// Si está activada la opción de continuar con el último juego inacabado |
 		// al iniciar y el juego actual no se ha acabado, guardamos un snapshot. |
