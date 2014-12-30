@@ -767,7 +767,7 @@ Released under the terms of the GNU General Public License v3. */
 
 	- (IBAction) changeImageTemplateColor: (NSColorWell *) sender
 		{
-		NSColor *color = [sender.color colorUsingColorSpaceName: NSDeviceRGBColorSpace];
+		NSColor *color = [sender.color colorUsingColorSpace: [NSColorSpace genericRGBColorSpace]];
 		NSUInteger key = sender.tag;
 
 		[self imageViewForKey: key].image = [self

@@ -882,11 +882,9 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 		//----------------------------------------------.
 		// Registramos listeners para las preferencias. |
 		//----------------------------------------------'
-		const char **variableName = defaultsVariableNames;
-
-		while (*variableName != NULL) [defaultsController
+		for (const char **name = defaultsVariableNames; *name != NULL;) [defaultsController
 			addObserver: self
-			forKeyPath:  [NSString stringWithFormat: @"values.%s", *variableName++]
+			forKeyPath:  [NSString stringWithFormat: @"values.%s", *name++]
 			options:     NSKeyValueObservingOptionPrior
 			context:     NULL];
 
@@ -928,6 +926,10 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 		}
 
 
+	- (BOOL) applicationShouldTerminateAfterLastWindowClosed: (NSApplication *) application
+		{return YES;}
+
+
 	- (void) applicationWillTerminate: (NSNotification *) notification
 		{
 		[self closeSecondaryWindows];
@@ -966,11 +968,10 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 		[defaults synchronize];
 
-		const char **variableName = defaultsVariableNames;
-
-		while (*variableName != NULL) [defaultsController
+		for (const char **name = defaultsVariableNames; *name != NULL;) [defaultsController
 			removeObserver: self
-			forKeyPath:	[NSString stringWithFormat: @"values.%s", *variableName++]];
+			forKeyPath:	[NSString stringWithFormat: @"values.%s", *name++]
+			context:	NULL];
 
 		//-----------------------------------------------------------------------.
 		// Si está activada la opción de continuar con el último juego inacabado |
@@ -1034,10 +1035,6 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 		[contentView addSubview: gameOverView];
 		[gameOverView release];
 		}
-
-
-	- (BOOL) applicationShouldTerminateAfterLastWindowClosed: (NSApplication *) application
-		{return YES;}
 
 
 	- (BOOL) application: (NSApplication *) application
