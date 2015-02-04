@@ -45,6 +45,7 @@ CURRENCY|ADDRESS
 * __v2.2__ _(Under development)_
     * WIP: Added time counter for games without time limit.
     * WIP: Double-click technique support.
+    * Improved default theme.
     * WIP: Improved font rendering.
 
 * __[v2.1](http://github.com/redcode/Mines/releases/tag/v2.1)__ _(2014-12-21)_
