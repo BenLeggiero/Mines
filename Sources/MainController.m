@@ -902,27 +902,6 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 		//-----------------------------------------------------------------------------'
 		//if	(board.state == kBoardStateResolved) [gameOverView youWin];
 		//else if (board.state == kBoardStateGameOver) [gameOverView youLose];
-
-		//---------------------------------------------------------------------------.
-		// Comprobamos si el ordenador tiene pantalla retina y mostramos, por ahora, |
-		// un aviso advirtiendo de que las animaciones no se verán bien.	     |
-		//---------------------------------------------------------------------------'
-		/*NSScreen *screen = window.screen;
-
-		if (	[screen respondsToSelector: @selector(backingScaleFactor)] &&
-			[screen backingScaleFactor] != 1.0
-		)
-			{
-			NSAlert *alert = [NSAlert
-				alertWithMessageText:	   _("Alert.RetinaDisplayUntested.Title")
-				defaultButton:		   nil
-				alternateButton:	   nil
-				otherButton:		   nil
-				informativeTextWithFormat: _("Alert.RetinaDisplayUntested.Body")];
-
-			[alert setAlertStyle: NSInformationalAlertStyle];
-			[alert runModal];
-			}*/
 		}
 
 
