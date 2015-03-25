@@ -49,6 +49,13 @@ Released under the terms of the GNU General Public License v3. */
 	IBOutlet NSTextField* currentFlagsValueTextField;
 	IBOutlet NSTextField* timeElapsedValueTextField;
 
+	//---------------.
+	// Main controls |
+	//---------------'
+	IBOutlet Board*        board;
+	IBOutlet GameOverView* gameOverView;
+	IBOutlet NSWindow*     newGameWindow;
+
 	//-----------------.
 	// New game window |
 	//-----------------'
@@ -67,13 +74,6 @@ Released under the terms of the GNU General Public License v3. */
 	IBOutlet NSButton*	timeLimitButton;
 	IBOutlet NSTextField*	timeLimitTextField;
 	IBOutlet NSTextField*	timeLimitUnitTextField;
-
-	//---------------.
-	// Main controls |
-	//---------------'
-	IBOutlet GameOverView* gameOverView;
-	IBOutlet NSWindow*     newGameWindow;
-	IBOutlet Board*        board;
 
 	//-------------------.
 	// Private variables |

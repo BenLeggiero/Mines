@@ -7,7 +7,7 @@ Copyright © 2012-2013 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
 #include <Q/keys/status.h>
-#include <Q/functions/base/Q2D.h>
+#include <Q/functions/base/Q2DValue.h>
 
 #ifdef BUILDING_POSIX_PROJECT
 #	include "Minesweeper.h"

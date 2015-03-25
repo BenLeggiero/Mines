@@ -1284,7 +1284,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 			modalForWindow: self.window
 			modalDelegate:	self
 			didEndSelector:	nil
-			contextInfo:	nil];
+			contextInfo:	NULL];
 
 		[_fireworks removeFromSuperview];
 		_fireworks = nil;

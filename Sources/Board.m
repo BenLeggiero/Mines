@@ -8,7 +8,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #import "Board.h"
 #import "geometry.h"
-#import <Q/functions/base/Q2D.h>
+#import <Q/functions/base/Q2DValue.h>
 
 //@interface NSFont (PrivateGlyph)
 //	- (NSGlyph) _defaultGlyphForChar: (unichar) theChar;
