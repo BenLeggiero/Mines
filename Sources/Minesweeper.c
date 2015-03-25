@@ -276,11 +276,7 @@ void minesweeper_set_random(Minesweeper *object, void *random)
 #endif
 
 
-QStatus minesweeper_set_snapshot(
-	Minesweeper*	object,
-	void*		snapshot,
-	qsize		snapshot_size
-)
+QStatus minesweeper_set_snapshot(Minesweeper *object, void *snapshot, qsize snapshot_size)
 	{
 	MinesweeperCell *p, *e;
 

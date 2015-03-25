@@ -15,38 +15,38 @@ Released under the terms of the GNU General Public License v3. */
 extern "C" {
 #endif
 
-#define MINESWEEPER_MINIMUM_X_SIZE		4
-#define MINESWEEPER_MINIMUM_Y_SIZE		4
-#define MINESWEEPER_MINIMUM_MINE_COUNT		2
+#define MINESWEEPER_MINIMUM_X_SIZE     4
+#define MINESWEEPER_MINIMUM_Y_SIZE     4
+#define MINESWEEPER_MINIMUM_MINE_COUNT 2
 
-#define MINESWEEPER_CELL_MASK_EXPLODED		(1 << 7)
-#define MINESWEEPER_CELL_MASK_MINE		(1 << 6)
-#define MINESWEEPER_CELL_MASK_DISCLOSED		(1 << 5)
-#define MINESWEEPER_CELL_MASK_FLAG		(1 << 4)
-#define MINESWEEPER_CELL_MASK_WARNING		0xF
+#define MINESWEEPER_CELL_MASK_EXPLODED	(1 << 7)
+#define MINESWEEPER_CELL_MASK_MINE	(1 << 6)
+#define MINESWEEPER_CELL_MASK_DISCLOSED (1 << 5)
+#define MINESWEEPER_CELL_MASK_FLAG	(1 << 4)
+#define MINESWEEPER_CELL_MASK_WARNING	0xF
 
 typedef quint8 MinesweeperCell;
 
-#define MINESWEEPER_CELL_EXPLODED(cell)		((cell) & MINESWEEPER_CELL_MASK_EXPLODED)
-#define MINESWEEPER_CELL_MINE(cell)		((cell) & MINESWEEPER_CELL_MASK_MINE)
-#define MINESWEEPER_CELL_DISCLOSED(cell)	((cell) & MINESWEEPER_CELL_MASK_DISCLOSED)
-#define MINESWEEPER_CELL_FLAG(cell)		((cell) & MINESWEEPER_CELL_MASK_FLAG)
-#define MINESWEEPER_CELL_WARNING(cell)		((cell) & MINESWEEPER_CELL_MASK_WARNING)
+#define MINESWEEPER_CELL_EXPLODED( cell) ((cell) & MINESWEEPER_CELL_MASK_EXPLODED)
+#define MINESWEEPER_CELL_MINE(	   cell) ((cell) & MINESWEEPER_CELL_MASK_MINE)
+#define MINESWEEPER_CELL_DISCLOSED(cell) ((cell) & MINESWEEPER_CELL_MASK_DISCLOSED)
+#define MINESWEEPER_CELL_FLAG(	   cell) ((cell) & MINESWEEPER_CELL_MASK_FLAG)
+#define MINESWEEPER_CELL_WARNING(  cell) ((cell) & MINESWEEPER_CELL_MASK_WARNING)
 
 typedef quint8 MinesweeperState;
 
-#define MINESWEEPER_STATE_INITIALIZED		0
-#define MINESWEEPER_STATE_PRISTINE		1
-#define MINESWEEPER_STATE_PLAYING		2
-#define MINESWEEPER_STATE_EXPLODED		3
-#define MINESWEEPER_STATE_SOLVED		4
+#define MINESWEEPER_STATE_INITIALIZED 0
+#define MINESWEEPER_STATE_PRISTINE    1
+#define MINESWEEPER_STATE_PLAYING     2
+#define MINESWEEPER_STATE_EXPLODED    3
+#define MINESWEEPER_STATE_SOLVED      4
 
 typedef quint8 MinesweeperResult;
 
-#define MINESWEEPER_RESULT_ALREADY_DISCLOSED	1
-#define MINESWEEPER_RESULT_IS_FLAG		2
-#define MINESWEEPER_RESULT_MINE_FOUND		3
-#define MINESWEEPER_RESULT_SOLVED		4
+#define MINESWEEPER_RESULT_ALREADY_DISCLOSED 1
+#define MINESWEEPER_RESULT_IS_FLAG	     2
+#define MINESWEEPER_RESULT_MINE_FOUND	     3
+#define MINESWEEPER_RESULT_SOLVED	     4
 
 typedef struct Minesweeper Minesweeper;
 
@@ -56,24 +56,24 @@ typedef void (* MinesweeperCellUpdated) (void*		 context,
 					 MinesweeperCell cell_value);
 
 struct Minesweeper {
-	MinesweeperCellUpdated	cell_updated;
-	void*			cell_updated_context;
+	MinesweeperCellUpdated cell_updated;
+	void*		       cell_updated_context;
 #	ifndef BUILD_FOR_POSIX_PROJECT
-	qsize			(* random)(void);
+		qsize (* random)(void);
 #	endif
-	MinesweeperCell*	cells;
-	Q2DSize			size;
-	qsize			mine_count;
-	qsize			remaining_count;
-	qsize			flag_count;
-	MinesweeperState	state;
+	MinesweeperCell* cells;
+	Q2DSize		 size;
+	qsize		 mine_count;
+	qsize		 remaining_count;
+	qsize		 flag_count;
+	MinesweeperState state;
 };
 
 typedef Q_STRICT_STRUCTURE(
 	quint64 x;
 	quint64 y;
 	quint64 mine_count;
-	quint8 state;
+	quint8	state;
 ) MinesweeperSnapshotHeader;
 
 #define MINESWEEPER(		    p) ((Minesweeper		   *)(p))
