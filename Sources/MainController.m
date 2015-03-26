@@ -1,9 +1,9 @@
 /* Mines - MainController.m
  __  __
-|  \/  | __  ____  ___  ____
-|      |(__)|    |/ -_)(__ <
-|__\/__||__||__|_|\___//___/
-Copyright © 2013-2014 Manuel Sainz de Baranda y Goñi.
+|  \/  | __  ____  ___	___
+|      |(__)|    |/ -_)/_  \
+|__\/__||__||__|_|\___/ /__/
+Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
 #import "MainController.h"
@@ -388,8 +388,8 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 	- (void) closeSecondaryWindows
 		{
-		if (_aboutController	  ) [_aboutController.window	   performClose: self];
-		if (_preferencesController) [_preferencesController.window performClose: self];
+		if (_aboutWindowController	) [_aboutWindowController.window       performClose: self];
+		if (_preferencesWindowController) [_preferencesWindowController.window performClose: self];
 		[_explosion cancelExplosion];
 		}
 
@@ -420,15 +420,15 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 			name:		NSWindowWillCloseNotification
 			object:		window];
 
-		if (window.windowController == _preferencesController)
+		if (window.windowController == _preferencesWindowController)
 			{
-			[_preferencesController release];
-			_preferencesController = nil;
+			[_preferencesWindowController release];
+			_preferencesWindowController = nil;
 			}
 
 		else	{
-			[_aboutController release];
-			_aboutController = nil;
+			[_aboutWindowController release];
+			_aboutWindowController = nil;
 			}
 		}
 
@@ -1243,13 +1243,13 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 		{
 		NSWindow *window;
 
-		if (!_aboutController) [[NSNotificationCenter defaultCenter]
+		if (!_aboutWindowController) [[NSNotificationCenter defaultCenter]
 			addObserver: self
 			selector:    @selector(onWindowClosed:)
 			name:	     NSWindowWillCloseNotification
-			object:	     window = (_aboutController = [[AboutController alloc] init]).window];
+			object:	     window = (_aboutWindowController = [[AboutWindowController alloc] init]).window];
 
-		else window = _aboutController.window;
+		else window = _aboutWindowController.window;
 
 		[window makeKeyAndOrderFront: self];
 		}
@@ -1259,13 +1259,13 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 		{
 		NSWindow *window;
 
-		if (!_preferencesController) [[NSNotificationCenter defaultCenter]
+		if (!_preferencesWindowController) [[NSNotificationCenter defaultCenter]
 			addObserver: self
 			selector:    @selector(onWindowClosed:)
 			name:	     NSWindowWillCloseNotification
-			object:	     window = (_preferencesController = [[PreferencesController alloc] initWithBoard: board]).window];
+			object:	     window = (_preferencesWindowController = [[PreferencesWindowController alloc] initWithBoard: board]).window];
 
-		else window = _preferencesController.window;
+		else window = _preferencesWindowController.window;
 
 		[window makeKeyAndOrderFront: self];
 		}

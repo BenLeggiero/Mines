@@ -1,12 +1,12 @@
-/* Mines - PreferencesController.m
+/* Mines - PreferencesWindowController.m
  __  __
-|  \/  | __  ____  ___  ____
-|      |(__)|    |/ -_)(__ <
-|__\/__||__||__|_|\___//___/
-Copyright © 2013-2014 Manuel Sainz de Baranda y Goñi.
+|  \/  | __  ____  ___	___
+|      |(__)|    |/ -_)/_  \
+|__\/__||__||__|_|\___/ /__/
+Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#import "PreferencesController.h"
+#import "PreferencesWindowController.h"
 #import "ImagePicker.h"
 #import "NSWindow+CocoPlus.h"
 #import "NSColor+CocoPlus.h"
@@ -19,7 +19,7 @@ Released under the terms of the GNU General Public License v3. */
 #define DEFAULT_TEMPLATE_IMAGE_COLOR [NSColor colorWithDeviceRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.5]
 
 
-@implementation PreferencesController
+@implementation PreferencesWindowController
 
 
 #	pragma mark - Helpers

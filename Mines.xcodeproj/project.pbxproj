@@ -27,7 +27,7 @@
 		6453BE0018AEE6AB00AE1E38 /* Link.m in Sources */ = {isa = PBXBuildFile; fileRef = 6453BDFF18AEE6AB00AE1E38 /* Link.m */; };
 		6454476216BF61FE00D3B28F /* Preferences - Effects.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6454476116BF61FE00D3B28F /* Preferences - Effects.pdf */; };
 		64585F9F175066940009470D /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64585F9E175066940009470D /* About.xib */; };
-		64585FA217507ABE0009470D /* AboutController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64585FA117507ABE0009470D /* AboutController.m */; };
+		64585FA217507ABE0009470D /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64585FA117507ABE0009470D /* AboutWindowController.m */; };
 		6459604316C465EF00A96830 /* File Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6459604216C465EF00A96830 /* File Template.pdf */; };
 		645A14B916A50E5500F1DF60 /* NSImage+CocoPlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 645A14B816A50E5500F1DF60 /* NSImage+CocoPlus.m */; };
 		645C42F21756A7D8005A720F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 645C42F11756A7D8005A720F /* OpenAL.framework */; };
@@ -35,7 +35,7 @@
 		647E9BF916A1FE420049B9B0 /* helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 647E9BF816A1FE420049B9B0 /* helpers.m */; };
 		647F4EEA16C3FBC900E79B31 /* Laser.wav in Resources */ = {isa = PBXBuildFile; fileRef = 647F4EE916C3FBC900E79B31 /* Laser.wav */; };
 		64827ACC175BC81E00AE54D8 /* Disclose.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64827ACB175BC81E00AE54D8 /* Disclose.wav */; };
-		648460691636E6BA0079E869 /* PreferencesController.m in Sources */ = {isa = PBXBuildFile; fileRef = 648460681636E6BA0079E869 /* PreferencesController.m */; };
+		648460691636E6BA0079E869 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 648460681636E6BA0079E869 /* PreferencesWindowController.m */; };
 		648C8FC21640296F005A72B7 /* NSWindow+CocoPlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 648C8FC11640296F005A72B7 /* NSWindow+CocoPlus.m */; };
 		6494736D163CAC4B00B9C32D /* Typical Games.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6494736C163CAC4B00B9C32D /* Typical Games.plist */; };
 		649FD1DE16C1A029004267D7 /* Skull and Bones.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 649FD1D716C1A029004267D7 /* Skull and Bones.pdf */; };
@@ -107,8 +107,8 @@
 		6453BDFF18AEE6AB00AE1E38 /* Link.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Link.m; sourceTree = "<group>"; };
 		6454476116BF61FE00D3B28F /* Preferences - Effects.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Preferences - Effects.pdf"; sourceTree = "<group>"; };
 		64585F9E175066940009470D /* About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
-		64585FA017507ABE0009470D /* AboutController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutController.h; sourceTree = "<group>"; };
-		64585FA117507ABE0009470D /* AboutController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutController.m; sourceTree = "<group>"; };
+		64585FA017507ABE0009470D /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutWindowController.h; sourceTree = "<group>"; };
+		64585FA117507ABE0009470D /* AboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutWindowController.m; sourceTree = "<group>"; };
 		6459604216C465EF00A96830 /* File Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "File Template.pdf"; sourceTree = "<group>"; };
 		645A14B716A50E5500F1DF60 /* NSImage+CocoPlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CocoPlus.h"; sourceTree = "<group>"; };
 		645A14B816A50E5500F1DF60 /* NSImage+CocoPlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+CocoPlus.m"; sourceTree = "<group>"; };
@@ -123,8 +123,8 @@
 		647E9BF816A1FE420049B9B0 /* helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = helpers.m; sourceTree = "<group>"; };
 		647F4EE916C3FBC900E79B31 /* Laser.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Laser.wav; sourceTree = "<group>"; };
 		64827ACB175BC81E00AE54D8 /* Disclose.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Disclose.wav; sourceTree = "<group>"; };
-		648460671636E6BA0079E869 /* PreferencesController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesController.h; sourceTree = "<group>"; };
-		648460681636E6BA0079E869 /* PreferencesController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesController.m; sourceTree = "<group>"; };
+		648460671636E6BA0079E869 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
+		648460681636E6BA0079E869 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		648A510716D56D0200C75986 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
 		648C8FC01640296F005A72B7 /* NSWindow+CocoPlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+CocoPlus.h"; sourceTree = "<group>"; };
 		648C8FC11640296F005A72B7 /* NSWindow+CocoPlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+CocoPlus.m"; sourceTree = "<group>"; };
@@ -382,10 +382,10 @@
 				64A8FDEF1648496C00CB7FE5 /* Fireworks.m */,
 				64ACE5E916929FA300283CDA /* GameOverView.h */,
 				64ACE5EA16929FA300283CDA /* GameOverView.m */,
-				64585FA017507ABE0009470D /* AboutController.h */,
-				64585FA117507ABE0009470D /* AboutController.m */,
-				648460671636E6BA0079E869 /* PreferencesController.h */,
-				648460681636E6BA0079E869 /* PreferencesController.m */,
+				64585FA017507ABE0009470D /* AboutWindowController.h */,
+				64585FA117507ABE0009470D /* AboutWindowController.m */,
+				648460671636E6BA0079E869 /* PreferencesWindowController.h */,
+				648460681636E6BA0079E869 /* PreferencesWindowController.m */,
 				6448786B18372948008B7276 /* TableView.h */,
 				6448786C18372948008B7276 /* TableView.m */,
 				641ACA81185ABE5F006411CB /* SeparatorCell.h */,
@@ -562,7 +562,7 @@
 				64D396D31603970800C0DD1F /* Minesweeper.c in Sources */,
 				6453BE0018AEE6AB00AE1E38 /* Link.m in Sources */,
 				64D396D6160398E300C0DD1F /* Laser.m in Sources */,
-				648460691636E6BA0079E869 /* PreferencesController.m in Sources */,
+				648460691636E6BA0079E869 /* PreferencesWindowController.m in Sources */,
 				64229888163A076100B5B574 /* ImagePicker.m in Sources */,
 				648C8FC21640296F005A72B7 /* NSWindow+CocoPlus.m in Sources */,
 				6448786D18372948008B7276 /* TableView.m in Sources */,
@@ -577,7 +577,7 @@
 				6405EEBF1857E8670029AFE4 /* NSString+CocoPlus.m in Sources */,
 				647E9BF916A1FE420049B9B0 /* helpers.m in Sources */,
 				645A14B916A50E5500F1DF60 /* NSImage+CocoPlus.m in Sources */,
-				64585FA217507ABE0009470D /* AboutController.m in Sources */,
+				64585FA217507ABE0009470D /* AboutWindowController.m in Sources */,
 				645C42F51756AA34005A720F /* ALSound.m in Sources */,
 				64C198A21A02B8CF00E086FE /* migrations.m in Sources */,
 			);
