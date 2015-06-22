@@ -567,7 +567,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 							}
 						}
 
-					glBindTexture(GL_TEXTURE_2D, 0); 
+					glBindTexture(GL_TEXTURE_2D, 0);
 					glBegin(GL_QUADS);
 						glVertex2d(origin.x,		  origin.y		);
 						glVertex2d(origin.x + size.width, origin.y		);
