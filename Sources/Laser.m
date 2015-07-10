@@ -154,12 +154,14 @@ Released under the terms of the GNU General Public License v3. */
 			_window.backgroundColor = [NSColor clearColor];
 #		endif
 
-		_window.hasShadow = NO;
+		_window.hasShadow	   = NO;
+		_window.opaque		   = NO;
+		_window.level		   = parentWindow.level + 1;
+		_window.ignoresMouseEvents = YES;
+
 		NSView *view = [[LaserView alloc] initWithFrame: NSZeroRect];
 
-		[_window setOpaque: NO];
-		[_window setLevel: NSFloatingWindowLevel];
-		[_window setContentView: view];
+		_window.contentView = view;
 		[view release];
 
 		_target	       = target;

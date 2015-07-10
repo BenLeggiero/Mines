@@ -6,8 +6,8 @@
 Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef Mines_constants_H
-#define Mines_constants_H
+#ifndef __Mines_constants_H
+#define __Mines_constants_H
 
 #define kGameMinimumWidth	5
 #define kGameMinimumHeight	5
@@ -23,4 +23,4 @@ Released under the terms of the GNU General Public License v3. */
 #define kCellMinimumSize	10.0
 #define kCellDefaultSize	32.0
 
-#endif // Mines_constants_H
+#endif // __Mines_constants_H

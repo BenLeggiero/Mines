@@ -529,10 +529,10 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 		//------------------------------------------------------------------------------.
 		// Añadimos efecto de incrustación a las etiquetas de la barra de herramientas. |
 		//------------------------------------------------------------------------------'
-		[leftCounterTitleTextField.cell	  setBackgroundStyle: NSBackgroundStyleRaised];
-		[leftCounterValueTextField.cell	  setBackgroundStyle: NSBackgroundStyleRaised];
-		[rightCounterTitleTextField.cell  setBackgroundStyle: NSBackgroundStyleRaised];
-		[rightCounterValueTextField.cell  setBackgroundStyle: NSBackgroundStyleRaised];
+		[leftCounterTitleTextField.cell	 setBackgroundStyle: NSBackgroundStyleRaised];
+		[leftCounterValueTextField.cell	 setBackgroundStyle: NSBackgroundStyleRaised];
+		[rightCounterTitleTextField.cell setBackgroundStyle: NSBackgroundStyleRaised];
+		[rightCounterValueTextField.cell setBackgroundStyle: NSBackgroundStyleRaised];
 
 		//---------------------------------------------------------------------------------.
 		// Configuramos las imágenes de los botones de la barra de estado como plantillas. |
@@ -557,11 +557,11 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 			//------------------------------------------------------------------------.
 			// Añadimos efecto de incrustación a las etiquetas de la barra de estado. |
 			//------------------------------------------------------------------------'
-			[totalMinesSymbolButton.cell	  setBackgroundStyle: NSBackgroundStyleRaised];
-			[totalMinesValueTextField.cell	  setBackgroundStyle: NSBackgroundStyleRaised];
-			[currentFlagsSymbolButton.cell	  setBackgroundStyle: NSBackgroundStyleRaised];
-			[currentFlagsValueTextField.cell  setBackgroundStyle: NSBackgroundStyleRaised];
-			[timeElapsedValueTextField.cell	  setBackgroundStyle: NSBackgroundStyleRaised];
+			[totalMinesSymbolButton.cell	 setBackgroundStyle: NSBackgroundStyleRaised];
+			[totalMinesValueTextField.cell	 setBackgroundStyle: NSBackgroundStyleRaised];
+			[currentFlagsSymbolButton.cell	 setBackgroundStyle: NSBackgroundStyleRaised];
+			[currentFlagsValueTextField.cell setBackgroundStyle: NSBackgroundStyleRaised];
+			[timeElapsedValueTextField.cell	 setBackgroundStyle: NSBackgroundStyleRaised];
 			}
 
 		if (IS_BELOW_LION)

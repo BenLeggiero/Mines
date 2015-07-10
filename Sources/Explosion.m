@@ -17,6 +17,10 @@ Released under the terms of the GNU General Public License v3. */
 	- (oneway void) release {NSLog(@"ExplosionWindow release"); [super release];}
 	- (void)	dealloc {NSLog(@"ExplosionWindow dealloc"); [super dealloc];}
 
+	- (NSRect) constrainFrameRect: (NSRect	  ) frame
+		   toScreen:	       (NSScreen *) screen
+		{return frame;}
+
 @end*/
 
 
@@ -107,25 +111,26 @@ Released under the terms of the GNU General Public License v3. */
 			_window.backgroundColor = [NSColor clearColor];
 #		endif
 
-		//_window.hasShadow = NO;
-		[_window setOpaque: NO];
-		[_window setLevel: NSMainMenuWindowLevel + 1];
-		[((NSView *)_window.contentView) setWantsLayer: YES];
-
-		_target	 = target;
-		_action	 = action;
-		_emitter = [CAEmitterLayer layer];
-
-		_emitter.emitterPosition = CGPointMake(kSize / 2.0, kSize / 2.0);
-		_emitter.emitterMode     = kCAEmitterLayerOutline;
-		_emitter.emitterShape    = kCAEmitterLayerCircle;
-		_emitter.renderMode      = kCAEmitterLayerAdditive;
-		_emitter.emitterSize     = CGSizeMake(1.0, 1.0);
-
 		//Create the emitter cell
 		CAEmitterCell* particle = [CAEmitterCell emitterCell];
+		NSView* contentView = _window.contentView;
 
-		//particle.color		   = [NSColor colorWithCalibratedRed: 1.0 green: 1.0 blue: 0.55 alpha: 1.0].CGColor;
+		//_window.hasShadow	   = NO;
+		_window.oneShot		   = YES;
+		_window.hasShadow	   = NO;
+		_window.opaque		   = NO;
+		_window.level		   = NSMainMenuWindowLevel + 1;
+		_window.ignoresMouseEvents = YES;
+		contentView.wantsLayer	   = YES;
+		_target			   = target;
+		_action			   = action;
+		_emitter		   = [CAEmitterLayer layer];
+		_emitter.emitterPosition   = CGPointMake(kSize / 2.0, kSize / 2.0);
+		_emitter.emitterMode	   = kCAEmitterLayerOutline;
+		_emitter.emitterShape	   = kCAEmitterLayerCircle;
+		_emitter.renderMode	   = kCAEmitterLayerAdditive;
+		_emitter.emitterSize	   = CGSizeMake(1.0, 1.0);
+		//particle.color	   = [NSColor colorWithCalibratedRed: 1.0 green: 1.0 blue: 0.55 alpha: 1.0].CGColor;
 		particle.emissionLongitude = M_PI;
 		particle.emissionLatitude  = M_PI;
 		particle.birthRate	   = 5500.0;
@@ -138,22 +143,18 @@ Released under the terms of the GNU General Public License v3. */
 		particle.redSpeed	   = -0.7;
 		particle.greenSpeed	   = -1.0;
 		//particle.redRange	   = 0.5;
-
 		//particle.scaleRange	   = 0.5;
 		//particle.scaleSpeed	   = 10.0;
 		//particle.scale	   = 0.5;
 		//particle.yAcceleration   = -200;
 		//particle.scaleSpeed	   = 0.0;
 		particle.contents	   = (id)_particleImage;
-
-		//Name the cell so that it can be animated later using keypaths
-		[particle setName: @"particle"];
-
-		_emitter.emitterCells = [NSArray arrayWithObject: particle];
+		particle.name		   = @"particle";
+		_emitter.emitterCells	   = [NSArray arrayWithObject: particle];
 
 		[_window makeKeyAndOrderFront: self];
 		_emitter.beginTime = CACurrentMediaTime();
-		[((NSView *)_window.contentView).layer addSublayer: _emitter];
+		[contentView.layer addSublayer: _emitter];
 
 		_timer = [NSTimer
 			scheduledTimerWithTimeInterval: 0.40

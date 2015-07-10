@@ -6,8 +6,8 @@
 Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#ifndef Mines_geometry_H
-#define Mines_geometry_H
+#ifndef __Mines_geometry_H
+#define __Mines_geometry_H
 
 #import <Cocoa/Cocoa.h>
 
@@ -103,4 +103,4 @@ NS_INLINE NSRect RectangleFitInCenter(NSRect rectangle, NSSize size)
 	}
 
 
-#endif // Mines_geometry_H
+#endif // __Mines_geometry_H
