@@ -24,7 +24,7 @@ Mines is a simple and elegant implementation of the classic game [Minesweeper](h
 * Toggle Flag: `Mouse Right` or `Shift` + `Mouse Left`
 
 ### Notes
-* In order to compile, you need to install the [Q API](http://github.com/redcode/Q) in "/usr/local/include/Q".
+* In order to compile, you need to install the [Q API](/redcode/Q) in "/usr/local/include/Q".
 * It is guaranteed to run correctly in OS X 10.6 or above, although compatibility with OS X 10.5 (Intel or PowerPC) should not be difficult to achieve.
 
 ### Want to help?
@@ -48,13 +48,13 @@ CURRENCY|ADDRESS
     * Improved default theme.
     * WIP: Improved font rendering.
 
-* __[v2.1](http://github.com/redcode/Mines/releases/tag/v2.1)__ _(2014-12-21)_
+* __[v2.1](/redcode/Mines/releases/tag/v2.1)__ _(2014-12-21)_
     * UI fixes for Snow Leopard.
     * Fixed a bug related to the font selection dialog.
     * Improved default theme.
     * Several minor improvements and bug fixes.
 
-* __[v2.0](http://github.com/redcode/Mines/releases/tag/v2.0)__ _(2014-11-05)_
+* __[v2.0](/redcode/Mines/releases/tag/v2.0)__ _(2014-11-05)_
     * Yosemite support.
     * Retina Display support.
     * Russian language support.
