@@ -24,8 +24,8 @@ Mines is a simple and elegant implementation of the classic game [Minesweeper](h
 * Toggle Flag: `Mouse Right` or `Shift` + `Mouse Left`
 
 ### Notes
-* In order to compile, you need to install the [Q API](http://github.com/redcode/Q) in "/usr/local/include/Q".
-* It is guaranteed to run correctly in OS X 10.6 or above, although compatibility with OS X 10.5 (Intel or PowerPC) should not be difficult to achieve.
+* In order to compile, you need to install the [Q API](http://github.com/redcode/Q) in _"/usr/local/include/Q"_.
+* It is guaranteed to run in OS X 10.6 or above, although compatibility with OS X 10.5 (Intel or PowerPC) should not be difficult to achieve.
 
 ### Want to help?
 Buy it on the [Mac App Store](https://itunes.apple.com/us/app/mines/id602009455)!  
