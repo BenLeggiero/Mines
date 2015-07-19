@@ -3,17 +3,16 @@
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
-Copyright © 2012-2013 Manuel Sainz de Baranda y Goñi.
+Copyright © 2012-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
 #ifndef __games_puzzle_Minesweeper_H__
 #define __games_puzzle_Minesweeper_H__
 
 #include <Q/types/base.h>
+#include <Q/keys/status.h>
 
-#ifdef __cplusplus
-extern "C" {
-#endif
+Q_C_SYMBOLS_BEGIN
 
 #define MINESWEEPER_MINIMUM_X_SIZE     4
 #define MINESWEEPER_MINIMUM_Y_SIZE     4
@@ -150,8 +149,6 @@ QStatus		  minesweeper_snapshot_values		(void*	      snapshot,
 							 qsize*	      mine_count,
 							 quint8*      state);
 
-#ifdef __cplusplus
-}
-#endif
+Q_C_SYMBOLS_END
 
 #endif /* __games_puzzle_Minesweeper_H__ */

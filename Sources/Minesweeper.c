@@ -3,10 +3,9 @@
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
 /_/  \__/\_,_/\__/\___/_,_/\__/
-Copyright © 2012-2013 Manuel Sainz de Baranda y Goñi.
+Copyright © 2012-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#include <Q/keys/status.h>
 #include <Q/functions/base/Q2DValue.h>
 
 #ifdef BUILDING_POSIX_PROJECT
@@ -314,7 +313,7 @@ QStatus minesweeper_set_snapshot(Minesweeper *object, void *snapshot, qsize snap
 			}
 		}
 
-	return OK;
+	return Q_OK;
 	}
 
 
@@ -349,12 +348,14 @@ QStatus minesweeper_prepare(Minesweeper *object, Q2DSize size, qsize mine_count)
 	)
 		return Q_ERROR_INVALID_ARGUMENT;
 
-	if (object->size.x != size.x || object->size.y != size.y)
+	if (!q_2d_value_are_equal(SIZE)(object->size, size))
 		{
-		if ((object->cells = REALLOCATE(object->cells, cell_count)) == NULL)
-			return Q_ERROR_NOT_ENOUGH_MEMORY;
+		void *cells = REALLOCATE(object->cells, cell_count);
 
-		object->size = size;
+		if (cells == NULL) return Q_ERROR_NOT_ENOUGH_MEMORY;
+
+		object->cells = cells;
+		object->size  = size;
 		}
 
 	object->state		= MINESWEEPER_STATE_PRISTINE;
@@ -362,7 +363,7 @@ QStatus minesweeper_prepare(Minesweeper *object, Q2DSize size, qsize mine_count)
 	object->remaining_count = cell_count - (object->mine_count = mine_count);
 
 	BLOCK_CLEAR(object->cells, cell_count);
-	return OK;
+	return Q_OK;
 	}
 
 
@@ -423,7 +424,7 @@ MinesweeperResult minesweeper_disclose(Minesweeper *object, Q2DSize coordinates)
 		return MINESWEEPER_RESULT_SOLVED;
 		}
 
-	return OK;
+	return Q_OK;
 	}
 
 
@@ -475,7 +476,7 @@ MinesweeperResult minesweeper_toggle_flag(
 	if (CB_FOR_UPDATED) UPDATED(coordinates.x, coordinates.y, *c);
 	if (new_value != NULL) *new_value = !!(*c & FLAG);
 
-	return OK;
+	return Q_OK;
 	}
 
 
@@ -657,7 +658,7 @@ QStatus minesweeper_snapshot_test(void *snapshot, qsize snapshot_size)
 			return Q_ERROR_INVALID_FORMAT;
 		}
 
-	return OK;
+	return Q_OK;
 	}
 
 
@@ -681,7 +682,7 @@ QStatus minesweeper_snapshot_values(
 	if (mine_count != NULL) *mine_count = (qsize)q_uint64_big_endian(HEADER(snapshot)->mine_count);
 	if (state      != NULL) *state	    = (qsize)q_uint64_big_endian(HEADER(snapshot)->state);
 
-	return OK;
+	return Q_OK;
 	}
 
 
