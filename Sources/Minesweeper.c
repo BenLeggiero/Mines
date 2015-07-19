@@ -12,20 +12,16 @@ Released under the terms of the GNU General Public License v3. */
 #	include "Minesweeper.h"
 #	include <stdlib.h>
 #	include <string.h>
-#	define REALLOCATE(block, size)		realloc(block, size)
-#	define DEALLOCATE(block)		free(block)
-#	define RANDOM				((qsize)random())
-#	define BLOCK_CLEAR(block, size)		memset(block, 0, size)
-#	define BLOCK_COPY(block, size, output)	memcpy(output, block, size)
+#	define q_reallocate(block, size)	 realloc(block, size)
+#	define q_deallocate(block)		 free(block)
+#	define q_block_set(block, size, value)	 memset(block, value, size)
+#	define q_block_copy(block, size, output) memcpy(output, block, size)
+#	define RANDOM				 ((qsize)random())
 #else
 #	include <games/puzzle/Minesweeper.h>
 #	include <QBase/object.h>
 #	include <QBase/block.h>
-#	define REALLOCATE(block, size)	q_reallocate(object, block, size)
-#	define DEALLOCATE(block)	q_deallocate(object, block)
-#	define RANDOM			((qsize (*)(void))object->random)()
-#	define BLOCK_CLEAR(block, size)	q_block_set(block, size, 0)
-#	define BLOCK_COPY		q_block_copy
+#	define RANDOM ((qsize (*)(void))object->random)()
 #endif
 
 #define EXPLODED		MINESWEEPER_CELL_MASK_EXPLODED
@@ -255,7 +251,7 @@ void minesweeper_initialize(Minesweeper *object)
 
 
 void minesweeper_finalize(Minesweeper *object)
-	{if (object->cells != NULL) DEALLOCATE(object->cells);}
+	{if (object->cells != NULL) q_deallocate(object->cells);}
 
 
 void minesweeper_set_cell_updated_callback(
@@ -288,7 +284,7 @@ QStatus minesweeper_set_snapshot(Minesweeper *object, void *snapshot, qsize snap
 
 	if (cell_count != object->size.x * object->size.y)
 		{
-		if ((p = REALLOCATE(object->cells, cell_count)) == NULL)
+		if ((p = q_reallocate(object->cells, cell_count)) == NULL)
 			return Q_ERROR_NOT_ENOUGH_MEMORY;
 
 		object->cells = p;
@@ -301,10 +297,10 @@ QStatus minesweeper_set_snapshot(Minesweeper *object, void *snapshot, qsize snap
 	object->remaining_count = cell_count - object->mine_count;
 
 	if (object->state <= MINESWEEPER_STATE_PRISTINE)
-		BLOCK_CLEAR(object->cells, cell_count);
+		q_block_set(object->cells, cell_count, 0);
 
 	else	{
-		BLOCK_COPY(snapshot + HEADER_SIZE, cell_count, object->cells);
+		q_block_copy(snapshot + HEADER_SIZE, cell_count, object->cells);
 
 		for (p = object->cells, e = p + cell_count; p != e; p++)
 			{
@@ -332,8 +328,8 @@ void minesweeper_snapshot(Minesweeper *object, void *output)
 	HEADER(output)->mine_count = q_uint64_big_endian(object->mine_count);
 	HEADER(output)->state	   = object->state;
 
-	if (object->state > MINESWEEPER_STATE_PRISTINE)
-		BLOCK_COPY(object->cells, object->size.x * object->size.y, output + HEADER_SIZE);
+	if (object->state > MINESWEEPER_STATE_PRISTINE) q_block_copy
+		(object->cells, object->size.x * object->size.y, output + HEADER_SIZE);
 	}
 
 
@@ -350,7 +346,7 @@ QStatus minesweeper_prepare(Minesweeper *object, Q2DSize size, qsize mine_count)
 
 	if (!q_2d_value_are_equal(SIZE)(object->size, size))
 		{
-		void *cells = REALLOCATE(object->cells, cell_count);
+		void *cells = q_reallocate(object->cells, cell_count);
 
 		if (cells == NULL) return Q_ERROR_NOT_ENOUGH_MEMORY;
 
@@ -362,7 +358,7 @@ QStatus minesweeper_prepare(Minesweeper *object, Q2DSize size, qsize mine_count)
 	object->flag_count	= 0;
 	object->remaining_count = cell_count - (object->mine_count = mine_count);
 
-	BLOCK_CLEAR(object->cells, cell_count);
+	q_block_set(object->cells, cell_count, 0);
 	return Q_OK;
 	}
 
@@ -649,13 +645,11 @@ QStatus minesweeper_snapshot_test(void *snapshot, qsize snapshot_size)
 						w++;
 					}
 
-				if (w != (*c & WARNING))
-					return Q_ERROR_INVALID_DATA;
+				if (w != (*c & WARNING)) return Q_ERROR_INVALID_DATA;
 				}
 			}
 
-		if (mine_count != real_mine_count)
-			return Q_ERROR_INVALID_FORMAT;
+		if (mine_count != real_mine_count) return Q_ERROR_INVALID_FORMAT;
 		}
 
 	return Q_OK;
