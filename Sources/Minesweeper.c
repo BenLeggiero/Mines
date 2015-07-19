@@ -521,6 +521,7 @@ qboolean minesweeper_hint(Minesweeper *object, Q2DSize *coordinates)
 		}
 
 	count_hint_cases(object, counts);
+
 	if	(counts[0]) *coordinates = case0_hint(object, RANDOM % counts[0]);
 	else if (counts[1]) *coordinates = case1_hint(object, RANDOM % counts[1]);
 	else if (counts[2]) *coordinates = case2_hint(object, RANDOM % counts[2]);
@@ -590,8 +591,7 @@ QStatus minesweeper_snapshot_test(void *snapshot, qsize snapshot_size)
 		qsize real_mine_count, exploded_count, x, y, nx, ny;
 		quint8 w;
 
-		if (snapshot_size != HEADER_SIZE + cell_count)
-			return Q_ERROR_INVALID_SIZE;
+		if (snapshot_size != HEADER_SIZE + cell_count) return Q_ERROR_INVALID_SIZE;
 
 		real_mine_count = 0;
 		exploded_count	= 0;
