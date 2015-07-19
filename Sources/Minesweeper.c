@@ -24,22 +24,22 @@ Released under the terms of the GNU General Public License v3. */
 #	define RANDOM ((qsize (*)(void))object->random)()
 #endif
 
-#define EXPLODED		MINESWEEPER_CELL_MASK_EXPLODED
-#define DISCLOSED		MINESWEEPER_CELL_MASK_DISCLOSED
-#define MINE			MINESWEEPER_CELL_MASK_MINE
-#define FLAG			MINESWEEPER_CELL_MASK_FLAG
-#define WARNING			MINESWEEPER_CELL_MASK_WARNING
-#define HEADER			MINESWEEPER_SNAPSHOT_HEADER
-#define HEADER_SIZE		sizeof(MinesweeperSnapshotHeader)
-#define CELL(cx, cy)		object->cells[cy * object->size.x + cx]
-#define VALID(cx, cy)		(cx < object->size.x && cy < object->size.y)
-#define LOCAL_CELL(cx, cy)	cells[cy * size.x + cx]
-#define LOCAL_VALID(cx, cy)	(cx < size.x && cy < size.y)
-#define CB_FOR_UPDATED		object->cell_updated != NULL
-#define UPDATED(x, y, cell)	object->cell_updated(object->cell_updated_context, object, q_2d_value(SIZE)(x, y), cell)
-#define X(pointer)		((c - object->cells) % object->size.x)
-#define Y(pointer)		((c - object->cells) / object->size.x)
-#define CELLS_END		(object->cells + object->size.x * object->size.y)
+#define EXPLODED	    MINESWEEPER_CELL_MASK_EXPLODED
+#define DISCLOSED	    MINESWEEPER_CELL_MASK_DISCLOSED
+#define MINE		    MINESWEEPER_CELL_MASK_MINE
+#define FLAG		    MINESWEEPER_CELL_MASK_FLAG
+#define WARNING		    MINESWEEPER_CELL_MASK_WARNING
+#define HEADER		    MINESWEEPER_SNAPSHOT_HEADER
+#define HEADER_SIZE	    sizeof(MinesweeperSnapshotHeader)
+#define CELL(cx, cy)	    object->cells[cy * object->size.x + cx]
+#define VALID(cx, cy)	    (cx < object->size.x && cy < object->size.y)
+#define LOCAL_CELL(cx, cy)  cells[cy * size.x + cx]
+#define LOCAL_VALID(cx, cy) (cx < size.x && cy < size.y)
+#define CB_FOR_UPDATED	    object->cell_updated != NULL
+#define UPDATED(x, y, cell) object->cell_updated(object->cell_updated_context, object, q_2d_value(SIZE)(x, y), cell)
+#define X(pointer)	    ((c - object->cells) % object->size.x)
+#define Y(pointer)	    ((c - object->cells) / object->size.x)
+#define CELLS_END	    (object->cells + object->size.x * object->size.y)
 
 typedef struct {qint8 x, y;} Offset;
 
