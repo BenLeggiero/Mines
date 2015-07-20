@@ -12,11 +12,11 @@ Released under the terms of the GNU General Public License v3. */
 #	include "Minesweeper.h"
 #	include <stdlib.h>
 #	include <string.h>
-#	define q_reallocate(block, size)	 realloc(block, size)
-#	define q_deallocate(block)		 free(block)
-#	define q_block_set(block, size, value)	 memset(block, value, size)
-#	define q_block_copy(block, size, output) memcpy(output, block, size)
-#	define RANDOM				 ((qsize)random())
+#	define q_deallocate(block)		       free(block)
+#	define q_reallocate(block, block_size)	       realloc(block, block_size)
+#	define q_block_set( block, block_size, value)  memset(block, value, block_size)
+#	define q_block_copy(block, block_size, output) memcpy(output, block, block_size)
+#	define RANDOM				       ((qsize)random())
 #else
 #	include <games/puzzle/Minesweeper.h>
 #	include <QBase/block.h>
