@@ -19,7 +19,6 @@ Released under the terms of the GNU General Public License v3. */
 #	define RANDOM				 ((qsize)random())
 #else
 #	include <games/puzzle/Minesweeper.h>
-#	include <QBase/object.h>
 #	include <QBase/block.h>
 #	define RANDOM ((qsize (*)(void))object->random)()
 #endif
@@ -43,7 +42,7 @@ Released under the terms of the GNU General Public License v3. */
 
 typedef struct {qint8 x, y;} Offset;
 
-static const Offset offsets[] = {
+static Offset const offsets[] = {
 	{-1, -1}, {0, -1}, {1, -1},
 	{-1,  0},	   {1,	0},
 	{-1,  1}, {0,  1}, {1,	1}
