@@ -12,11 +12,11 @@ Released under the terms of the GNU General Public License v3. */
 #	include "Minesweeper.h"
 #	include <stdlib.h>
 #	include <string.h>
-#	define q_deallocate(block)		       free(block)
-#	define q_reallocate(block, block_size)	       realloc(block, block_size)
-#	define q_block_set( block, block_size, value)  memset(block, value, block_size)
-#	define q_block_copy(block, block_size, output) memcpy(output, block, block_size)
-#	define RANDOM				       ((qsize)random())
+#	define q_deallocate(block)			  free(block)
+#	define q_reallocate(block, block_size)		  realloc(block, block_size)
+#	define q_copy(block, block_size, output)	  memcpy(output, block, block_size)
+#	define q_int8_block_set(block, block_size, value) memset(block, value, block_size)
+#	define RANDOM					  ((qsize)random())
 #else
 #	include <games/puzzle/Minesweeper.h>
 #	include <QBase/block.h>
@@ -296,10 +296,10 @@ QStatus minesweeper_set_snapshot(Minesweeper *object, void *snapshot, qsize snap
 	object->remaining_count = cell_count - object->mine_count;
 
 	if (object->state <= MINESWEEPER_STATE_PRISTINE)
-		q_block_set(object->cells, cell_count, 0);
+		q_int8_block_set(object->cells, cell_count, 0);
 
 	else	{
-		q_block_copy(snapshot + HEADER_SIZE, cell_count, object->cells);
+		q_copy(snapshot + HEADER_SIZE, cell_count, object->cells);
 
 		for (p = object->cells, e = p + cell_count; p != e; p++)
 			{
@@ -327,8 +327,8 @@ void minesweeper_snapshot(Minesweeper *object, void *output)
 	HEADER(output)->mine_count = q_uint64_big_endian(object->mine_count);
 	HEADER(output)->state	   = object->state;
 
-	if (object->state > MINESWEEPER_STATE_PRISTINE) q_block_copy
-		(object->cells, object->size.x * object->size.y, output + HEADER_SIZE);
+	if (object->state > MINESWEEPER_STATE_PRISTINE)
+		q_copy(object->cells, object->size.x * object->size.y, output + HEADER_SIZE);
 	}
 
 
@@ -357,7 +357,7 @@ QStatus minesweeper_prepare(Minesweeper *object, Q2DSize size, qsize mine_count)
 	object->flag_count	= 0;
 	object->remaining_count = cell_count - (object->mine_count = mine_count);
 
-	q_block_set(object->cells, cell_count, 0);
+	q_int8_block_set(object->cells, cell_count, 0);
 	return Q_OK;
 	}
 
