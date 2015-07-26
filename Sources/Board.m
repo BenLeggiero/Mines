@@ -65,16 +65,6 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	# pragma mark - Helpers
 
 
-	- (void) ensureGameIsCreated
-		{
-		if (_game == NULL)
-			{
-			_game = (Minesweeper *)malloc(sizeof(Minesweeper));
-			minesweeper_initialize(_game);
-			}
-		}
-
-
 	- (void) setTextureGraphicContext
 		{
 		[NSGraphicsContext saveGraphicsState];
@@ -297,7 +287,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 	- (void) discloseCell
 		{
-		MinesweeperResult result = minesweeper_disclose(_game, _coordinates);
+		MinesweeperResult result = minesweeper_disclose(&_game, _coordinates);
 
 		switch (result)
 			{
@@ -308,7 +298,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 			case MINESWEEPER_RESULT_SOLVED:
 			_state = kBoardStateResolved;
-			minesweeper_flag_all_mines(_game);
+			minesweeper_flag_all_mines(&_game);
 			if (delegate) [delegate boardDidWin: self];
 			self.needsDisplay = YES;
 			return;
@@ -326,11 +316,11 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 	- (void) toggleFlag
 		{
-		if (	minesweeper_state(_game) == MINESWEEPER_STATE_PLAYING &&
-			!MINESWEEPER_CELL_DISCLOSED(minesweeper_cell(_game, _coordinates))
+		if (	_game.state == MINESWEEPER_STATE_PLAYING &&
+			!MINESWEEPER_CELL_DISCLOSED(minesweeper_cell(&_game, _coordinates))
 		)
 			{
-			minesweeper_toggle_flag(_game, _coordinates, NULL);
+			minesweeper_toggle_flag(&_game, _coordinates, NULL);
 			[delegate boardDidChangeFlags: self];
 			self.needsDisplay = YES;
 			}
@@ -355,8 +345,8 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	- (NSUInteger)	width		{return _values.width;}
 	- (NSUInteger)	height		{return _values.height;}
 	- (NSUInteger)	mineCount	{return _values.mineCount;}
-	- (NSUInteger)	flagCount	{return (NSUInteger)minesweeper_flag_count     (_game);}
-	- (NSUInteger)	clearedCount	{return (NSUInteger)minesweeper_disclosed_count(_game);}
+	- (NSUInteger)	flagCount	{return (NSUInteger)minesweeper_flag_count     (&_game);}
+	- (NSUInteger)	clearedCount	{return (NSUInteger)minesweeper_disclosed_count(&_game);}
 	- (BOOL)	alternateCells	{return _flags.alternateCells;}
 	- (BOOL)	showMines	{return _flags.showMines;}
 	- (BOOL)	showGoodFlags	{return _flags.showGoodFlags;}
@@ -388,7 +378,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 	- (void) updateNumbers
 		{
-		if (_game)
+		if (_game.state > MINESWEEPER_STATE_INITIALIZED)
 			{
 			if (_flags.texturesCreated) glDeleteTextures(8, _textureNames);
 			[self setTextureGraphicContext];
@@ -401,7 +391,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 	- (void) updateNumber: (NSUInteger) number
 		{
-		if (_game)
+		if (_game.state > MINESWEEPER_STATE_INITIALIZED)
 			{
 			if (_flags.texturesCreated) glDeleteTextures(1, &_textureNames[number - 1]);
 			[self setTextureGraphicContext];
@@ -415,7 +405,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 	- (void) updateImageWithKey: (NSUInteger) key
 		{
-		if (_game != NULL)
+		if (_game.state > MINESWEEPER_STATE_INITIALIZED)
 			{
 			if (_flags.texturesCreated) glDeleteTextures(1, &_textureNames[8 + key]);
 			[self setTextureGraphicContext];
@@ -449,7 +439,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			[self updateCellColor2ForKey: kThemeColorKeyWarning      ];
 			}
 
-		if (_game) self.needsDisplay = YES;
+		if (_game.state > MINESWEEPER_STATE_INITIALIZED) self.needsDisplay = YES;
 		}
 
 
@@ -459,8 +449,12 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	- (id) initWithCoder: (NSCoder *) coder
 		{
 		if ((self = [super initWithCoder: coder]))
+			{
+			minesweeper_initialize(&_game);
+
 			if ([self respondsToSelector: @selector(setWantsBestResolutionOpenGLSurface:)])
 				[self setWantsBestResolutionOpenGLSurface: YES];
+			}
 
 		return self;
 		}
@@ -469,12 +463,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	- (void) dealloc
 		{
 		if (_flags.texturesCreated) glDeleteTextures(11, _textureNames);
-
-		if (_game != NULL)
-			{
-			minesweeper_finalize(_game);
-			free(_game);
-			}
+		minesweeper_finalize(&_game);
 
 		[_theme	      release];
 		[_themeImages release];
@@ -487,7 +476,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 	- (void) drawRect: (NSRect) frame
 		{
-		if (_game == NULL)
+		if (_game.state == MINESWEEPER_STATE_INITIALIZED)
 			{
 			glClearColor(0.0, 0.0, 0.0, 1.0);
 			glClear(GL_COLOR_BUFFER_BIT);
@@ -525,11 +514,11 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 				(_surfaceSize.width  / (CGFloat)_values.width,
 				 _surfaceSize.height / (CGFloat)_values.height);
 
-			if (_game != NULL) for (y = 0; y < _values.height; y++)
+			for (y = 0; y < _values.height; y++)
 				{
 				for (x = 0; x < _values.width; x++)
 					{
-					cell = minesweeper_cell(_game, q_2d_value(SIZE)(x, y));
+					cell = minesweeper_cell(&_game, q_2d_value(SIZE)(x, y));
 					origin.x = size.width  * (CGFloat)x;
 					origin.y = size.height * (CGFloat)y;
 
@@ -599,7 +588,6 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 				if (alternate && !(_values.width & 1)) paletteIndex = !paletteIndex;
 				}
 
-//			if (_flags.isInWinAnimation) [self drawFireworks];
 			glDisable(GL_TEXTURE_2D);
 			glDisable(GL_BLEND);
 			}
@@ -610,7 +598,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 	- (void) reshape
 		{
-		if (_game != NULL)
+		if (_game.state > MINESWEEPER_STATE_INITIALIZED)
 			{
 			[[self openGLContext] makeCurrentContext];
 			/*CGLError error = 0;
@@ -653,9 +641,6 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			//---------------------------------------.
 			// Configuramos la proyección de OpenGL. |
 			//---------------------------------------'
-			/*glViewport(0, 0, size.width, size.height);
-			glLoadIdentity();
-			glOrtho(0, size.width, 0, size.height, -1, 1);*/
 			glViewport(0, 0, _surfaceSize.width, _surfaceSize.height);
 			glMatrixMode(GL_PROJECTION);
 			glLoadIdentity();
@@ -717,7 +702,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			[_themeImages release];
 			_themeImages = [images retain];
 
-			if (_game)
+			if (_game.state > MINESWEEPER_STATE_INITIALIZED)
 				{
 				if (_flags.texturesCreated) glDeleteTextures(11, _textureNames);
 				[self setTextureGraphicContext];
@@ -734,10 +719,9 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		{
 		GameValues oldValues = _values;
 
+		minesweeper_prepare(&_game, q_2d_value(SIZE)(values.width, values.height), values.mineCount);
 		_values = values;
 		_state = kBoardStateGame;
-		[self ensureGameIsCreated];
-		minesweeper_prepare(_game, q_2d_value(SIZE)(values.width, values.height), values.mineCount);
 
 		if (values.width != oldValues.width || values.height != oldValues.height)
 			self.bounds = self.bounds;
@@ -748,28 +732,27 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 	- (void) restart
 		{
-		_state = kBoardStateGame;
-
 		minesweeper_prepare
-			(_game, q_2d_value(SIZE)(_values.width, _values.height),
-			 minesweeper_mine_count(_game));
+			(&_game, q_2d_value(SIZE)(_values.width, _values.height),
+			 minesweeper_mine_count(&_game));
 
+		_state = kBoardStateGame;
 		self.needsDisplay = YES;
 		}
 
 
 	- (BOOL) hintCoordinates: (Q2DSize *) coordinates
-		{return minesweeper_hint(_game, coordinates);}
+		{return minesweeper_hint(&_game, coordinates);}
 
 
 	- (void) discloseHintCoordinates: (Q2DSize) coordinates
 		{
-		minesweeper_disclose(_game, coordinates);
+		minesweeper_disclose(&_game, coordinates);
 
-		if (minesweeper_state(_game) == MINESWEEPER_STATE_SOLVED)
+		if (_game.state == MINESWEEPER_STATE_SOLVED)
 			{
 			_state = kBoardStateResolved;
-			minesweeper_flag_all_mines(_game);
+			minesweeper_flag_all_mines(&_game);
 			}
 
 		self.needsDisplay = YES;
@@ -777,25 +760,24 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 
 	- (size_t) snapshotSize
-		{return (size_t)minesweeper_snapshot_size(_game);}
+		{return (size_t)minesweeper_snapshot_size(&_game);}
 
 
 	- (void) snapshot: (void *) output
-		{minesweeper_snapshot(_game, output);}
+		{minesweeper_snapshot(&_game, output);}
 
 
 	- (void) setSnapshot: (void *) snapshot
 		 ofSize:      (size_t) snapshotSize
 		{
-		[self ensureGameIsCreated];
-		minesweeper_set_snapshot(_game, snapshot, snapshotSize);
+		minesweeper_set_snapshot(&_game, snapshot, snapshotSize);
 
-		Q2DSize size = minesweeper_size(_game);
+		Q2DSize size = minesweeper_size(&_game);
 		_values.width	  = size.x;
 		_values.height	  = size.y;
-		_values.mineCount = minesweeper_mine_count(_game);
+		_values.mineCount = minesweeper_mine_count(&_game);
 
-		if ((_state = minesweeper_state(_game)) == MINESWEEPER_STATE_PRISTINE)
+		if ((_state = _game.state) == MINESWEEPER_STATE_PRISTINE)
 			_state = kBoardStateGame;
 
 		self.bounds	  = self.bounds;

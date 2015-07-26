@@ -68,7 +68,7 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 @interface Board : NSOpenGLView <ThemeOwner> {
 	IBOutlet id <BoardDelegate> delegate;
 
-	Minesweeper*	  _game;
+	Minesweeper	  _game;
 	GameValues	  _values;;
 	NSSize		  _surfaceSize;
 	CGFloat		  _textureSize;
