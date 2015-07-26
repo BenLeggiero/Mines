@@ -705,7 +705,7 @@ Released under the terms of the GNU General Public License v3. */
 
 	- (IBAction) changeCellColor: (NSColorWell *) sender
 		{
-		NSColor *color = [sender.color opaqueGenericRGBColor];
+		NSColor *color = [sender.color opaqueSRGBColor];
 
 		[_theme setColor: color forKey: sender.tag];
 		sender.color = color;
@@ -737,7 +737,7 @@ Released under the terms of the GNU General Public License v3. */
 
 	- (IBAction) changeNumberColor: (NSColorWell *) sender
 		{
-		NSColor *color = [sender.color opaqueGenericRGBColor];
+		NSColor *color = [sender.color opaqueSRGBColor];
 
 		[_theme setColor: color forNumber: sender.tag];
 		sender.color = color;
@@ -767,7 +767,7 @@ Released under the terms of the GNU General Public License v3. */
 
 	- (IBAction) changeImageTemplateColor: (NSColorWell *) sender
 		{
-		NSColor *color = [sender.color colorUsingColorSpace: [NSColorSpace genericRGBColorSpace]];
+		NSColor *color = [sender.color colorUsingColorSpace: [NSColorSpace sRGBColorSpace]];
 		NSUInteger key = sender.tag;
 
 		[self imageViewForKey: key].image = [self

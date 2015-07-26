@@ -147,6 +147,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 				CGFloat components[4];
 
 				[[color colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]] getComponents: components];
+				//[color getComponents: components];
 
 				[image	drawInRect: frame
 					fromRect:   NSZeroRect
@@ -255,6 +256,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		CGFloat  components[4];
 
 		[[[_theme colorForKey: key] colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]]
+		//[[_theme colorForKey: key]
 			getComponents: components];
 
 		color2[0] = (color1[0] = components[0]) + brightnessDelta;

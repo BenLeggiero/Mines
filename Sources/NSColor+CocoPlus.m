@@ -13,7 +13,7 @@
 @implementation NSColor (CocoPlus)
 
 
-	+ (NSColor *) colorFromFloatString: (NSString *) string
+	+ (NSColor *) sRGBColorFromFloatString: (NSString *) string
 		{
 		if (string && [string isKindOfClass: [NSString class]])
 			{
@@ -27,7 +27,7 @@
 			};
 
 			return [NSColor
-				colorWithColorSpace: [NSColorSpace genericRGBColorSpace]
+				colorWithColorSpace: [NSColorSpace sRGBColorSpace]
 				components:	     components
 				count:		     4];
 			}
@@ -86,9 +86,9 @@
 		}
 
 
-	- (NSColor *) opaqueGenericRGBColor
+	- (NSColor *) opaqueSRGBColor
 		{
-		NSColorSpace *colorSpace = [NSColorSpace genericRGBColorSpace];
+		NSColorSpace *colorSpace = [NSColorSpace sRGBColorSpace];
 		CGFloat components[4];
 
 		[[self colorUsingColorSpace: colorSpace] getComponents: components];

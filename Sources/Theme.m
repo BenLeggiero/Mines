@@ -142,7 +142,7 @@ Released under the terms of the GNU General Public License v3. */
 				_imageInclusions[index++] = [(NSNumber *)[imageDictionary objectForKey: @"Included"] boolValue];
 				[_imageFileNames addObject: [imageDictionary objectForKey: @"FileName"]];
 
-				[_imageColors addObject: (value = [NSColor colorFromFloatString: [imageDictionary objectForKey: @"Color"]])
+				[_imageColors addObject: (value = [NSColor sRGBColorFromFloatString: [imageDictionary objectForKey: @"Color"]])
 					? value
 					: [NSNull null]];
 				}
@@ -156,10 +156,10 @@ Released under the terms of the GNU General Public License v3. */
 			else _alternateCells = NO;
 
 			for (NSString *color in [dictionary objectForKey: @"CellColors"])
-				[_cellColors addObject: [NSColor colorFromFloatString: color]];
+				[_cellColors addObject: [NSColor sRGBColorFromFloatString: color]];
 
 			for (NSString *color in [dictionary objectForKey: @"NumberColors"])
-				[_numberColors addObject: [NSColor colorFromFloatString: color]];
+				[_numberColors addObject: [NSColor sRGBColorFromFloatString: color]];
 
 			_fontName = (
 				(value = [dictionary objectForKey: @"NumberFontName"]) &&

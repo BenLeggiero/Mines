@@ -11,13 +11,13 @@
 
 @interface NSColor (CocoPlus)
 
-	+ (NSColor *) colorFromFloatString: (NSString *) string;
+	+ (NSColor *) sRGBColorFromFloatString: (NSString *) string;
 
 	- (NSString *) floatRGBString;
 
 	- (NSString *) floatRGBAString;
 
-	- (NSColor *) opaqueGenericRGBColor;
+	- (NSColor *) opaqueSRGBColor;
 
 @end
 
