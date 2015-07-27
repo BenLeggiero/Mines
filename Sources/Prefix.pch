@@ -8,6 +8,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #define USE_POSIX_API
 #define USE_STATIC_MINESWEEPER
+#define USE_LOCAL_HEADER_MINESWEEPER
 #define DEBUG_GEOMETRY FALSE
 //#define DEBUG_GEOMETRY TRUE
 

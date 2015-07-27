@@ -8,17 +8,22 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Q/functions/base/Q2DValue.h>
 
-#ifdef USE_POSIX_API
+#ifdef USE_LOCAL_HEADER_MINESWEEPER
 #	include "Minesweeper.h"
+#else
+#	include <games/puzzle/Minesweeper.h>
+#endif
+
+#ifdef USE_POSIX_API
 #	include <stdlib.h>
 #	include <string.h>
+
 #	define q_deallocate(block)			  free(block)
 #	define q_reallocate(block, block_size)		  realloc(block, block_size)
 #	define q_copy(block, block_size, output)	  memcpy(output, block, block_size)
 #	define q_int8_block_set(block, block_size, value) memset(block, value, block_size)
 #	define RANDOM					  ((qsize)random())
 #else
-#	include <games/puzzle/Minesweeper.h>
 #	include <QBase/allocation.h>
 #	include <QBase/block.h>
 #	define RANDOM ((qsize (*)(void))object->random)()
