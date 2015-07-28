@@ -1,0 +1,11 @@
+/* Mines - InfoPlist.strings (fr)
+ __  __
+|  \/  | __  ____  ___	___
+|      |(__)|    |/ -_)/_  \
+|__\/__||__||__|_|\___/ /__/
+Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.
+Released under the terms of the GNU General Public License v3. */
+
+CFBundleName		 = "Mines";
+CFBundleDisplayName	 = "Mines";
+NSHumanReadableCopyright = "Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.\nDistribué sous la licence GNU General Public License v3.";
