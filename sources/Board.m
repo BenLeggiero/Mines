@@ -473,6 +473,8 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 #	define SET_COLOR(color) glColor3fv(&palette[paletteIndex][kThemeColorKey##color * 3])
 
+	static GLdouble const cellVertices[4 * 2] = {0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0};
+
 
 	- (void) drawRect: (NSRect) frame
 		{
@@ -503,24 +505,24 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 				glClear(GL_COLOR_BUFFER_BIT);
 #			endif
 
-			NSPoint	 origin;
+			GLdouble cellX;
+			GLdouble cellY;
 			GLint	 x, y;
-			GLdouble tx, ty;
 			GLuint*	 textureName   = NULL;
 			BOOL	 showMines     = _flags.showMines;
 			BOOL	 showGoodFlags = _flags.showGoodFlags;
+			GLdouble cellWidth     = _surfaceSize.width  / (GLdouble)_values.width;
+			GLdouble cellHeight    = _surfaceSize.height / (GLdouble)_values.height;
 
-			NSSize size = NSMakeSize
-				(_surfaceSize.width  / (CGFloat)_values.width,
-				 _surfaceSize.height / (CGFloat)_values.height);
+			glEnableClientState(GL_VERTEX_ARRAY);
+			glMatrixMode(GL_MODELVIEW);
+			glLoadIdentity();
 
-			for (y = 0; y < _values.height; y++)
+			if (alternate) for (y = 0; y < _values.height; y++)
 				{
-				for (x = 0; x < _values.width; x++)
+				for (x = 0; x < _values.width; x++, paletteIndex = !paletteIndex)
 					{
 					cell = minesweeper_cell(&_game, q_2d_value(SIZE)(x, y));
-					origin.x = size.width  * (CGFloat)x;
-					origin.y = size.height * (CGFloat)y;
 
 					if (CELL_IS(DISCLOSED))
 						{
@@ -558,34 +560,101 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 							}
 						}
 
+					glPushMatrix();
+					glTranslated(cellX = cellWidth * (GLdouble)x, cellY = cellHeight * (GLdouble)y, 0.0);
+					glScaled(cellWidth, cellHeight, 1.0);
 					glBindTexture(GL_TEXTURE_2D, 0);
-					glBegin(GL_QUADS);
-						glVertex2d(origin.x,		  origin.y		);
-						glVertex2d(origin.x + size.width, origin.y		);
-						glVertex2d(origin.x + size.width, origin.y + size.height);
-						glVertex2d(origin.x,		  origin.y + size.height);
-					glEnd();
+					glVertexPointer(2, GL_DOUBLE, 0, cellVertices);
+					glDrawArrays(GL_QUADS, 0, 4);
+					glPopMatrix();
 
 					if (textureName != NULL)
 						{
 						//SET_COLOR(Warning);
-						tx = ceil(origin.x);
-						ty = ceil(origin.y);
-
+						glPushMatrix();
+						glTranslated(ceil(cellX), ceil(cellY), 0.0);
+						glScaled(_textureSize, _textureSize, 1.0);
 						glBindTexture(GL_TEXTURE_2D, *textureName);
 						glBegin(GL_QUADS);
-							glTexCoord2d(0.0, 0.0); glVertex2d(tx,		      ty + _textureSize);
-							glTexCoord2d(1.0, 0.0); glVertex2d(tx + _textureSize, ty + _textureSize);
-							glTexCoord2d(1.0, 1.0); glVertex2d(tx + _textureSize, ty);
-							glTexCoord2d(0.0, 1.0); glVertex2d(tx,		      ty);
+							glTexCoord2d(0.0, 0.0); glVertex2d(0.0,	1.0);
+							glTexCoord2d(1.0, 0.0); glVertex2d(1.0, 1.0);
+							glTexCoord2d(1.0, 1.0); glVertex2d(1.0, 0.0);
+							glTexCoord2d(0.0, 1.0); glVertex2d(0.0, 0.0);
 						glEnd();
+						glPopMatrix();
 						textureName = NULL;
 						}
-
-					if (alternate) paletteIndex = !paletteIndex;
 					}
 
-				if (alternate && !(_values.width & 1)) paletteIndex = !paletteIndex;
+				if (!(_values.width & 1)) paletteIndex = !paletteIndex;
+				}
+
+			else for (y = 0; y < _values.height; y++) for (x = 0; x < _values.width; x++)
+				{
+				cell = minesweeper_cell(&_game, q_2d_value(SIZE)(x, y));
+
+				if (CELL_IS(DISCLOSED))
+					{
+					if (CELL_IS(EXPLODED))
+						{
+						SET_COLOR(Mine);
+						textureName = &_textureNames[kTextureIndexExplosion];
+						}
+
+					else if (CELL_IS(WARNING))
+						{
+						SET_COLOR(Warning);
+						textureName = &_textureNames[CELL_WARNING - 1];
+						}
+
+					else SET_COLOR(Clean);
+					}
+
+				else	{
+					if (CELL_IS(FLAG))
+						{
+						if (_state != kBoardStateGame && CELL_IS(MINE) && showGoodFlags)
+							SET_COLOR(ConfirmedFlag);
+
+						else SET_COLOR(Flag);
+
+						textureName = &_textureNames[kTextureIndexFlag];
+						}
+
+					else	{
+						if (showMines && CELL_IS(MINE))
+							textureName = &_textureNames[kTextureIndexMine];
+
+						SET_COLOR(Covered);
+						}
+					}
+
+				glPushMatrix();
+				glTranslated(cellX = cellWidth * (GLdouble)x, cellY = cellHeight * (GLdouble)y, 0.0);
+				glScaled(cellWidth, cellHeight, 1.0);
+				glBindTexture(GL_TEXTURE_2D, 0);
+				glVertexPointer(2, GL_DOUBLE, 0, cellVertices);
+				glDrawArrays(GL_QUADS, 0, 4);
+				glPopMatrix();
+
+				if (textureName != NULL)
+					{
+					//SET_COLOR(Warning);
+					glPushMatrix();
+					glTranslated(ceil(cellX), ceil(cellY), 0.0);
+					glScaled(_textureSize, _textureSize, 1.0);
+					glBindTexture(GL_TEXTURE_2D, *textureName);
+					glBegin(GL_QUADS);
+						glTexCoord2d(0.0, 0.0); glVertex2d(0.0,	1.0);
+						glTexCoord2d(1.0, 0.0); glVertex2d(1.0, 1.0);
+						glTexCoord2d(1.0, 1.0); glVertex2d(1.0, 0.0);
+						glTexCoord2d(0.0, 1.0); glVertex2d(0.0, 0.0);
+					glEnd();
+					glPopMatrix();
+					textureName = NULL;
+					}
+
+				if (alternate) paletteIndex = !paletteIndex;
 				}
 
 			glDisable(GL_TEXTURE_2D);
