@@ -240,22 +240,49 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 	- (void) updateCellColorsForKey: (NSUInteger) key
 		{
-		CGFloat  brightnessDelta = _theme.cellBrightnessDelta;
-		GLfloat* color1		 = &_cellColors1[key * 3];
-		GLfloat* color2		 = &_cellColors2[key * 3];
+		CGFloat  delta		= _theme.cellBrightnessDelta;
+		//NSColor* color	= [_theme colorForKey: key];
+		NSColor* color		= [[_theme colorForKey: key] colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]];
+		GLfloat* color1		= &_cellColors1[key * 3];
+		GLfloat* color2		= &_cellColors2[key * 3];
 		CGFloat  components[4];
 
-		[[[_theme colorForKey: key] colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]]
-		//[[_theme colorForKey: key]
-			getComponents: components];
+		[color getComponents: components];
 
-		color2[0] = (color1[0] = components[0]) + brightnessDelta;
-		color2[1] = (color1[1] = components[1]) + brightnessDelta;
-		color2[2] = (color1[2] = components[2]) + brightnessDelta;
+		color2[0] = (color1[0] = components[0]) + delta;
+		color2[1] = (color1[1] = components[1]) + delta;
+		color2[2] = (color1[2] = components[2]) + delta;
 
 		if (color2[0] > 1.0) color2[0] = 1.0; else if (color2[0] < 0.0) color2[0] = 0.0;
 		if (color2[1] > 1.0) color2[1] = 1.0; else if (color2[1] < 0.0) color2[1] = 0.0;
 		if (color2[2] > 1.0) color2[2] = 1.0; else if (color2[2] < 0.0) color2[2] = 0.0;
+
+		if (key == kThemeColorKeyCovered)
+			{
+			NSColor *mask = [NSColor colorWithSRGBRed: 0.0 green: 0.0 blue: 0.0 alpha: 1.0];
+			[[color blendedColorWithFraction: 0.625 ofColor: mask] getComponents: components];
+			_cellEdgeColors[0][0] = components[0];
+			_cellEdgeColors[0][1] = components[1];
+			_cellEdgeColors[0][2] = components[2];
+
+			mask = [NSColor colorWithSRGBRed: 0.0 green: 0.0 blue: 0.0 alpha: 1.0];
+			[[color blendedColorWithFraction: 0.25 ofColor: mask] getComponents: components];
+			_cellEdgeColors[1][0] = components[0];
+			_cellEdgeColors[1][1] = components[1];
+			_cellEdgeColors[1][2] = components[2];
+
+			mask = [NSColor colorWithSRGBRed: 1.0 green: 1.0 blue: 1.0 alpha: 1.0];
+			[[color blendedColorWithFraction: 0.75 ofColor: mask] getComponents: components];
+			_cellEdgeColors[2][0] = components[0];
+			_cellEdgeColors[2][1] = components[1];
+			_cellEdgeColors[2][2] = components[2];
+
+			mask = [NSColor colorWithSRGBRed: 1.0 green: 1.0 blue: 1.0 alpha: 1.0];
+			[[color blendedColorWithFraction: 0.5 ofColor: mask] getComponents: components];
+			_cellEdgeColors[3][0] = components[0];
+			_cellEdgeColors[3][1] = components[1];
+			_cellEdgeColors[3][2] = components[2];
+			}
 		}
 
 
@@ -475,6 +502,12 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 	static GLdouble const cellVertices[4 * 2] = {0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0};
 
+	static GLdouble const cellEdgeVertices[4][4 * 2] = {
+		{0.0,	0.0,   1.0,   0.0,   0.875, 0.125, 0.125, 0.125}, // Bottom
+		{0.875, 0.125, 1.0,   0.0,   1.0,   1.0,   0.875, 0.875}, // Right
+		{0.125, 0.875, 0.875, 0.875, 1.0,   1.0,   0.0,   1.0  }, // Top
+		{0.0,	0.0,   0.125, 0.125, 0.125, 0.875, 0.0,	  1.0  }, // Left
+	};
 
 	- (void) drawRect: (NSRect) frame
 		{
@@ -635,6 +668,14 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 				glBindTexture(GL_TEXTURE_2D, 0);
 				glVertexPointer(2, GL_DOUBLE, 0, cellVertices);
 				glDrawArrays(GL_QUADS, 0, 4);
+
+				if (!CELL_IS(DISCLOSED)) for (quint index = 0; index < 4; index++)
+					{
+					glColor3fv(&_cellEdgeColors[index][0]);
+					glVertexPointer(2, GL_DOUBLE, 0, &cellEdgeVertices[index][0]);
+					glDrawArrays(GL_QUADS, 0, 4);
+					}
+
 				glPopMatrix();
 
 				if (textureName != NULL)

@@ -166,7 +166,7 @@ Released under the terms of the GNU General Public License v3. */
 			// Dibujamos la caja de fondo |
 			//----------------------------'
 			box.lineWidth = 2.0;
-			[[NSColor colorWithCalibratedWhite: 0.0 alpha: 0.625] setFill];
+			[[NSColor colorWithCalibratedWhite: 0.0 alpha: 0.875] setFill];
 			[white setStroke];
 			[box fill];
 			[box strokeInside];
