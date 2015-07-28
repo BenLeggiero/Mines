@@ -197,7 +197,7 @@
 		64E824E81602CBB60065BFB3 /* Mines-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Mines-Info.plist"; sourceTree = "<group>"; };
 		64E824EA1602CBB60065BFB3 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		64E824EC1602CBB60065BFB3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		64E824EE1602CBB60065BFB3 /* Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
+		64E824EE1602CBB60065BFB3 /* prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = prefix.pch; sourceTree = "<group>"; };
 		64E824FD1602CC200065BFB3 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		64E824FF1602CD6B0065BFB3 /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
 		64E825001602CD6B0065BFB3 /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
@@ -233,7 +233,8 @@
 				64E824E91602CBB60065BFB3 /* InfoPlist.strings */,
 				640710E216387EC90017CFB2 /* Localizable.strings */,
 			);
-			path = Strings;
+			name = Strings;
+			path = strings;
 			sourceTree = "<group>";
 		};
 		6494736B163CABC300B9C32D /* Property Lists */ = {
@@ -244,19 +245,21 @@
 				64ABB5471650309F00E86E92 /* Included Textures.plist */,
 				6434A70218270D03008AB487 /* Themes.plist */,
 			);
-			path = "Property Lists";
+			name = "Property Lists";
+			path = "property lists";
 			sourceTree = "<group>";
 		};
 		64D396DA1603AD7600C0DD1F /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				6494736B163CABC300B9C32D /* Property Lists */,
-				64DE6070163867A100AE9BB5 /* XIBs */,
+				64DE6070163867A100AE9BB5 /* UI */,
 				640710D916387DB00017CFB2 /* Strings */,
 				64D396DC1603AD9E00C0DD1F /* Images */,
 				64D396DB1603AD9500C0DD1F /* Sounds */,
 			);
-			path = Resources;
+			name = Resources;
+			path = resources;
 			sourceTree = "<group>";
 		};
 		64D396DB1603AD9500C0DD1F /* Sounds */ = {
@@ -267,7 +270,8 @@
 				641033161603B5EA0017F0FF /* Explosion.wav */,
 				640211CA16C9AC4A00687609 /* Ta Dah.wav */,
 			);
-			path = Sounds;
+			name = Sounds;
+			path = sounds;
 			sourceTree = "<group>";
 		};
 		64D396DC1603AD9E00C0DD1F /* Images */ = {
@@ -297,10 +301,11 @@
 				6400E82716C86DA500EDDBC7 /* Paper Boat.pdf */,
 				64E2F1DC16D4352900ECAD85 /* Bug.pdf */,
 			);
-			path = Images;
+			name = Images;
+			path = images;
 			sourceTree = "<group>";
 		};
-		64DE6070163867A100AE9BB5 /* XIBs */ = {
+		64DE6070163867A100AE9BB5 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				64C7DC0D16912E0600B0F1EF /* Mines.xib */,
@@ -310,7 +315,7 @@
 				64AC63C016A7962000856C2E /* ImagePicker.xib */,
 				64585F9E175066940009470D /* About.xib */,
 			);
-			path = XIBs;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		64E824D11602CBB50065BFB3 = {
@@ -358,7 +363,7 @@
 		64E824E61602CBB60065BFB3 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				64E824EE1602CBB60065BFB3 /* Prefix.pch */,
+				64E824EE1602CBB60065BFB3 /* prefix.pch */,
 				64E824EC1602CBB60065BFB3 /* main.m */,
 				64AC63A716A6521D00856C2E /* constants.h */,
 				64B7607E1687F31A005F124C /* geometry.h */,
@@ -411,7 +416,8 @@
 				645A14B716A50E5500F1DF60 /* NSImage+CocoPlus.h */,
 				645A14B816A50E5500F1DF60 /* NSImage+CocoPlus.m */,
 			);
-			path = Sources;
+			name = Sources;
+			path = sources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -752,8 +758,8 @@
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = Mines.entitlements;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Sources/Prefix.pch;
-				INFOPLIST_FILE = "Resources/Property Lists/Mines-Info.plist";
+				GCC_PREFIX_HEADER = sources/prefix.pch;
+				INFOPLIST_FILE = "resources/property lists/Mines-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -765,8 +771,8 @@
 				CODE_SIGN_ENTITLEMENTS = Mines.entitlements;
 				GCC_GENERATE_DEBUGGING_SYMBOLS = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Sources/Prefix.pch;
-				INFOPLIST_FILE = "Resources/Property Lists/Mines-Info.plist";
+				GCC_PREFIX_HEADER = sources/prefix.pch;
+				INFOPLIST_FILE = "resources/property lists/Mines-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

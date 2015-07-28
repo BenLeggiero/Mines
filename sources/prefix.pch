@@ -1,0 +1,28 @@
+/* Mines - prefix.pch
+ __  __
+|  \/  | __  ____  ___	___
+|      |(__)|    |/ -_)/_  \
+|__\/__||__||__|_|\___/ /__/
+Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.
+Released under the terms of the GNU General Public License v3. */
+
+#define USE_POSIX_API
+#define USE_STATIC_MINESWEEPER
+#define USE_LOCAL_HEADER_MINESWEEPER
+#define DEBUG_GEOMETRY FALSE
+//#define DEBUG_GEOMETRY TRUE
+
+#ifdef __OBJC__
+
+#	import <Cocoa/Cocoa.h>
+
+#	define STRING(...)		[NSString stringWithFormat: __VA_ARGS__]
+#	define _(string)		NSLocalizedString(@string, nil)
+#	define IS_BELOW_LION		(NSAppKitVersionNumber <  1138)
+#	define IS_BELOW_YOSEMITE	(NSAppKitVersionNumber <  1343.14)
+#	define IS_LION_OR_HIGHER	(NSAppKitVersionNumber >= 1138)
+#	define IS_YOSEMITE_OR_HIGHER	(NSAppKitVersionNumber >= 1343.14)
+
+#endif
+
+// EOF

@@ -3,7 +3,7 @@ A Minesweeper Game for OS X.
 Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.  
 Released under the terms of the [GNU General Public License v3](http://www.gnu.org/copyleft/gpl.html).
 
-![alt tag](Screenshots/Main Window.png)
+![alt tag](screenshots/Main Window.png)
 ### What is Mines?
 Mines is a simple and elegant implementation of the classic game [Minesweeper](http://en.wikipedia.org/wiki/Minesweeper_(video_game)). The purpose of the game is to find all the mines on the board by uncovering all the empty cells. You can use flags to mark the cells suspected of containing a mine to avoid an accidental detonation.
 
