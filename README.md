@@ -42,11 +42,7 @@ CURRENCY|ADDRESS
 
 ### History
 
-* __v2.2__ _(Under development)_
-    * WIP: Added time counter for games without time limit.
-    * WIP: Double-click technique support.
-    * Improved default theme.
-    * WIP: Improved font rendering.
+* __v3.0__ _(Under development)_
 
 * __[v2.1](http://github.com/redcode/Mines/releases/tag/v2.1)__ _(2014-12-21)_
     * UI fixes for Snow Leopard.
