@@ -653,8 +653,6 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 					glPopMatrix();
 					textureName = NULL;
 					}
-
-				if (alternate) paletteIndex = !paletteIndex;
 				}
 
 			glDisable(GL_TEXTURE_2D);
