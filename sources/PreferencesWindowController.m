@@ -719,11 +719,6 @@ Released under the terms of the GNU General Public License v3. */
 
 		_theme.alternateCells = value;
 		[cellBrightnessDeltaSlider setEnabled: value];
-
-		[_theme setCellBrightnessDelta: value
-			? cellBrightnessDeltaSlider.doubleValue
-			: 0.0];
-
 		_flags.themeHasChanged = YES;
 		}
 

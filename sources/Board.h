@@ -39,8 +39,8 @@ typedef uint8_t BoardButtonAction;
 
 NS_INLINE BOOL GameValuesAreEqual(GameValues *a, const GameValues *b)
 	{
-	return	a->width     == b->width	&&
-		a->height    == b->height	&&
+	return	a->width     == b->width  &&
+		a->height    == b->height &&
 		a->mineCount == b->mineCount;
 	}
 
@@ -76,15 +76,14 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 	NSBitmapImageRep* _bitmap;
 	Theme*		  _theme;
 	NSMutableArray*	  _themeImages;
-	GLfloat		  _cellColors1[6 * 3];
-	GLfloat		  _cellColors2[6 * 3];
-	GLfloat		  _cellEdgeColors[4][3];
+	GLfloat		  _cellColors1[6][3];
+	GLfloat		  _cellColors2[3][4][3];
 	CGFloat		  _cellBrightnessDelta;
 	BoardState	  _state;
 	Q2DSize		  _coordinates;
 	BoardButtonAction _leftButtonAction;
 
-	struct {BOOL alternateCells  :1;
+	struct {BOOL flat	     :1;
 		BOOL showMines	     :1;
 		BOOL showGoodFlags   :1;
 		BOOL texturesCreated :1;

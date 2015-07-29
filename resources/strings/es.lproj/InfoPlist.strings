@@ -8,4 +8,4 @@ Released under the terms of the GNU General Public License v3. */
 
 CFBundleName		 = "Minas";
 CFBundleDisplayName	 = "Minas";
-NSHumanReadableCopyright = "Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.\nDistribuido bajo la GNU General Public License v3.";
+NSHumanReadableCopyright = "© 2013-2015 Manuel Sainz de Baranda y Goñi.\nDistribuido bajo la GNU General Public License v3.";

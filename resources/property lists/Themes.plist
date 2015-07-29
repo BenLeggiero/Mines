@@ -3,16 +3,18 @@
 <plist version="1.0">
 <array>
 	<dict>
+		<key>Flat</key>
+		<false/>
 		<key>CellBrightnessDelta</key>
 		<real>-0.03676142331932773</real>
 		<key>CellColors</key>
 		<array>
 			<string>0.039216:0.352941:0.874510:1.000000</string>
-			<string>0.011765:0.101961:0.215686:1.000000</string>
 			<string>0.039216:0.352941:0.874510:1.000000</string>
 			<string>0.000000:0.826531:0.028570:1.000000</string>
 			<string>0.015686:0.054902:0.109804:1.000000</string>
 			<string>0.015686:0.054902:0.109804:1.000000</string>
+			<string>0.011765:0.101961:0.215686:1.000000</string>
 		</array>
 		<key>Images</key>
 		<array>
@@ -60,16 +62,18 @@
 		<real>0.8</real>
 	</dict>
 	<dict>
+		<key>Flat</key>
+		<false/>
 		<key>CellBrightnessDelta</key>
 		<real>0.05942095588235297</real>
 		<key>CellColors</key>
 		<array>
 			<string>0.400000:0.800000:1.000000:1.000000</string>
-			<string>1.000000:1.000000:1.000000:1.000000</string>
 			<string>0.400000:0.800000:1.000000:1.000000</string>
 			<string>0.400000:0.800000:1.000000:1.000000</string>
 			<string>1.000000:0.435294:0.811765:1.000000</string>
 			<string>0.000000:0.501961:1.000000:1.000000</string>
+			<string>1.000000:1.000000:1.000000:1.000000</string>
 		</array>
 		<key>Images</key>
 		<array>
@@ -117,16 +121,18 @@
 		<real>0.8</real>
 	</dict>
 	<dict>
+		<key>Flat</key>
+		<false/>
 		<key>CellBrightnessDelta</key>
 		<real>0.04433922006302521</real>
 		<key>CellColors</key>
 		<array>
 			<string>0.098039:0.098039:0.098039:1.000000</string>
-			<string>1.000000:0.400000:0.400000:1.000000</string>
 			<string>0.098039:0.098039:0.098039:1.000000</string>
 			<string>0.098039:0.098039:0.098039:1.000000</string>
 			<string>0.000000:0.000000:0.000000:1.000000</string>
 			<string>1.000000:0.000000:0.000000:1.000000</string>
+			<string>1.000000:0.400000:0.400000:1.000000</string>
 		</array>
 		<key>Images</key>
 		<array>
@@ -174,16 +180,18 @@
 		<real>0.8</real>
 	</dict>
 	<dict>
+		<key>Flat</key>
+		<false/>
 		<key>CellBrightnessDelta</key>
 		<real>-0.1047547925420168</real>
 		<key>CellColors</key>
 		<array>
 			<string>0.501961:0.000000:1.000000:1.000000</string>
-			<string>0.501961:0.000000:0.501961:1.000000</string>
 			<string>0.000000:0.000000:0.000000:1.000000</string>
 			<string>0.298039:0.298039:0.298039:1.000000</string>
 			<string>0.250980:0.000000:0.501961:1.000000</string>
 			<string>0.000000:0.000000:0.000000:1.000000</string>
+			<string>0.501961:0.000000:0.501961:1.000000</string>
 		</array>
 		<key>Images</key>
 		<array>
@@ -231,16 +239,18 @@
 		<real>0.8</real>
 	</dict>
 	<dict>
+		<key>Flat</key>
+		<false/>
 		<key>CellBrightnessDelta</key>
 		<real>-0.05851004464285714</real>
 		<key>CellColors</key>
 		<array>
 			<string>0.200000:0.200000:0.200000:1.000000</string>
+			<string>0.000000:0.000000:0.000000:1.000000</string>
+			<string>0.000000:0.000000:0.000000:1.000000</string>
+			<string>0.000000:0.501961:0.250980:1.000000</string>
+			<string>0.000000:0.501961:0.250980:1.000000</string>
 			<string>0.701961:0.701961:0.701961:1.000000</string>
-			<string>0.000000:0.000000:0.000000:1.000000</string>
-			<string>0.000000:0.000000:0.000000:1.000000</string>
-			<string>0.000000:0.501961:0.250980:1.000000</string>
-			<string>0.000000:0.501961:0.250980:1.000000</string>
 		</array>
 		<key>Images</key>
 		<array>
@@ -288,15 +298,17 @@
 		<real>0.8</real>
 	</dict>
 	<dict>
+		<key>Flat</key>
+		<false/>
 		<key>CellBrightnessDelta</key>
 		<real>-0.05851004464285714</real>
 		<key>CellColors</key>
 		<array>
 			<string>0.400000:0.800000:1.000000:1.000000</string>
-			<string>0.800000:1.000000:0.400000:1.000000</string>
 			<string>1.000000:0.800000:0.400000:1.000000</string>
 			<string>1.000000:0.800000:0.400000:1.000000</string>
 			<string>1.000000:1.000000:0.000000:1.000000</string>
+			<string>0.800000:1.000000:0.400000:1.000000</string>
 			<string>0.800000:1.000000:0.400000:1.000000</string>
 		</array>
 		<key>Images</key>

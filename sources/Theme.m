@@ -21,22 +21,26 @@ Released under the terms of the GNU General Public License v3. */
 
 	@synthesize owner		= _owner;
 	@synthesize name		= _name;
-	@synthesize alternateCells	= _alternateCells;
-	@synthesize cellBrightnessDelta = _cellBrightnessDelta;
 	@synthesize imageFileNames	= _imageFileNames;
 
-
-	- (NSString *) fontName		   {return _fontName;}
-	- (CGFloat   ) fontScaling	   {return _fontScaling;}
+	- (BOOL	     ) flat		   {return _flat;}
 	- (CGFloat   ) cellBrightnessDelta {return _cellBrightnessDelta;}
+	- (CGFloat   ) fontScaling	   {return _fontScaling;}
+	- (NSString *) fontName		   {return _fontName;}
 	- (BOOL	    *) imageInclusions	   {return _imageInclusions;}
 
 
-	- (void) setFontName: (NSString *) name
+	- (void) setFlat: (BOOL) flat
 		{
-		[_fontName release];
-		_fontName = [name retain];
-		if (_owner) [_owner updateNumbers];
+		_flat = flat;
+		if (_owner) [_owner updateAlternateColors];
+		}
+
+
+	- (void) setCellBrightnessDelta: (CGFloat) delta
+		{
+		_cellBrightnessDelta = delta;
+		if (_owner) [_owner updateAlternateColors];
 		}
 
 
@@ -47,10 +51,11 @@ Released under the terms of the GNU General Public License v3. */
 		}
 
 
-	- (void) setCellBrightnessDelta: (CGFloat) delta
+	- (void) setFontName: (NSString *) name
 		{
-		_cellBrightnessDelta = delta;
-		if (_owner) [_owner updateAlternateColors];
+		[_fontName release];
+		_fontName = [name retain];
+		if (_owner) [_owner updateNumbers];
 		}
 
 
@@ -100,7 +105,10 @@ Released under the terms of the GNU General Public License v3. */
 			!(images = [dictionary objectForKey: @"Images"])	     ||
 			![images isKindOfClass: arrayClass]			     ||
 			images.count != 3					     ||
-			((value = [dictionary objectForKey: @"NumberFontName"]) && ![value isKindOfClass: stringClass])
+			((value = [dictionary objectForKey: @"NumberFontName"]) &&
+			 ![value isKindOfClass: stringClass])			     ||
+			((value = [dictionary objectForKey: @"Flat"]) &&
+			 ![value isKindOfClass: numberClass])
 		)
 			return NO;
 
@@ -148,12 +156,10 @@ Released under the terms of the GNU General Public License v3. */
 				}
 
 			if ((value = [dictionary objectForKey: @"CellBrightnessDelta"]))
-				{
-				_alternateCells = YES;
 				_cellBrightnessDelta = [(NSNumber *)value doubleValue];
-				}
 
-			else _alternateCells = NO;
+			if ((value = [dictionary objectForKey: @"Flat"]))
+				_flat = [(NSNumber *)value boolValue];
 
 			for (NSString *color in [dictionary objectForKey: @"CellColors"])
 				[_cellColors addObject: [NSColor sRGBColorFromFloatString: color]];
@@ -233,7 +239,7 @@ Released under the terms of the GNU General Public License v3. */
 			{
 			theme->_name		    = [name	 retain];
 			theme->_fontName	    = [_fontName retain];
-			theme->_alternateCells	    = _alternateCells;
+			theme->_flat		    = _flat;
 			theme->_cellBrightnessDelta = _cellBrightnessDelta;
 			theme->_fontScaling	    = _fontScaling;
 			theme->_cellColors	    = [[NSMutableArray alloc] initWithArray: _cellColors];

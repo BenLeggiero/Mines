@@ -62,7 +62,7 @@ Released under the terms of the GNU General Public License v3. */
 			CGFloat boxCornerRadius = kBoxCornerRadius;
 			NSSize size = self.bounds.size;
 			NSPoint center = NSMakePoint(size.width / 2.0, size.height / 2.0);
-			NSColor *white = [NSColor colorWithCalibratedWhite: 1.0 alpha: 0.90];
+			NSColor *white = [NSColor whiteColor];
 
 			//-----------------------------.
 			// Creamos las lineas de texto |
@@ -166,7 +166,7 @@ Released under the terms of the GNU General Public License v3. */
 			// Dibujamos la caja de fondo |
 			//----------------------------'
 			box.lineWidth = 2.0;
-			[[NSColor colorWithCalibratedWhite: 0.0 alpha: 0.875] setFill];
+			[[NSColor colorWithCalibratedWhite: 0.0 alpha: 0.75] setFill];
 			[white setStroke];
 			[box fill];
 			[box strokeInside];

@@ -9,11 +9,11 @@ Released under the terms of the GNU General Public License v3. */
 #import <Cocoa/Cocoa.h>
 
 #define kThemeColorKeyCovered	    0
-#define kThemeColorKeyClean	    1
-#define kThemeColorKeyFlag	    2
-#define kThemeColorKeyConfirmedFlag 3
-#define kThemeColorKeyMine	    4
-#define kThemeColorKeyWarning	    5
+#define kThemeColorKeyFlag	    1
+#define kThemeColorKeyConfirmedFlag 2
+#define kThemeColorKeyMine	    3
+#define kThemeColorKeyWarning	    4
+#define kThemeColorKeyClean	    5
 
 #define kThemeImageKeyFlag	    0
 #define kThemeImageKeyMine	    1
@@ -44,13 +44,13 @@ Released under the terms of the GNU General Public License v3. */
 	NSMutableArray*	_imageColors;
 	NSMutableArray*	_imageFileNames;
 	BOOL		_imageInclusions[3];
-	BOOL		_alternateCells;
+	BOOL		_flat;
 }
 	@property (nonatomic, assign   ) id		 owner;
 	@property (nonatomic, retain   ) NSString*	 name;
-	@property (nonatomic, readwrite) BOOL		 alternateCells;
-	@property (nonatomic, readwrite) CGFloat	 cellBrightnessDelta;
-	@property (nonatomic, readwrite) CGFloat	 fontScaling;
+	@property (nonatomic, assign   ) BOOL		 flat;
+	@property (nonatomic, assign   ) CGFloat	 cellBrightnessDelta;
+	@property (nonatomic, assign   ) CGFloat	 fontScaling;
 	@property (nonatomic, retain   ) NSString*	 fontName;
 	@property (nonatomic, readonly ) NSMutableArray* imageFileNames;
 	@property (nonatomic, readonly ) BOOL*		 imageInclusions /*NS_RETURNS_INNER_POINTER*/;

@@ -243,61 +243,56 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		CGFloat  delta		= _theme.cellBrightnessDelta;
 		//NSColor* color	= [_theme colorForKey: key];
 		NSColor* color		= [[_theme colorForKey: key] colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]];
-		GLfloat* color1		= &_cellColors1[key * 3];
-		GLfloat* color2		= &_cellColors2[key * 3];
+		GLfloat* color1		= _cellColors1[key];
 		CGFloat  components[4];
 
 		[color getComponents: components];
 
-		color2[0] = (color1[0] = components[0]) + delta;
-		color2[1] = (color1[1] = components[1]) + delta;
-		color2[2] = (color1[2] = components[2]) + delta;
+		color1[0] = components[0];
+		color1[1] = components[1];
+		color1[2] = components[2];
 
-		if (color2[0] > 1.0) color2[0] = 1.0; else if (color2[0] < 0.0) color2[0] = 0.0;
-		if (color2[1] > 1.0) color2[1] = 1.0; else if (color2[1] < 0.0) color2[1] = 0.0;
-		if (color2[2] > 1.0) color2[2] = 1.0; else if (color2[2] < 0.0) color2[2] = 0.0;
-
-		if (key == kThemeColorKeyCovered)
+		if (key <= kThemeColorKeyConfirmedFlag)
 			{
-			NSColor *mask = [NSColor colorWithSRGBRed: 0.0 green: 0.0 blue: 0.0 alpha: 1.0];
-			[[color blendedColorWithFraction: 0.625 ofColor: mask] getComponents: components];
-			_cellEdgeColors[0][0] = components[0];
-			_cellEdgeColors[0][1] = components[1];
-			_cellEdgeColors[0][2] = components[2];
+			GLfloat* color2 = _cellColors2[key][0];
 
-			mask = [NSColor colorWithSRGBRed: 0.0 green: 0.0 blue: 0.0 alpha: 1.0];
-			[[color blendedColorWithFraction: 0.25 ofColor: mask] getComponents: components];
-			_cellEdgeColors[1][0] = components[0];
-			_cellEdgeColors[1][1] = components[1];
-			_cellEdgeColors[1][2] = components[2];
+			if (_flags.flat)
+				{
+				color2[0] = color1[0] + delta;
+				color2[1] = color1[1] + delta;
+				color2[2] = color1[2] + delta;
 
-			mask = [NSColor colorWithSRGBRed: 1.0 green: 1.0 blue: 1.0 alpha: 1.0];
-			[[color blendedColorWithFraction: 0.75 ofColor: mask] getComponents: components];
-			_cellEdgeColors[2][0] = components[0];
-			_cellEdgeColors[2][1] = components[1];
-			_cellEdgeColors[2][2] = components[2];
+				if (color2[0] > 1.0) color2[0] = 1.0; else if (color2[0] < 0.0) color2[0] = 0.0;
+				if (color2[1] > 1.0) color2[1] = 1.0; else if (color2[1] < 0.0) color2[1] = 0.0;
+				if (color2[2] > 1.0) color2[2] = 1.0; else if (color2[2] < 0.0) color2[2] = 0.0;
+				}
 
-			mask = [NSColor colorWithSRGBRed: 1.0 green: 1.0 blue: 1.0 alpha: 1.0];
-			[[color blendedColorWithFraction: 0.5 ofColor: mask] getComponents: components];
-			_cellEdgeColors[3][0] = components[0];
-			_cellEdgeColors[3][1] = components[1];
-			_cellEdgeColors[3][2] = components[2];
+			else	{
+				NSColor *mask = [NSColor colorWithSRGBRed: 0.0 green: 0.0 blue: 0.0 alpha: 1.0];
+				[[color blendedColorWithFraction: 0.625 ofColor: mask] getComponents: components];
+				color2[0] = components[0];
+				color2[1] = components[1];
+				color2[2] = components[2];
+
+				mask = [NSColor colorWithSRGBRed: 0.0 green: 0.0 blue: 0.0 alpha: 1.0];
+				[[color blendedColorWithFraction: 0.25 ofColor: mask] getComponents: components];
+				color2[3] = components[0];
+				color2[4] = components[1];
+				color2[5] = components[2];
+
+				mask = [NSColor colorWithSRGBRed: 1.0 green: 1.0 blue: 1.0 alpha: 1.0];
+				[[color blendedColorWithFraction: 0.75 ofColor: mask] getComponents: components];
+				color2[6] = components[0];
+				color2[7] = components[1];
+				color2[8] = components[2];
+
+				mask = [NSColor colorWithSRGBRed: 1.0 green: 1.0 blue: 1.0 alpha: 1.0];
+				[[color blendedColorWithFraction: 0.5 ofColor: mask] getComponents: components];
+				color2[ 9] = components[0];
+				color2[10] = components[1];
+				color2[11] = components[2];
+				}
 			}
-		}
-
-
-	- (void) updateCellColor2ForKey: (NSUInteger) key
-		{
-		GLfloat *color1 = &_cellColors1[key * 3],
-			*color2 = &_cellColors2[key * 3];
-
-		color2[0] = color1[0] + _cellBrightnessDelta;
-		color2[1] = color1[1] + _cellBrightnessDelta;
-		color2[2] = color1[2] + _cellBrightnessDelta;
-
-		if (color2[0] > 1.0) color2[0] = 1.0; else if (color2[0] < 0.0) color2[0] = 0.0;
-		if (color2[1] > 1.0) color2[1] = 1.0; else if (color2[1] < 0.0) color2[1] = 0.0;
-		if (color2[2] > 1.0) color2[2] = 1.0; else if (color2[2] < 0.0) color2[2] = 0.0;
 		}
 
 
@@ -374,16 +369,8 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	- (NSUInteger)	mineCount	{return _values.mineCount;}
 	- (NSUInteger)	flagCount	{return (NSUInteger)minesweeper_flag_count     (&_game);}
 	- (NSUInteger)	clearedCount	{return (NSUInteger)minesweeper_disclosed_count(&_game);}
-	- (BOOL)	alternateCells	{return _flags.alternateCells;}
 	- (BOOL)	showMines	{return _flags.showMines;}
 	- (BOOL)	showGoodFlags	{return _flags.showGoodFlags;}
-
-
-	- (void) setAlternateCells: (BOOL) value
-		{
-		_flags.alternateCells = value;
-		self.needsDisplay = YES;
-		}
 
 
 	- (void) setShowMines: (BOOL) value
@@ -454,17 +441,21 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		{
 		CGFloat delta = _theme.cellBrightnessDelta;
 
-		if (_cellBrightnessDelta != delta)
-			{
+		_flags.flat = _theme.flat;
+
+		//NSLog(@"updateAlternateColors");
+
+		//if (_cellBrightnessDelta != delta)
+		//	{
 			_cellBrightnessDelta = delta;
 
-			[self updateCellColor2ForKey: kThemeColorKeyCovered      ];
-			[self updateCellColor2ForKey: kThemeColorKeyClean	 ];
-			[self updateCellColor2ForKey: kThemeColorKeyFlag	 ];
-			[self updateCellColor2ForKey: kThemeColorKeyConfirmedFlag];
-			[self updateCellColor2ForKey: kThemeColorKeyMine	 ];
-			[self updateCellColor2ForKey: kThemeColorKeyWarning      ];
-			}
+			[self updateCellColorsForKey: kThemeColorKeyCovered      ];
+			[self updateCellColorsForKey: kThemeColorKeyClean	 ];
+			[self updateCellColorsForKey: kThemeColorKeyFlag	 ];
+			[self updateCellColorsForKey: kThemeColorKeyConfirmedFlag];
+			[self updateCellColorsForKey: kThemeColorKeyMine	 ];
+			[self updateCellColorsForKey: kThemeColorKeyWarning      ];
+		//	}
 
 		if (_game.state > MINESWEEPER_STATE_INITIALIZED) self.needsDisplay = YES;
 		}
@@ -498,7 +489,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		}
 
 
-#	define SET_COLOR(color) glColor3fv(&palette[paletteIndex][kThemeColorKey##color * 3])
+#	define SET_COLOR(color) glColor3fv(&_cellColors1[kThemeColorKey##color * 3])
 
 	static GLdouble const cellVertices[4 * 2] = {0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 0.0, 1.0};
 
@@ -519,9 +510,6 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 		else	{
 			MinesweeperCell cell;
-			GLfloat *palette[2] = {_cellColors1, _cellColors2};
-			NSInteger paletteIndex = 0;
-			BOOL alternate = _flags.alternateCells && _cellBrightnessDelta != 0.0;
 
 			glEnable(GL_BLEND);
 			glBlendFunc(GL_ONE, GL_ONE_MINUS_SRC_ALPHA);
@@ -546,80 +534,90 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			BOOL	 showGoodFlags = _flags.showGoodFlags;
 			GLdouble cellWidth     = _surfaceSize.width  / (GLdouble)_values.width;
 			GLdouble cellHeight    = _surfaceSize.height / (GLdouble)_values.height;
+			quint	 colorIndex;
 
 			glEnableClientState(GL_VERTEX_ARRAY);
 			glMatrixMode(GL_MODELVIEW);
 			glLoadIdentity();
 
-			if (alternate) for (y = 0; y < _values.height; y++)
+			if (_flags.flat)
 				{
-				for (x = 0; x < _values.width; x++, paletteIndex = !paletteIndex)
+				GLfloat *palette[2] = {_cellColors1, _cellColors2};
+				NSInteger paletteIndex = 0;
+
+				for (y = 0; y < _values.height; y++)
 					{
-					cell = minesweeper_cell(&_game, q_2d_value(SIZE)(x, y));
-
-					if (CELL_IS(DISCLOSED))
+					for (x = 0; x < _values.width; x++, paletteIndex = !paletteIndex)
 						{
-						if (CELL_IS(EXPLODED))
+						cell = minesweeper_cell(&_game, q_2d_value(SIZE)(x, y));
+
+						if (CELL_IS(DISCLOSED))
 							{
-							SET_COLOR(Mine);
-							textureName = &_textureNames[kTextureIndexExplosion];
-							}
+							if (CELL_IS(EXPLODED))
+								{
+								colorIndex = kThemeColorKeyMine;
+								textureName = &_textureNames[kTextureIndexExplosion];
+								}
 
-						else if (CELL_IS(WARNING))
-							{
-							SET_COLOR(Warning);
-							textureName = &_textureNames[CELL_WARNING - 1];
-							}
+							else if (CELL_IS(WARNING))
+								{
+								colorIndex = kThemeColorKeyWarning;
+								textureName = &_textureNames[CELL_WARNING - 1];
+								}
 
-						else SET_COLOR(Clean);
-						}
+							else colorIndex = kThemeColorKeyClean;
 
-					else	{
-						if (CELL_IS(FLAG))
-							{
-							if (_state != kBoardStateGame && CELL_IS(MINE) && showGoodFlags)
-								SET_COLOR(ConfirmedFlag);
-
-							else SET_COLOR(Flag);
-
-							textureName = &_textureNames[kTextureIndexFlag];
+							glColor3fv(_cellColors1[colorIndex]);
 							}
 
 						else	{
-							if (showMines && CELL_IS(MINE))
-								textureName = &_textureNames[kTextureIndexMine];
+							if (CELL_IS(FLAG))
+								{
+								colorIndex = (_state != kBoardStateGame && CELL_IS(MINE) && showGoodFlags)
+									 ? kThemeColorKeyConfirmedFlag
+									 : kThemeColorKeyFlag;
 
-							SET_COLOR(Covered);
+								textureName = &_textureNames[kTextureIndexFlag];
+								}
+
+							else	{
+								colorIndex = kThemeColorKeyCovered;
+
+								if (showMines && CELL_IS(MINE))
+									textureName = &_textureNames[kTextureIndexMine];
+
+								glColor3fv(&palette[paletteIndex][colorIndex * 3]);
+								}
+							}
+
+						glPushMatrix();
+						glTranslated(cellX = cellWidth * (GLdouble)x, cellY = cellHeight * (GLdouble)y, 0.0);
+						glScaled(cellWidth, cellHeight, 1.0);
+						glBindTexture(GL_TEXTURE_2D, 0);
+						glVertexPointer(2, GL_DOUBLE, 0, cellVertices);
+						glDrawArrays(GL_QUADS, 0, 4);
+						glPopMatrix();
+
+						if (textureName != NULL)
+							{
+							//SET_COLOR(Warning);
+							glPushMatrix();
+							glTranslated(ceil(cellX), ceil(cellY), 0.0);
+							glScaled(_textureSize, _textureSize, 1.0);
+							glBindTexture(GL_TEXTURE_2D, *textureName);
+							glBegin(GL_QUADS);
+								glTexCoord2d(0.0, 0.0); glVertex2d(0.0,	1.0);
+								glTexCoord2d(1.0, 0.0); glVertex2d(1.0, 1.0);
+								glTexCoord2d(1.0, 1.0); glVertex2d(1.0, 0.0);
+								glTexCoord2d(0.0, 1.0); glVertex2d(0.0, 0.0);
+							glEnd();
+							glPopMatrix();
+							textureName = NULL;
 							}
 						}
 
-					glPushMatrix();
-					glTranslated(cellX = cellWidth * (GLdouble)x, cellY = cellHeight * (GLdouble)y, 0.0);
-					glScaled(cellWidth, cellHeight, 1.0);
-					glBindTexture(GL_TEXTURE_2D, 0);
-					glVertexPointer(2, GL_DOUBLE, 0, cellVertices);
-					glDrawArrays(GL_QUADS, 0, 4);
-					glPopMatrix();
-
-					if (textureName != NULL)
-						{
-						//SET_COLOR(Warning);
-						glPushMatrix();
-						glTranslated(ceil(cellX), ceil(cellY), 0.0);
-						glScaled(_textureSize, _textureSize, 1.0);
-						glBindTexture(GL_TEXTURE_2D, *textureName);
-						glBegin(GL_QUADS);
-							glTexCoord2d(0.0, 0.0); glVertex2d(0.0,	1.0);
-							glTexCoord2d(1.0, 0.0); glVertex2d(1.0, 1.0);
-							glTexCoord2d(1.0, 1.0); glVertex2d(1.0, 0.0);
-							glTexCoord2d(0.0, 1.0); glVertex2d(0.0, 0.0);
-						glEnd();
-						glPopMatrix();
-						textureName = NULL;
-						}
+					if (!(_values.width & 1)) paletteIndex = !paletteIndex;
 					}
-
-				if (!(_values.width & 1)) paletteIndex = !paletteIndex;
 				}
 
 			else for (y = 0; y < _values.height; y++) for (x = 0; x < _values.width; x++)
@@ -630,26 +628,25 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 					{
 					if (CELL_IS(EXPLODED))
 						{
-						SET_COLOR(Mine);
+						colorIndex = kThemeColorKeyMine;
 						textureName = &_textureNames[kTextureIndexExplosion];
 						}
 
 					else if (CELL_IS(WARNING))
 						{
-						SET_COLOR(Warning);
+						colorIndex = kThemeColorKeyWarning;
 						textureName = &_textureNames[CELL_WARNING - 1];
 						}
 
-					else SET_COLOR(Clean);
+					else colorIndex = kThemeColorKeyClean;
 					}
 
 				else	{
 					if (CELL_IS(FLAG))
 						{
-						if (_state != kBoardStateGame && CELL_IS(MINE) && showGoodFlags)
-							SET_COLOR(ConfirmedFlag);
-
-						else SET_COLOR(Flag);
+						colorIndex = (_state != kBoardStateGame && CELL_IS(MINE) && showGoodFlags)
+							? kThemeColorKeyConfirmedFlag
+							: kThemeColorKeyFlag;
 
 						textureName = &_textureNames[kTextureIndexFlag];
 						}
@@ -658,9 +655,11 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 						if (showMines && CELL_IS(MINE))
 							textureName = &_textureNames[kTextureIndexMine];
 
-						SET_COLOR(Covered);
+						colorIndex = kThemeColorKeyCovered;
 						}
 					}
+
+				glColor3fv(_cellColors1[colorIndex]);
 
 				glPushMatrix();
 				glTranslated(cellX = cellWidth * (GLdouble)x, cellY = cellHeight * (GLdouble)y, 0.0);
@@ -669,10 +668,10 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 				glVertexPointer(2, GL_DOUBLE, 0, cellVertices);
 				glDrawArrays(GL_QUADS, 0, 4);
 
-				if (!CELL_IS(DISCLOSED)) for (quint index = 0; index < 4; index++)
+				if (!CELL_IS(DISCLOSED)) for (quint edgeIndex = 0; edgeIndex < 4; edgeIndex++)
 					{
-					glColor3fv(&_cellEdgeColors[index][0]);
-					glVertexPointer(2, GL_DOUBLE, 0, &cellEdgeVertices[index][0]);
+					glColor3fv(_cellColors2[colorIndex][edgeIndex]);
+					glVertexPointer(2, GL_DOUBLE, 0, &cellEdgeVertices[edgeIndex][0]);
 					glDrawArrays(GL_QUADS, 0, 4);
 					}
 
@@ -804,6 +803,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		_flags.alternateCells = theme.alternateCells;
 		_cellBrightnessDelta  = theme.cellBrightnessDelta;
 		for (NSUInteger key = 0; key < 6; key++) [self updateCellColorsForKey: key];
+		//for (NSUInteger key = 0; key < 3; key++) [self update: key];
 
 		if (images && images != _themeImages)
 			{
