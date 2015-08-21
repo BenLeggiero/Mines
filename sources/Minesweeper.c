@@ -263,7 +263,7 @@ void minesweeper_initialize(Minesweeper *object)
 
 MINESWEEPER_API
 void minesweeper_finalize(Minesweeper *object)
-	{if (object->cells != NULL) z_deallocate(object->cells);}
+	{z_deallocate(object->cells);}
 
 
 MINESWEEPER_API
