@@ -61,7 +61,7 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 	- (void) boardDidWin: (Board *) board;
 
 	- (void) board:			       (Board *) board
-		 didDiscloseMineAtCoordinates: (Q2DSize) coordinates;
+		 didDiscloseMineAtCoordinates: (Z2DSize) coordinates;
 
 @end
 
@@ -80,7 +80,7 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 	GLfloat		  _cellColors2[3][4][3];
 	CGFloat		  _cellBrightnessDelta;
 	BoardState	  _state;
-	Q2DSize		  _coordinates;
+	Z2DSize		  _coordinates;
 	BoardButtonAction _leftButtonAction;
 
 	struct {BOOL flat	     :1;
@@ -109,9 +109,9 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 
 	- (void) restart;
 
-	- (BOOL) hintCoordinates: (Q2DSize *) coordinates;
+	- (BOOL) hintCoordinates: (Z2DSize *) coordinates;
 
-	- (void) discloseHintCoordinates: (Q2DSize) coordinates;
+	- (void) discloseHintCoordinates: (Z2DSize) coordinates;
 
 	- (size_t) snapshotSize;
 
@@ -120,7 +120,7 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 	- (void) setSnapshot: (void *) snapshot
 		 ofSize:      (size_t) snapshotSize;
 
-	- (NSRect) frameForCoordinates: (Q2DSize) coordinates;
+	- (NSRect) frameForCoordinates: (Z2DSize) coordinates;
 @end
 
 // EOF

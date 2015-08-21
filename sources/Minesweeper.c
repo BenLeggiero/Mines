@@ -6,7 +6,7 @@
 Copyright © 2012-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
-#include <Q/functions/base/Q2DValue.h>
+#include <Z/functions/base/Z2DValue.h>
 
 #ifdef USE_LOCAL_HEADER_MINESWEEPER
 #	include "Minesweeper.h"
@@ -18,15 +18,15 @@ Released under the terms of the GNU General Public License v3. */
 #	include <stdlib.h>
 #	include <string.h>
 
-#	define q_deallocate(block)			  free(block)
-#	define q_reallocate(block, block_size)		  realloc(block, block_size)
-#	define q_copy(block, block_size, output)	  memcpy(output, block, block_size)
-#	define q_int8_block_set(block, block_size, value) memset(block, value, block_size)
-#	define RANDOM					  ((qsize)random())
+#	define z_deallocate(block)			  free(block)
+#	define z_reallocate(block, block_size)		  realloc(block, block_size)
+#	define z_copy(block, block_size, output)	  memcpy(output, block, block_size)
+#	define z_int8_block_set(block, block_size, value) memset(block, value, block_size)
+#	define RANDOM					  ((zsize)random())
 #else
-#	include <QBase/allocation.h>
-#	include <QBase/block.h>
-#	define RANDOM ((qsize (*)(void))object->random)()
+#	include <ZBase/allocation.h>
+#	include <ZBase/block.h>
+#	define RANDOM ((zsize (*)(void))object->random)()
 #endif
 
 #define EXPLODED	    MINESWEEPER_CELL_MASK_EXPLODED
@@ -46,24 +46,24 @@ Released under the terms of the GNU General Public License v3. */
 
 #ifndef DONT_USE_MINESWEEPER_CALLBACKS
 #	define UPDATED(x, y, cell) \
-	object->cell_updated(object->cell_updated_context, object, q_2d_value(SIZE)(x, y), cell)
+	object->cell_updated(object->cell_updated_context, object, z_2d_value(SIZE)(x, y), cell)
 #endif
 
-typedef struct {qint8 x, y;} Offset;
+typedef struct {zint8 x, y;} Offset;
 
-Q_PRIVATE Offset const offsets[] = {
+Z_PRIVATE Offset const offsets[] = {
 	{-1, -1}, {0, -1}, {1, -1},
 	{-1,  0},	   {1,	0},
 	{-1,  1}, {0,  1}, {1,	1}
 };
 
 
-Q_PRIVATE void place_mines(Minesweeper *object, qsize but_x, qsize but_y)
+Z_PRIVATE void place_mines(Minesweeper *object, zsize but_x, zsize but_y)
 	{
 	MinesweeperCell *c, *nc;
-	qsize n = object->mine_count, x, y, nx, ny;
+	zsize n = object->mine_count, x, y, nx, ny;
 	const Offset *p, *e;
-	qboolean valid;
+	zboolean valid;
 
 	while (n)
 		{
@@ -106,7 +106,7 @@ Q_PRIVATE void place_mines(Minesweeper *object, qsize but_x, qsize but_y)
 	}
 
 
-Q_PRIVATE void disclose_cell(Minesweeper *object, qsize x, qsize y)
+Z_PRIVATE void disclose_cell(Minesweeper *object, zsize x, zsize y)
 	{
 	MinesweeperCell *c = &CELL(x, y);
 
@@ -122,7 +122,7 @@ Q_PRIVATE void disclose_cell(Minesweeper *object, qsize x, qsize y)
 		if (!(*c & WARNING))
 			{
 			const Offset *p = offsets, *e = p + 8;
-			qsize nx, ny;
+			zsize nx, ny;
 
 			for (; p != e; p++)
 				{
@@ -135,9 +135,9 @@ Q_PRIVATE void disclose_cell(Minesweeper *object, qsize x, qsize y)
 	}
 
 
-Q_PRIVATE void count_hint_cases(Minesweeper *object, qsize *counts)
+Z_PRIVATE void count_hint_cases(Minesweeper *object, zsize *counts)
 	{
-	qsize x, y, nx, ny;
+	zsize x, y, nx, ny;
 	MinesweeperCell *c = CELLS_END;
 	const Offset *p, *e;
 
@@ -176,9 +176,9 @@ Q_PRIVATE void count_hint_cases(Minesweeper *object, qsize *counts)
 	}
 
 
-Q_PRIVATE Q2DSize case0_hint(Minesweeper *object, qsize index)
+Z_PRIVATE Z2DSize case0_hint(Minesweeper *object, zsize index)
 	{
-	qsize x, y, nx, ny;
+	zsize x, y, nx, ny;
 	MinesweeperCell *c = CELLS_END;
 	const Offset *p, *e;
 
@@ -198,7 +198,7 @@ Q_PRIVATE Q2DSize case0_hint(Minesweeper *object, qsize index)
 
 				if (VALID(nx, ny) && (CELL(nx, ny) & DISCLOSED))
 					{
-					if (!index) return q_2d_value(SIZE)(x, y);
+					if (!index) return z_2d_value(SIZE)(x, y);
 					index--;
 					break;
 					}
@@ -206,11 +206,11 @@ Q_PRIVATE Q2DSize case0_hint(Minesweeper *object, qsize index)
 			}
 		}
 
-	return q_2d_value_zero(SIZE);
+	return z_2d_value_zero(SIZE);
 	}
 
 
-Q_PRIVATE Q2DSize case1_hint(Minesweeper *object, qsize index)
+Z_PRIVATE Z2DSize case1_hint(Minesweeper *object, zsize index)
 	{
 	MinesweeperCell *c = CELLS_END;
 
@@ -220,16 +220,16 @@ Q_PRIVATE Q2DSize case1_hint(Minesweeper *object, qsize index)
 
 		if (!(*c & (DISCLOSED | FLAG | MINE)) && (*c & WARNING))
 			{
-			if (!index) return q_2d_value(SIZE)(X(c), Y(c));
+			if (!index) return z_2d_value(SIZE)(X(c), Y(c));
 			index--;
 			}
 		}
 
-	return q_2d_value_zero(SIZE);
+	return z_2d_value_zero(SIZE);
 	}
 
 
-Q_PRIVATE Q2DSize case2_hint(Minesweeper *object, qsize index)
+Z_PRIVATE Z2DSize case2_hint(Minesweeper *object, zsize index)
 	{
 	MinesweeperCell *c = CELLS_END;
 
@@ -239,12 +239,12 @@ Q_PRIVATE Q2DSize case2_hint(Minesweeper *object, qsize index)
 
 		if (!(*c & (DISCLOSED | FLAG | MINE)))
 			{
-			if (!index) return q_2d_value(SIZE)(X(c), Y(c));
+			if (!index) return z_2d_value(SIZE)(X(c), Y(c));
 			index--;
 			}
 		}
 
-	return q_2d_value_zero(SIZE);
+	return z_2d_value_zero(SIZE);
 	}
 
 
@@ -263,39 +263,39 @@ void minesweeper_initialize(Minesweeper *object)
 
 MINESWEEPER_API
 void minesweeper_finalize(Minesweeper *object)
-	{if (object->cells != NULL) q_deallocate(object->cells);}
+	{if (object->cells != NULL) z_deallocate(object->cells);}
 
 
 MINESWEEPER_API
-QStatus minesweeper_set_snapshot(Minesweeper *object, void *snapshot, qsize snapshot_size)
+ZStatus minesweeper_set_snapshot(Minesweeper *object, void *snapshot, zsize snapshot_size)
 	{
 	MinesweeperCell *p, *e;
 
-	Q2DSize size = q_2d_value(SIZE)
-		((qsize)q_uint64_big_endian(HEADER(snapshot)->x),
-		 (qsize)q_uint64_big_endian(HEADER(snapshot)->y));
+	Z2DSize size = z_2d_value(SIZE)
+		((zsize)z_uint64_big_endian(HEADER(snapshot)->x),
+		 (zsize)z_uint64_big_endian(HEADER(snapshot)->y));
 
-	qsize cell_count = size.x * size.y;
+	zsize cell_count = size.x * size.y;
 
 	if (cell_count != object->size.x * object->size.y)
 		{
-		if ((p = q_reallocate(object->cells, cell_count)) == NULL)
-			return Q_ERROR_NOT_ENOUGH_MEMORY;
+		if ((p = z_reallocate(object->cells, cell_count)) == NULL)
+			return Z_ERROR_NOT_ENOUGH_MEMORY;
 
 		object->cells = p;
 		object->size  = size;
 		}
 
-	object->mine_count	= (qsize)q_uint64_big_endian(HEADER(snapshot)->mine_count);
+	object->mine_count	= (zsize)z_uint64_big_endian(HEADER(snapshot)->mine_count);
 	object->state		= HEADER(snapshot)->state;
 	object->flag_count	= 0;
 	object->remaining_count = cell_count - object->mine_count;
 
 	if (object->state <= MINESWEEPER_STATE_PRISTINE)
-		q_int8_block_set(object->cells, cell_count, 0);
+		z_int8_block_set(object->cells, cell_count, 0);
 
 	else	{
-		q_copy(snapshot + HEADER_SIZE, cell_count, object->cells);
+		z_copy(snapshot + HEADER_SIZE, cell_count, object->cells);
 
 		for (p = object->cells, e = p + cell_count; p != e; p++)
 			{
@@ -304,12 +304,12 @@ QStatus minesweeper_set_snapshot(Minesweeper *object, void *snapshot, qsize snap
 			}
 		}
 
-	return Q_OK;
+	return Z_OK;
 	}
 
 
 MINESWEEPER_API
-qsize minesweeper_snapshot_size(Minesweeper *object)
+zsize minesweeper_snapshot_size(Minesweeper *object)
 	{
 	return object->state > MINESWEEPER_STATE_PRISTINE
 		? HEADER_SIZE + object->size.x * object->size.y
@@ -320,33 +320,33 @@ qsize minesweeper_snapshot_size(Minesweeper *object)
 MINESWEEPER_API
 void minesweeper_snapshot(Minesweeper *object, void *output)
 	{
-	HEADER(output)->x	   = q_uint64_big_endian(object->size.x);
-	HEADER(output)->y	   = q_uint64_big_endian(object->size.y);
-	HEADER(output)->mine_count = q_uint64_big_endian(object->mine_count);
+	HEADER(output)->x	   = z_uint64_big_endian(object->size.x);
+	HEADER(output)->y	   = z_uint64_big_endian(object->size.y);
+	HEADER(output)->mine_count = z_uint64_big_endian(object->mine_count);
 	HEADER(output)->state	   = object->state;
 
 	if (object->state > MINESWEEPER_STATE_PRISTINE)
-		q_copy(object->cells, object->size.x * object->size.y, output + HEADER_SIZE);
+		z_copy(object->cells, object->size.x * object->size.y, output + HEADER_SIZE);
 	}
 
 
 MINESWEEPER_API
-QStatus minesweeper_prepare(Minesweeper *object, Q2DSize size, qsize mine_count)
+ZStatus minesweeper_prepare(Minesweeper *object, Z2DSize size, zsize mine_count)
 	{
-	qsize cell_count = size.x * size.y;
+	zsize cell_count = size.x * size.y;
 
 	if (	size.x	   < MINESWEEPER_MINIMUM_X_SIZE	    ||
 		size.y	   < MINESWEEPER_MINIMUM_Y_SIZE	    ||
 		mine_count < MINESWEEPER_MINIMUM_MINE_COUNT ||
 		mine_count > cell_count - 1
 	)
-		return Q_ERROR_INVALID_ARGUMENT;
+		return Z_ERROR_INVALID_ARGUMENT;
 
-	if (!q_2d_value_are_equal(SIZE)(object->size, size))
+	if (!z_2d_value_are_equal(SIZE)(object->size, size))
 		{
-		void *cells = q_reallocate(object->cells, cell_count);
+		void *cells = z_reallocate(object->cells, cell_count);
 
-		if (cells == NULL) return Q_ERROR_NOT_ENOUGH_MEMORY;
+		if (cells == NULL) return Z_ERROR_NOT_ENOUGH_MEMORY;
 
 		object->cells = cells;
 		object->size  = size;
@@ -356,28 +356,28 @@ QStatus minesweeper_prepare(Minesweeper *object, Q2DSize size, qsize mine_count)
 	object->flag_count	= 0;
 	object->remaining_count = cell_count - (object->mine_count = mine_count);
 
-	q_int8_block_set(object->cells, cell_count, 0);
-	return Q_OK;
+	z_int8_block_set(object->cells, cell_count, 0);
+	return Z_OK;
 	}
 
 
 MINESWEEPER_API
-Q2DSize minesweeper_size(Minesweeper *object)
+Z2DSize minesweeper_size(Minesweeper *object)
 	{return object->size;}
 
 
 MINESWEEPER_API
-qsize minesweeper_mine_count(Minesweeper *object)
+zsize minesweeper_mine_count(Minesweeper *object)
 	{return object->mine_count;}
 
 
 MINESWEEPER_API
-qsize minesweeper_covered_count(Minesweeper *object)
+zsize minesweeper_covered_count(Minesweeper *object)
 	{return object->size.x * object->size.y - minesweeper_disclosed_count(object);}
 
 
 MINESWEEPER_API
-qsize minesweeper_disclosed_count(Minesweeper *object)
+zsize minesweeper_disclosed_count(Minesweeper *object)
 	{
 	return	((object->size.x * object->size.y) -
 		object->mine_count) - object->remaining_count;
@@ -385,17 +385,17 @@ qsize minesweeper_disclosed_count(Minesweeper *object)
 
 
 MINESWEEPER_API
-qsize minesweeper_remaining_count(Minesweeper *object)
+zsize minesweeper_remaining_count(Minesweeper *object)
 	{return object->remaining_count;}
 
 
 MINESWEEPER_API
-qsize minesweeper_flag_count(Minesweeper *object)
+zsize minesweeper_flag_count(Minesweeper *object)
 	{return object->flag_count;}
 
 
 MINESWEEPER_API
-MinesweeperCell minesweeper_cell(Minesweeper *object, Q2DSize coordinates)
+MinesweeperCell minesweeper_cell(Minesweeper *object, Z2DSize coordinates)
 	{return CELL(coordinates.x, coordinates.y);}
 
 
@@ -405,7 +405,7 @@ MinesweeperState minesweeper_state(Minesweeper *object)
 
 
 MINESWEEPER_API
-MinesweeperResult minesweeper_disclose(Minesweeper *object, Q2DSize coordinates)
+MinesweeperResult minesweeper_disclose(Minesweeper *object, Z2DSize coordinates)
 	{
 	MinesweeperCell *c = &CELL(coordinates.x, coordinates.y);
 
@@ -430,15 +430,15 @@ MinesweeperResult minesweeper_disclose(Minesweeper *object, Q2DSize coordinates)
 		return MINESWEEPER_RESULT_SOLVED;
 		}
 
-	return Q_OK;
+	return Z_OK;
 	}
 
 
 MINESWEEPER_API
 MinesweeperResult minesweeper_toggle_flag(
 	Minesweeper* object,
-	Q2DSize	     coordinates,
-	qboolean*    new_value
+	Z2DSize	     coordinates,
+	zboolean*    new_value
 )
 	{
 	MinesweeperCell *c = &CELL(coordinates.x, coordinates.y);
@@ -461,7 +461,7 @@ MinesweeperResult minesweeper_toggle_flag(
 #	endif
 
 	if (new_value != NULL) *new_value = !!(*c & FLAG);
-	return Q_OK;
+	return Z_OK;
 	}
 
 
@@ -473,7 +473,7 @@ void minesweeper_disclose_all_mines(Minesweeper *object)
 #	ifndef DONT_USE_MINESWEEPER_CALLBACKS
 		if (object->cell_updated != NULL)
 			{
-			qsize x = object->size.x, y;
+			zsize x = object->size.x, y;
 
 			while (x) for (x--, y = object->size.y; y;)
 				{
@@ -502,7 +502,7 @@ void minesweeper_flag_all_mines(Minesweeper *object)
 #	ifndef DONT_USE_MINESWEEPER_CALLBACKS
 		if (object->cell_updated != NULL)
 			{
-			qsize x = object->size.x, y;
+			zsize x = object->size.x, y;
 
 			while (x) for (x--, y = object->size.y; y;)
 				{
@@ -524,9 +524,9 @@ void minesweeper_flag_all_mines(Minesweeper *object)
 
 
 MINESWEEPER_API
-qboolean minesweeper_hint(Minesweeper *object, Q2DSize *coordinates)
+zboolean minesweeper_hint(Minesweeper *object, Z2DSize *coordinates)
 	{
-	qsize counts[3];
+	zsize counts[3];
 
 	if (	object->state == MINESWEEPER_STATE_EXPLODED ||
 		object->state == MINESWEEPER_STATE_SOLVED   ||
@@ -562,7 +562,7 @@ void minesweeper_resolve(Minesweeper *object)
 #	ifndef DONT_USE_MINESWEEPER_CALLBACKS
 		if (object->cell_updated != NULL)
 			{
-			qsize x = object->size.x, y;
+			zsize x = object->size.x, y;
 
 			while (x) for (x--, y = object->size.y; y;)
 				{
@@ -610,20 +610,20 @@ void minesweeper_set_random(Minesweeper *object, void *random)
 
 
 MINESWEEPER_API
-QStatus minesweeper_snapshot_test(void *snapshot, qsize snapshot_size)
+ZStatus minesweeper_snapshot_test(void *snapshot, zsize snapshot_size)
 	{
-	qsize	cell_count;
-	qsize	mine_count;
-	Q2DSize	size;
-	quint8	state;
+	zsize	cell_count;
+	zsize	mine_count;
+	Z2DSize	size;
+	zuint8	state;
 
-	if (snapshot_size < HEADER_SIZE) return Q_ERROR_INVALID_SIZE;
+	if (snapshot_size < HEADER_SIZE) return Z_ERROR_INVALID_SIZE;
 
 	cell_count =
-	(size.x = (qsize)q_uint64_big_endian(HEADER(snapshot)->x)) *
-	(size.y = (qsize)q_uint64_big_endian(HEADER(snapshot)->y));
+	(size.x = (zsize)z_uint64_big_endian(HEADER(snapshot)->x)) *
+	(size.y = (zsize)z_uint64_big_endian(HEADER(snapshot)->y));
 
-	mine_count = (qsize)q_uint64_big_endian(HEADER(snapshot)->mine_count);
+	mine_count = (zsize)z_uint64_big_endian(HEADER(snapshot)->mine_count);
 	state	   = HEADER(snapshot)->state;
 
 	if (	state	  == MINESWEEPER_STATE_INITIALIZED  ||
@@ -633,18 +633,18 @@ QStatus minesweeper_snapshot_test(void *snapshot, qsize snapshot_size)
 		mine_count < MINESWEEPER_MINIMUM_MINE_COUNT ||
 		mine_count > cell_count - 1
 	)
-		return Q_ERROR_INVALID_VALUE;
+		return Z_ERROR_INVALID_VALUE;
 
 	if (state == MINESWEEPER_STATE_PRISTINE)
-		{if (snapshot_size != HEADER_SIZE) return Q_ERROR_INVALID_SIZE;}
+		{if (snapshot_size != HEADER_SIZE) return Z_ERROR_INVALID_SIZE;}
 
 	else	{
 		MinesweeperCell *cells = snapshot + HEADER_SIZE, *c;
 		const Offset *p, *e;
-		qsize real_mine_count, exploded_count, x, y, nx, ny;
-		quint8 w;
+		zsize real_mine_count, exploded_count, x, y, nx, ny;
+		zuint8 w;
 
-		if (snapshot_size != HEADER_SIZE + cell_count) return Q_ERROR_INVALID_SIZE;
+		if (snapshot_size != HEADER_SIZE + cell_count) return Z_ERROR_INVALID_SIZE;
 
 		real_mine_count = 0;
 		exploded_count	= 0;
@@ -660,7 +660,7 @@ QStatus minesweeper_snapshot_test(void *snapshot, qsize snapshot_size)
 			if (	(*c & FLAG && *c & DISCLOSED) ||
 				(*c & EXPLODED && ++exploded_count > 1)
 			)
-				return Q_ERROR_INVALID_DATA;
+				return Z_ERROR_INVALID_DATA;
 
 			/*------------------------------------------.
 			| The mines must be surrounded by warnings. |
@@ -680,7 +680,7 @@ QStatus minesweeper_snapshot_test(void *snapshot, qsize snapshot_size)
 					if (	LOCAL_VALID(nx, ny) &&
 						!(LOCAL_CELL(nx, ny) & WARNING)
 					)
-						return Q_ERROR_INVALID_DATA;
+						return Z_ERROR_INVALID_DATA;
 					}
 				}
 
@@ -702,41 +702,41 @@ QStatus minesweeper_snapshot_test(void *snapshot, qsize snapshot_size)
 						w++;
 					}
 
-				if (w != (*c & WARNING)) return Q_ERROR_INVALID_DATA;
+				if (w != (*c & WARNING)) return Z_ERROR_INVALID_DATA;
 				}
 			}
 
-		if (mine_count != real_mine_count) return Q_ERROR_INVALID_FORMAT;
+		if (mine_count != real_mine_count) return Z_ERROR_INVALID_FORMAT;
 		}
 
-	return Q_OK;
+	return Z_OK;
 	}
 
 
 MINESWEEPER_API
-QStatus minesweeper_snapshot_values(
+ZStatus minesweeper_snapshot_values(
 	void*	 snapshot,
-	qsize	 snapshot_size,
-	Q2DSize* size,
-	qsize*	 mine_count,
-	quint8*	 state
+	zsize	 snapshot_size,
+	Z2DSize* size,
+	zsize*	 mine_count,
+	zuint8*	 state
 )
 	{
-	if (snapshot_size < sizeof(MinesweeperSnapshotHeader)) return Q_ERROR_INVALID_SIZE;
+	if (snapshot_size < sizeof(MinesweeperSnapshotHeader)) return Z_ERROR_INVALID_SIZE;
 
 	if (size != NULL)
 		{
-		size->x = (qsize)q_uint64_big_endian(HEADER(snapshot)->x);
-		size->y = (qsize)q_uint64_big_endian(HEADER(snapshot)->y);
+		size->x = (zsize)z_uint64_big_endian(HEADER(snapshot)->x);
+		size->y = (zsize)z_uint64_big_endian(HEADER(snapshot)->y);
 		}
 
 	if (mine_count != NULL)
-		*mine_count = (qsize)q_uint64_big_endian(HEADER(snapshot)->mine_count);
+		*mine_count = (zsize)z_uint64_big_endian(HEADER(snapshot)->mine_count);
 
 	if (state != NULL)
-		*state = (qsize)q_uint64_big_endian(HEADER(snapshot)->state);
+		*state = (zsize)z_uint64_big_endian(HEADER(snapshot)->state);
 
-	return Q_OK;
+	return Z_OK;
 	}
 
 

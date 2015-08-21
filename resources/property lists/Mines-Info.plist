@@ -46,13 +46,13 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>423</string>
+	<string>534</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.puzzle-games</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>NSHumanReadableCopyright</key>
-	<string>© 2013-2015 Manuel Sainz de Baranda y Goñi. Distributed under the GNU General Public License v3.</string>
+	<string>Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi. Distributed under the GNU General Public License v3.</string>
 	<key>NSMainNibFile</key>
 	<string>Mines</string>
 	<key>NSPrincipalClass</key>

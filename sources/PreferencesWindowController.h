@@ -29,31 +29,20 @@ Released under the terms of the GNU General Public License v3. */
 	//-----------'
 	IBOutlet TableView*	     themeList;
 	IBOutlet NSSegmentedControl* themeActionsSegmentedControl;
-	IBOutlet NSColorWell*	     coveredColorWell;
-	IBOutlet NSColorWell*	     cleanColorWell;
-	IBOutlet NSColorWell*	     flagColorWell;
-	IBOutlet NSColorWell*	     confirmedFlagColorWell;
-	IBOutlet NSColorWell*	     mineColorWell;
-	IBOutlet NSColorWell*	     warningColorWell;
-	IBOutlet NSButton*	     cellBrightnessAlternationButton;
-	IBOutlet NSSlider*	     cellBrightnessDeltaSlider;
-	IBOutlet NSColorWell*	     warning1FontColorWell;
-	IBOutlet NSColorWell*	     warning2FontColorWell;
-	IBOutlet NSColorWell*	     warning3FontColorWell;
-	IBOutlet NSColorWell*	     warning4FontColorWell;
-	IBOutlet NSColorWell*	     warning5FontColorWell;
-	IBOutlet NSColorWell*	     warning6FontColorWell;
-	IBOutlet NSColorWell*	     warning7FontColorWell;
-	IBOutlet NSColorWell*	     warning8FontColorWell;
+	IBOutlet NSBox*		     cellsBox;
+	IBOutlet NSButton*	     gridEnabledCheck;
+	IBOutlet NSColorWell*	     gridColorWell;
+	IBOutlet NSButton*	     bordersEnabledCheck;
+	IBOutlet NSSlider*	     borderSizeSlider;
+	IBOutlet NSButton*	     alternateCoveredCheck;
+	IBOutlet NSButton*	     alternateUncoveredCheck;
+	IBOutlet NSSlider*	     brightnessDeltaSlider;
+	IBOutlet NSButton*	     mineBordersEnabledCheck;
+	IBOutlet NSBox*		     numbersBox;
 	IBOutlet NSTextField*	     fontNameTextField;
 	IBOutlet NSButton*	     fontButton;
-	IBOutlet NSSlider*	     fontScalingSlider;
-	IBOutlet NSImageView*	     flagImageView;
-	IBOutlet NSColorWell*	     flagImageColorWell;
-	IBOutlet NSImageView*	     mineImageView;
-	IBOutlet NSColorWell*	     mineImageColorWell;
-	IBOutlet NSImageView*	     explosionImageView;
-	IBOutlet NSColorWell*	     explosionImageColorWell;
+	IBOutlet NSSlider*	     fontSizeSlider;
+	IBOutlet NSBox*		     imagesBox;
 
 	SeparatorCell*	_separatorCell;
 	Board*		_board;
@@ -73,16 +62,26 @@ Released under the terms of the GNU General Public License v3. */
 }
 	- (id) initWithBoard: (Board *) board;
 
-	- (IBAction) tab:			     (id) sender;
-	- (IBAction) changeCellColor:		     (id) sender;
-	- (IBAction) toggleCellBightnessAlternation: (id) sender;
-	- (IBAction) changeCellBrightnessDelta:	     (id) sender;
-	- (IBAction) changeNumberColor:		     (id) sender;
-	- (IBAction) changeFont:		     (id) sender;
-	- (IBAction) changeFontScaling:		     (id) sender;
-	- (IBAction) changeImageTemplateColor:	     (id) sender;
-	- (IBAction) selectImage:		     (id) sender;
-	- (IBAction) performThemeAction:	     (id) sender;
+	- (IBAction) tab:			      (id) sender;
+	- (IBAction) setLaserColor:		      (id) sender;
+	- (IBAction) setAnimation:		      (id) sender;
+	- (IBAction) testAnimation:		      (id) sender;
+	- (IBAction) toggleGrid:		      (id) sender;
+	- (IBAction) setGridColor:		      (id) sender;
+	- (IBAction) toggleBorders:		      (id) sender;
+	- (IBAction) toggleMineBorders:		      (id) sender;
+	- (IBAction) setBorderSize:		      (id) sender;
+	- (IBAction) toggleCoveredCellsAlternation:   (id) sender;
+	- (IBAction) toggleUncoveredCellsAlternation: (id) sender;
+	- (IBAction) setBrightnessDelta:	      (id) sender;
+	- (IBAction) setCellColor:		      (id) sender;
+	- (IBAction) setNumberColor:		      (id) sender;
+	- (IBAction) setFont:			      (id) sender;
+	- (IBAction) setFontSize:		      (id) sender;
+	- (IBAction) toggleImageColor:		      (id) sender;
+	- (IBAction) setImageColor:		      (id) sender;
+	- (IBAction) selectImage:		      (id) sender;
+	- (IBAction) performThemeListAction:	      (id) sender;
 @end
 
 // EOF

@@ -9,7 +9,6 @@ Released under the terms of the GNU General Public License v3. */
 #import "ImageStore.h"
 #import "helpers.h"
 #import <CommonCrypto/CommonDigest.h>
-#import <Q/functions/base/Q2DValue.h>
 
 
 NSMutableArray *ImageStoreLoad(NSError **error)

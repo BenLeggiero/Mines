@@ -8,7 +8,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #import "Board.h"
 #import "geometry.h"
-#import <Q/functions/base/Q2DValue.h>
+#import <Z/functions/base/Z2DValue.h>
 
 //@interface NSFont (PrivateGlyph)
 //	- (NSGlyph) _defaultGlyphForChar: (unichar) theChar;
@@ -42,8 +42,8 @@ BOOL GameSnapshotTest(void *snapshot, size_t snapshotSize)
 
 BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	{
-	Q2DSize size;
-	qsize mineCount;
+	Z2DSize size;
+	zsize mineCount;
 
 	if (minesweeper_snapshot_values(snapshot, snapshotSize, &size, &mineCount, NULL))
 		return NO;
@@ -296,14 +296,14 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		}
 
 
-	- (Q2DSize) cellCoordinatesOfEvent: (NSEvent *) event
+	- (Z2DSize) cellCoordinatesOfEvent: (NSEvent *) event
 		{
 		NSPoint point = [self convertPoint: [event locationInWindow] fromView: nil];
 		NSSize size   = self.bounds.size;
 
-		return q_2d_value(SIZE)
-			((qsize)(point.x / (size.width  / (CGFloat)_values.width )),
-			 (qsize)(point.y / (size.height / (CGFloat)_values.height)));
+		return z_2d_value(SIZE)
+			((zsize)(point.x / (size.width  / (CGFloat)_values.width )),
+			 (zsize)(point.y / (size.height / (CGFloat)_values.height)));
 		}
 
 
@@ -534,7 +534,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			BOOL	 showGoodFlags = _flags.showGoodFlags;
 			GLdouble cellWidth     = _surfaceSize.width  / (GLdouble)_values.width;
 			GLdouble cellHeight    = _surfaceSize.height / (GLdouble)_values.height;
-			quint	 colorIndex;
+			zuint	 colorIndex;
 
 			glEnableClientState(GL_VERTEX_ARRAY);
 			glMatrixMode(GL_MODELVIEW);
@@ -549,7 +549,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 					{
 					for (x = 0; x < _values.width; x++, paletteIndex = !paletteIndex)
 						{
-						cell = minesweeper_cell(&_game, q_2d_value(SIZE)(x, y));
+						cell = minesweeper_cell(&_game, z_2d_value(SIZE)(x, y));
 
 						if (CELL_IS(DISCLOSED))
 							{
@@ -622,7 +622,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 			else for (y = 0; y < _values.height; y++) for (x = 0; x < _values.width; x++)
 				{
-				cell = minesweeper_cell(&_game, q_2d_value(SIZE)(x, y));
+				cell = minesweeper_cell(&_game, z_2d_value(SIZE)(x, y));
 
 				if (CELL_IS(DISCLOSED))
 					{
@@ -668,7 +668,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 				glVertexPointer(2, GL_DOUBLE, 0, cellVertices);
 				glDrawArrays(GL_QUADS, 0, 4);
 
-				if (!CELL_IS(DISCLOSED)) for (quint edgeIndex = 0; edgeIndex < 4; edgeIndex++)
+				if (!CELL_IS(DISCLOSED)) for (zuint edgeIndex = 0; edgeIndex < 4; edgeIndex++)
 					{
 					glColor3fv(_cellColors2[colorIndex][edgeIndex]);
 					glVertexPointer(2, GL_DOUBLE, 0, &cellEdgeVertices[edgeIndex][0]);
@@ -769,7 +769,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	- (void) mouseUp: (NSEvent *) event
 		{
 		if (	_state == kBoardStateGame &&
-			q_2d_value_are_equal(SIZE)(_coordinates, [self cellCoordinatesOfEvent: event])
+			z_2d_value_are_equal(SIZE)(_coordinates, [self cellCoordinatesOfEvent: event])
 		)
 			{
 			if ([event clickCount] > 1 || _leftButtonAction == kBoardButtonActionReveal)
@@ -785,7 +785,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	- (void) rightMouseUp: (NSEvent *) event
 		{
 		if (	_state == kBoardStateGame &&
-			q_2d_value_are_equal(SIZE)(_coordinates, [self cellCoordinatesOfEvent: event])
+			z_2d_value_are_equal(SIZE)(_coordinates, [self cellCoordinatesOfEvent: event])
 		)
 			[self toggleFlag];
 		}
@@ -800,7 +800,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		_theme.owner = nil;
 		[_theme release];
 		(_theme = [theme retain]).owner = self;
-		_flags.alternateCells = theme.alternateCells;
+		_flags.flat = theme.flat;
 		_cellBrightnessDelta  = theme.cellBrightnessDelta;
 		for (NSUInteger key = 0; key < 6; key++) [self updateCellColorsForKey: key];
 		//for (NSUInteger key = 0; key < 3; key++) [self update: key];
@@ -827,7 +827,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		{
 		GameValues oldValues = _values;
 
-		minesweeper_prepare(&_game, q_2d_value(SIZE)(values.width, values.height), values.mineCount);
+		minesweeper_prepare(&_game, z_2d_value(SIZE)(values.width, values.height), values.mineCount);
 		_values = values;
 		_state = kBoardStateGame;
 
@@ -841,7 +841,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	- (void) restart
 		{
 		minesweeper_prepare
-			(&_game, q_2d_value(SIZE)(_values.width, _values.height),
+			(&_game, z_2d_value(SIZE)(_values.width, _values.height),
 			 minesweeper_mine_count(&_game));
 
 		_state = kBoardStateGame;
@@ -849,11 +849,11 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		}
 
 
-	- (BOOL) hintCoordinates: (Q2DSize *) coordinates
+	- (BOOL) hintCoordinates: (Z2DSize *) coordinates
 		{return minesweeper_hint(&_game, coordinates);}
 
 
-	- (void) discloseHintCoordinates: (Q2DSize) coordinates
+	- (void) discloseHintCoordinates: (Z2DSize) coordinates
 		{
 		minesweeper_disclose(&_game, coordinates);
 
@@ -880,7 +880,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		{
 		minesweeper_set_snapshot(&_game, snapshot, snapshotSize);
 
-		Q2DSize size = minesweeper_size(&_game);
+		Z2DSize size = minesweeper_size(&_game);
 		_values.width	  = size.x;
 		_values.height	  = size.y;
 		_values.mineCount = minesweeper_mine_count(&_game);
@@ -893,7 +893,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		}
 
 
-	- (NSRect) frameForCoordinates: (Q2DSize) coordinates
+	- (NSRect) frameForCoordinates: (Z2DSize) coordinates
 		{
 		NSSize size = self.bounds.size;
 

@@ -30,7 +30,7 @@ Released under the terms of the GNU General Public License v3. */
 		{
 		NSBitmapImageRep *bitmap;
 		NSImage *output;
-		NSRect frame = flagImageView.bounds;
+		NSRect frame = NSMakeRect(0.0, 0.0, 96.0, 96.0);
 		CGFloat scalingFactor = 1.0, factor;
 
 		for (NSScreen *screen in [NSScreen screens])
@@ -99,22 +99,6 @@ Released under the terms of the GNU General Public License v3. */
 		}
 
 
-	- (NSImageView *) imageViewForKey: (NSUInteger) key
-		{
-		if	(key == kThemeImageKeyFlag) return flagImageView;
-		else if (key == kThemeImageKeyMine) return mineImageView;
-						    return explosionImageView;
-		}
-
-
-	- (NSColorWell *) imageColorWellForKey: (NSUInteger) key
-		{
-		if	(key == kThemeImageKeyFlag) return flagImageColorWell;
-		else if (key == kThemeImageKeyMine) return mineImageColorWell;
-						    return explosionImageColorWell;
-		}
-
-
 	- (void) updateThemeControlsState
 		{
 		BOOL enabled = ![_bundleThemes containsObject: _theme];
@@ -134,51 +118,38 @@ Released under the terms of the GNU General Public License v3. */
 		{
 		NSColor *color;
 
-		coveredColorWell.color	     = [_theme colorForKey: kThemeColorKeyCovered      ];
-		cleanColorWell.color	     = [_theme colorForKey: kThemeColorKeyClean	       ];
-		flagColorWell.color	     = [_theme colorForKey: kThemeColorKeyFlag	       ];
-		confirmedFlagColorWell.color = [_theme colorForKey: kThemeColorKeyConfirmedFlag];
-		mineColorWell.color	     = [_theme colorForKey: kThemeColorKeyMine	       ];
-		warningColorWell.color	     = [_theme colorForKey: kThemeColorKeyWarning      ];
-		warning1FontColorWell.color  = [_theme colorForNumber: 1];
-		warning2FontColorWell.color  = [_theme colorForNumber: 2];
-		warning3FontColorWell.color  = [_theme colorForNumber: 3];
-		warning4FontColorWell.color  = [_theme colorForNumber: 4];
-		warning5FontColorWell.color  = [_theme colorForNumber: 5];
-		warning6FontColorWell.color  = [_theme colorForNumber: 6];
-		warning7FontColorWell.color  = [_theme colorForNumber: 7];
-		warning8FontColorWell.color  = [_theme colorForNumber: 8];
+//		coveredColorWell.color	     = [_theme colorForKey: kThemeColorKeyCovered      ];
+//		cleanColorWell.color	     = [_theme colorForKey: kThemeColorKeyClean	       ];
+//		flagColorWell.color	     = [_theme colorForKey: kThemeColorKeyFlag	       ];
+//		confirmedFlagColorWell.color = [_theme colorForKey: kThemeColorKeyConfirmedFlag];
+//		mineColorWell.color	     = [_theme colorForKey: kThemeColorKeyMine	       ];
+//		warningColorWell.color	     = [_theme colorForKey: kThemeColorKeyWarning      ];
 
-		if (_theme.alternateCells)
+		for (NSUInteger i = 1; i < 9; i++)
+			[[numbersBox viewWithTag: i] setColor: [_theme colorForNumber: i]];
+
+		//cellBrightnessDeltaSlider.doubleValue = [_theme cellBrightnessDelta];
+		//fontScalingSlider.doubleValue	      = [_theme fontScaling];
+
+		for (NSUInteger i = 0; i < 4; i++)
 			{
-			cellBrightnessAlternationButton.state = NSOnState;
-			[cellBrightnessDeltaSlider setEnabled: YES];
-			}
+			NSColorWell *colorWell = [imagesBox viewWithTag: 10 + i];
+			NSButton *checkBox = [imagesBox viewWithTag: 20 + i];
 
-		else	{
-			cellBrightnessAlternationButton.state = NSOffState;
-			[cellBrightnessDeltaSlider setEnabled: NO];
-			}
-
-		cellBrightnessDeltaSlider.doubleValue = [_theme cellBrightnessDelta];
-		fontScalingSlider.doubleValue	      = [_theme fontScaling];
-
-		NSImageView* imageViews[3] = {flagImageView,	  mineImageView,      explosionImageView};
-		NSColorWell* colorWells[3] = {flagImageColorWell, mineImageColorWell, explosionImageColorWell};
-
-		for (NSUInteger key = 0; key < 3; key++)
-			{
-			NSColorWell *colorWell = colorWells[key];
-
-			if ((color = [_theme imageColorForKey: key]))
+			if ((color = [_theme imageColorForKey: i]))
 				{
+				checkBox.state = NSOnState;
 				colorWell.color = color;
 				[colorWell setHidden: NO];
 				}
 
-			else [colorWell setHidden: YES];
+			else	{
+				checkBox.state = NSOffState;
+				[colorWell setHidden: YES];
+				}
 
-			imageViews[key].image = [self imageFromImage: [_themeImages objectAtIndex: key] tintColor: color];
+			[[imagesBox viewWithTag: 30 + i] setImage:
+				[self imageFromImage: [_themeImages objectAtIndex: i] tintColor: color]];
 			}
 
 		NSString *fontName = _theme.fontName;
@@ -335,7 +306,7 @@ Released under the terms of the GNU General Public License v3. */
 			NSNull *null = [NSNull null];
 			id object;
 
-			for (NSUInteger i = 0; i < 3; i++)
+			for (NSUInteger i = 0; i < 4; i++)
 				if ([(object = [_themeImages objectAtIndex: i]) isKindOfClass: errorClass])
 					{
 					[[NSAlert alertWithError: object] runModal];
@@ -522,7 +493,7 @@ Released under the terms of the GNU General Public License v3. */
 
 			if (oldImage != resultData->image)
 				{
-				NSColorWell* imageColorWell = [self imageColorWellForKey: _imageKey];
+				NSColorWell* imageColorWell = [imagesBox viewWithTag: 10 + _imageKey];
 				id color;
 
 				if (resultData->isInternal)
@@ -556,9 +527,9 @@ Released under the terms of the GNU General Public License v3. */
 				//--------------------------------------------------------.
 				// Actualizamos los controles relacionados con la imagen. |
 				//--------------------------------------------------------'
-				[self imageViewForKey: _imageKey].image = [self
+				[[imagesBox viewWithTag: 30 + _imageKey] setImage: [self
 					imageFromImage:	 resultData->image
-					tintColor:	 color];
+					tintColor:	 color]];
 				}
 			}
 
@@ -578,14 +549,16 @@ Released under the terms of the GNU General Public License v3. */
 			NSError*	error;
 			NSColor*	color = DEFAULT_TEMPLATE_IMAGE_COLOR;
 
-			for (NSUInteger i = 0; i < 3; i++)
+			for (NSUInteger i = 0; i < 4; i++)
 				if (!imageInclusions[i] && [imageName isEqualToString: [imageFileNames objectAtIndex: i]])
 					{
 					if (theme == _theme)
 						{
 						NSImage *image = [bundleImages objectAtIndex: i];
 
-						[self imageViewForKey: i].image = [self imageFromImage: image tintColor: color];
+						[[imagesBox viewWithTag: 30 + i]
+							setImage: [self imageFromImage: image tintColor: color]];
+
 						[_themeImages replaceObjectAtIndex: i withObject: image];
 						}
 
@@ -703,7 +676,64 @@ Released under the terms of the GNU General Public License v3. */
 		}
 
 
-	- (IBAction) changeCellColor: (NSColorWell *) sender
+	- (IBAction) setLaserColor: (NSColorWell *) sender
+		{
+		}
+
+
+	- (IBAction) setAnimation: (id) sender
+		{
+		}
+
+
+	- (IBAction) testAnimation: (id) sender
+		{
+		}
+
+
+	- (IBAction) toggleGrid: (NSButton *) sender
+		{
+		}
+
+
+	- (IBAction) setGridColor: (NSColorWell *) sender
+		{
+		}
+
+
+	- (IBAction) toggleBorders: (id) sender
+		{
+		}
+
+
+	- (IBAction) toggleMineBorders: (id) sender
+		{
+		}
+
+
+	- (IBAction) setBorderSize: (id) sender
+		{
+		}
+
+
+	- (IBAction) toggleCoveredCellsAlternation: (id) sender
+		{
+		}
+
+
+	- (IBAction) toggleUncoveredCellsAlternation: (id) sender
+		{
+		}
+
+
+	- (IBAction) setBrightnessDelta: (NSSlider *) sender
+		{
+		[_theme setCellBrightnessDelta: sender.doubleValue];
+		_flags.themeHasChanged = YES;
+		}
+
+
+	- (IBAction) setCellColor: (NSColorWell *) sender
 		{
 		NSColor *color = [sender.color opaqueSRGBColor];
 
@@ -713,24 +743,7 @@ Released under the terms of the GNU General Public License v3. */
 		}
 
 
-	- (IBAction) toggleCellBightnessAlternation: (NSButton *) sender
-		{
-		BOOL value = sender.state == NSOnState;
-
-		_theme.alternateCells = value;
-		[cellBrightnessDeltaSlider setEnabled: value];
-		_flags.themeHasChanged = YES;
-		}
-
-
-	- (IBAction) changeCellBrightnessDelta:	(NSSlider *) sender
-		{
-		[_theme setCellBrightnessDelta: sender.doubleValue];
-		_flags.themeHasChanged = YES;
-		}
-
-
-	- (IBAction) changeNumberColor: (NSColorWell *) sender
+	- (IBAction) setNumberColor: (NSColorWell *) sender
 		{
 		NSColor *color = [sender.color opaqueSRGBColor];
 
@@ -740,7 +753,7 @@ Released under the terms of the GNU General Public License v3. */
 		}
 
 
-	- (IBAction) changeFont: (NSFontManager *) sender
+	- (IBAction) setFont: (NSFontManager *) sender
 		{
 		if (_currentView == themeView && ![_bundleThemes containsObject: _theme])
 			{
@@ -753,21 +766,26 @@ Released under the terms of the GNU General Public License v3. */
 		}
 
 
-	- (IBAction) changeFontScaling: (NSSlider *) sender
+	- (IBAction) setFontSize: (NSSlider *) sender
 		{
 		_theme.fontScaling = (CGFloat)sender.doubleValue;
 		_flags.themeHasChanged = YES;
 		}
 
 
-	- (IBAction) changeImageTemplateColor: (NSColorWell *) sender
+	- (IBAction) toggleImageColor: (id) sender
+		{
+		}
+
+
+	- (IBAction) setImageColor: (NSColorWell *) sender
 		{
 		NSColor *color = [sender.color colorUsingColorSpace: [NSColorSpace sRGBColorSpace]];
-		NSUInteger key = sender.tag;
+		NSUInteger key = sender.tag - 10;
 
-		[self imageViewForKey: key].image = [self
+		[[imagesBox viewWithTag: 30 + key] setImage: [self
 			imageFromImage: [_themeImages objectAtIndex: key]
-			tintColor:	color];
+			tintColor:	color]];
 
 		[_theme setImageColor: color forKey: key];
 		_flags.themeHasChanged = YES;
@@ -780,7 +798,7 @@ Released under the terms of the GNU General Public License v3. */
 		Class imageClass = [NSImage class];
 		NSImage *image;
 
-		for (NSUInteger i = 0; i < 3; i++)
+		for (NSUInteger i = 0; i < 4; i++)
 			if ([(image = [_themeImages objectAtIndex: i]) isKindOfClass: imageClass])
 				[preloadedImages setObject: image forKey: [_theme.imageFileNames objectAtIndex: i]];
 
@@ -795,7 +813,7 @@ Released under the terms of the GNU General Public License v3. */
 		}
 
 
-	- (IBAction) performThemeAction: (NSSegmentedControl *) sender
+	- (IBAction) performThemeListAction: (NSSegmentedControl *) sender
 		{
 		NSUInteger index;
 
@@ -889,6 +907,7 @@ Released under the terms of the GNU General Public License v3. */
 			[themeList editColumn: 0 row: index withEvent: nil select: YES];
 			}
 		}
+
 
 
 @end

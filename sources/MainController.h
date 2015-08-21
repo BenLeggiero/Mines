@@ -85,7 +85,7 @@ Released under the terms of the GNU General Public License v3. */
 	ALSound*		     _explosionSound;
 	ALSound*		     _laserBeamSound;
 	ALSound*		     _taDahSound;
-	Q2DSize			     _hintCoordinates;
+	Z2DSize			     _hintCoordinates;
 	NSUInteger		     _allowedTime;
 	NSUInteger		     _timeLeft;
 	NSTimer*		     _gameOverTimer;

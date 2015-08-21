@@ -19,9 +19,9 @@ Released under the terms of the GNU General Public License v3. */
 
 #	pragma mark - Accessors
 
-	@synthesize owner		= _owner;
-	@synthesize name		= _name;
-	@synthesize imageFileNames	= _imageFileNames;
+	@synthesize owner	   = _owner;
+	@synthesize name	   = _name;
+	@synthesize imageFileNames = _imageFileNames;
 
 	- (BOOL	     ) flat		   {return _flat;}
 	- (CGFloat   ) cellBrightnessDelta {return _cellBrightnessDelta;}
@@ -104,7 +104,7 @@ Released under the terms of the GNU General Public License v3. */
 			![value isKindOfClass: numberClass]			     ||
 			!(images = [dictionary objectForKey: @"Images"])	     ||
 			![images isKindOfClass: arrayClass]			     ||
-			images.count != 3					     ||
+			images.count != 4					     ||
 			((value = [dictionary objectForKey: @"NumberFontName"]) &&
 			 ![value isKindOfClass: stringClass])			     ||
 			((value = [dictionary objectForKey: @"Flat"]) &&
@@ -194,7 +194,7 @@ Released under the terms of the GNU General Public License v3. */
 		for (NSColor *color in _cellColors  ) [cellColors   addObject: [color floatRGBAString]];
 		for (NSColor *color in _numberColors) [numberColors addObject: [color floatRGBAString]];
 
-		for (i = 0; i < 3;)
+		for (i = 0; i < 4;)
 			{
 			image = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
 				[NSNumber numberWithBool: _imageInclusions[i]], @"Included",
@@ -249,6 +249,7 @@ Released under the terms of the GNU General Public License v3. */
 			theme->_imageInclusions[0]  = _imageInclusions[0];
 			theme->_imageInclusions[1]  = _imageInclusions[1];
 			theme->_imageInclusions[2]  = _imageInclusions[2];
+			theme->_imageInclusions[3]  = _imageInclusions[3];
 			}
 
 		return theme;
@@ -307,7 +308,7 @@ Released under the terms of the GNU General Public License v3. */
 
 
 	- (BOOL) hasExternalImages
-		{return !(_imageInclusions[0] && _imageInclusions[1] && _imageInclusions[2]);}
+		{return !(_imageInclusions[0] && _imageInclusions[1] && _imageInclusions[2] && _imageInclusions[3]);}
 
 
 	- (NSMutableArray *) loadImages: (inout BOOL *) errors
@@ -325,7 +326,7 @@ Released under the terms of the GNU General Public License v3. */
 
 		*errors = NO;
 
-		for (NSUInteger i = 0; i < 3; i++)
+		for (NSUInteger i = 0; i < 4; i++)
 			{
 			if (_imageInclusions[i]) [images addObject:
 				(image = [NSImage imageNamed: filePath = [_imageFileNames objectAtIndex: i]])
@@ -396,7 +397,7 @@ Released under the terms of the GNU General Public License v3. */
 		NSFileManager *fileManager = [NSFileManager defaultManager];
 		NSString *imagePath;
 
-		for (NSUInteger i = 0; i < 3; i++) if (
+		for (NSUInteger i = 0; i < 4; i++) if (
 			!_imageInclusions[i] &&
 			[fileManager fileExistsAtPath:
 				imagePath = [path stringByAppendingPathComponent: [_imageFileNames objectAtIndex: i]]]

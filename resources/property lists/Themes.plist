@@ -30,6 +30,14 @@
 				<key>Color</key>
 				<string>0.000000:0.000000:0.000000:0.500000</string>
 				<key>FileName</key>
+				<string>Flag.pdf</string>
+				<key>Included</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>Color</key>
+				<string>0.000000:0.000000:0.000000:0.500000</string>
+				<key>FileName</key>
 				<string>Mine.pdf</string>
 				<key>Included</key>
 				<true/>
@@ -77,6 +85,14 @@
 		</array>
 		<key>Images</key>
 		<array>
+			<dict>
+				<key>Color</key>
+				<string>1.000000:1.000000:1.000000:1.000000</string>
+				<key>FileName</key>
+				<string>Cloud.pdf</string>
+				<key>Included</key>
+				<true/>
+			</dict>
 			<dict>
 				<key>Color</key>
 				<string>1.000000:1.000000:1.000000:1.000000</string>
@@ -146,6 +162,14 @@
 			</dict>
 			<dict>
 				<key>Color</key>
+				<string>1.000000:0.000000:0.000000:1.000000</string>
+				<key>FileName</key>
+				<string>Heart.pdf</string>
+				<key>Included</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>Color</key>
 				<string>0.200000:0.200000:0.200000:1.000000</string>
 				<key>FileName</key>
 				<string>Mine.pdf</string>
@@ -195,6 +219,14 @@
 		</array>
 		<key>Images</key>
 		<array>
+			<dict>
+				<key>Color</key>
+				<string>1.000000:1.000000:1.000000:1.000000</string>
+				<key>FileName</key>
+				<string>Skull and Bones.pdf</string>
+				<key>Included</key>
+				<true/>
+			</dict>
 			<dict>
 				<key>Color</key>
 				<string>1.000000:1.000000:1.000000:1.000000</string>
@@ -264,6 +296,14 @@
 			</dict>
 			<dict>
 				<key>Color</key>
+				<string>1.000000:1.000000:1.000000:1.000000</string>
+				<key>FileName</key>
+				<string>Flag.pdf</string>
+				<key>Included</key>
+				<true/>
+			</dict>
+			<dict>
+				<key>Color</key>
 				<string>0.400000:0.400000:0.400000:1.000000</string>
 				<key>FileName</key>
 				<string>Mine.pdf</string>
@@ -313,6 +353,14 @@
 		</array>
 		<key>Images</key>
 		<array>
+			<dict>
+				<key>Color</key>
+				<string>1.000000:0.000000:0.501961:1.000000</string>
+				<key>FileName</key>
+				<string>Flower.pdf</string>
+				<key>Included</key>
+				<true/>
+			</dict>
 			<dict>
 				<key>Color</key>
 				<string>1.000000:0.000000:0.501961:1.000000</string>

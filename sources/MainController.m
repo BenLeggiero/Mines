@@ -628,7 +628,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 		[defaults registerDefaults: [NSDictionary dictionaryWithObjectsAndKeys:
 			[NSNumber numberWithDouble: kCellDefaultSize],	     @"DefaultCellSize",
-			[NSNumber numberWithBool: NO],			     @"MaintainCellAspectRatio",
+			[NSNumber numberWithBool: YES],			     @"MaintainCellAspectRatio",
 			[NSNumber numberWithBool: YES],			     @"RememberGameSettings",
 			[NSNumber numberWithBool: YES],			     @"ResumeLastGameOnLaunch",
 			[NSNumber numberWithBool: YES],			     @"PlaySoundOnCellsDisclosed",
@@ -1194,7 +1194,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 
 	- (void) board:			       (Board *) sender
-		 didDiscloseMineAtCoordinates: (Q2DSize) coordinates;
+		 didDiscloseMineAtCoordinates: (Z2DSize) coordinates;
 		{
 		[self stopTimer];
 		[self updateLabels];
