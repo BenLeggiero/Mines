@@ -301,7 +301,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		NSPoint point = [self convertPoint: [event locationInWindow] fromView: nil];
 		NSSize size   = self.bounds.size;
 
-		return z_2d_value(SIZE)
+		return z_2d_type(SIZE)
 			((zsize)(point.x / (size.width  / (CGFloat)_values.width )),
 			 (zsize)(point.y / (size.height / (CGFloat)_values.height)));
 		}
@@ -549,7 +549,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 					{
 					for (x = 0; x < _values.width; x++, paletteIndex = !paletteIndex)
 						{
-						cell = minesweeper_cell(&_game, z_2d_value(SIZE)(x, y));
+						cell = minesweeper_cell(&_game, z_2d_type(SIZE)(x, y));
 
 						if (CELL_IS(DISCLOSED))
 							{
@@ -622,7 +622,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 			else for (y = 0; y < _values.height; y++) for (x = 0; x < _values.width; x++)
 				{
-				cell = minesweeper_cell(&_game, z_2d_value(SIZE)(x, y));
+				cell = minesweeper_cell(&_game, z_2d_type(SIZE)(x, y));
 
 				if (CELL_IS(DISCLOSED))
 					{
@@ -769,7 +769,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	- (void) mouseUp: (NSEvent *) event
 		{
 		if (	_state == kBoardStateGame &&
-			z_2d_value_are_equal(SIZE)(_coordinates, [self cellCoordinatesOfEvent: event])
+			z_2d_type_are_equal(SIZE)(_coordinates, [self cellCoordinatesOfEvent: event])
 		)
 			{
 			if ([event clickCount] > 1 || _leftButtonAction == kBoardButtonActionReveal)
@@ -785,7 +785,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	- (void) rightMouseUp: (NSEvent *) event
 		{
 		if (	_state == kBoardStateGame &&
-			z_2d_value_are_equal(SIZE)(_coordinates, [self cellCoordinatesOfEvent: event])
+			z_2d_type_are_equal(SIZE)(_coordinates, [self cellCoordinatesOfEvent: event])
 		)
 			[self toggleFlag];
 		}
@@ -827,7 +827,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		{
 		GameValues oldValues = _values;
 
-		minesweeper_prepare(&_game, z_2d_value(SIZE)(values.width, values.height), values.mineCount);
+		minesweeper_prepare(&_game, z_2d_type(SIZE)(values.width, values.height), values.mineCount);
 		_values = values;
 		_state = kBoardStateGame;
 
@@ -841,7 +841,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	- (void) restart
 		{
 		minesweeper_prepare
-			(&_game, z_2d_value(SIZE)(_values.width, _values.height),
+			(&_game, z_2d_type(SIZE)(_values.width, _values.height),
 			 minesweeper_mine_count(&_game));
 
 		_state = kBoardStateGame;

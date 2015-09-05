@@ -91,9 +91,6 @@ Z_DEFINE_STRICT_STRUCTURE(
 	zuint8	state;
 ) MinesweeperSnapshotHeader;
 
-#define MINESWEEPER(		    p) ((Minesweeper		   *)(p))
-#define MINESWEEPER_SNAPSHOT_HEADER(p) ((MinesweeperSnapshotHeader *)(p))
-
 MINESWEEPER_API void		  minesweeper_initialize	 (Minesweeper* object);
 
 MINESWEEPER_API void		  minesweeper_finalize		 (Minesweeper* object);

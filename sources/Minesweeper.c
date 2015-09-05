@@ -34,7 +34,7 @@ Released under the terms of the GNU General Public License v3. */
 #define MINE		    MINESWEEPER_CELL_MASK_MINE
 #define FLAG		    MINESWEEPER_CELL_MASK_FLAG
 #define WARNING		    MINESWEEPER_CELL_MASK_WARNING
-#define HEADER		    MINESWEEPER_SNAPSHOT_HEADER
+#define HEADER(p)	    ((MinesweeperSnapshotHeader *)(p))
 #define HEADER_SIZE	    sizeof(MinesweeperSnapshotHeader)
 #define CELL(cx, cy)	    object->cells[cy * object->size.x + cx]
 #define VALID(cx, cy)	    (cx < object->size.x && cy < object->size.y)
@@ -46,7 +46,7 @@ Released under the terms of the GNU General Public License v3. */
 
 #ifndef DONT_USE_MINESWEEPER_CALLBACKS
 #	define UPDATED(x, y, cell) \
-	object->cell_updated(object->cell_updated_context, object, z_2d_value(SIZE)(x, y), cell)
+	object->cell_updated(object->cell_updated_context, object, z_2d_type(SIZE)(x, y), cell)
 #endif
 
 typedef struct {zint8 x, y;} Offset;
@@ -198,7 +198,7 @@ Z_PRIVATE Z2DSize case0_hint(Minesweeper *object, zsize index)
 
 				if (VALID(nx, ny) && (CELL(nx, ny) & DISCLOSED))
 					{
-					if (!index) return z_2d_value(SIZE)(x, y);
+					if (!index) return z_2d_type(SIZE)(x, y);
 					index--;
 					break;
 					}
@@ -206,7 +206,7 @@ Z_PRIVATE Z2DSize case0_hint(Minesweeper *object, zsize index)
 			}
 		}
 
-	return z_2d_value_zero(SIZE);
+	return z_2d_type_zero(SIZE);
 	}
 
 
@@ -220,12 +220,12 @@ Z_PRIVATE Z2DSize case1_hint(Minesweeper *object, zsize index)
 
 		if (!(*c & (DISCLOSED | FLAG | MINE)) && (*c & WARNING))
 			{
-			if (!index) return z_2d_value(SIZE)(X(c), Y(c));
+			if (!index) return z_2d_type(SIZE)(X(c), Y(c));
 			index--;
 			}
 		}
 
-	return z_2d_value_zero(SIZE);
+	return z_2d_type_zero(SIZE);
 	}
 
 
@@ -239,12 +239,12 @@ Z_PRIVATE Z2DSize case2_hint(Minesweeper *object, zsize index)
 
 		if (!(*c & (DISCLOSED | FLAG | MINE)))
 			{
-			if (!index) return z_2d_value(SIZE)(X(c), Y(c));
+			if (!index) return z_2d_type(SIZE)(X(c), Y(c));
 			index--;
 			}
 		}
 
-	return z_2d_value_zero(SIZE);
+	return z_2d_type_zero(SIZE);
 	}
 
 
@@ -271,7 +271,7 @@ ZStatus minesweeper_set_snapshot(Minesweeper *object, void *snapshot, zsize snap
 	{
 	MinesweeperCell *p, *e;
 
-	Z2DSize size = z_2d_value(SIZE)
+	Z2DSize size = z_2d_type(SIZE)
 		((zsize)z_uint64_big_endian(HEADER(snapshot)->x),
 		 (zsize)z_uint64_big_endian(HEADER(snapshot)->y));
 
@@ -342,7 +342,7 @@ ZStatus minesweeper_prepare(Minesweeper *object, Z2DSize size, zsize mine_count)
 	)
 		return Z_ERROR_INVALID_ARGUMENT;
 
-	if (!z_2d_value_are_equal(SIZE)(object->size, size))
+	if (!z_2d_type_are_equal(SIZE)(object->size, size))
 		{
 		void *cells = z_reallocate(object->cells, cell_count);
 
