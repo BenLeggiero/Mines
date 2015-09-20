@@ -151,11 +151,34 @@ Released under the terms of the GNU General Public License v3. */
 			NSUInteger index = 0;
 			id value;
 
-			_cellColors	= [[NSMutableArray alloc] init];
-			_numberColors	= [[NSMutableArray alloc] init];
-			_imageFileNames = [[NSMutableArray alloc] init];
-			_imageColors    = [[NSMutableArray alloc] init];
-			_name		= [[dictionary objectForKey: @"Name"] retain];
+			_cellColors	 = [[NSMutableArray alloc] init];
+			_numberColors	 = [[NSMutableArray alloc] init];
+			_imageFileNames	 = [[NSMutableArray alloc] init];
+			_imageColors     = [[NSMutableArray alloc] init];
+			_name		 = [[dictionary objectForKey: @"Name"] retain];
+			_laserColor	 = [[NSColor sRGBColorFromFloatString: [dictionary objectForKey: @"LaserColor"]] retain];
+			_numberFontName	 = [dictionary objectForKey: @"NumberFontName"];
+			_numberFontScale = [[dictionary objectForKey: @"NumberFontScale"] doubleValue];
+
+			if ((_flags.grid = [[dictionary objectForKey: @"Grid"] boolValue]))
+				_gridColor = [[NSColor sRGBColorFromFloatString: [dictionary objectForKey: @"GridColor"]] retain];
+
+			if ((_flags.grid = [[dictionary objectForKey: @"CellBorder"] boolValue]))
+				{
+				_flags.mineCellBorder = [[dictionary objectForKey: @"MineCellBorder"] boolValue];
+				_cellBorderSize = [[dictionary objectForKey: @"CellBorderSize"] doubleValue];
+				}
+
+			if (	(_flags.alternateCoveredCells	= [[dictionary objectForKey: @"AlternateCoveredCells"  ] boolValue]) ||
+				(_flags.alternateUncoveredCells = [[dictionary objectForKey: @"AlternateUncoveredCells"] boolValue])
+			)
+				_cellBrightnessDelta = [[dictionary objectForKey: @"CellBrightnessDelta"] doubleValue];
+
+			for (NSString *color in [dictionary objectForKey: @"CellColors"])
+				[_cellColors addObject: [NSColor sRGBColorFromFloatString: color]];
+
+			for (NSString *color in [dictionary objectForKey: @"NumberColors"])
+				[_numberColors addObject: [NSColor sRGBColorFromFloatString: color]];
 
 			for (NSDictionary *imageDictionary in [dictionary objectForKey: @"Images"])
 				{
@@ -166,28 +189,6 @@ Released under the terms of the GNU General Public License v3. */
 					? value
 					: [NSNull null]];
 				}
-
-			if ((value = [dictionary objectForKey: @"CellBrightnessDelta"]))
-				_cellBrightnessDelta = [(NSNumber *)value doubleValue];
-
-			if ((value = [dictionary objectForKey: @"Flat"]))
-				_flat = [(NSNumber *)value boolValue];
-
-			for (NSString *color in [dictionary objectForKey: @"CellColors"])
-				[_cellColors addObject: [NSColor sRGBColorFromFloatString: color]];
-
-			for (NSString *color in [dictionary objectForKey: @"NumberColors"])
-				[_numberColors addObject: [NSColor sRGBColorFromFloatString: color]];
-
-			_fontName = (
-				(value = [dictionary objectForKey: @"NumberFontName"]) &&
-				![value isEqualToString: @""]
-			)
-				? [value retain]
-				: nil;
-
-			if ((value = [dictionary objectForKey: @"NumberFontScaling"]))
-				_fontScaling = [(NSNumber *)value doubleValue];
 			}
 
 		return self;
