@@ -73,9 +73,8 @@ Released under the terms of the GNU General Public License v3. */
 		Class dictionaryClass = [NSDictionary class];
 		id value;
 		NSArray *cellColors, *numberColors, *images;
-
 		NSNumber *alternateCoveredCells, *alternateUncoveredCells;
-		BOOL cellBorder, mineCellBorder;
+		BOOL cellBorder;
 
 		if (	![dictionary isKindOfClass: dictionaryClass]
 			|| !(value = [dictionary objectForKey: @"Name"])
@@ -100,8 +99,9 @@ Released under the terms of the GNU General Public License v3. */
 				 || !(value = [dictionary objectForKey: @"MineCellBorder"])
 				 || ![value isKindOfClass: numberClass]))
 
-			
-
+			|| !(cellColors = [dictionary objectForKey: @"CellColors"])
+			|| ![cellColors isKindOfClass: arrayClass]
+			|| cellColors.count != (cellBorder ? ([value boolValue] ? 16 : 12) : 7)
 			|| !(alternateCoveredCells = [dictionary objectForKey: @"AlternateCoveredCells"])
 			|| ![alternateCoveredCells isKindOfClass: numberClass]
 			|| !(alternateUncoveredCells = [dictionary objectForKey: @"AlternateUncoveredCells"])
@@ -124,22 +124,6 @@ Released under the terms of the GNU General Public License v3. */
 		)
 			return NO;
 
-
-
-
-
-			!(cellColors = [dictionary objectForKey: @"CellColors"])     ||
-			![cellColors isKindOfClass: arrayClass]			     ||
-			cellColors.count != 6					     ||
-
-
-
-
-			((value = [dictionary objectForKey: @"Flat"]) &&
-			 ![value isKindOfClass: numberClass])
-		)
-			return NO;
-
 		for (id item in cellColors)
 			if (![item isKindOfClass: stringClass]) return NO;
 
@@ -147,12 +131,12 @@ Released under the terms of the GNU General Public License v3. */
 			if (![item isKindOfClass: stringClass]) return NO;
 
 		for (NSDictionary *item in images) if (
-			![item isKindOfClass: dictionaryClass]	    ||
-			!(value = [item objectForKey: @"Included"]) ||
-			![value isKindOfClass: numberClass]	    ||
-			!(value = [item objectForKey: @"FileName"]) ||
-			![value isKindOfClass: stringClass]	    ||
-			((value = [item objectForKey: @"Color"]) && ![value isKindOfClass: stringClass])
+			![item isKindOfClass: dictionaryClass]
+			|| !(value = [item objectForKey: @"Included"])
+			|| ![value isKindOfClass: numberClass]
+			|| !(value = [item objectForKey: @"FileName"])
+			|| ![value isKindOfClass: stringClass]
+			|| ((value = [item objectForKey: @"Color"]) && ![value isKindOfClass: stringClass])
 		)
 			return NO;
 
