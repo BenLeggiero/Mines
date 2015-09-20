@@ -24,6 +24,7 @@
 		6434A70618270E3D008AB487 /* Theme.m in Sources */ = {isa = PBXBuildFile; fileRef = 6434A70518270E3D008AB487 /* Theme.m */; };
 		6438C3B116C9A82C00415199 /* Mines Savegame.icns in Resources */ = {isa = PBXBuildFile; fileRef = 6438C3B016C9A82C00415199 /* Mines Savegame.icns */; };
 		6448786D18372948008B7276 /* TableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6448786C18372948008B7276 /* TableView.m */; };
+		644E25191BAE9BE700713FD9 /* File Template.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 644E25181BAE9BE700713FD9 /* File Template.pdf */; };
 		6453BE0018AEE6AB00AE1E38 /* Link.m in Sources */ = {isa = PBXBuildFile; fileRef = 6453BDFF18AEE6AB00AE1E38 /* Link.m */; };
 		6454476216BF61FE00D3B28F /* Preferences - Effects.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6454476116BF61FE00D3B28F /* Preferences - Effects.pdf */; };
 		64585F9F175066940009470D /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64585F9E175066940009470D /* About.xib */; };
@@ -101,6 +102,7 @@
 		6438C3B016C9A82C00415199 /* Mines Savegame.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Mines Savegame.icns"; sourceTree = "<group>"; };
 		6448786B18372948008B7276 /* TableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableView.h; sourceTree = "<group>"; };
 		6448786C18372948008B7276 /* TableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableView.m; sourceTree = "<group>"; };
+		644E25181BAE9BE700713FD9 /* File Template.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "File Template.pdf"; sourceTree = "<group>"; };
 		6453BDFE18AEE6AB00AE1E38 /* Link.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Link.h; sourceTree = "<group>"; };
 		6453BDFF18AEE6AB00AE1E38 /* Link.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Link.m; sourceTree = "<group>"; };
 		6454476116BF61FE00D3B28F /* Preferences - Effects.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Preferences - Effects.pdf"; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 		64D396DC1603AD9E00C0DD1F /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				644E25181BAE9BE700713FD9 /* File Template.pdf */,
 				6438C3B016C9A82C00415199 /* Mines Savegame.icns */,
 				6454476116BF61FE00D3B28F /* Preferences - Effects.pdf */,
 				64D455A716B9F37600E69E8A /* Preferences - Theme.pdf */,
@@ -511,6 +514,7 @@
 				649FD1DE16C1A029004267D7 /* Skull and Bones.pdf in Resources */,
 				649FD1DF16C1A029004267D7 /* Heart.pdf in Resources */,
 				649FD1E116C1A029004267D7 /* Flower.pdf in Resources */,
+				644E25191BAE9BE700713FD9 /* File Template.pdf in Resources */,
 				649FD1E216C1A029004267D7 /* Balloon.pdf in Resources */,
 				649FD1E316C1A029004267D7 /* Apple.pdf in Resources */,
 				649FD1E416C1A029004267D7 /* Exploding Balloon.pdf in Resources */,

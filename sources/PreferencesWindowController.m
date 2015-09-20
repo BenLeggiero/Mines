@@ -154,7 +154,7 @@ Released under the terms of the GNU General Public License v3. */
 
 		NSString *fontName = _theme.fontName;
 
-		fontNameTextField.stringValue = fontName
+		numberFontNameTextField.stringValue = fontName
 			? [NSFont fontWithName: fontName size: 11.0].displayName
 			: @"Lucida Grande Bold";
 		}
@@ -615,10 +615,10 @@ Released under the terms of the GNU General Public License v3. */
 			// PDF del botón de selección de la fuente. Lo movemos	|
 			// un par de pixels hacia abajo para evitar este fallo.	|
 			//------------------------------------------------------'
-			NSRect frame = fontButton.frame;
+			NSRect frame = numberFontButton.frame;
 
 			frame.origin.y -= 2.0;
-			fontButton.frame = frame;
+			numberFontButton.frame = frame;
 			}
 
 		defaultsController.appliesImmediately = NO;
@@ -678,55 +678,65 @@ Released under the terms of the GNU General Public License v3. */
 
 	- (IBAction) setLaserColor: (NSColorWell *) sender
 		{
+		NSLog(@"setLaserColor");
 		}
 
 
-	- (IBAction) setAnimation: (id) sender
+	- (IBAction) setMineFoundAnimation: (id) sender
 		{
+		NSLog(@"setAnimationForMineFound");
 		}
 
 
-	- (IBAction) testAnimation: (id) sender
+	- (IBAction) testMineFoundAnimation: (id) sender
 		{
+		NSLog(@"testAnimationForMineFound");
 		}
 
 
 	- (IBAction) toggleGrid: (NSButton *) sender
 		{
+		NSLog(@"toggleGrid");
 		}
 
 
 	- (IBAction) setGridColor: (NSColorWell *) sender
 		{
+		NSLog(@"setGridColor");
 		}
 
 
-	- (IBAction) toggleBorders: (id) sender
+	- (IBAction) toggleCellBorder: (id) sender
 		{
+		NSLog(@"toggle3DBorders");
 		}
 
 
-	- (IBAction) toggleMineBorders: (id) sender
+	- (IBAction) toggleMineCellBorder: (id) sender
 		{
+		NSLog(@"toggleMine3DBorders");
 		}
 
 
 	- (IBAction) setBorderSize: (id) sender
 		{
+		NSLog(@"set3DBorderSize");
 		}
 
 
-	- (IBAction) toggleCoveredCellsAlternation: (id) sender
+	- (IBAction) toggleAlternateCoveredCells: (id) sender
 		{
+		NSLog(@"toggleAlternatedCoveredCells");
 		}
 
 
-	- (IBAction) toggleUncoveredCellsAlternation: (id) sender
+	- (IBAction) toggleAlternateUncoveredCells: (id) sender
 		{
+		NSLog(@"toggleAlternatedUncoveredCells");
 		}
 
 
-	- (IBAction) setBrightnessDelta: (NSSlider *) sender
+	- (IBAction) setCellBrightnessDelta: (NSSlider *) sender
 		{
 		[_theme setCellBrightnessDelta: sender.doubleValue];
 		_flags.themeHasChanged = YES;
@@ -759,14 +769,14 @@ Released under the terms of the GNU General Public License v3. */
 			{
 			NSFont *font = [sender convertFont: [NSFont systemFontOfSize: 11.0]];
 
-			fontNameTextField.stringValue = font.displayName;
+			numberFontNameTextField.stringValue = font.displayName;
 			_theme.fontName = font.fontName;
 			_flags.themeHasChanged = YES;
 			}
 		}
 
 
-	- (IBAction) setFontSize: (NSSlider *) sender
+	- (IBAction) setNumberFontSize: (NSSlider *) sender
 		{
 		_theme.fontScaling = (CGFloat)sender.doubleValue;
 		_flags.themeHasChanged = YES;

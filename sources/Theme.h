@@ -35,26 +35,44 @@ Released under the terms of the GNU General Public License v3. */
 @end
 
 @interface Theme : NSObject {
-	id <ThemeOwner>	_owner;
 	NSString*	_name;
-	NSString*	_fontName;
-	CGFloat		_fontScaling;
+	NSColor*	_laserColor;
+	NSString*	_mineFoundAnimation;
+	NSColor*	_gridColor;
+	CGFloat		_cellBorderSize;
 	CGFloat		_cellBrightnessDelta;
 	NSMutableArray* _cellColors;
 	NSMutableArray* _numberColors;
-	NSMutableArray*	_imageColors;
+	NSString*	_numberFontName;
+	CGFloat		_numberFontScale;
 	NSMutableArray*	_imageFileNames;
+	NSMutableArray*	_imageColors;
 	BOOL		_imageInclusions[4];
-	BOOL		_flat;
+
+	struct {BOOL grid		     :1;
+		BOOL cellBorder		     :1;
+		BOOL mineCellBorder	     :1;
+		BOOL alternateCoveredCells   :1;
+		BOOL alternateUncoveredCells :1;
+	} _flags;
 }
-	@property (nonatomic, assign   ) id		 owner;
-	@property (nonatomic, retain   ) NSString*	 name;
-	@property (nonatomic, assign   ) BOOL		 flat;
-	@property (nonatomic, assign   ) CGFloat	 cellBrightnessDelta;
-	@property (nonatomic, assign   ) CGFloat	 fontScaling;
-	@property (nonatomic, retain   ) NSString*	 fontName;
-	@property (nonatomic, readonly ) NSMutableArray* imageFileNames;
-	@property (nonatomic, readonly ) BOOL*		 imageInclusions /*NS_RETURNS_INNER_POINTER*/;
+	@property (nonatomic, retain  ) NSString*	name;
+	@property (nonatomic, retain  ) NSColor*	laserColor;
+	@property (nonatomic, retain  ) NSString*	mineFoundAnimation;
+	@property (nonatomic, retain  ) NSColor*	gridColor;
+	@property (nonatomic, assign  ) BOOL		cellBorder;
+	@property (nonatomic, assign  ) BOOL		mineCellBorder;
+	@property (nonatomic, assign  ) CGFloat		cellBorderSize;
+	@property (nonatomic, assign  ) BOOL		alternateCoveredCells;
+	@property (nonatomic, assign  ) BOOL		alternateUncoveredCells;
+	@property (nonatomic, assign  ) CGFloat		cellBrightnessDelta;
+	@property (nonatomic, readonly) NSMutableArray* cellColors;
+	@property (nonatomic, readonly) NSMutableArray* numberColors;
+	@property (nonatomic, retain  ) NSString*	numberFontName;
+	@property (nonatomic, assign  ) CGFloat		numberFontScale;
+	@property (nonatomic, readonly) NSMutableArray*	images;
+	@property (nonatomic, readonly) NSMutableArray* imageColors;
+	@property (nonatomic, readonly) BOOL*		imageInclusions;
 
 	+ (NSArray *) internalDictionaries;
 
@@ -66,29 +84,11 @@ Released under the terms of the GNU General Public License v3. */
 
 	- (Theme *) copyWithName: (NSString *) name;
 
-	- (NSColor *) colorForKey: (NSUInteger) key;
-
-	- (void) setColor: (NSColor  *) color
-		 forKey:   (NSUInteger)	key;
-
-	- (NSColor *) colorForNumber: (NSUInteger) number;
-
-	- (void) setColor:  (NSColor  *) color
-		 forNumber: (NSUInteger) number;
-
-	- (NSColor *) imageColorForKey: (NSUInteger) key;
-
-	- (void) setImageColor: (NSColor  *) color
-		 forKey:	(NSUInteger) key;
-
-	- (void) setImageColor: (NSColor  *) color
-		 fileName:	(NSString *) fileName
-		 included:	(BOOL      ) included
-		 forKey:	(NSUInteger) key;
-
 	- (BOOL) hasExternalImages;
 
 	- (NSMutableArray *) loadImages: (inout BOOL *) errors;
+
+	- (void) unloadImages;
 
 	- (BOOL) save: (NSError **) error;
 

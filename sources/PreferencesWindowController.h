@@ -29,19 +29,21 @@ Released under the terms of the GNU General Public License v3. */
 	//-----------'
 	IBOutlet TableView*	     themeList;
 	IBOutlet NSSegmentedControl* themeActionsSegmentedControl;
+	IBOutlet NSColorWell*	     laserColorWell;
+	IBOutlet NSPopUpButton*	     mineFoundAnimationButton;
 	IBOutlet NSBox*		     cellsBox;
-	IBOutlet NSButton*	     gridEnabledCheck;
+	IBOutlet NSButton*	     gridCheck;
 	IBOutlet NSColorWell*	     gridColorWell;
-	IBOutlet NSButton*	     bordersEnabledCheck;
-	IBOutlet NSSlider*	     borderSizeSlider;
-	IBOutlet NSButton*	     alternateCoveredCheck;
-	IBOutlet NSButton*	     alternateUncoveredCheck;
-	IBOutlet NSSlider*	     brightnessDeltaSlider;
-	IBOutlet NSButton*	     mineBordersEnabledCheck;
+	IBOutlet NSButton*	     cellBorderCheck;
+	IBOutlet NSButton*	     mineCellBorderCheck;
+	IBOutlet NSSlider*	     cellBorderSizeSlider;
+	IBOutlet NSButton*	     alternateCoveredCellsCheck;
+	IBOutlet NSButton*	     alternateUncoveredCellsCheck;
+	IBOutlet NSSlider*	     cellBrightnessDeltaSlider;
 	IBOutlet NSBox*		     numbersBox;
-	IBOutlet NSTextField*	     fontNameTextField;
-	IBOutlet NSButton*	     fontButton;
-	IBOutlet NSSlider*	     fontSizeSlider;
+	IBOutlet NSTextField*	     numberFontNameTextField;
+	IBOutlet NSButton*	     numberFontButton;
+	IBOutlet NSSlider*	     numberFontSizeSlider;
 	IBOutlet NSBox*		     imagesBox;
 
 	SeparatorCell*	_separatorCell;
@@ -62,26 +64,25 @@ Released under the terms of the GNU General Public License v3. */
 }
 	- (id) initWithBoard: (Board *) board;
 
-	- (IBAction) tab:			      (id) sender;
-	- (IBAction) setLaserColor:		      (id) sender;
-	- (IBAction) setAnimation:		      (id) sender;
-	- (IBAction) testAnimation:		      (id) sender;
-	- (IBAction) toggleGrid:		      (id) sender;
-	- (IBAction) setGridColor:		      (id) sender;
-	- (IBAction) toggleBorders:		      (id) sender;
-	- (IBAction) toggleMineBorders:		      (id) sender;
-	- (IBAction) setBorderSize:		      (id) sender;
-	- (IBAction) toggleCoveredCellsAlternation:   (id) sender;
-	- (IBAction) toggleUncoveredCellsAlternation: (id) sender;
-	- (IBAction) setBrightnessDelta:	      (id) sender;
-	- (IBAction) setCellColor:		      (id) sender;
-	- (IBAction) setNumberColor:		      (id) sender;
-	- (IBAction) setFont:			      (id) sender;
-	- (IBAction) setFontSize:		      (id) sender;
-	- (IBAction) toggleImageColor:		      (id) sender;
-	- (IBAction) setImageColor:		      (id) sender;
-	- (IBAction) selectImage:		      (id) sender;
-	- (IBAction) performThemeListAction:	      (id) sender;
+	- (IBAction) tab:			    (id) sender;
+	- (IBAction) setLaserColor:		    (id) sender;
+	- (IBAction) setMineFoundAnimation:	    (id) sender;
+	- (IBAction) testMineFoundAnimation:	    (id) sender;
+	- (IBAction) toggleGrid:		    (id) sender;
+	- (IBAction) setGridColor:		    (id) sender;
+	- (IBAction) toggleCellBorder:		    (id) sender;
+	- (IBAction) toggleMineCellBorder:	    (id) sender;
+	- (IBAction) setBorderSize:		    (id) sender;
+	- (IBAction) toggleAlternateCoveredCells:   (id) sender;
+	- (IBAction) toggleAlternateUncoveredCells: (id) sender;
+	- (IBAction) setCellBrightnessDelta:	    (id) sender;
+	- (IBAction) setCellColor:		    (id) sender;
+	- (IBAction) setNumberColor:		    (id) sender;
+	- (IBAction) setNumberFontSize:		    (id) sender;
+	- (IBAction) toggleImageColor:		    (id) sender;
+	- (IBAction) setImageColor:		    (id) sender;
+	- (IBAction) selectImage:		    (id) sender;
+	- (IBAction) performThemeListAction:	    (id) sender;
 @end
 
 // EOF

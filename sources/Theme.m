@@ -19,44 +19,27 @@ Released under the terms of the GNU General Public License v3. */
 
 #	pragma mark - Accessors
 
-	@synthesize owner	   = _owner;
-	@synthesize name	   = _name;
-	@synthesize imageFileNames = _imageFileNames;
+	@synthesize name		= _name;
+	@synthesize laserColor		= _laserColor;
+	@synthesize mineFoundAnimation	= _mineFoundAnimation;
+	@synthesize gridColor		= _gridColor;
+	@synthesize cellBorderSize	= _cellBorderSize;
+	@synthesize cellBrightnessDelta = _cellBrightnessDelta;
+	@synthesize cellColors		= _cellColors;
+	@synthesize numberColors	= _numberColors;
+	@synthesize numberFontName	= _numberFontName;
+	@synthesize numberFontScale	= _numberFontScale;
+	@synthesize images		= _images;
+	@synthesize imageColors		= _iamgeColors;
 
-	- (BOOL	     ) flat		   {return _flat;}
-	- (CGFloat   ) cellBrightnessDelta {return _cellBrightnessDelta;}
-	- (CGFloat   ) fontScaling	   {return _fontScaling;}
-	- (NSString *) fontName		   {return _fontName;}
-	- (BOOL	    *) imageInclusions	   {return _imageInclusions;}
+	- (BOOL	 ) cellBorder		   {return _flags.cellBorder;		  }
+	- (BOOL	 ) alternateCoveredCells   {return _flags.alternateCoveredCells;  }
+	- (BOOL	 ) alternateUncoveredCells {return _flags.alternateUncoveredCells;}
+	- (BOOL *) imageInclusions	   {return _imageInclusions;		  }
 
-
-	- (void) setFlat: (BOOL) flat
-		{
-		_flat = flat;
-		if (_owner) [_owner updateAlternateColors];
-		}
-
-
-	- (void) setCellBrightnessDelta: (CGFloat) delta
-		{
-		_cellBrightnessDelta = delta;
-		if (_owner) [_owner updateAlternateColors];
-		}
-
-
-	- (void) setFontScaling: (CGFloat) scaling
-		{
-		_fontScaling = scaling;
-		if (_owner) [_owner updateNumbers];
-		}
-
-
-	- (void) setFontName: (NSString *) name
-		{
-		[_fontName release];
-		_fontName = [name retain];
-		if (_owner) [_owner updateNumbers];
-		}
+	- (void) setCellBorder:		     (BOOL) value {_flags.cellBorder		  = value;}
+	- (void) setAlternateCoveredCells:   (BOOL) value {_flags.alternateCoveredCells	  = value;}
+	- (void) setAlternateUncoveredCells: (BOOL) value {_flags.alternateUncoveredCells = value;}
 
 
 #	pragma mark - Overwritten

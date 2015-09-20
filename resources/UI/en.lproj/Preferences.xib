@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
-		<string key="IBDocument.SystemVersion">14E46</string>
+		<string key="IBDocument.SystemVersion">15A282b</string>
 		<string key="IBDocument.InterfaceBuilderVersion">7706</string>
-		<string key="IBDocument.AppKitVersion">1348.17</string>
-		<string key="IBDocument.HIToolboxVersion">758.70</string>
+		<string key="IBDocument.AppKitVersion">1404</string>
+		<string key="IBDocument.HIToolboxVersion">806.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string key="NS.object.0">7706</string>
@@ -195,7 +195,7 @@
 				<bool key="NSWindowIsRestorable">YES</bool>
 			</object>
 			<object class="NSCustomView" id="552827883">
-				<nil key="NSNextResponder"/>
+				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
 					<object class="NSTextField" id="836999733">
@@ -203,6 +203,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{185, 20}, {72, 14}}</string>
 						<reference key="NSSuperview" ref="552827883"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="859488260"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="476201025">
@@ -235,13 +236,14 @@
 							</object>
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-						<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+						<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 					</object>
 					<object class="NSTextField" id="962900141">
 						<reference key="NSNextResponder" ref="552827883"/>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{17, 121}, {70, 17}}</string>
 						<reference key="NSSuperview" ref="552827883"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="384254738"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="769297274">
@@ -258,13 +260,14 @@
 							<reference key="NSTextColor" ref="664891794"/>
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-						<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+						<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 					</object>
 					<object class="NSTextField" id="627641022">
 						<reference key="NSNextResponder" ref="552827883"/>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{48, 66}, {39, 17}}</string>
 						<reference key="NSSuperview" ref="552827883"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="110759566"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="870879497">
@@ -277,13 +280,14 @@
 							<reference key="NSTextColor" ref="664891794"/>
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-						<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+						<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 					</object>
 					<object class="NSTextField" id="859488260">
 						<reference key="NSNextResponder" ref="552827883"/>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{315, 20}, {38, 14}}</string>
 						<reference key="NSSuperview" ref="552827883"/>
+						<reference key="NSWindow"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="237005191">
 							<int key="NSCellFlags">68157504</int>
@@ -295,13 +299,14 @@
 							<reference key="NSTextColor" ref="664891794"/>
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-						<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+						<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 					</object>
 					<object class="NSTextField" id="864936370">
 						<reference key="NSNextResponder" ref="552827883"/>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{89, 20}, {22, 14}}</string>
 						<reference key="NSSuperview" ref="552827883"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="836999733"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="278685904">
@@ -314,13 +319,14 @@
 							<reference key="NSTextColor" ref="664891794"/>
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-						<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+						<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 					</object>
 					<object class="NSSlider" id="492373932">
 						<reference key="NSNextResponder" ref="552827883"/>
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{90, 35}, {262, 25}}</string>
 						<reference key="NSSuperview" ref="552827883"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="864936370"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSSliderCell" key="NSCell" id="674293037">
@@ -343,6 +349,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{90, 65}, {193, 18}}</string>
 						<reference key="NSSuperview" ref="552827883"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="492373932"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="609983315">
@@ -372,6 +379,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{90, 120}, {183, 18}}</string>
 						<reference key="NSSuperview" ref="552827883"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="690190206"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="784538509">
@@ -396,6 +404,7 @@
 						<int key="NSvFlags">268</int>
 						<string key="NSFrame">{{90, 100}, {262, 18}}</string>
 						<reference key="NSSuperview" ref="552827883"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="627641022"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="403439712">
@@ -417,6 +426,8 @@
 					</object>
 				</array>
 				<string key="NSFrameSize">{370, 158}</string>
+				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="962900141"/>
 				<string key="NSClassName">NSView</string>
 			</object>
@@ -427,7 +438,7 @@
 					<object class="NSButton" id="765227016">
 						<reference key="NSNextResponder" ref="43897723"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{153, 92}, {49, 18}}</string>
+						<string key="NSFrame">{{188, 92}, {49, 18}}</string>
 						<reference key="NSSuperview" ref="43897723"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="210650720"/>
@@ -452,7 +463,7 @@
 					<object class="NSButton" id="1013659851">
 						<reference key="NSNextResponder" ref="43897723"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{153, 18}, {49, 18}}</string>
+						<string key="NSFrame">{{188, 18}, {49, 18}}</string>
 						<reference key="NSSuperview" ref="43897723"/>
 						<reference key="NSWindow"/>
 						<bool key="NSEnabled">YES</bool>
@@ -476,7 +487,7 @@
 					<object class="NSButton" id="895523355">
 						<reference key="NSNextResponder" ref="43897723"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{153, 38}, {94, 18}}</string>
+						<string key="NSFrame">{{188, 38}, {94, 18}}</string>
 						<reference key="NSSuperview" ref="43897723"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="1013659851"/>
@@ -501,7 +512,7 @@
 					<object class="NSButton" id="240826404">
 						<reference key="NSNextResponder" ref="43897723"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{153, 58}, {103, 18}}</string>
+						<string key="NSFrame">{{188, 58}, {103, 18}}</string>
 						<reference key="NSSuperview" ref="43897723"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="895523355"/>
@@ -526,7 +537,7 @@
 					<object class="NSTextField" id="210650720">
 						<reference key="NSNextResponder" ref="43897723"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{18, 59}, {132, 17}}</string>
+						<string key="NSFrame">{{53, 59}, {132, 17}}</string>
 						<reference key="NSSuperview" ref="43897723"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="240826404"/>
@@ -541,12 +552,12 @@
 							<reference key="NSTextColor" ref="664891794"/>
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-						<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+						<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 					</object>
 					<object class="NSButton" id="176381000">
 						<reference key="NSNextResponder" ref="43897723"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{153, 112}, {94, 18}}</string>
+						<string key="NSFrame">{{188, 112}, {94, 18}}</string>
 						<reference key="NSSuperview" ref="43897723"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="765227016"/>
@@ -571,7 +582,7 @@
 					<object class="NSButton" id="539755418">
 						<reference key="NSNextResponder" ref="43897723"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{153, 132}, {103, 18}}</string>
+						<string key="NSFrame">{{188, 132}, {103, 18}}</string>
 						<reference key="NSSuperview" ref="43897723"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="176381000"/>
@@ -596,7 +607,7 @@
 					<object class="NSButton" id="317438616">
 						<reference key="NSNextResponder" ref="43897723"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{153, 152}, {116, 18}}</string>
+						<string key="NSFrame">{{188, 152}, {116, 18}}</string>
 						<reference key="NSSuperview" ref="43897723"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="539755418"/>
@@ -621,7 +632,7 @@
 					<object class="NSTextField" id="774502035">
 						<reference key="NSNextResponder" ref="43897723"/>
 						<int key="NSvFlags">268</int>
-						<string key="NSFrame">{{47, 153}, {103, 17}}</string>
+						<string key="NSFrame">{{82, 153}, {103, 17}}</string>
 						<reference key="NSSuperview" ref="43897723"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="317438616"/>
@@ -636,10 +647,10 @@
 							<reference key="NSTextColor" ref="664891794"/>
 						</object>
 						<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-						<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+						<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 					</object>
 				</array>
-				<string key="NSFrameSize">{292, 190}</string>
+				<string key="NSFrameSize">{370, 190}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="774502035"/>
@@ -694,7 +705,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSColorWell" id="438690503">
 										<reference key="NSNextResponder" ref="121874808"/>
@@ -733,7 +744,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSColorWell" id="1028631205">
 										<reference key="NSNextResponder" ref="121874808"/>
@@ -772,7 +783,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSColorWell" id="542911402">
 										<reference key="NSNextResponder" ref="121874808"/>
@@ -811,7 +822,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSColorWell" id="177152053">
 										<reference key="NSNextResponder" ref="121874808"/>
@@ -850,7 +861,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSColorWell" id="819017937">
 										<reference key="NSNextResponder" ref="121874808"/>
@@ -889,7 +900,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSColorWell" id="495686253">
 										<reference key="NSNextResponder" ref="121874808"/>
@@ -928,7 +939,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSColorWell" id="1043415852">
 										<reference key="NSNextResponder" ref="121874808"/>
@@ -967,7 +978,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSTextField" id="270877328">
 										<reference key="NSNextResponder" ref="121874808"/>
@@ -1001,7 +1012,7 @@
 											</object>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSButton" id="284702236">
 										<reference key="NSNextResponder" ref="121874808"/>
@@ -1071,7 +1082,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSTextField" id="629837237">
 										<reference key="NSNextResponder" ref="121874808"/>
@@ -1090,7 +1101,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSTextField" id="831703895">
 										<reference key="NSNextResponder" ref="121874808"/>
@@ -1110,7 +1121,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSTextField" id="812205373">
 										<reference key="NSNextResponder" ref="121874808"/>
@@ -1130,7 +1141,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSTextField" id="864128557">
 										<reference key="NSNextResponder" ref="121874808"/>
@@ -1150,7 +1161,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 								</array>
 								<string key="NSFrame">{{1, 1}, {263, 136}}</string>
@@ -1233,7 +1244,7 @@
 											<reference key="NSTextColor" ref="755669900"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSTextField" id="959844747">
 										<reference key="NSNextResponder" ref="315840095"/>
@@ -1256,7 +1267,7 @@
 											<reference key="NSTextColor" ref="755669900"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSPopUpButton" id="382504501">
 										<reference key="NSNextResponder" ref="315840095"/>
@@ -1495,6 +1506,7 @@
 								<int key="NSsFlags">1</int>
 								<reference key="NSTarget" ref="480208451"/>
 								<string key="NSAction">_doScroller:</string>
+								<double key="NSPercent">0.9970326409495549</double>
 							</object>
 							<object class="NSScroller" id="234292319">
 								<reference key="NSNextResponder" ref="480208451"/>
@@ -1508,6 +1520,7 @@
 								<reference key="NSControlTarget" ref="480208451"/>
 								<reference key="NSTarget" ref="480208451"/>
 								<string key="NSAction">_doScroller:</string>
+								<double key="NSPercent">0.96887966804979253</double>
 							</object>
 						</array>
 						<string key="NSFrame">{{20, 40}, {170, 484}}</string>
@@ -2052,7 +2065,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSTextField" id="760225638">
 										<reference key="NSNextResponder" ref="866264799"/>
@@ -2072,7 +2085,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSTextField" id="723283888">
 										<reference key="NSNextResponder" ref="866264799"/>
@@ -2092,7 +2105,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSColorWell" id="700765699">
 										<reference key="NSNextResponder" ref="866264799"/>
@@ -2209,7 +2222,7 @@
 											<reference key="NSTextColor" ref="755669900"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSColorWell" id="673064571">
 										<reference key="NSNextResponder" ref="866264799"/>
@@ -2326,7 +2339,7 @@
 											<reference key="NSTextColor" ref="755669900"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSColorWell" id="285165447">
 										<reference key="NSNextResponder" ref="866264799"/>
@@ -2527,7 +2540,7 @@
 											<reference key="NSTextColor" ref="755669900"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSTextField" id="615367805">
 										<reference key="NSNextResponder" ref="866264799"/>
@@ -2550,7 +2563,7 @@
 											<reference key="NSTextColor" ref="755669900"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSColorWell" id="469763272">
 										<reference key="NSNextResponder" ref="866264799"/>
@@ -2667,7 +2680,7 @@
 											<reference key="NSTextColor" ref="755669900"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSTextField" id="768634842">
 										<reference key="NSNextResponder" ref="866264799"/>
@@ -2690,7 +2703,7 @@
 											<reference key="NSTextColor" ref="755669900"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSButton" id="756141343">
 										<reference key="NSNextResponder" ref="866264799"/>
@@ -2806,7 +2819,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSTextField" id="104343378">
 										<reference key="NSNextResponder" ref="866264799"/>
@@ -2826,7 +2839,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSTextField" id="1000670334">
 										<reference key="NSNextResponder" ref="866264799"/>
@@ -2846,7 +2859,7 @@
 											<reference key="NSTextColor" ref="664891794"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSButton" id="494412694">
 										<reference key="NSNextResponder" ref="866264799"/>
@@ -2896,7 +2909,7 @@
 											<reference key="NSTextColor" ref="755669900"/>
 										</object>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
-										<int key="NSTextFieldAlignmentRectInsetsVersion">1</int>
+										<int key="NSTextFieldAlignmentRectInsetsVersion">2</int>
 									</object>
 									<object class="NSButton" id="1001991601">
 										<reference key="NSNextResponder" ref="866264799"/>
@@ -2970,22 +2983,6 @@
 			<array key="connectionRecords">
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">effectsView</string>
-						<reference key="source" ref="628344161"/>
-						<reference key="destination" ref="43897723"/>
-					</object>
-					<string key="id">132</string>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">generalView</string>
-						<reference key="source" ref="628344161"/>
-						<reference key="destination" ref="552827883"/>
-					</object>
-					<string key="id">130</string>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
 						<string key="label">themeActionsSegmentedControl</string>
 						<reference key="source" ref="628344161"/>
 						<reference key="destination" ref="54062423"/>
@@ -3025,44 +3022,84 @@
 					<string key="id">1Ff-0e-E3a</string>
 				</object>
 				<object class="IBConnectionRecord">
-					<object class="IBOutletConnection" key="connection">
-						<string key="label">defaultsController</string>
+					<object class="IBActionConnection" key="connection">
+						<string key="label">tab:</string>
 						<reference key="source" ref="628344161"/>
-						<reference key="destination" ref="675742689"/>
+						<reference key="destination" ref="192691775"/>
 					</object>
-					<string key="id">sGf-RO-7jv</string>
+					<string key="id">5WD-4O-oGi</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">tab:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="960462662"/>
+					</object>
+					<string key="id">m8y-wA-l2D</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">performThemeListAction:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="54062423"/>
+					</object>
+					<string key="id">gWD-gL-rBR</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">fontNameTextField</string>
+						<string key="label">effectsView</string>
 						<reference key="source" ref="628344161"/>
-						<reference key="destination" ref="270877328"/>
+						<reference key="destination" ref="43897723"/>
 					</object>
-					<string key="id">85</string>
+					<string key="id">W5d-no-z6C</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">fontButton</string>
+						<string key="label">generalView</string>
 						<reference key="source" ref="628344161"/>
-						<reference key="destination" ref="284702236"/>
+						<reference key="destination" ref="552827883"/>
 					</object>
-					<string key="id">1iX-ta-6P3</string>
+					<string key="id">lg9-Uk-KHs</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">imagesBox</string>
+						<string key="label">alternateCoveredCellsCheck</string>
 						<reference key="source" ref="628344161"/>
-						<reference key="destination" ref="1057020537"/>
+						<reference key="destination" ref="756141343"/>
 					</object>
-					<string key="id">jkC-HM-ZwY</string>
+					<string key="id">7sZ-Za-jFJ</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
-						<string key="label">numbersBox</string>
+						<string key="label">alternateUncoveredCellsCheck</string>
 						<reference key="source" ref="628344161"/>
-						<reference key="destination" ref="801418211"/>
+						<reference key="destination" ref="1001991601"/>
 					</object>
-					<string key="id">uZI-L4-9Rx</string>
+					<string key="id">ayK-LW-9MF</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cellBorderCheck</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="977340593"/>
+					</object>
+					<string key="id">dgQ-5d-dP9</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cellBorderSizeSlider</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="444388540"/>
+					</object>
+					<string key="id">Uhx-l3-vQp</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">cellBrightnessDeltaSlider</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="214544833"/>
+					</object>
+					<string key="id">fc7-MA-Hlf</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -3070,7 +3107,535 @@
 						<reference key="source" ref="628344161"/>
 						<reference key="destination" ref="1026518673"/>
 					</object>
-					<string key="id">r9d-NJ-QBe</string>
+					<string key="id">W1v-3u-FSG</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">defaultsController</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="675742689"/>
+					</object>
+					<string key="id">ebK-6X-aPc</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">gridCheck</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="746888257"/>
+					</object>
+					<string key="id">oQl-XZ-c0H</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">gridColorWell</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="390241626"/>
+					</object>
+					<string key="id">XDx-0F-jgc</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">imagesBox</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="1057020537"/>
+					</object>
+					<string key="id">o4K-tg-7Ka</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">laserColorWell</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="409003648"/>
+					</object>
+					<string key="id">9Ok-37-0dm</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">mineCellBorderCheck</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="494412694"/>
+					</object>
+					<string key="id">cGP-oC-Hah</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">mineFoundAnimationButton</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="382504501"/>
+					</object>
+					<string key="id">FJa-Mi-wba</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">numberFontButton</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="284702236"/>
+					</object>
+					<string key="id">m0b-uK-fOk</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">numberFontSizeSlider</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="274877170"/>
+					</object>
+					<string key="id">UDR-Fj-zVN</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">numbersBox</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="801418211"/>
+					</object>
+					<string key="id">6i3-14-AVQ</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">selectImage:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="852487552"/>
+					</object>
+					<string key="id">3t7-GQ-qGt</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">selectImage:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="995609500"/>
+					</object>
+					<string key="id">pYg-K6-t00</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">selectImage:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="92329701"/>
+					</object>
+					<string key="id">BWC-U4-Vcv</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">selectImage:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="768394604"/>
+					</object>
+					<string key="id">tHN-u7-ztR</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setBorderSize:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="444388540"/>
+					</object>
+					<string key="id">s6o-An-j9N</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellBrightnessDelta:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="214544833"/>
+					</object>
+					<string key="id">YIr-oy-vZ7</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="700765699"/>
+					</object>
+					<string key="id">L4X-H0-mip</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="469763272"/>
+					</object>
+					<string key="id">fY8-1B-dbT</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="285165447"/>
+					</object>
+					<string key="id">38s-DW-duo</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="673064571"/>
+					</object>
+					<string key="id">fs4-Q4-1SL</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="780415056"/>
+					</object>
+					<string key="id">yUB-V9-FZj</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="472037437"/>
+					</object>
+					<string key="id">bPU-u2-OQZ</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="755503295"/>
+					</object>
+					<string key="id">lzW-Sh-Ut6</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="403040323"/>
+					</object>
+					<string key="id">Gzx-rZ-fHh</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="877193929"/>
+					</object>
+					<string key="id">PCY-xo-feB</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="494690428"/>
+					</object>
+					<string key="id">sXO-5a-kFm</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="1067778500"/>
+					</object>
+					<string key="id">ALN-Ca-DvI</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="168747193"/>
+					</object>
+					<string key="id">A5R-gG-OYl</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="1029802359"/>
+					</object>
+					<string key="id">PbA-YC-OgL</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="245136421"/>
+					</object>
+					<string key="id">wJT-Jw-FRt</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="274539694"/>
+					</object>
+					<string key="id">fFC-4f-Q8X</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="411876293"/>
+					</object>
+					<string key="id">lk6-q1-3Kc</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="70909402"/>
+					</object>
+					<string key="id">1s4-dd-zBD</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="448215302"/>
+					</object>
+					<string key="id">b5e-Nr-Cmb</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="669030261"/>
+					</object>
+					<string key="id">NMj-sa-pHE</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="488328626"/>
+					</object>
+					<string key="id">oIB-Rn-8rX</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="890284534"/>
+					</object>
+					<string key="id">XkO-CE-Icf</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="377494149"/>
+					</object>
+					<string key="id">sFb-5v-vUJ</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setCellColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="364737057"/>
+					</object>
+					<string key="id">ilB-hC-xOQ</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setGridColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="390241626"/>
+					</object>
+					<string key="id">ubA-7L-zGR</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setImageColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="439760207"/>
+					</object>
+					<string key="id">1tL-ke-cFp</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setImageColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="793904897"/>
+					</object>
+					<string key="id">2hX-ab-ymC</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setImageColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="696437923"/>
+					</object>
+					<string key="id">mPb-1v-g4B</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setImageColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="569700584"/>
+					</object>
+					<string key="id">q9x-aG-vrN</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setLaserColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="409003648"/>
+					</object>
+					<string key="id">hzD-Qr-hpH</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setMineFoundAnimation:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="382504501"/>
+					</object>
+					<string key="id">WsH-AD-C62</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setNumberColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="784949332"/>
+					</object>
+					<string key="id">F8q-ku-X8H</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setNumberColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="438690503"/>
+					</object>
+					<string key="id">bd5-wc-mGq</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setNumberColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="1028631205"/>
+					</object>
+					<string key="id">WLx-RH-yCu</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setNumberColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="542911402"/>
+					</object>
+					<string key="id">ljZ-n9-QpI</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setNumberColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="177152053"/>
+					</object>
+					<string key="id">hRK-Mt-ERW</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setNumberColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="819017937"/>
+					</object>
+					<string key="id">k7S-Yh-3qP</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setNumberColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="495686253"/>
+					</object>
+					<string key="id">ZJI-df-N1q</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setNumberColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="1043415852"/>
+					</object>
+					<string key="id">mPA-IY-nlu</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">setNumberFontSize:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="274877170"/>
+					</object>
+					<string key="id">2CB-aX-PQ3</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">testMineFoundAnimation:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="931991947"/>
+					</object>
+					<string key="id">G5Z-jA-L2Q</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">toggleAlternateCoveredCells:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="756141343"/>
+					</object>
+					<string key="id">ngx-kI-TgW</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">toggleAlternateUncoveredCells:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="1001991601"/>
+					</object>
+					<string key="id">CLj-Dk-Ivz</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">toggleCellBorder:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="977340593"/>
+					</object>
+					<string key="id">vKY-Ox-Lsn</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">toggleGrid:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="746888257"/>
+					</object>
+					<string key="id">PBi-Bb-2Jc</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">toggleImageColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="1048459009"/>
+					</object>
+					<string key="id">2R1-XJ-aOm</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">toggleImageColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="685844699"/>
+					</object>
+					<string key="id">Yw0-5Q-yj2</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">toggleImageColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="246270168"/>
+					</object>
+					<string key="id">CRu-OY-Gob</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">toggleImageColor:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="1022574306"/>
+					</object>
+					<string key="id">aST-JD-2Bi</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBActionConnection" key="connection">
+						<string key="label">toggleMineCellBorder:</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="494412694"/>
+					</object>
+					<string key="id">lMJ-Pa-1ua</string>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">numberFontNameTextField</string>
+						<reference key="source" ref="628344161"/>
+						<reference key="destination" ref="270877328"/>
+					</object>
+					<string key="id">ZlP-xQ-e0h</string>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBBindingConnection" key="connection">
@@ -4693,18 +5258,19 @@
 				<string key="0dq-Dz-QA7.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="NO" key="1.IBNSWindowAutoPositionCentersHorizontal"/>
 				<boolean value="NO" key="1.IBNSWindowAutoPositionCentersVertical"/>
-				<string key="1.IBPersistedLastKnownCanvasPosition">{241, 199.5}</string>
+				<string key="1.IBPersistedLastKnownCanvasPosition">{-187, 198.5}</string>
 				<string key="1.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<boolean value="NO" key="1.showNotes"/>
 				<reference key="123.IBNSViewMetadataGestureRecognizers" ref="0"/>
-				<string key="123.IBPersistedLastKnownCanvasPosition">{467, 625}</string>
+				<string key="123.IBPersistedLastKnownCanvasPosition">{39, 772}</string>
 				<string key="123.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<reference key="123.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="123.showNotes"/>
+				<string key="124.IBPersistedLastKnownCanvasPosition">{223, 126}</string>
 				<string key="124.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<reference key="124.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="124.showNotes"/>
-				<string key="125.IBPersistedLastKnownCanvasPosition">{466, 1177}</string>
+				<string key="125.IBPersistedLastKnownCanvasPosition">{223, 351}</string>
 				<string key="125.IBPluginDependency">com.apple.InterfaceBuilder.CocoaPlugin</string>
 				<reference key="125.IBUserGuides" ref="0"/>
 				<boolean value="NO" key="125.showNotes"/>
@@ -5206,24 +5772,23 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="performThemeListAction:">id</string>
 						<string key="selectImage:">id</string>
-						<string key="setAnimation:">id</string>
 						<string key="setBorderSize:">id</string>
-						<string key="setBrightnessDelta:">id</string>
+						<string key="setCellBrightnessDelta:">id</string>
 						<string key="setCellColor:">id</string>
-						<string key="setFont:">id</string>
-						<string key="setFontSize:">id</string>
 						<string key="setGridColor:">id</string>
 						<string key="setImageColor:">id</string>
 						<string key="setLaserColor:">id</string>
+						<string key="setMineFoundAnimation:">id</string>
 						<string key="setNumberColor:">id</string>
+						<string key="setNumberFontSize:">id</string>
 						<string key="tab:">id</string>
-						<string key="testAnimation:">id</string>
-						<string key="toggleBorders:">id</string>
-						<string key="toggleCoveredCellsAlternation:">id</string>
+						<string key="testMineFoundAnimation:">id</string>
+						<string key="toggleAlternateCoveredCells:">id</string>
+						<string key="toggleAlternateUncoveredCells:">id</string>
+						<string key="toggleCellBorder:">id</string>
 						<string key="toggleGrid:">id</string>
 						<string key="toggleImageColor:">id</string>
-						<string key="toggleMineBorders:">id</string>
-						<string key="toggleUncoveredCellsAlternation:">id</string>
+						<string key="toggleMineCellBorder:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="performThemeListAction:">
@@ -5234,28 +5799,16 @@
 							<string key="name">selectImage:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="setAnimation:">
-							<string key="name">setAnimation:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 						<object class="IBActionInfo" key="setBorderSize:">
 							<string key="name">setBorderSize:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="setBrightnessDelta:">
-							<string key="name">setBrightnessDelta:</string>
+						<object class="IBActionInfo" key="setCellBrightnessDelta:">
+							<string key="name">setCellBrightnessDelta:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="setCellColor:">
 							<string key="name">setCellColor:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="setFont:">
-							<string key="name">setFont:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="setFontSize:">
-							<string key="name">setFontSize:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="setGridColor:">
@@ -5270,24 +5823,36 @@
 							<string key="name">setLaserColor:</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="setMineFoundAnimation:">
+							<string key="name">setMineFoundAnimation:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="setNumberColor:">
 							<string key="name">setNumberColor:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="setNumberFontSize:">
+							<string key="name">setNumberFontSize:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="tab:">
 							<string key="name">tab:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="testAnimation:">
-							<string key="name">testAnimation:</string>
+						<object class="IBActionInfo" key="testMineFoundAnimation:">
+							<string key="name">testMineFoundAnimation:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="toggleBorders:">
-							<string key="name">toggleBorders:</string>
+						<object class="IBActionInfo" key="toggleAlternateCoveredCells:">
+							<string key="name">toggleAlternateCoveredCells:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="toggleCoveredCellsAlternation:">
-							<string key="name">toggleCoveredCellsAlternation:</string>
+						<object class="IBActionInfo" key="toggleAlternateUncoveredCells:">
+							<string key="name">toggleAlternateUncoveredCells:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="toggleCellBorder:">
+							<string key="name">toggleCellBorder:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="toggleGrid:">
@@ -5298,56 +5863,54 @@
 							<string key="name">toggleImageColor:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="toggleMineBorders:">
-							<string key="name">toggleMineBorders:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="toggleUncoveredCellsAlternation:">
-							<string key="name">toggleUncoveredCellsAlternation:</string>
+						<object class="IBActionInfo" key="toggleMineCellBorder:">
+							<string key="name">toggleMineCellBorder:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="alternateCoveredCheck">NSButton</string>
-						<string key="alternateUncoveredCheck">NSButton</string>
-						<string key="borderSizeSlider">NSSlider</string>
-						<string key="bordersEnabledCheck">NSButton</string>
-						<string key="brightnessDeltaSlider">NSSlider</string>
+						<string key="alternateCoveredCellsCheck">NSButton</string>
+						<string key="alternateUncoveredCellsCheck">NSButton</string>
+						<string key="cellBorderCheck">NSButton</string>
+						<string key="cellBorderSizeSlider">NSSlider</string>
+						<string key="cellBrightnessDeltaSlider">NSSlider</string>
 						<string key="cellsBox">NSBox</string>
 						<string key="defaultsController">NSUserDefaultsController</string>
 						<string key="effectsView">NSView</string>
-						<string key="fontButton">NSButton</string>
-						<string key="fontNameTextField">NSTextField</string>
-						<string key="fontSizeSlider">NSSlider</string>
 						<string key="generalView">NSView</string>
+						<string key="gridCheck">NSButton</string>
 						<string key="gridColorWell">NSColorWell</string>
-						<string key="gridEnabledCheck">NSButton</string>
 						<string key="imagesBox">NSBox</string>
-						<string key="mineBordersEnabledCheck">NSButton</string>
+						<string key="laserColorWell">NSColorWell</string>
+						<string key="mineCellBorderCheck">NSButton</string>
+						<string key="mineFoundAnimationButton">NSPopUpButton</string>
+						<string key="numberFontButton">NSButton</string>
+						<string key="numberFontNameTextField">NSTextField</string>
+						<string key="numberFontSizeSlider">NSSlider</string>
 						<string key="numbersBox">NSBox</string>
 						<string key="themeActionsSegmentedControl">NSSegmentedControl</string>
 						<string key="themeList">TableView</string>
 						<string key="themeView">NSView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="alternateCoveredCheck">
-							<string key="name">alternateCoveredCheck</string>
+						<object class="IBToOneOutletInfo" key="alternateCoveredCellsCheck">
+							<string key="name">alternateCoveredCellsCheck</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="alternateUncoveredCheck">
-							<string key="name">alternateUncoveredCheck</string>
+						<object class="IBToOneOutletInfo" key="alternateUncoveredCellsCheck">
+							<string key="name">alternateUncoveredCellsCheck</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="borderSizeSlider">
-							<string key="name">borderSizeSlider</string>
+						<object class="IBToOneOutletInfo" key="cellBorderCheck">
+							<string key="name">cellBorderCheck</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="cellBorderSizeSlider">
+							<string key="name">cellBorderSizeSlider</string>
 							<string key="candidateClassName">NSSlider</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="bordersEnabledCheck">
-							<string key="name">bordersEnabledCheck</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="brightnessDeltaSlider">
-							<string key="name">brightnessDeltaSlider</string>
+						<object class="IBToOneOutletInfo" key="cellBrightnessDeltaSlider">
+							<string key="name">cellBrightnessDeltaSlider</string>
 							<string key="candidateClassName">NSSlider</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="cellsBox">
@@ -5362,37 +5925,45 @@
 							<string key="name">effectsView</string>
 							<string key="candidateClassName">NSView</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="fontButton">
-							<string key="name">fontButton</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="fontNameTextField">
-							<string key="name">fontNameTextField</string>
-							<string key="candidateClassName">NSTextField</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="fontSizeSlider">
-							<string key="name">fontSizeSlider</string>
-							<string key="candidateClassName">NSSlider</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="generalView">
 							<string key="name">generalView</string>
 							<string key="candidateClassName">NSView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="gridCheck">
+							<string key="name">gridCheck</string>
+							<string key="candidateClassName">NSButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="gridColorWell">
 							<string key="name">gridColorWell</string>
 							<string key="candidateClassName">NSColorWell</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="gridEnabledCheck">
-							<string key="name">gridEnabledCheck</string>
-							<string key="candidateClassName">NSButton</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="imagesBox">
 							<string key="name">imagesBox</string>
 							<string key="candidateClassName">NSBox</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="mineBordersEnabledCheck">
-							<string key="name">mineBordersEnabledCheck</string>
+						<object class="IBToOneOutletInfo" key="laserColorWell">
+							<string key="name">laserColorWell</string>
+							<string key="candidateClassName">NSColorWell</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="mineCellBorderCheck">
+							<string key="name">mineCellBorderCheck</string>
 							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="mineFoundAnimationButton">
+							<string key="name">mineFoundAnimationButton</string>
+							<string key="candidateClassName">NSPopUpButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="numberFontButton">
+							<string key="name">numberFontButton</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="numberFontNameTextField">
+							<string key="name">numberFontNameTextField</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="numberFontSizeSlider">
+							<string key="name">numberFontSizeSlider</string>
+							<string key="candidateClassName">NSSlider</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="numbersBox">
 							<string key="name">numbersBox</string>
@@ -5422,24 +5993,24 @@
 						<string key="cancel:">id</string>
 						<string key="performThemeListAction:">NSSegmentedControl</string>
 						<string key="selectImage:">NSButton</string>
-						<string key="setAnimation:">id</string>
 						<string key="setBorderSize:">id</string>
-						<string key="setBrightnessDelta:">NSSlider</string>
+						<string key="setCellBrightnessDelta:">NSSlider</string>
 						<string key="setCellColor:">NSColorWell</string>
 						<string key="setFont:">NSFontManager</string>
-						<string key="setFontSize:">NSSlider</string>
 						<string key="setGridColor:">NSColorWell</string>
 						<string key="setImageColor:">NSColorWell</string>
 						<string key="setLaserColor:">NSColorWell</string>
+						<string key="setMineFoundAnimation:">id</string>
 						<string key="setNumberColor:">NSColorWell</string>
+						<string key="setNumberFontSize:">NSSlider</string>
 						<string key="tab:">NSToolbarItem</string>
-						<string key="testAnimation:">id</string>
-						<string key="toggleBorders:">id</string>
-						<string key="toggleCoveredCellsAlternation:">id</string>
+						<string key="testMineFoundAnimation:">id</string>
+						<string key="toggleAlternateCoveredCells:">id</string>
+						<string key="toggleAlternateUncoveredCells:">id</string>
+						<string key="toggleCellBorder:">id</string>
 						<string key="toggleGrid:">NSButton</string>
 						<string key="toggleImageColor:">id</string>
-						<string key="toggleMineBorders:">id</string>
-						<string key="toggleUncoveredCellsAlternation:">id</string>
+						<string key="toggleMineCellBorder:">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="cancel:">
@@ -5454,16 +6025,12 @@
 							<string key="name">selectImage:</string>
 							<string key="candidateClassName">NSButton</string>
 						</object>
-						<object class="IBActionInfo" key="setAnimation:">
-							<string key="name">setAnimation:</string>
-							<string key="candidateClassName">id</string>
-						</object>
 						<object class="IBActionInfo" key="setBorderSize:">
 							<string key="name">setBorderSize:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="setBrightnessDelta:">
-							<string key="name">setBrightnessDelta:</string>
+						<object class="IBActionInfo" key="setCellBrightnessDelta:">
+							<string key="name">setCellBrightnessDelta:</string>
 							<string key="candidateClassName">NSSlider</string>
 						</object>
 						<object class="IBActionInfo" key="setCellColor:">
@@ -5473,10 +6040,6 @@
 						<object class="IBActionInfo" key="setFont:">
 							<string key="name">setFont:</string>
 							<string key="candidateClassName">NSFontManager</string>
-						</object>
-						<object class="IBActionInfo" key="setFontSize:">
-							<string key="name">setFontSize:</string>
-							<string key="candidateClassName">NSSlider</string>
 						</object>
 						<object class="IBActionInfo" key="setGridColor:">
 							<string key="name">setGridColor:</string>
@@ -5490,24 +6053,36 @@
 							<string key="name">setLaserColor:</string>
 							<string key="candidateClassName">NSColorWell</string>
 						</object>
+						<object class="IBActionInfo" key="setMineFoundAnimation:">
+							<string key="name">setMineFoundAnimation:</string>
+							<string key="candidateClassName">id</string>
+						</object>
 						<object class="IBActionInfo" key="setNumberColor:">
 							<string key="name">setNumberColor:</string>
 							<string key="candidateClassName">NSColorWell</string>
+						</object>
+						<object class="IBActionInfo" key="setNumberFontSize:">
+							<string key="name">setNumberFontSize:</string>
+							<string key="candidateClassName">NSSlider</string>
 						</object>
 						<object class="IBActionInfo" key="tab:">
 							<string key="name">tab:</string>
 							<string key="candidateClassName">NSToolbarItem</string>
 						</object>
-						<object class="IBActionInfo" key="testAnimation:">
-							<string key="name">testAnimation:</string>
+						<object class="IBActionInfo" key="testMineFoundAnimation:">
+							<string key="name">testMineFoundAnimation:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="toggleBorders:">
-							<string key="name">toggleBorders:</string>
+						<object class="IBActionInfo" key="toggleAlternateCoveredCells:">
+							<string key="name">toggleAlternateCoveredCells:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="toggleCoveredCellsAlternation:">
-							<string key="name">toggleCoveredCellsAlternation:</string>
+						<object class="IBActionInfo" key="toggleAlternateUncoveredCells:">
+							<string key="name">toggleAlternateUncoveredCells:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="toggleCellBorder:">
+							<string key="name">toggleCellBorder:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="toggleGrid:">
@@ -5518,12 +6093,8 @@
 							<string key="name">toggleImageColor:</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="toggleMineBorders:">
-							<string key="name">toggleMineBorders:</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="toggleUncoveredCellsAlternation:">
-							<string key="name">toggleUncoveredCellsAlternation:</string>
+						<object class="IBActionInfo" key="toggleMineCellBorder:">
+							<string key="name">toggleMineCellBorder:</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
