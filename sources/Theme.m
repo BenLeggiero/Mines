@@ -74,7 +74,8 @@ Released under the terms of the GNU General Public License v3. */
 		id value;
 		NSArray *cellColors, *numberColors, *images;
 
-		NSNumber *grid, *cellBorder, *alternateCoveredCells, *alternateUncoveredCells;
+		NSNumber *alternateCoveredCells, *alternateUncoveredCells;
+		BOOL cellBorder, mineCellBorder;
 
 		if (	![dictionary isKindOfClass: dictionaryClass]
 			|| !(value = [dictionary objectForKey: @"Name"])
@@ -83,14 +84,33 @@ Released under the terms of the GNU General Public License v3. */
 			|| ![value isKindOfClass: stringClass]
 			|| !(value = [dictionary objectForKey: @"MineFoundAnimation"])
 			|| ![value isKindOfClass: stringClass]
-			|| !(grid = [dictionary objectForKey: @"Grid"])
-			|| ![grid isKindOfClass: numberClass]
-			|| !(cellBorder = [dictionary objectForKey: @"CellBorder"])
-			|| ![cellBorder isKindOfClass: numberClass]
+			|| !(value = [dictionary objectForKey: @"Grid"])
+			|| ![value isKindOfClass: numberClass]
+
+			|| ([value boolValue] &&
+				(!(value = [dictionary objectForKey: @"GridColor"])
+				 || ![value isKindOfClass: numberClass]))
+
+			|| !(value = [dictionary objectForKey: @"CellBorder"])
+			|| ![value isKindOfClass: numberClass]
+
+			|| ((cellBorder = [value boolValue]) &&
+				((!(value = [dictionary objectForKey: @"CellBorderSize"])
+				 || ![value isKindOfClass: numberClass])
+				 || !(value = [dictionary objectForKey: @"MineCellBorder"])
+				 || ![value isKindOfClass: numberClass]))
+
+			
+
 			|| !(alternateCoveredCells = [dictionary objectForKey: @"AlternateCoveredCells"])
 			|| ![alternateCoveredCells isKindOfClass: numberClass]
 			|| !(alternateUncoveredCells = [dictionary objectForKey: @"AlternateUncoveredCells"])
 			|| ![alternateUncoveredCells isKindOfClass: numberClass]
+
+			|| (([alternateCoveredCells boolValue] || [alternateUncoveredCells boolValue]) &&
+				((!(value = [dictionary objectForKey: @"CellBrightnessDelta"])
+				 || ![value isKindOfClass: numberClass])))
+
 			|| !(numberColors = [dictionary objectForKey: @"NumberColors"])
 			|| ![numberColors isKindOfClass: arrayClass]
 			|| numberColors.count != 8
@@ -106,8 +126,6 @@ Released under the terms of the GNU General Public License v3. */
 
 
 
-			!(value = [dictionary objectForKey: @"GridColor"])	     ||
-			![value isKindOfClass: numberClass]			     ||
 
 
 			!(cellColors = [dictionary objectForKey: @"CellColors"])     ||
