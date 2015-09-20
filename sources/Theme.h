@@ -59,6 +59,7 @@ Released under the terms of the GNU General Public License v3. */
 	@property (nonatomic, retain  ) NSString*	name;
 	@property (nonatomic, retain  ) NSColor*	laserColor;
 	@property (nonatomic, retain  ) NSString*	mineFoundAnimation;
+	@property (nonatomic, assign  ) BOOL		grid;
 	@property (nonatomic, retain  ) NSColor*	gridColor;
 	@property (nonatomic, assign  ) BOOL		cellBorder;
 	@property (nonatomic, assign  ) BOOL		mineCellBorder;

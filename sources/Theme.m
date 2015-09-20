@@ -32,11 +32,13 @@ Released under the terms of the GNU General Public License v3. */
 	@synthesize images		= _images;
 	@synthesize imageColors		= _iamgeColors;
 
+	- (BOOL	 ) grid			   {return _flags.grid;			  }
 	- (BOOL	 ) cellBorder		   {return _flags.cellBorder;		  }
 	- (BOOL	 ) alternateCoveredCells   {return _flags.alternateCoveredCells;  }
 	- (BOOL	 ) alternateUncoveredCells {return _flags.alternateUncoveredCells;}
 	- (BOOL *) imageInclusions	   {return _imageInclusions;		  }
 
+	- (void) setGrid:		     (BOOL) value {_flags.grid			  = value;}
 	- (void) setCellBorder:		     (BOOL) value {_flags.cellBorder		  = value;}
 	- (void) setAlternateCoveredCells:   (BOOL) value {_flags.alternateCoveredCells	  = value;}
 	- (void) setAlternateUncoveredCells: (BOOL) value {_flags.alternateUncoveredCells = value;}
@@ -163,7 +165,7 @@ Released under the terms of the GNU General Public License v3. */
 			if ((_flags.grid = [[dictionary objectForKey: @"Grid"] boolValue]))
 				_gridColor = [[NSColor sRGBColorFromFloatString: [dictionary objectForKey: @"GridColor"]] retain];
 
-			if ((_flags.grid = [[dictionary objectForKey: @"CellBorder"] boolValue]))
+			if ((_flags.cellBorder = [[dictionary objectForKey: @"CellBorder"] boolValue]))
 				{
 				_flags.mineCellBorder = [[dictionary objectForKey: @"MineCellBorder"] boolValue];
 				_cellBorderSize = [[dictionary objectForKey: @"CellBorderSize"] doubleValue];
@@ -204,8 +206,8 @@ Released under the terms of the GNU General Public License v3. */
 		NSMutableDictionary* image;
 		NSUInteger	     i;
 
-		for (NSColor *color in _cellColors  ) [cellColors   addObject: [color floatRGBAString]];
-		for (NSColor *color in _numberColors) [numberColors addObject: [color floatRGBAString]];
+		for (NSColor *color in _cellColors  ) [cellColors   addObject: color.floatRGBAString];
+		for (NSColor *color in _numberColors) [numberColors addObject: color.floatRGBAString];
 
 		for (i = 0; i < 4;)
 			{
@@ -224,21 +226,34 @@ Released under the terms of the GNU General Public License v3. */
 			}
 
 		NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithObjectsAndKeys:
-			_name,					   @"Name",
-			cellColors,				   @"CellColors",
-			numberColors,				   @"NumberColors",
-			[NSNumber numberWithDouble: _fontScaling], @"NumberFontScaling",
-			(_fontName ? _fontName : @""),		   @"NumberFontName",
-			images,					   @"Images",
+			_name,							   @"Name",
+			_laserColor.floatRGBAString,				   @"LaserColor",
+			_mineFoundAnimation,					   @"MineFoundAnimation",
+			[NSNumber numberWithBool: _flags.grid],			   @"Grid",
+			[NSNumber numberWithBool: _flags.cellBorder],		   @"CellBorder",
+			[NSNumber numberWithBool: _flags.alternateCoveredCells],   @"AlternateCoveredCells",
+			[NSNumber numberWithBool: _flags.alternateUncoveredCells], @"AlternateUncoveredCells",
+			cellColors,						   @"CellColors",
+			numberColors,						   @"NumberColors",
+			_numberFontName,					   @"NumberFontName",
+			[NSNumber numberWithDouble: _numberFontScale],		   @"NumberFontScale",
+			images,							   @"Images",
 			nil];
 
 		[cellColors   release];
 		[numberColors release];
 		[images	      release];
 
-		if (_cellBrightnessDelta != 0.0) [dictionary
-			setObject: [NSNumber numberWithDouble: _cellBrightnessDelta]
-			forKey:	   @"CellBrightnessDelta"];
+		if (_flags.grid) [dictionary setObject: _gridColor.floatRGBAString forKey: @"GridColor"];
+
+		if (_flags.cellBorder)
+			{
+			[dictionary setObject: [NSNumber numberWithBool:   _flags.mineCellBorder] forKey: @"MineCellBorder"];
+			[dictionary setObject: [NSNumber numberWithDouble: _cellBorderSize	] forKey: @"CellBorderSize"];
+			}
+
+		if (_flags.alternateCoveredCells || _flags.alternateUncoveredCells)
+			[dictionary setObject: [NSNumber numberWithDouble: _cellBrightnessDelta] forKey: @"CellBrightnessDelta"];
 
 		return [dictionary autorelease];
 		}
@@ -250,19 +265,27 @@ Released under the terms of the GNU General Public License v3. */
 
 		if (theme)
 			{
-			theme->_name		    = [name	 retain];
-			theme->_fontName	    = [_fontName retain];
-			theme->_flat		    = _flat;
-			theme->_cellBrightnessDelta = _cellBrightnessDelta;
-			theme->_fontScaling	    = _fontScaling;
-			theme->_cellColors	    = [[NSMutableArray alloc] initWithArray: _cellColors];
-			theme->_numberColors	    = [[NSMutableArray alloc] initWithArray: _numberColors];
-			theme->_imageColors	    = [[NSMutableArray alloc] initWithArray: _imageColors];
-			theme->_imageFileNames	    = [[NSMutableArray alloc] initWithArray: _imageFileNames];
-			theme->_imageInclusions[0]  = _imageInclusions[0];
-			theme->_imageInclusions[1]  = _imageInclusions[1];
-			theme->_imageInclusions[2]  = _imageInclusions[2];
-			theme->_imageInclusions[3]  = _imageInclusions[3];
+			theme->_name			      = [name retain];
+			theme->_laserColor		      = [_laserColor retain];
+			theme->_mineFoundAnimation	      = [_mineFoundAnimation retain];
+			theme->_flags.grid		      = _flags.grid;
+			theme->_gridColor		      = [_gridColor retain];
+			theme->_flags.cellBorder	      = _flags.cellBorder;
+			theme->_flags.mineCellBorder	      = _flags.mineCellBorder;
+			theme->_cellBorderSize		      = _cellBorderSize;
+			theme->_flags.alternateCoveredCells   = _flags.alternateCoveredCells;
+			theme->_flags.alternateUncoveredCells = _flags.alternateUncoveredCells;
+			theme->_cellBrightnessDelta	      = _cellBrightnessDelta;
+			theme->_cellColors		      = [[NSMutableArray alloc] initWithArray: _cellColors];
+			theme->_numberColors		      = [[NSMutableArray alloc] initWithArray: _numberColors];
+			theme->_numberFontName		      = [_numberFontName retain];
+			theme->_numberFontScale		      = _numberFontScale;
+			theme->_imageInclusions[0]	      = _imageInclusions[0];
+			theme->_imageInclusions[1]	      = _imageInclusions[1];
+			theme->_imageInclusions[2]	      = _imageInclusions[2];
+			theme->_imageInclusions[3]	      = _imageInclusions[3];
+			theme->_imageFileNames		      = [[NSMutableArray alloc] initWithArray: _imageFileNames];
+			theme->_imageColors		      = [[NSMutableArray alloc] initWithArray: _imageColors];
 			}
 
 		return theme;
