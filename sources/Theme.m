@@ -74,22 +74,49 @@ Released under the terms of the GNU General Public License v3. */
 		id value;
 		NSArray *cellColors, *numberColors, *images;
 
-		if (	![dictionary isKindOfClass: dictionaryClass]		     ||
-			!(value = [dictionary objectForKey: @"Name"])		     ||
-			![value isKindOfClass: stringClass]			     ||
+		NSNumber *grid, *cellBorder, *alternateCoveredCells, *alternateUncoveredCells;
+
+		if (	![dictionary isKindOfClass: dictionaryClass]
+			|| !(value = [dictionary objectForKey: @"Name"])
+			|| ![value isKindOfClass: stringClass]
+			|| !(value = [dictionary objectForKey: @"LaserColor"])
+			|| ![value isKindOfClass: stringClass]
+			|| !(value = [dictionary objectForKey: @"MineFoundAnimation"])
+			|| ![value isKindOfClass: stringClass]
+			|| !(grid = [dictionary objectForKey: @"Grid"])
+			|| ![grid isKindOfClass: numberClass]
+			|| !(cellBorder = [dictionary objectForKey: @"CellBorder"])
+			|| ![cellBorder isKindOfClass: numberClass]
+			|| !(alternateCoveredCells = [dictionary objectForKey: @"AlternateCoveredCells"])
+			|| ![alternateCoveredCells isKindOfClass: numberClass]
+			|| !(alternateUncoveredCells = [dictionary objectForKey: @"AlternateUncoveredCells"])
+			|| ![alternateUncoveredCells isKindOfClass: numberClass]
+			|| !(numberColors = [dictionary objectForKey: @"NumberColors"])
+			|| ![numberColors isKindOfClass: arrayClass]
+			|| numberColors.count != 8
+			|| !(value = [dictionary objectForKey: @"NumberFontName"])
+			|| ![value isKindOfClass: stringClass]
+			|| !(value = [dictionary objectForKey: @"NumberFontScale"])
+			|| ![value isKindOfClass: numberClass]
+			|| !(images = [dictionary objectForKey: @"Images"])
+			|| ![images isKindOfClass: arrayClass]
+			|| images.count != 4
+		)
+			return NO;
+
+
+
+			!(value = [dictionary objectForKey: @"GridColor"])	     ||
+			![value isKindOfClass: numberClass]			     ||
+
+
 			!(cellColors = [dictionary objectForKey: @"CellColors"])     ||
 			![cellColors isKindOfClass: arrayClass]			     ||
 			cellColors.count != 6					     ||
-			!(numberColors = [dictionary objectForKey: @"NumberColors"]) ||
-			![numberColors isKindOfClass: arrayClass]		     ||
-			numberColors.count != 8					     ||
-			!(value = [dictionary objectForKey: @"NumberFontScaling"])   ||
-			![value isKindOfClass: numberClass]			     ||
-			!(images = [dictionary objectForKey: @"Images"])	     ||
-			![images isKindOfClass: arrayClass]			     ||
-			images.count != 4					     ||
-			((value = [dictionary objectForKey: @"NumberFontName"]) &&
-			 ![value isKindOfClass: stringClass])			     ||
+
+
+
+
 			((value = [dictionary objectForKey: @"Flat"]) &&
 			 ![value isKindOfClass: numberClass])
 		)
@@ -236,57 +263,6 @@ Released under the terms of the GNU General Public License v3. */
 			}
 
 		return theme;
-		}
-
-
-	- (NSColor  *) colorForKey: (NSUInteger) key
-		{return [_cellColors objectAtIndex: key];}
-
-
-	- (void) setColor: (NSColor  *) color
-		 forKey:   (NSUInteger)	key
-		{
-		[_cellColors replaceObjectAtIndex: key withObject: color];
-		if (_owner) [_owner updateColorWithKey: key];
-		}
-
-
-	- (NSColor  *) colorForNumber: (NSUInteger) number
-		{return [_numberColors objectAtIndex: number - 1];}
-
-
-	- (void) setColor:  (NSColor  *) color
-		 forNumber: (NSUInteger) number
-		{
-		[_numberColors replaceObjectAtIndex: number - 1 withObject: color];
-		if (_owner) [_owner updateNumber: number];
-		}
-
-
-	- (NSColor *) imageColorForKey: (NSUInteger) key
-		{
-		NSColor *color = [_imageColors objectAtIndex: key];
-
-		return [color isEqual: [NSNull null]] ? nil : color;
-		}
-
-	- (void) setImageColor: (NSColor  *) color
-		 forKey:	(NSUInteger) key
-		{
-		[_imageColors replaceObjectAtIndex: key withObject: color ? color : [NSNull null]];
-		if (_owner) [_owner updateImageWithKey: key];
-		}
-
-
-	- (void) setImageColor: (NSColor  *) color
-		 fileName:	(NSString *) fileName
-		 included:	(BOOL      ) included
-		 forKey:	(NSUInteger) key
-		{
-		[_imageColors	 replaceObjectAtIndex: key withObject: color ? color : [NSNull null]];
-		[_imageFileNames replaceObjectAtIndex: key withObject: fileName];
-		_imageInclusions[key] = included;
-		if (_owner) [_owner updateImageWithKey: key];
 		}
 
 
