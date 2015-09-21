@@ -126,7 +126,7 @@ Released under the terms of the GNU General Public License v3. */
 //		warningColorWell.color	     = [_theme colorForKey: kThemeColorKeyWarning      ];
 
 		for (NSUInteger i = 1; i < 9; i++)
-			[[numbersBox viewWithTag: i] setColor: [_theme colorForNumber: i]];
+			[[numbersBox viewWithTag: i] setColor: [_theme.numberColors objectAtIndex: i]];
 
 		//cellBrightnessDeltaSlider.doubleValue = [_theme cellBrightnessDelta];
 		//fontScalingSlider.doubleValue	      = [_theme fontScaling];
@@ -136,7 +136,7 @@ Released under the terms of the GNU General Public License v3. */
 			NSColorWell *colorWell = [imagesBox viewWithTag: 10 + i];
 			NSButton *checkBox = [imagesBox viewWithTag: 20 + i];
 
-			if ((color = [_theme imageColorForKey: i]))
+			if ((color = [_theme.imageColors objectAtIndex: i]))
 				{
 				checkBox.state = NSOnState;
 				colorWell.color = color;
@@ -152,7 +152,7 @@ Released under the terms of the GNU General Public License v3. */
 				[self imageFromImage: [_themeImages objectAtIndex: i] tintColor: color]];
 			}
 
-		NSString *fontName = _theme.fontName;
+		NSString *fontName = _theme.numberFontName;
 
 		numberFontNameTextField.stringValue = fontName
 			? [NSFont fontWithName: fontName size: 11.0].displayName
@@ -489,16 +489,16 @@ Released under the terms of the GNU General Public License v3. */
 		{
 		if (result)
 			{
-			NSImage *oldImage = [_themeImages objectAtIndex: _imageKey];
+			NSImage *oldImage = [_themeImages objectAtIndex: _imageIndex];
 
 			if (oldImage != resultData->image)
 				{
-				NSColorWell* imageColorWell = [imagesBox viewWithTag: 10 + _imageKey];
+				NSColorWell* imageColorWell = [imagesBox viewWithTag: _imageIndex];
 				id color;
 
 				if (resultData->isInternal)
 					{
-					if (!(color = [_theme imageColorForKey: _imageKey]))
+					if (!(color = [_theme.imageColors objectAtIndex: _imageIndex]))
 						{
 						color = DEFAULT_TEMPLATE_IMAGE_COLOR;
 						imageColorWell.color = color;
@@ -515,19 +515,18 @@ Released under the terms of the GNU General Public License v3. */
 				//------------------------------------------------------.
 				// Actualizamos la información de la imágen en el tema. |
 				//------------------------------------------------------'
-				[_themeImages replaceObjectAtIndex: _imageKey withObject: resultData->image];
+				[_themeImages replaceObjectAtIndex: _imageIndex withObject: resultData->image];
 
-				[_theme	setImageColor: color
-					fileName:      resultData->fileName
-					included:      resultData->isInternal
-					forKey:	       _imageKey];
+				[_theme.imageFileNames replaceObjectAtIndex: _imageIndex withObject: resultData->fileName];
+				[_theme.imageColors    replaceObjectAtIndex: _imageIndex withObject: color ? color : [NSNull null]];
+				_theme.imageInclusions[_imageIndex] = resultData->isInternal;
 
 				_flags.themeHasChanged = YES;
 
 				//--------------------------------------------------------.
 				// Actualizamos los controles relacionados con la imagen. |
 				//--------------------------------------------------------'
-				[[imagesBox viewWithTag: 30 + _imageKey] setImage: [self
+				[[imagesBox viewWithTag: _imageIndex] setImage: [self
 					imageFromImage:	 resultData->image
 					tintColor:	 color]];
 				}
@@ -556,17 +555,13 @@ Released under the terms of the GNU General Public License v3. */
 						{
 						NSImage *image = [bundleImages objectAtIndex: i];
 
-						[[imagesBox viewWithTag: 30 + i]
-							setImage: [self imageFromImage: image tintColor: color]];
-
+						[[imagesBox viewWithTag: i] setImage: [self imageFromImage: image tintColor: color]];
 						[_themeImages replaceObjectAtIndex: i withObject: image];
 						}
 
-					[theme	setImageColor: color
-						fileName:      [bundleImageFileNames objectAtIndex: i]
-						included:      YES
-						forKey:	       i];
-
+					theme.imageInclusions[i] = YES;
+					[theme.imageColors    replaceObjectAtIndex: i withObject: color];
+					[theme.imageFileNames replaceObjectAtIndex: i withObject: [bundleImageFileNames objectAtIndex: i]];
 					if (![theme save: &error]) [[NSAlert alertWithError: error] runModal];
 					}
 			}
@@ -843,7 +838,7 @@ Released under the terms of the GNU General Public License v3. */
 			selectedImageFileName: [_theme.imageFileNames objectAtIndex: sender.tag]];
 
 		[preloadedImages release];
-		_imageKey = sender.tag;
+		_imageIndex = sender.tag;
 		[_imagePicker runModalForWindow: self.window];
 		}
 

@@ -53,7 +53,7 @@ Released under the terms of the GNU General Public License v3. */
 	Theme*		_theme;
 	NSMutableArray* _themeImages;
 	NSView*		_currentView;
-	NSUInteger	_imageKey;
+	NSUInteger	_imageIndex;
 	NSColor*	_imageBackgroundColor;
 	ImagePicker*	_imagePicker;
 

@@ -188,6 +188,7 @@
 					<string key="NSFrameSize">{286, 137}</string>
 					<reference key="NSSuperview"/>
 					<reference key="NSWindow"/>
+					<reference key="NSNextKeyView"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {2560, 1417}}</string>
 				<string key="NSMaxSize">{10000000000000, 10000000000000}</string>
@@ -288,6 +289,7 @@
 						<string key="NSFrame">{{315, 20}, {38, 14}}</string>
 						<reference key="NSSuperview" ref="552827883"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSTextFieldCell" key="NSCell" id="237005191">
 							<int key="NSCellFlags">68157504</int>
@@ -466,6 +468,7 @@
 						<string key="NSFrame">{{188, 18}, {49, 18}}</string>
 						<reference key="NSSuperview" ref="43897723"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="NSEnabled">YES</bool>
 						<object class="NSButtonCell" key="NSCell" id="163330531">
 							<int key="NSCellFlags">-2080374784</int>
@@ -1090,6 +1093,7 @@
 										<string key="NSFrame">{{209, 14}, {38, 14}}</string>
 										<reference key="NSSuperview" ref="121874808"/>
 										<reference key="NSWindow"/>
+										<reference key="NSNextKeyView"/>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSTextFieldCell" key="NSCell" id="456925083">
 											<int key="NSCellFlags">68157504</int>
@@ -1602,7 +1606,6 @@
 										<reference key="NSSuperview" ref="822455800"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="852487552"/>
-										<int key="NSTag">30</int>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSImageCell" key="NSCell" id="706435237">
 											<int key="NSCellFlags">134217728</int>
@@ -1625,7 +1628,7 @@
 										<reference key="NSSuperview" ref="822455800"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="685844699"/>
-										<int key="NSTag">10</int>
+										<int key="NSTag">30</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -1670,6 +1673,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="852928863"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
+										<int key="NSTag">10</int>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="548748333">
 											<int key="NSCellFlags">67108864</int>
@@ -1702,7 +1706,7 @@
 										<reference key="NSSuperview" ref="822455800"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="92329701"/>
-										<int key="NSTag">32</int>
+										<int key="NSTag">2</int>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSImageCell" key="NSCell" id="448471655">
 											<int key="NSCellFlags">134217728</int>
@@ -1725,7 +1729,7 @@
 										<reference key="NSSuperview" ref="822455800"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="1022574306"/>
-										<int key="NSTag">12</int>
+										<int key="NSTag">32</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -1770,7 +1774,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="565467297"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
-										<int key="NSTag">2</int>
+										<int key="NSTag">12</int>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="218943271">
 											<int key="NSCellFlags">67108864</int>
@@ -1803,7 +1807,7 @@
 										<reference key="NSSuperview" ref="822455800"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="768394604"/>
-										<int key="NSTag">33</int>
+										<int key="NSTag">3</int>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSImageCell" key="NSCell" id="943161083">
 											<int key="NSCellFlags">134217728</int>
@@ -1826,7 +1830,7 @@
 										<reference key="NSSuperview" ref="822455800"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="54062423"/>
-										<int key="NSTag">13</int>
+										<int key="NSTag">33</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -1871,7 +1875,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="246270168"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
-										<int key="NSTag">3</int>
+										<int key="NSTag">13</int>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="583679328">
 											<int key="NSCellFlags">67108864</int>
@@ -1904,7 +1908,7 @@
 										<reference key="NSSuperview" ref="822455800"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="995609500"/>
-										<int key="NSTag">31</int>
+										<int key="NSTag">1</int>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSImageCell" key="NSCell" id="736629125">
 											<int key="NSCellFlags">134217728</int>
@@ -1927,7 +1931,7 @@
 										<reference key="NSSuperview" ref="822455800"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="322514732"/>
-										<int key="NSTag">11</int>
+										<int key="NSTag">31</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -1972,7 +1976,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="1048459009"/>
 										<string key="NSReuseIdentifierKey">_NS:9</string>
-										<int key="NSTag">1</int>
+										<int key="NSTag">11</int>
 										<bool key="NSEnabled">YES</bool>
 										<object class="NSButtonCell" key="NSCell" id="456333997">
 											<int key="NSCellFlags">67108864</int>
@@ -5993,7 +5997,7 @@
 						<string key="cancel:">id</string>
 						<string key="performThemeListAction:">NSSegmentedControl</string>
 						<string key="selectImage:">NSButton</string>
-						<string key="setBorderSize:">id</string>
+						<string key="setBorderSize:">NSSlider</string>
 						<string key="setCellBrightnessDelta:">NSSlider</string>
 						<string key="setCellColor:">NSColorWell</string>
 						<string key="setFont:">NSFontManager</string>
@@ -6005,12 +6009,12 @@
 						<string key="setNumberFontSize:">NSSlider</string>
 						<string key="tab:">NSToolbarItem</string>
 						<string key="testMineFoundAnimation:">id</string>
-						<string key="toggleAlternateCoveredCells:">id</string>
-						<string key="toggleAlternateUncoveredCells:">id</string>
-						<string key="toggleCellBorder:">id</string>
+						<string key="toggleAlternateCoveredCells:">NSButton</string>
+						<string key="toggleAlternateUncoveredCells:">NSButton</string>
+						<string key="toggleCellBorder:">NSButton</string>
 						<string key="toggleGrid:">NSButton</string>
-						<string key="toggleImageColor:">id</string>
-						<string key="toggleMineCellBorder:">id</string>
+						<string key="toggleImageColor:">NSButton</string>
+						<string key="toggleMineCellBorder:">NSButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="cancel:">
@@ -6027,7 +6031,7 @@
 						</object>
 						<object class="IBActionInfo" key="setBorderSize:">
 							<string key="name">setBorderSize:</string>
-							<string key="candidateClassName">id</string>
+							<string key="candidateClassName">NSSlider</string>
 						</object>
 						<object class="IBActionInfo" key="setCellBrightnessDelta:">
 							<string key="name">setCellBrightnessDelta:</string>
@@ -6075,15 +6079,15 @@
 						</object>
 						<object class="IBActionInfo" key="toggleAlternateCoveredCells:">
 							<string key="name">toggleAlternateCoveredCells:</string>
-							<string key="candidateClassName">id</string>
+							<string key="candidateClassName">NSButton</string>
 						</object>
 						<object class="IBActionInfo" key="toggleAlternateUncoveredCells:">
 							<string key="name">toggleAlternateUncoveredCells:</string>
-							<string key="candidateClassName">id</string>
+							<string key="candidateClassName">NSButton</string>
 						</object>
 						<object class="IBActionInfo" key="toggleCellBorder:">
 							<string key="name">toggleCellBorder:</string>
-							<string key="candidateClassName">id</string>
+							<string key="candidateClassName">NSButton</string>
 						</object>
 						<object class="IBActionInfo" key="toggleGrid:">
 							<string key="name">toggleGrid:</string>
@@ -6091,11 +6095,11 @@
 						</object>
 						<object class="IBActionInfo" key="toggleImageColor:">
 							<string key="name">toggleImageColor:</string>
-							<string key="candidateClassName">id</string>
+							<string key="candidateClassName">NSButton</string>
 						</object>
 						<object class="IBActionInfo" key="toggleMineCellBorder:">
 							<string key="name">toggleMineCellBorder:</string>
-							<string key="candidateClassName">id</string>
+							<string key="candidateClassName">NSButton</string>
 						</object>
 					</dictionary>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
