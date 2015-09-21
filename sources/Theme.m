@@ -29,7 +29,6 @@ Released under the terms of the GNU General Public License v3. */
 	@synthesize numberColors	= _numberColors;
 	@synthesize numberFontName	= _numberFontName;
 	@synthesize numberFontScale	= _numberFontScale;
-	@synthesize images		= _images;
 	@synthesize imageColors		= _iamgeColors;
 
 	- (BOOL	 ) grid			   {return _flags.grid;			  }
@@ -219,7 +218,7 @@ Released under the terms of the GNU General Public License v3. */
 			NSColor *color = [_imageColors objectAtIndex: i++];
 
 			if (![color isEqual: null])
-				[image setObject: [color floatRGBAString] forKey: @"Color"];
+				[image setObject: color.floatRGBAString forKey: @"Color"];
 
 			[images addObject: image];
 			[image release];

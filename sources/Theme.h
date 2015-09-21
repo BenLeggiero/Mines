@@ -71,7 +71,7 @@ Released under the terms of the GNU General Public License v3. */
 	@property (nonatomic, readonly) NSMutableArray* numberColors;
 	@property (nonatomic, retain  ) NSString*	numberFontName;
 	@property (nonatomic, assign  ) CGFloat		numberFontScale;
-	@property (nonatomic, readonly) NSMutableArray*	images;
+	@property (nonatomic, readonly) NSMutableArray* imageFileNames;
 	@property (nonatomic, readonly) NSMutableArray* imageColors;
 	@property (nonatomic, readonly) BOOL*		imageInclusions;
 
@@ -88,8 +88,6 @@ Released under the terms of the GNU General Public License v3. */
 	- (BOOL) hasExternalImages;
 
 	- (NSMutableArray *) loadImages: (inout BOOL *) errors;
-
-	- (void) unloadImages;
 
 	- (BOOL) save: (NSError **) error;
 

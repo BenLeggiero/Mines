@@ -678,7 +678,11 @@ Released under the terms of the GNU General Public License v3. */
 
 	- (IBAction) setLaserColor: (NSColorWell *) sender
 		{
-		NSLog(@"setLaserColor");
+		NSColor *color = sender.color.opaqueSRGBColor;
+
+		_theme.laserColor = color;
+		sender.color = color;
+		_flags.themeHasChanged = YES;
 		}
 
 
@@ -696,58 +700,68 @@ Released under the terms of the GNU General Public License v3. */
 
 	- (IBAction) toggleGrid: (NSButton *) sender
 		{
-		NSLog(@"toggleGrid");
+		_theme.grid = sender.state == NSOnState;
+		_flags.themeHasChanged = YES;
 		}
 
 
 	- (IBAction) setGridColor: (NSColorWell *) sender
 		{
-		NSLog(@"setGridColor");
+		NSColor *color = sender.color.opaqueSRGBColor;
+
+		_theme.gridColor = color;
+		sender.color = color;
+		_flags.themeHasChanged = YES;
 		}
 
 
-	- (IBAction) toggleCellBorder: (id) sender
+	- (IBAction) toggleCellBorder: (NSButton *) sender
 		{
-		NSLog(@"toggle3DBorders");
+		_theme.cellBorder = sender.state == NSOnState;
+		_flags.themeHasChanged = YES;
 		}
 
 
-	- (IBAction) toggleMineCellBorder: (id) sender
+	- (IBAction) toggleMineCellBorder: (NSButton *) sender
 		{
-		NSLog(@"toggleMine3DBorders");
+		_theme.mineCellBorder = sender.state == NSOnState;
+		_flags.themeHasChanged = YES;
 		}
 
 
-	- (IBAction) setBorderSize: (id) sender
+	- (IBAction) setBorderSize: (NSSlider *) sender
 		{
-		NSLog(@"set3DBorderSize");
+		_theme.cellBorderSize = sender.doubleValue;
+		_flags.themeHasChanged = YES;
 		}
 
 
-	- (IBAction) toggleAlternateCoveredCells: (id) sender
+	- (IBAction) toggleAlternateCoveredCells: (NSButton *) sender
 		{
-		NSLog(@"toggleAlternatedCoveredCells");
+		_theme.alternateCoveredCells = sender.state == NSOnState;
+		_flags.themeHasChanged = YES;
 		}
 
 
-	- (IBAction) toggleAlternateUncoveredCells: (id) sender
+	- (IBAction) toggleAlternateUncoveredCells: (NSButton *) sender
 		{
-		NSLog(@"toggleAlternatedUncoveredCells");
+		_theme.alternateUncoveredCells = sender.state == NSOnState;
+		_flags.themeHasChanged = YES;
 		}
 
 
 	- (IBAction) setCellBrightnessDelta: (NSSlider *) sender
 		{
-		[_theme setCellBrightnessDelta: sender.doubleValue];
+		_theme.cellBrightnessDelta = sender.doubleValue;
 		_flags.themeHasChanged = YES;
 		}
 
 
 	- (IBAction) setCellColor: (NSColorWell *) sender
 		{
-		NSColor *color = [sender.color opaqueSRGBColor];
+		NSColor *color = sender.color.opaqueSRGBColor;
 
-		[_theme setColor: color forKey: sender.tag];
+		[_theme.cellColors replaceObjectAtIndex: sender.tag withObject: color];
 		sender.color = color;
 		_flags.themeHasChanged = YES;
 		}
@@ -755,9 +769,9 @@ Released under the terms of the GNU General Public License v3. */
 
 	- (IBAction) setNumberColor: (NSColorWell *) sender
 		{
-		NSColor *color = [sender.color opaqueSRGBColor];
+		NSColor *color = sender.color.opaqueSRGBColor;
 
-		[_theme setColor: color forNumber: sender.tag];
+		[_theme.numberColors replaceObjectAtIndex: sender.tag withObject: color];
 		sender.color = color;
 		_flags.themeHasChanged = YES;
 		}
@@ -770,7 +784,7 @@ Released under the terms of the GNU General Public License v3. */
 			NSFont *font = [sender convertFont: [NSFont systemFontOfSize: 11.0]];
 
 			numberFontNameTextField.stringValue = font.displayName;
-			_theme.fontName = font.fontName;
+			_theme.numberFontName = font.fontName;
 			_flags.themeHasChanged = YES;
 			}
 		}
@@ -778,26 +792,37 @@ Released under the terms of the GNU General Public License v3. */
 
 	- (IBAction) setNumberFontSize: (NSSlider *) sender
 		{
-		_theme.fontScaling = (CGFloat)sender.doubleValue;
+		_theme.numberFontScale = sender.doubleValue;
 		_flags.themeHasChanged = YES;
 		}
 
 
-	- (IBAction) toggleImageColor: (id) sender
+	- (IBAction) toggleImageColor: (NSButton *) sender
 		{
+		NSColorWell *colorWell = [imagesBox viewWithTag: sender.tag + 10];
+		BOOL enabled = sender.state == NSOnState;
+
+		[_theme.imageColors
+			replaceObjectAtIndex: sender.tag
+			withObject: enabled
+				? [colorWell.color colorUsingColorSpace: [NSColorSpace sRGBColorSpace]]
+				: [NSNull null]];
+
+		colorWell.enabled = enabled;
+		_flags.themeHasChanged = YES;
 		}
 
 
 	- (IBAction) setImageColor: (NSColorWell *) sender
 		{
 		NSColor *color = [sender.color colorUsingColorSpace: [NSColorSpace sRGBColorSpace]];
-		NSUInteger key = sender.tag - 10;
+		NSInteger index = sender.tag - 30;
 
-		[[imagesBox viewWithTag: 30 + key] setImage: [self
-			imageFromImage: [_themeImages objectAtIndex: key]
+		[[imagesBox viewWithTag: index] setImage: [self
+			imageFromImage: [_themeImages objectAtIndex: index]
 			tintColor:	color]];
 
-		[_theme setImageColor: color forKey: key];
+		[_theme.imageColors replaceObjectAtIndex: index withObject: color];
 		_flags.themeHasChanged = YES;
 		}
 
