@@ -72,12 +72,13 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 	GameValues	  _values;;
 	NSSize		  _surfaceSize;
 	CGFloat		  _textureSize;
-	GLuint		  _textureNames[11];
+	GLuint		  _textureNames[12];
 	NSBitmapImageRep* _bitmap;
 	Theme*		  _theme;
 	NSMutableArray*	  _themeImages;
-	GLfloat		  _cellColors1[6][3];
-	GLfloat		  _cellColors2[3][4][3];
+	GLfloat		  _gridColor[3];
+	GLfloat		  _cellColors[23][3];
+	GLfloat		  _alternateCellColors[7][3];
 	CGFloat		  _cellBrightnessDelta;
 	BoardState	  _state;
 	Z2DSize		  _coordinates;
@@ -89,18 +90,18 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 		BOOL texturesCreated :1;
 	} _flags;
 }
-	@property (nonatomic, readonly)  BoardState	   state;
-	@property (nonatomic, readonly)  NSUInteger	   width;
-	@property (nonatomic, readonly)  NSUInteger	   height;
-	@property (nonatomic, readonly)  NSUInteger	   mineCount;
-	@property (nonatomic, readonly)  NSUInteger	   flagCount;
-	@property (nonatomic, readonly)  NSUInteger	   clearedCount;
+	@property (nonatomic, readonly ) BoardState	   state;
+	@property (nonatomic, readonly ) NSUInteger	   width;
+	@property (nonatomic, readonly ) NSUInteger	   height;
+	@property (nonatomic, readonly ) NSUInteger	   mineCount;
+	@property (nonatomic, readonly ) NSUInteger	   flagCount;
+	@property (nonatomic, readonly ) NSUInteger	   clearedCount;
 	@property (nonatomic, readwrite) BOOL		   showMines;
 	@property (nonatomic, readwrite) BOOL		   showGoodFlags;
 	@property (nonatomic, readwrite) BoardButtonAction leftButtonAction;
-	@property (nonatomic, readonly)	 GameValues	   values;
-	@property (nonatomic, readonly)	 Theme*		   theme;
-	@property (nonatomic, readonly)  NSMutableArray*   themeImages;
+	@property (nonatomic, readonly ) GameValues	   values;
+	@property (nonatomic, readonly ) Theme*		   theme;
+	@property (nonatomic, readonly ) NSMutableArray*   themeImages;
 
 	- (void) setTheme: (Theme	   *) theme
 		 images:   (NSMutableArray *) images;

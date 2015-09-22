@@ -119,10 +119,10 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		}
 
 
-	- (void) createTextureForImageWithKey: (NSUInteger) key
+	- (void) createTextureForImageAtIndex: (NSUInteger) index
 		{
 		NSColor *color;
-		NSImage *image = [_themeImages objectAtIndex: key];
+		NSImage *image = [_themeImages objectAtIndex: index];
 		NSRect frame = NSMakeRect(0.0, 0.0, _textureSize, _textureSize);
 
 		[[NSColor clearColor] setFill];
@@ -132,7 +132,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			{
 			frame = RectangleFitInCenter(frame, image.size);
 
-			if ((color = [_theme imageColorForKey: key]))
+			if ([(color = [_theme.imageColors objectAtIndex: index]) isEqualTo: [NSNull null]])
 				{
 				CGFloat components[4];
 
@@ -161,7 +161,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 				fraction:   1.0];
 			}
 
-		_textureNames[8 + key] = [self createTextureFromBlock: [_bitmap bitmapData]];
+		_textureNames[8 + index] = [self createTextureFromBlock: [_bitmap bitmapData]];
 		}
 
 
