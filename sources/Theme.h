@@ -8,31 +8,13 @@ Released under the terms of the GNU General Public License v3. */
 
 #import <Cocoa/Cocoa.h>
 
-#define kThemeColorKeyCovered	    0
-#define kThemeColorKeyFlag	    1
-#define kThemeColorKeyConfirmedFlag 2
-#define kThemeColorKeyMine	    3
-#define kThemeColorKeyWarning	    4
-#define kThemeColorKeyClean	    5
-
-#define kThemeImageKeyFlag	    0
-#define kThemeImageKeyConfirmedFlag 1
-#define kThemeImageKeyMine	    2
-#define kThemeImageKeyExplosion     3
-
-@protocol ThemeOwner
-
-	- (void) updateNumbers;
-
-	- (void) updateNumber: (NSUInteger) number;
-
-	- (void) updateImageWithKey: (NSUInteger) key;
-
-	- (void) updateColorWithKey: (NSUInteger) key;
-
-	- (void) updateAlternateColors;
-
-@end
+#define kThemeIndexUnknown   0
+#define kThemeIndexFlag	     1
+#define kThemeIndexGoodFlag  2
+#define kThemeIndexMine	     3
+#define kThemeIndexExplosion 4
+#define kThemeIndexClean     5
+#define kThemeIndexWarning   6
 
 @interface Theme : NSObject {
 	NSString*	_name;

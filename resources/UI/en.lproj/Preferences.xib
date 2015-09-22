@@ -2140,6 +2140,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="700765699"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">7</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2159,6 +2160,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="403040323"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">10</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2178,6 +2180,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="274539694"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">8</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2197,6 +2200,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="877193929"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">9</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2238,6 +2242,7 @@
 										<reference key="NSSuperview" ref="866264799"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="494412694"/>
+										<int key="NSTag">3</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2257,6 +2262,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="673064571"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">19</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2276,6 +2282,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="488328626"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">22</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2295,6 +2302,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="261288447"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">20</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2314,6 +2322,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="890284534"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">21</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2355,6 +2364,7 @@
 										<reference key="NSSuperview" ref="866264799"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="448215302"/>
+										<int key="NSTag">2</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2374,6 +2384,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="285165447"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">15</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2393,6 +2404,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="411876293"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">18</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2412,6 +2424,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="974496064"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">16</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2431,6 +2444,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="70909402"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">17</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2495,7 +2509,7 @@
 										<reference key="NSSuperview" ref="866264799"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="472037437"/>
-										<int key="NSTag">4</int>
+										<int key="NSTag">6</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2514,7 +2528,7 @@
 										<reference key="NSSuperview" ref="866264799"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="755503295"/>
-										<int key="NSTag">4</int>
+										<int key="NSTag">5</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2579,6 +2593,7 @@
 										<reference key="NSSuperview" ref="866264799"/>
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="245136421"/>
+										<int key="NSTag">1</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2598,6 +2613,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="469763272"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">11</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2617,6 +2633,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="168747193"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">14</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2636,6 +2653,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="669030261"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">12</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -2655,6 +2673,7 @@
 										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="1029802359"/>
 										<string key="NSReuseIdentifierKey">_NS:1608</string>
+										<int key="NSTag">13</int>
 										<bool key="NSEnabled">YES</bool>
 										<bool key="NSAllowsLogicalLayoutDirection">NO</bool>
 										<bool key="NSIsBordered">YES</bool>
@@ -4203,7 +4222,6 @@
 							<reference ref="1029802359"/>
 							<reference ref="245136421"/>
 							<reference ref="511360833"/>
-							<reference ref="780415056"/>
 							<reference ref="478975251"/>
 							<reference ref="755503295"/>
 							<reference ref="768634842"/>
@@ -4226,6 +4244,7 @@
 							<reference ref="448215302"/>
 							<reference ref="974496064"/>
 							<reference ref="463043812"/>
+							<reference ref="780415056"/>
 							<reference ref="494412694"/>
 							<reference ref="1001991601"/>
 						</array>
