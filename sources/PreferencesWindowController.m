@@ -332,9 +332,7 @@ Released under the terms of the GNU General Public License v3. */
 
 
 	- (void) willChangeThemeListSelection
-		{
-		if (_flags.themeIsUnsaved || _flags.themeHasChanged) [self saveTheme];
-		}
+		{if (_flags.themeIsUnsaved || _flags.themeHasChanged) [self saveTheme];}
 
 
 #	pragma mark - NSTableViewDataSource Protocol
@@ -529,6 +527,8 @@ Released under the terms of the GNU General Public License v3. */
 				[[imagesBox viewWithTag: _imageIndex] setImage: [self
 					imageFromImage:	 resultData->image
 					tintColor:	 color]];
+
+				[_board didChangeThemeProperty: kThemePropertyImage valueAtIndex: _imageIndex];
 				}
 			}
 
@@ -697,6 +697,7 @@ Released under the terms of the GNU General Public License v3. */
 		{
 		_theme.grid = sender.state == NSOnState;
 		_flags.themeHasChanged = YES;
+		[_board didChangeThemeProperty: kThemePropertyGrid valueAtIndex: 0];
 		}
 
 
@@ -707,6 +708,7 @@ Released under the terms of the GNU General Public License v3. */
 		_theme.gridColor = color;
 		sender.color = color;
 		_flags.themeHasChanged = YES;
+		[_board didChangeThemeProperty: kThemePropertyGridColor valueAtIndex: 0];
 		}
 
 
@@ -714,6 +716,7 @@ Released under the terms of the GNU General Public License v3. */
 		{
 		_theme.cellBorder = sender.state == NSOnState;
 		_flags.themeHasChanged = YES;
+		[_board didChangeThemeProperty: kThemePropertyCellBorder valueAtIndex: 0];
 		}
 
 
@@ -721,6 +724,7 @@ Released under the terms of the GNU General Public License v3. */
 		{
 		_theme.mineCellBorder = sender.state == NSOnState;
 		_flags.themeHasChanged = YES;
+		[_board didChangeThemeProperty: kThemePropertyMineCellBorder valueAtIndex: 0];
 		}
 
 
@@ -728,6 +732,7 @@ Released under the terms of the GNU General Public License v3. */
 		{
 		_theme.cellBorderSize = sender.doubleValue;
 		_flags.themeHasChanged = YES;
+		[_board didChangeThemeProperty: kThemePropertyCellBorderSize valueAtIndex: 0];
 		}
 
 
@@ -735,6 +740,7 @@ Released under the terms of the GNU General Public License v3. */
 		{
 		_theme.alternateCoveredCells = sender.state == NSOnState;
 		_flags.themeHasChanged = YES;
+		[_board didChangeThemeProperty: kThemePropertyAlternateCoveredCells valueAtIndex: 0];
 		}
 
 
@@ -742,6 +748,7 @@ Released under the terms of the GNU General Public License v3. */
 		{
 		_theme.alternateUncoveredCells = sender.state == NSOnState;
 		_flags.themeHasChanged = YES;
+		[_board didChangeThemeProperty: kThemePropertyAlternateUncoveredCells valueAtIndex: 0];
 		}
 
 
@@ -749,26 +756,31 @@ Released under the terms of the GNU General Public License v3. */
 		{
 		_theme.cellBrightnessDelta = sender.doubleValue;
 		_flags.themeHasChanged = YES;
+		[_board didChangeThemeProperty: kThemePropertyCellBrightnessDelta valueAtIndex: 0];
 		}
 
 
 	- (IBAction) setCellColor: (NSColorWell *) sender
 		{
 		NSColor *color = sender.color.opaqueSRGBColor;
+		NSUInteger index = sender.tag;
 
-		[_theme.cellColors replaceObjectAtIndex: sender.tag withObject: color];
+		[_theme.cellColors replaceObjectAtIndex: index withObject: color];
 		sender.color = color;
 		_flags.themeHasChanged = YES;
+		[_board didChangeThemeProperty: kThemePropertyCellColor valueAtIndex: index];
 		}
 
 
 	- (IBAction) setNumberColor: (NSColorWell *) sender
 		{
 		NSColor *color = sender.color.opaqueSRGBColor;
+		NSUInteger index = sender.tag;
 
-		[_theme.numberColors replaceObjectAtIndex: sender.tag withObject: color];
+		[_theme.numberColors replaceObjectAtIndex: index withObject: color];
 		sender.color = color;
 		_flags.themeHasChanged = YES;
+		[_board didChangeThemeProperty: kThemePropertyNumberColor valueAtIndex: index];
 		}
 
 
@@ -781,6 +793,7 @@ Released under the terms of the GNU General Public License v3. */
 			numberFontNameTextField.stringValue = font.displayName;
 			_theme.numberFontName = font.fontName;
 			_flags.themeHasChanged = YES;
+			[_board didChangeThemeProperty: kThemePropertyNumberFontName valueAtIndex: 0];
 			}
 		}
 
@@ -789,6 +802,7 @@ Released under the terms of the GNU General Public License v3. */
 		{
 		_theme.numberFontScale = sender.doubleValue;
 		_flags.themeHasChanged = YES;
+		[_board didChangeThemeProperty: kThemePropertyNumberFontScale valueAtIndex: 0];
 		}
 
 
@@ -796,15 +810,17 @@ Released under the terms of the GNU General Public License v3. */
 		{
 		NSColorWell *colorWell = [imagesBox viewWithTag: sender.tag + 10];
 		BOOL enabled = sender.state == NSOnState;
+		NSUInteger index = sender.tag;
 
 		[_theme.imageColors
-			replaceObjectAtIndex: sender.tag
+			replaceObjectAtIndex: index
 			withObject: enabled
 				? [colorWell.color colorUsingColorSpace: [NSColorSpace sRGBColorSpace]]
 				: [NSNull null]];
 
 		colorWell.enabled = enabled;
 		_flags.themeHasChanged = YES;
+		[_board didChangeThemeProperty: kThemePropertyImageColor valueAtIndex: index];
 		}
 
 
@@ -819,6 +835,7 @@ Released under the terms of the GNU General Public License v3. */
 
 		[_theme.imageColors replaceObjectAtIndex: index withObject: color];
 		_flags.themeHasChanged = YES;
+		[_board didChangeThemeProperty: kThemePropertyImageColor valueAtIndex: index];
 		}
 
 

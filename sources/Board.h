@@ -65,7 +65,7 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 
 @end
 
-@interface Board : NSOpenGLView <ThemeOwner> {
+@interface Board : NSOpenGLView {
 	IBOutlet id <BoardDelegate> delegate;
 
 	Minesweeper	  _game;
@@ -104,6 +104,9 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 
 	- (void) setTheme: (Theme	   *) theme
 		 images:   (NSMutableArray *) images;
+
+	- (void) didChangeThemeProperty: (uint8_t) property
+		 valueAtIndex:		 (uint8_t) index;
 
 	- (void) newGameWithValues: (GameValues) values;
 

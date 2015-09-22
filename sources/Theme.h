@@ -16,6 +16,21 @@ Released under the terms of the GNU General Public License v3. */
 #define kThemeIndexClean     5
 #define kThemeIndexWarning   6
 
+#define kThemePropertyGrid		      0
+#define kThemePropertyGridColor		      1
+#define kThemePropertyCellBorder	      2
+#define kThemePropertyMineCellBorder	      3
+#define kThemePropertyCellBorderSize	      4
+#define kThemePropertyAlternateCoveredCells   5
+#define kThemePropertyAlternateUncoveredCells 6
+#define kThemePropertyCellBrightnessDelta     7
+#define kThemePropertyCellColor		      8
+#define kThemePropertyNumberColor	      9
+#define kThemePropertyNumberFontName	     10
+#define kThemePropertyNumberFontScale	     11
+#define kThemePropertyImage		     12
+#define kThemePropertyImageColor	     13
+
 @interface Theme : NSObject {
 	NSString*	_name;
 	NSColor*	_laserColor;

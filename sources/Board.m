@@ -823,6 +823,31 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		}
 
 
+	- (void) didChangeThemeProperty: (uint8_t) property
+		 valueAtIndex:		 (uint8_t) index
+		{
+		switch (property)
+			{
+			case kThemePropertyGrid:
+			case kThemePropertyGridColor:
+			case kThemePropertyCellBorder:
+			case kThemePropertyMineCellBorder:
+			case kThemePropertyMineCellBorder:
+			case kThemePropertyCellBorderSize:
+			case kThemePropertyAlternateCoveredCells:
+			case kThemePropertyAlternateUncoveredCells:
+			case kThemePropertyCellBrightnessDelta:
+			case kThemePropertyCellColor:
+			case kThemePropertyNumberColor:
+			case kThemePropertyNumberFontName:
+			case kThemePropertyNumberFontScale:
+			case kThemePropertyImage:
+			case kThemePropertyImageColor:
+			default: break;
+			}
+		}
+
+
 	- (void) newGameWithValues: (GameValues) values
 		{
 		GameValues oldValues = _values;

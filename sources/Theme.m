@@ -102,7 +102,7 @@ Released under the terms of the GNU General Public License v3. */
 
 			|| !(cellColors = [dictionary objectForKey: @"CellColors"])
 			|| ![cellColors isKindOfClass: arrayClass]
-			|| cellColors.count != (cellBorder ? ([value boolValue] ? 16 : 12) : 7)
+			|| cellColors.count != (cellBorder ? ([value boolValue] ? 23 : 19) : 7)
 			|| !(alternateCoveredCells = [dictionary objectForKey: @"AlternateCoveredCells"])
 			|| ![alternateCoveredCells isKindOfClass: numberClass]
 			|| !(alternateUncoveredCells = [dictionary objectForKey: @"AlternateUncoveredCells"])
