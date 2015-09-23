@@ -72,7 +72,8 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 	GameValues	  _values;;
 	NSSize		  _surfaceSize;
 	CGFloat		  _textureSize;
-	GLuint		  _textureNames[12];
+	GLuint		  _numberTextures[8];
+	GLuint		  _imageTextures[4];
 	NSBitmapImageRep* _bitmap;
 	Theme*		  _theme;
 	NSMutableArray*	  _themeImages;

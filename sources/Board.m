@@ -161,7 +161,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 				fraction:   1.0];
 			}
 
-		_textureNames[8 + index] = [self createTextureFromBlock: [_bitmap bitmapData]];
+		_imageTextures[index] = [self createTextureFromBlock: [_bitmap bitmapData]];
 		}
 
 
@@ -171,11 +171,10 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		NSRect frame;
 		NSBezierPath *path;
 		NSAffineTransform *transform;
-		NSString *fontName = _theme.fontName;
 
 		NSFont *font = [NSFont
-			fontWithName: fontName ? fontName : @"Lucida Grande Bold"
-			size:	      floor(_textureSize * _theme.fontScaling)];
+			fontWithName: _theme.numberFontName
+			size:	      floor(_textureSize * _theme.numberFontScale)];
 
 		CTFontGetGlyphsForCharacters((CTFontRef)font, &numbers_[number - 1], &glyph, 1);
 		//NSLog(@"%@", [font _defaultGlyphForChar: numbers[number]] == glyph ? @"YES" : @"NO");
@@ -210,90 +209,55 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			yBy:	      round(-frame.origin.y + _textureSize / 2.0 - frame.size.height / 2.0)];
 
 		[path transformUsingAffineTransform: transform];
-		[[[_theme colorForNumber: number] colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]] setFill];
-		[path fill];
 
-		_textureNames[number - 1] = [self createTextureFromBlock: [_bitmap bitmapData]];
+		[[[_theme.numberColors objectAtIndex: number - 1]
+			colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]] setFill];
+
+		[path fill];
+		_numberTextures[number - 1] = [self createTextureFromBlock: [_bitmap bitmapData]];
 		}
 
 
 	- (void) createNumberTextures
-		{
-		[self createTextureForNumber: 1];
-		[self createTextureForNumber: 2];
-		[self createTextureForNumber: 3];
-		[self createTextureForNumber: 4];
-		[self createTextureForNumber: 5];
-		[self createTextureForNumber: 6];
-		[self createTextureForNumber: 7];
-		[self createTextureForNumber: 8];
-		}
+		{for (NSUInteger i = 1; i < 9; i++) [self createTextureForNumber: i];}
 
 
 	- (void) createImageTextures
-		{
-		[self createTextureForImageWithKey: kThemeImageKeyFlag	   ];
-		[self createTextureForImageWithKey: kThemeImageKeyMine	   ];
-		[self createTextureForImageWithKey: kThemeImageKeyExplosion];
-		}
+		{for (NSUInteger i = 0; i < 4; i++) [self createTextureForImageAtIndex: i];}
 
 
-	- (void) updateCellColorsForKey: (NSUInteger) key
+	- (void) updateCellColorAtIndex: (NSUInteger) index
 		{
-		CGFloat  delta		= _theme.cellBrightnessDelta;
-		//NSColor* color	= [_theme colorForKey: key];
-		NSColor* color		= [[_theme colorForKey: key] colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]];
-		GLfloat* color1		= _cellColors1[key];
 		CGFloat  components[4];
 
-		[color getComponents: components];
+		[[[_theme.cellColors objectAtIndex: index]
+			colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]]
+				getComponents: components];
 
-		color1[0] = components[0];
-		color1[1] = components[1];
-		color1[2] = components[2];
-
-		if (key <= kThemeColorKeyConfirmedFlag)
-			{
-			GLfloat* color2 = _cellColors2[key][0];
-
-			if (_flags.flat)
-				{
-				color2[0] = color1[0] + delta;
-				color2[1] = color1[1] + delta;
-				color2[2] = color1[2] + delta;
-
-				if (color2[0] > 1.0) color2[0] = 1.0; else if (color2[0] < 0.0) color2[0] = 0.0;
-				if (color2[1] > 1.0) color2[1] = 1.0; else if (color2[1] < 0.0) color2[1] = 0.0;
-				if (color2[2] > 1.0) color2[2] = 1.0; else if (color2[2] < 0.0) color2[2] = 0.0;
-				}
-
-			else	{
-				NSColor *mask = [NSColor colorWithSRGBRed: 0.0 green: 0.0 blue: 0.0 alpha: 1.0];
-				[[color blendedColorWithFraction: 0.625 ofColor: mask] getComponents: components];
-				color2[0] = components[0];
-				color2[1] = components[1];
-				color2[2] = components[2];
-
-				mask = [NSColor colorWithSRGBRed: 0.0 green: 0.0 blue: 0.0 alpha: 1.0];
-				[[color blendedColorWithFraction: 0.25 ofColor: mask] getComponents: components];
-				color2[3] = components[0];
-				color2[4] = components[1];
-				color2[5] = components[2];
-
-				mask = [NSColor colorWithSRGBRed: 1.0 green: 1.0 blue: 1.0 alpha: 1.0];
-				[[color blendedColorWithFraction: 0.75 ofColor: mask] getComponents: components];
-				color2[6] = components[0];
-				color2[7] = components[1];
-				color2[8] = components[2];
-
-				mask = [NSColor colorWithSRGBRed: 1.0 green: 1.0 blue: 1.0 alpha: 1.0];
-				[[color blendedColorWithFraction: 0.5 ofColor: mask] getComponents: components];
-				color2[ 9] = components[0];
-				color2[10] = components[1];
-				color2[11] = components[2];
-				}
-			}
+		_cellColors[index][0] = components[0];
+		_cellColors[index][1] = components[1];
+		_cellColors[index][2] = components[2];
 		}
+
+
+	- (void) updateCellColors
+		{for (NSUInteger i = 0; i < 7; i++) [self updateCellColorAtIndex: i];}
+
+
+	- (void) updateAlternateCellColorAtIndex: (NSUInteger) index
+		{
+		CGFloat delta = _theme.cellBrightnessDelta;
+		GLfloat* color1 = _cellColors[index];
+		GLfloat* color2 = _alternateCellColors[index];
+
+		color2[0] = z_type_clamp_01(FLOAT)(color1[0] + delta);
+		color2[1] = z_type_clamp_01(FLOAT)(color1[1] + delta);
+		color2[2] = z_type_clamp_01(FLOAT)(color1[2] + delta);
+		}
+
+
+	- (void) updateAlternateCellColors
+		{for (NSUInteger i = 0; i < 7; i++) [self updateAlternateCellColorAtIndex: i];}
 
 
 	- (Z2DSize) cellCoordinatesOfEvent: (NSEvent *) event
@@ -394,7 +358,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		{
 		if (_game.state > MINESWEEPER_STATE_INITIALIZED)
 			{
-			if (_flags.texturesCreated) glDeleteTextures(8, _textureNames);
+			if (_flags.texturesCreated) glDeleteTextures(8, _numberTextures);
 			[self setTextureGraphicContext];
 			[self createNumberTextures];
 			[NSGraphicsContext restoreGraphicsState];
@@ -407,7 +371,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		{
 		if (_game.state > MINESWEEPER_STATE_INITIALIZED)
 			{
-			if (_flags.texturesCreated) glDeleteTextures(1, &_textureNames[number - 1]);
+			if (_flags.texturesCreated) glDeleteTextures(1, &_numberTextures[number - 1]);
 			[self setTextureGraphicContext];
 			[self createTextureForNumber: number];
 			[NSGraphicsContext restoreGraphicsState];
@@ -417,13 +381,13 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		}
 
 
-	- (void) updateImageWithKey: (NSUInteger) key
+	- (void) updateImageAtIndex: (NSUInteger) index
 		{
 		if (_game.state > MINESWEEPER_STATE_INITIALIZED)
 			{
-			if (_flags.texturesCreated) glDeleteTextures(1, &_textureNames[8 + key]);
+			if (_flags.texturesCreated) glDeleteTextures(1, &_imageTextures[index]);
 			[self setTextureGraphicContext];
-			[self createTextureForImageWithKey: key];
+			[self createTextureForImageAtIndex: index];
 			[NSGraphicsContext restoreGraphicsState];
 			self.needsDisplay = YES;
 			}
