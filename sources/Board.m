@@ -161,7 +161,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 				fraction:   1.0];
 			}
 
-		_imageTextures[index] = [self createTextureFromBlock: [_bitmap bitmapData]];
+		_textures[8 + index] = [self createTextureFromBlock: [_bitmap bitmapData]];
 		}
 
 
@@ -214,7 +214,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]] setFill];
 
 		[path fill];
-		_numberTextures[number - 1] = [self createTextureFromBlock: [_bitmap bitmapData]];
+		_textures[number - 1] = [self createTextureFromBlock: [_bitmap bitmapData]];
 		}
 
 
@@ -351,80 +351,6 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		}
 
 
-#	pragma mark - ThemeOwner Protocol
-
-
-	- (void) updateNumbers
-		{
-		if (_game.state > MINESWEEPER_STATE_INITIALIZED)
-			{
-			if (_flags.texturesCreated) glDeleteTextures(8, _numberTextures);
-			[self setTextureGraphicContext];
-			[self createNumberTextures];
-			[NSGraphicsContext restoreGraphicsState];
-			self.needsDisplay = YES;
-			}
-		}
-
-
-	- (void) updateNumber: (NSUInteger) number
-		{
-		if (_game.state > MINESWEEPER_STATE_INITIALIZED)
-			{
-			if (_flags.texturesCreated) glDeleteTextures(1, &_numberTextures[number - 1]);
-			[self setTextureGraphicContext];
-			[self createTextureForNumber: number];
-			[NSGraphicsContext restoreGraphicsState];
-			self.needsDisplay = YES;
-			}
-
-		}
-
-
-	- (void) updateImageAtIndex: (NSUInteger) index
-		{
-		if (_game.state > MINESWEEPER_STATE_INITIALIZED)
-			{
-			if (_flags.texturesCreated) glDeleteTextures(1, &_imageTextures[index]);
-			[self setTextureGraphicContext];
-			[self createTextureForImageAtIndex: index];
-			[NSGraphicsContext restoreGraphicsState];
-			self.needsDisplay = YES;
-			}
-		}
-
-
-	- (void) updateColorWithKey: (NSUInteger) key
-		{
-		[self updateCellColorsForKey: key];
-		self.needsDisplay = YES;
-		}
-
-
-	- (void) updateAlternateColors
-		{
-		CGFloat delta = _theme.cellBrightnessDelta;
-
-		_flags.flat = _theme.flat;
-
-		//NSLog(@"updateAlternateColors");
-
-		//if (_cellBrightnessDelta != delta)
-		//	{
-			_cellBrightnessDelta = delta;
-
-			[self updateCellColorsForKey: kThemeColorKeyCovered      ];
-			[self updateCellColorsForKey: kThemeColorKeyClean	 ];
-			[self updateCellColorsForKey: kThemeColorKeyFlag	 ];
-			[self updateCellColorsForKey: kThemeColorKeyConfirmedFlag];
-			[self updateCellColorsForKey: kThemeColorKeyMine	 ];
-			[self updateCellColorsForKey: kThemeColorKeyWarning      ];
-		//	}
-
-		if (_game.state > MINESWEEPER_STATE_INITIALIZED) self.needsDisplay = YES;
-		}
-
-
 #	pragma mark - Overwritten
 
 
@@ -444,7 +370,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 	- (void) dealloc
 		{
-		if (_flags.texturesCreated) glDeleteTextures(11, _textureNames);
+		if (_flags.texturesCreated) glDeleteTextures(12, _textures);
 		minesweeper_finalize(&_game);
 
 		[_theme	      release];
@@ -503,7 +429,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			glEnableClientState(GL_VERTEX_ARRAY);
 			glMatrixMode(GL_MODELVIEW);
 			glLoadIdentity();
-
+/*
 			if (_flags.flat)
 				{
 				GLfloat *palette[2] = {_cellColors1, _cellColors2};
@@ -658,7 +584,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 					textureName = NULL;
 					}
 				}
-
+*/
 			glDisable(GL_TEXTURE_2D);
 			glDisable(GL_BLEND);
 			}
@@ -694,7 +620,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			//----------------------------------------------.
 			// Destruimos las texturas actuales si existen. |
 			//----------------------------------------------'
-			if (_flags.texturesCreated) glDeleteTextures(11, _textureNames);
+			if (_flags.texturesCreated) {glDeleteTextures(12, _textures);}
 
 			//------------------------------------------------.
 			// Avisamos de que las texturas han sido creadas. |
@@ -795,20 +721,60 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			case kThemePropertyGrid:
 			case kThemePropertyGridColor:
 			case kThemePropertyCellBorder:
+			for (NSUInteger i = 7; i < 7 + 4 * 3; i++) [self updateCellColorAtIndex: i];
+			if (!_theme.mineCellBorder) break;
+
 			case kThemePropertyMineCellBorder:
-			case kThemePropertyMineCellBorder:
+			for (NSUInteger i = 7 + 4 * kThemeIndexMine; i < 7 + 4 * kThemeIndexMine + 4; i++)
+				[self updateCellColorAtIndex: i];
+			break;
+
 			case kThemePropertyCellBorderSize:
+
 			case kThemePropertyAlternateCoveredCells:
+			if (_theme.alternateCoveredCells) [self updateAlternateCellColors];
+			break;
+
 			case kThemePropertyAlternateUncoveredCells:
+			if (_theme.alternateUncoveredCells) [self updateAlternateCellColors];
+			break;
+
 			case kThemePropertyCellBrightnessDelta:
+			[self updateAlternateCellColors];
+			break;
+
 			case kThemePropertyCellColor:
+			[self updateCellColorAtIndex: index];
+			if (index < 7) [self updateAlternateCellColorAtIndex: index];
+			break;
+
 			case kThemePropertyNumberColor:
+			if (_flags.texturesCreated) glDeleteTextures(1, &_textures[index]);
+			[self setTextureGraphicContext];
+			[self createTextureForNumber: index + 1];
+			[NSGraphicsContext restoreGraphicsState];
+			break;
+
 			case kThemePropertyNumberFontName:
 			case kThemePropertyNumberFontScale:
+			if (_flags.texturesCreated) glDeleteTextures(8, _textures);
+			[self setTextureGraphicContext];
+			[self createNumberTextures];
+			[NSGraphicsContext restoreGraphicsState];
+			break;
+
 			case kThemePropertyImage:
 			case kThemePropertyImageColor:
+			if (_flags.texturesCreated) glDeleteTextures(1, &_textures[8 + index]);
+			[self setTextureGraphicContext];
+			[self createTextureForImageAtIndex: index];
+			[NSGraphicsContext restoreGraphicsState];
+			break;
+
 			default: break;
 			}
+
+		self.needsDisplay = YES;
 		}
 
 

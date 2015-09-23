@@ -72,15 +72,13 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 	GameValues	  _values;;
 	NSSize		  _surfaceSize;
 	CGFloat		  _textureSize;
-	GLuint		  _numberTextures[8];
-	GLuint		  _imageTextures[4];
+	GLuint		  _textures[12];
 	NSBitmapImageRep* _bitmap;
 	Theme*		  _theme;
 	NSMutableArray*	  _themeImages;
 	GLfloat		  _gridColor[3];
 	GLfloat		  _cellColors[23][3];
 	GLfloat		  _alternateCellColors[7][3];
-	CGFloat		  _cellBrightnessDelta;
 	BoardState	  _state;
 	Z2DSize		  _coordinates;
 	BoardButtonAction _leftButtonAction;
