@@ -15,8 +15,9 @@ Released under the terms of the GNU General Public License v3. */
 //@end
 
 #define kTextureIndexFlag	 8
-#define kTextureIndexMine	 9
-#define kTextureIndexExplosion	10
+#define kTextureIndexGoodFlag	 9
+#define kTextureIndexMine	10
+#define kTextureIndexExplosion	11
 #define CELL_WARNING		MINESWEEPER_CELL_WARNING(cell)
 #define CELL_IS(what)		MINESWEEPER_CELL_##what(cell)
 
@@ -176,7 +177,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			fontWithName: _theme.numberFontName
 			size:	      floor(_textureSize * _theme.numberFontScale)];
 
-		CTFontGetGlyphsForCharacters((CTFontRef)font, &numbers_[number - 1], &glyph, 1);
+		CTFontGetGlyphsForCharacters((CTFontRef)font, &numbers_[number], &glyph, 1);
 		//NSLog(@"%@", [font _defaultGlyphForChar: numbers[number]] == glyph ? @"YES" : @"NO");
 
 #		if DEBUG_GEOMETRY
@@ -210,20 +211,28 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 		[path transformUsingAffineTransform: transform];
 
-		[[[_theme.numberColors objectAtIndex: number - 1]
+		[[[_theme.numberColors objectAtIndex: number]
 			colorUsingColorSpace: [NSColorSpace deviceRGBColorSpace]] setFill];
 
 		[path fill];
-		_textures[number - 1] = [self createTextureFromBlock: [_bitmap bitmapData]];
+		_textures[number] = [self createTextureFromBlock: [_bitmap bitmapData]];
 		}
 
 
 	- (void) createNumberTextures
-		{for (NSUInteger i = 1; i < 9; i++) [self createTextureForNumber: i];}
+		{
+		NSUInteger c = 8;
+
+		while (c) [self createTextureForNumber: --c];
+		}
 
 
 	- (void) createImageTextures
-		{for (NSUInteger i = 0; i < 4; i++) [self createTextureForImageAtIndex: i];}
+		{
+		NSUInteger c = 4;
+
+		while (c) [self createTextureForImageAtIndex: --c];
+		}
 
 
 	- (void) updateCellColorAtIndex: (NSUInteger) index
@@ -241,7 +250,11 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 
 	- (void) updateCellColors
-		{for (NSUInteger i = 0; i < 7; i++) [self updateCellColorAtIndex: i];}
+		{
+		NSUInteger c = _theme.cellColors.count;
+
+		while (c) [self updateCellColorAtIndex: --c];
+		}
 
 
 	- (void) updateAlternateCellColorAtIndex: (NSUInteger) index
@@ -257,7 +270,11 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 
 	- (void) updateAlternateCellColors
-		{for (NSUInteger i = 0; i < 7; i++) [self updateAlternateCellColorAtIndex: i];}
+		{
+		NSUInteger c = 7;
+
+		while (c) [self updateAlternateCellColorAtIndex: --c];
+		}
 
 
 	- (Z2DSize) cellCoordinatesOfEvent: (NSEvent *) event
@@ -419,7 +436,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			GLdouble cellX;
 			GLdouble cellY;
 			GLint	 x, y;
-			GLuint*	 textureName   = NULL;
+			NSUInteger textureIndex = NSNotFound;
 			BOOL	 showMines     = _flags.showMines;
 			BOOL	 showGoodFlags = _flags.showGoodFlags;
 			GLdouble cellWidth     = _surfaceSize.width  / (GLdouble)_values.width;
@@ -429,88 +446,8 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			glEnableClientState(GL_VERTEX_ARRAY);
 			glMatrixMode(GL_MODELVIEW);
 			glLoadIdentity();
-/*
-			if (_flags.flat)
-				{
-				GLfloat *palette[2] = {_cellColors1, _cellColors2};
-				NSInteger paletteIndex = 0;
 
-				for (y = 0; y < _values.height; y++)
-					{
-					for (x = 0; x < _values.width; x++, paletteIndex = !paletteIndex)
-						{
-						cell = minesweeper_cell(&_game, z_2d_type(SIZE)(x, y));
-
-						if (CELL_IS(DISCLOSED))
-							{
-							if (CELL_IS(EXPLODED))
-								{
-								colorIndex = kThemeColorKeyMine;
-								textureName = &_textureNames[kTextureIndexExplosion];
-								}
-
-							else if (CELL_IS(WARNING))
-								{
-								colorIndex = kThemeColorKeyWarning;
-								textureName = &_textureNames[CELL_WARNING - 1];
-								}
-
-							else colorIndex = kThemeColorKeyClean;
-
-							glColor3fv(_cellColors1[colorIndex]);
-							}
-
-						else	{
-							if (CELL_IS(FLAG))
-								{
-								colorIndex = (_state != kBoardStateGame && CELL_IS(MINE) && showGoodFlags)
-									 ? kThemeColorKeyConfirmedFlag
-									 : kThemeColorKeyFlag;
-
-								textureName = &_textureNames[kTextureIndexFlag];
-								}
-
-							else	{
-								colorIndex = kThemeColorKeyCovered;
-
-								if (showMines && CELL_IS(MINE))
-									textureName = &_textureNames[kTextureIndexMine];
-
-								glColor3fv(&palette[paletteIndex][colorIndex * 3]);
-								}
-							}
-
-						glPushMatrix();
-						glTranslated(cellX = cellWidth * (GLdouble)x, cellY = cellHeight * (GLdouble)y, 0.0);
-						glScaled(cellWidth, cellHeight, 1.0);
-						glBindTexture(GL_TEXTURE_2D, 0);
-						glVertexPointer(2, GL_DOUBLE, 0, cellVertices);
-						glDrawArrays(GL_QUADS, 0, 4);
-						glPopMatrix();
-
-						if (textureName != NULL)
-							{
-							//SET_COLOR(Warning);
-							glPushMatrix();
-							glTranslated(ceil(cellX), ceil(cellY), 0.0);
-							glScaled(_textureSize, _textureSize, 1.0);
-							glBindTexture(GL_TEXTURE_2D, *textureName);
-							glBegin(GL_QUADS);
-								glTexCoord2d(0.0, 0.0); glVertex2d(0.0,	1.0);
-								glTexCoord2d(1.0, 0.0); glVertex2d(1.0, 1.0);
-								glTexCoord2d(1.0, 1.0); glVertex2d(1.0, 0.0);
-								glTexCoord2d(0.0, 1.0); glVertex2d(0.0, 0.0);
-							glEnd();
-							glPopMatrix();
-							textureName = NULL;
-							}
-						}
-
-					if (!(_values.width & 1)) paletteIndex = !paletteIndex;
-					}
-				}
-
-			else for (y = 0; y < _values.height; y++) for (x = 0; x < _values.width; x++)
+			/*if (_theme.cellBorder) for (y = 0; y < _values.height; y++) for (x = 0; x < _values.width; x++)
 				{
 				cell = minesweeper_cell(&_game, z_2d_type(SIZE)(x, y));
 
@@ -518,32 +455,32 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 					{
 					if (CELL_IS(EXPLODED))
 						{
-						colorIndex = kThemeColorKeyMine;
-						textureName = &_textureNames[kTextureIndexExplosion];
+						colorIndex = kThemeIndexMine;
+						textureIndex = kTextureIndexExplosion;
 						}
 
 					else if (CELL_IS(WARNING))
 						{
-						colorIndex = kThemeColorKeyWarning;
-						textureName = &_textureNames[CELL_WARNING - 1];
+						colorIndex = kThemeIndexWarning;
+						textureIndex = CELL_WARNING - 1;
 						}
 
-					else colorIndex = kThemeColorKeyClean;
+					else colorIndex = kThemeIndexClean;
 					}
 
 				else	{
 					if (CELL_IS(FLAG))
 						{
 						colorIndex = (_state != kBoardStateGame && CELL_IS(MINE) && showGoodFlags)
-							? kThemeColorKeyConfirmedFlag
-							: kThemeColorKeyFlag;
+							? kThemeIndexGoodFlag
+							: kThemeIndexFlag;
 
-						textureName = &_textureNames[kTextureIndexFlag];
+						textureIndex = kTextureIndexFlag;
 						}
 
 					else	{
 						if (showMines && CELL_IS(MINE))
-							textureName = &_textureNames[kTextureIndexMine];
+							textureIndex = kTextureIndexMine;
 
 						colorIndex = kThemeColorKeyCovered;
 						}
@@ -567,13 +504,13 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 				glPopMatrix();
 
-				if (textureName != NULL)
+				if (textureIndex != NSNotFound)
 					{
 					//SET_COLOR(Warning);
 					glPushMatrix();
 					glTranslated(ceil(cellX), ceil(cellY), 0.0);
 					glScaled(_textureSize, _textureSize, 1.0);
-					glBindTexture(GL_TEXTURE_2D, *textureName);
+					glBindTexture(GL_TEXTURE_2D, _textures[textureIndex]);
 					glBegin(GL_QUADS);
 						glTexCoord2d(0.0, 0.0); glVertex2d(0.0,	1.0);
 						glTexCoord2d(1.0, 0.0); glVertex2d(1.0, 1.0);
@@ -581,10 +518,92 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 						glTexCoord2d(0.0, 1.0); glVertex2d(0.0, 0.0);
 					glEnd();
 					glPopMatrix();
-					textureName = NULL;
+					textureIndex = NSNotFound;
 					}
 				}
-*/
+
+			else	{*/
+				GLfloat *palette[2] = {_cellColors[0], _alternateCellColors[0]};
+				NSInteger paletteIndex = 0;
+
+				for (y = 0; y < _values.height; y++)
+					{
+					for (x = 0; x < _values.width; x++, paletteIndex = !paletteIndex)
+						{
+						cell = minesweeper_cell(&_game, z_2d_type(SIZE)(x, y));
+
+						if (CELL_IS(DISCLOSED))
+							{
+							if (CELL_IS(EXPLODED))
+								{
+								colorIndex = kThemeIndexMine;
+								textureIndex = kTextureIndexExplosion;
+								}
+
+							else if (CELL_IS(WARNING))
+								{
+								colorIndex = kThemeIndexWarning;
+								textureIndex = CELL_WARNING - 1;
+								}
+
+							else colorIndex = kThemeIndexClean;
+
+							glColor3fv(_cellColors[colorIndex]);
+							}
+
+						else	{
+							if (CELL_IS(FLAG))
+								{
+								colorIndex = (_state != kBoardStateGame && CELL_IS(MINE) && showGoodFlags)
+									 ? kThemeIndexGoodFlag
+									 : kThemeIndexFlag;
+
+								textureIndex = kTextureIndexFlag;
+								}
+
+							else	{
+								if (showMines && CELL_IS(MINE))
+									{
+									colorIndex = kThemeIndexMine;
+									textureIndex = kTextureIndexMine;
+									}
+								
+								else colorIndex = kThemeIndexUnknown;
+
+								glColor3fv(&palette[paletteIndex][colorIndex * 3]);
+								}
+							}
+
+						glPushMatrix();
+						glTranslated(cellX = cellWidth * (GLdouble)x, cellY = cellHeight * (GLdouble)y, 0.0);
+						glScaled(cellWidth, cellHeight, 1.0);
+						glBindTexture(GL_TEXTURE_2D, 0);
+						glVertexPointer(2, GL_DOUBLE, 0, cellVertices);
+						glDrawArrays(GL_QUADS, 0, 4);
+						glPopMatrix();
+
+						if (textureIndex != NSNotFound)
+							{
+							//SET_COLOR(Warning);
+							glPushMatrix();
+							glTranslated(ceil(cellX), ceil(cellY), 0.0);
+							glScaled(_textureSize, _textureSize, 1.0);
+							glBindTexture(GL_TEXTURE_2D, _textures[textureIndex]);
+							glBegin(GL_QUADS);
+								glTexCoord2d(0.0, 0.0); glVertex2d(0.0,	1.0);
+								glTexCoord2d(1.0, 0.0); glVertex2d(1.0, 1.0);
+								glTexCoord2d(1.0, 1.0); glVertex2d(1.0, 0.0);
+								glTexCoord2d(0.0, 1.0); glVertex2d(0.0, 0.0);
+							glEnd();
+							glPopMatrix();
+							textureIndex = NSNotFound;
+							}
+						}
+
+					if (!(_values.width & 1)) paletteIndex = !paletteIndex;
+					}
+				//}
+
 			glDisable(GL_TEXTURE_2D);
 			glDisable(GL_BLEND);
 			}
@@ -620,7 +639,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			//----------------------------------------------.
 			// Destruimos las texturas actuales si existen. |
 			//----------------------------------------------'
-			if (_flags.texturesCreated) {glDeleteTextures(12, _textures);}
+			if (_flags.texturesCreated) glDeleteTextures(12, _textures);
 
 			//------------------------------------------------.
 			// Avisamos de que las texturas han sido creadas. |
@@ -687,13 +706,12 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	- (void) setTheme: (Theme	   *) theme
 		 images:   (NSMutableArray *) images
 		{
-		_theme.owner = nil;
 		[_theme release];
-		(_theme = [theme retain]).owner = self;
-		_flags.flat = theme.flat;
-		_cellBrightnessDelta  = theme.cellBrightnessDelta;
-		for (NSUInteger key = 0; key < 6; key++) [self updateCellColorsForKey: key];
-		//for (NSUInteger key = 0; key < 3; key++) [self update: key];
+		_theme = [theme retain];
+		[self updateCellColors];
+
+		if (_theme.alternateCoveredCells || _theme.alternateUncoveredCells)
+			[self updateAlternateCellColors];
 
 		if (images && images != _themeImages)
 			{
@@ -702,7 +720,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 			if (_game.state > MINESWEEPER_STATE_INITIALIZED)
 				{
-				if (_flags.texturesCreated) glDeleteTextures(11, _textureNames);
+				if (_flags.texturesCreated) glDeleteTextures(12, _textures);
 				[self setTextureGraphicContext];
 				[self createNumberTextures];
 				[self createImageTextures];
@@ -722,11 +740,6 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			case kThemePropertyGridColor:
 			case kThemePropertyCellBorder:
 			for (NSUInteger i = 7; i < 7 + 4 * 3; i++) [self updateCellColorAtIndex: i];
-			if (!_theme.mineCellBorder) break;
-
-			case kThemePropertyMineCellBorder:
-			for (NSUInteger i = 7 + 4 * kThemeIndexMine; i < 7 + 4 * kThemeIndexMine + 4; i++)
-				[self updateCellColorAtIndex: i];
 			break;
 
 			case kThemePropertyCellBorderSize:

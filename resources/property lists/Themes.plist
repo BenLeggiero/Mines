@@ -3,12 +3,25 @@
 <plist version="1.0">
 <array>
 	<dict>
-		<key>Flat</key>
+		<key>Name</key>
+		<string>Cobalt</string>
+		<key>LaserColor</key>
+		<string>0.039216:0.352941:0.874510</string>
+		<key>MineFoundAnimation</key>
+		<string>Explosion</string>
+		<key>Grid</key>
 		<false/>
+		<key>CellBorder</key>
+		<false/>
+		<key>AlternateCoveredCells</key>
+		<true/>
+		<key>AlternateUncoveredCells</key>
+		<true/>
 		<key>CellBrightnessDelta</key>
-		<real>-0.03676142331932773</real>
+		<real>-0.0367614233193277</real>
 		<key>CellColors</key>
 		<array>
+			<string>0.039216:0.352941:0.874510:1.000000</string>
 			<string>0.039216:0.352941:0.874510:1.000000</string>
 			<string>0.039216:0.352941:0.874510:1.000000</string>
 			<string>0.000000:0.826531:0.028570:1.000000</string>
@@ -19,40 +32,38 @@
 		<key>Images</key>
 		<array>
 			<dict>
-				<key>Color</key>
-				<string>0.000000:0.000000:0.000000:0.500000</string>
-				<key>FileName</key>
-				<string>Flag.pdf</string>
 				<key>Included</key>
 				<true/>
-			</dict>
-			<dict>
-				<key>Color</key>
-				<string>0.000000:0.000000:0.000000:0.500000</string>
 				<key>FileName</key>
 				<string>Flag.pdf</string>
-				<key>Included</key>
-				<true/>
-			</dict>
-			<dict>
 				<key>Color</key>
 				<string>0.000000:0.000000:0.000000:0.500000</string>
+			</dict>
+			<dict>
+				<key>Included</key>
+				<true/>
+				<key>FileName</key>
+				<string>Flag.pdf</string>
+				<key>Color</key>
+				<string>0.000000:0.000000:0.000000:0.500000</string>
+			</dict>
+			<dict>
+				<key>Included</key>
+				<true/>
 				<key>FileName</key>
 				<string>Mine.pdf</string>
-				<key>Included</key>
-				<true/>
+				<key>Color</key>
+				<string>0.000000:0.000000:0.000000:0.500000</string>
 			</dict>
 			<dict>
-				<key>Color</key>
-				<string>1.000000:0.000000:0.000000:1.000000</string>
-				<key>FileName</key>
-				<string>Explosion.pdf</string>
 				<key>Included</key>
 				<true/>
+				<key>FileName</key>
+				<string>Explosion.pdf</string>
+				<key>Color</key>
+				<string>1.000000:0.000000:0.000000:1.000000</string>
 			</dict>
 		</array>
-		<key>Name</key>
-		<string>Cobalt</string>
 		<key>NumberColors</key>
 		<array>
 			<string>0.058824:0.247059:1.000000:1.000000</string>
@@ -65,8 +76,8 @@
 			<string>0.184314:1.000000:0.184314:1.000000</string>
 		</array>
 		<key>NumberFontName</key>
-		<string></string>
-		<key>NumberFontScaling</key>
+		<string>Lucida Grande Bold</string>
+		<key>NumberFontScale</key>
 		<real>0.8</real>
 	</dict>
 </array>

@@ -125,7 +125,7 @@ Released under the terms of the GNU General Public License v3. */
 //		mineColorWell.color	     = [_theme colorForKey: kThemeColorKeyMine	       ];
 //		warningColorWell.color	     = [_theme colorForKey: kThemeColorKeyWarning      ];
 
-		for (NSUInteger i = 1; i < 9; i++)
+		for (NSUInteger i = 0; i < 8; i++)
 			[[numbersBox viewWithTag: i] setColor: [_theme.numberColors objectAtIndex: i]];
 
 		//cellBrightnessDeltaSlider.doubleValue = [_theme cellBrightnessDelta];
@@ -133,7 +133,7 @@ Released under the terms of the GNU General Public License v3. */
 
 		for (NSUInteger i = 0; i < 4; i++)
 			{
-			NSColorWell *colorWell = [imagesBox viewWithTag: 10 + i];
+			NSColorWell *colorWell = [imagesBox viewWithTag: 30 + i];
 			NSButton *checkBox = [imagesBox viewWithTag: 20 + i];
 
 			if ((color = [_theme.imageColors objectAtIndex: i]))
@@ -148,15 +148,11 @@ Released under the terms of the GNU General Public License v3. */
 				[colorWell setHidden: YES];
 				}
 
-			[[imagesBox viewWithTag: 30 + i] setImage:
+			[[imagesBox viewWithTag: i] setImage:
 				[self imageFromImage: [_themeImages objectAtIndex: i] tintColor: color]];
 			}
 
-		NSString *fontName = _theme.numberFontName;
-
-		numberFontNameTextField.stringValue = fontName
-			? [NSFont fontWithName: fontName size: 11.0].displayName
-			: @"Lucida Grande Bold";
+		numberFontNameTextField.stringValue = [NSFont fontWithName: _theme.numberFontName size: 11.0].displayName;
 		}
 
 
@@ -717,14 +713,6 @@ Released under the terms of the GNU General Public License v3. */
 		_theme.cellBorder = sender.state == NSOnState;
 		_flags.themeHasChanged = YES;
 		[_board didChangeThemeProperty: kThemePropertyCellBorder valueAtIndex: 0];
-		}
-
-
-	- (IBAction) toggleMineCellBorder: (NSButton *) sender
-		{
-		_theme.mineCellBorder = sender.state == NSOnState;
-		_flags.themeHasChanged = YES;
-		[_board didChangeThemeProperty: kThemePropertyMineCellBorder valueAtIndex: 0];
 		}
 
 

@@ -77,7 +77,7 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 	Theme*		  _theme;
 	NSMutableArray*	  _themeImages;
 	GLfloat		  _gridColor[3];
-	GLfloat		  _cellColors[23][3];
+	GLfloat		  _cellColors[19][3];
 	GLfloat		  _alternateCellColors[7][3];
 	BoardState	  _state;
 	Z2DSize		  _coordinates;

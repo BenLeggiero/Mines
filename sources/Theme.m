@@ -95,14 +95,12 @@ Released under the terms of the GNU General Public License v3. */
 			|| ![value isKindOfClass: numberClass]
 
 			|| ((cellBorder = [value boolValue]) &&
-				((!(value = [dictionary objectForKey: @"CellBorderSize"])
-				 || ![value isKindOfClass: numberClass])
-				 || !(value = [dictionary objectForKey: @"MineCellBorder"])
+				(!(value = [dictionary objectForKey: @"CellBorderSize"])
 				 || ![value isKindOfClass: numberClass]))
 
 			|| !(cellColors = [dictionary objectForKey: @"CellColors"])
 			|| ![cellColors isKindOfClass: arrayClass]
-			|| cellColors.count != (cellBorder ? ([value boolValue] ? 23 : 19) : 7)
+			|| cellColors.count != (cellBorder ? 19 : 7)
 			|| !(alternateCoveredCells = [dictionary objectForKey: @"AlternateCoveredCells"])
 			|| ![alternateCoveredCells isKindOfClass: numberClass]
 			|| !(alternateUncoveredCells = [dictionary objectForKey: @"AlternateUncoveredCells"])
@@ -125,11 +123,8 @@ Released under the terms of the GNU General Public License v3. */
 		)
 			return NO;
 
-		for (id item in cellColors)
-			if (![item isKindOfClass: stringClass]) return NO;
-
-		for (id item in numberColors)
-			if (![item isKindOfClass: stringClass]) return NO;
+		for (id item in cellColors  ) if (![item isKindOfClass: stringClass]) return NO;
+		for (id item in numberColors) if (![item isKindOfClass: stringClass]) return NO;
 
 		for (NSDictionary *item in images) if (
 			![item isKindOfClass: dictionaryClass]
@@ -152,23 +147,21 @@ Released under the terms of the GNU General Public License v3. */
 			NSUInteger index = 0;
 			id value;
 
-			_cellColors	 = [[NSMutableArray alloc] init];
-			_numberColors	 = [[NSMutableArray alloc] init];
-			_imageFileNames	 = [[NSMutableArray alloc] init];
-			_imageColors     = [[NSMutableArray alloc] init];
-			_name		 = [[dictionary objectForKey: @"Name"] retain];
-			_laserColor	 = [[NSColor sRGBColorFromFloatString: [dictionary objectForKey: @"LaserColor"]] retain];
-			_numberFontName	 = [dictionary objectForKey: @"NumberFontName"];
-			_numberFontScale = [[dictionary objectForKey: @"NumberFontScale"] doubleValue];
+			_name		    = [[dictionary objectForKey: @"Name"] retain];
+			_mineFoundAnimation = [[dictionary objectForKey: @"MineFoundAnimation"] retain];
+			_cellColors	    = [[NSMutableArray alloc] init];
+			_numberColors	    = [[NSMutableArray alloc] init];
+			_imageFileNames	    = [[NSMutableArray alloc] init];
+			_imageColors	    = [[NSMutableArray alloc] init];
+			_laserColor	    = [[NSColor sRGBColorFromFloatString: [dictionary objectForKey: @"LaserColor"]] retain];
+			_numberFontName	    = [[dictionary objectForKey: @"NumberFontName"] retain];
+			_numberFontScale    = [[dictionary objectForKey: @"NumberFontScale"] doubleValue];
 
 			if ((_flags.grid = [[dictionary objectForKey: @"Grid"] boolValue]))
 				_gridColor = [[NSColor sRGBColorFromFloatString: [dictionary objectForKey: @"GridColor"]] retain];
 
 			if ((_flags.cellBorder = [[dictionary objectForKey: @"CellBorder"] boolValue]))
-				{
-				_flags.mineCellBorder = [[dictionary objectForKey: @"MineCellBorder"] boolValue];
 				_cellBorderSize = [[dictionary objectForKey: @"CellBorderSize"] doubleValue];
-				}
 
 			if (	(_flags.alternateCoveredCells	= [[dictionary objectForKey: @"AlternateCoveredCells"  ] boolValue]) ||
 				(_flags.alternateUncoveredCells = [[dictionary objectForKey: @"AlternateUncoveredCells"] boolValue])
@@ -245,14 +238,11 @@ Released under the terms of the GNU General Public License v3. */
 
 		if (_flags.grid) [dictionary setObject: _gridColor.floatRGBAString forKey: @"GridColor"];
 
-		if (_flags.cellBorder)
-			{
-			[dictionary setObject: [NSNumber numberWithBool:   _flags.mineCellBorder] forKey: @"MineCellBorder"];
-			[dictionary setObject: [NSNumber numberWithDouble: _cellBorderSize	] forKey: @"CellBorderSize"];
-			}
+		if (_flags.cellBorder) [dictionary setObject:
+			[NSNumber numberWithDouble: _cellBorderSize] forKey: @"CellBorderSize"];
 
-		if (_flags.alternateCoveredCells || _flags.alternateUncoveredCells)
-			[dictionary setObject: [NSNumber numberWithDouble: _cellBrightnessDelta] forKey: @"CellBrightnessDelta"];
+		if (_flags.alternateCoveredCells || _flags.alternateUncoveredCells) [dictionary setObject:
+			[NSNumber numberWithDouble: _cellBrightnessDelta] forKey: @"CellBrightnessDelta"];
 
 		return [dictionary autorelease];
 		}
@@ -270,7 +260,6 @@ Released under the terms of the GNU General Public License v3. */
 			theme->_flags.grid		      = _flags.grid;
 			theme->_gridColor		      = [_gridColor retain];
 			theme->_flags.cellBorder	      = _flags.cellBorder;
-			theme->_flags.mineCellBorder	      = _flags.mineCellBorder;
 			theme->_cellBorderSize		      = _cellBorderSize;
 			theme->_flags.alternateCoveredCells   = _flags.alternateCoveredCells;
 			theme->_flags.alternateUncoveredCells = _flags.alternateUncoveredCells;

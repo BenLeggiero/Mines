@@ -19,17 +19,16 @@ Released under the terms of the GNU General Public License v3. */
 #define kThemePropertyGrid		      0
 #define kThemePropertyGridColor		      1
 #define kThemePropertyCellBorder	      2
-#define kThemePropertyMineCellBorder	      3
-#define kThemePropertyCellBorderSize	      4
-#define kThemePropertyAlternateCoveredCells   5
-#define kThemePropertyAlternateUncoveredCells 6
-#define kThemePropertyCellBrightnessDelta     7
-#define kThemePropertyCellColor		      8
-#define kThemePropertyNumberColor	      9
-#define kThemePropertyNumberFontName	     10
-#define kThemePropertyNumberFontScale	     11
-#define kThemePropertyImage		     12
-#define kThemePropertyImageColor	     13
+#define kThemePropertyCellBorderSize	      3
+#define kThemePropertyAlternateCoveredCells   4
+#define kThemePropertyAlternateUncoveredCells 5
+#define kThemePropertyCellBrightnessDelta     6
+#define kThemePropertyCellColor		      7
+#define kThemePropertyNumberColor	      8
+#define kThemePropertyNumberFontName	      9
+#define kThemePropertyNumberFontScale	     10
+#define kThemePropertyImage		     11
+#define kThemePropertyImageColor	     12
 
 @interface Theme : NSObject {
 	NSString*	_name;
@@ -48,7 +47,6 @@ Released under the terms of the GNU General Public License v3. */
 
 	struct {BOOL grid		     :1;
 		BOOL cellBorder		     :1;
-		BOOL mineCellBorder	     :1;
 		BOOL alternateCoveredCells   :1;
 		BOOL alternateUncoveredCells :1;
 	} _flags;
@@ -59,7 +57,6 @@ Released under the terms of the GNU General Public License v3. */
 	@property (nonatomic, assign  ) BOOL		grid;
 	@property (nonatomic, retain  ) NSColor*	gridColor;
 	@property (nonatomic, assign  ) BOOL		cellBorder;
-	@property (nonatomic, assign  ) BOOL		mineCellBorder;
 	@property (nonatomic, assign  ) CGFloat		cellBorderSize;
 	@property (nonatomic, assign  ) BOOL		alternateCoveredCells;
 	@property (nonatomic, assign  ) BOOL		alternateUncoveredCells;
