@@ -891,9 +891,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 		//---------------------------------.
 		// Mostramos la ventana principal. |
 		//---------------------------------'
-		NSWindow *window = self.window;
-
-		[window makeKeyAndOrderFront: self];
+		[self showWindow: nil];
 
 		//-----------------------------------------------------------------------------.
 		// Si el tablero contiene una partida terminada quiere decir que la aplicación |
@@ -1241,33 +1239,25 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 	- (IBAction) about: (id) sender
 		{
-		NSWindow *window;
-
 		if (!_aboutWindowController) [[NSNotificationCenter defaultCenter]
 			addObserver: self
 			selector:    @selector(onWindowClosed:)
 			name:	     NSWindowWillCloseNotification
-			object:	     window = (_aboutWindowController = [[AboutWindowController alloc] init]).window];
+			object:	     (_aboutWindowController = [[AboutWindowController alloc] init]).window];
 
-		else window = _aboutWindowController.window;
-
-		[window makeKeyAndOrderFront: self];
+		[_aboutWindowController showWindow: nil];
 		}
 
 
 	- (IBAction) preferences: (id) sender
 		{
-		NSWindow *window;
-
 		if (!_preferencesWindowController) [[NSNotificationCenter defaultCenter]
 			addObserver: self
 			selector:    @selector(onWindowClosed:)
 			name:	     NSWindowWillCloseNotification
-			object:	     window = (_preferencesWindowController = [[PreferencesWindowController alloc] initWithBoard: board]).window];
+			object:	     (_preferencesWindowController = [[PreferencesWindowController alloc] initWithBoard: board]).window];
 
-		else window = _preferencesWindowController.window;
-
-		[window makeKeyAndOrderFront: self];
+		[_preferencesWindowController showWindow: nil];
 		}
 
 

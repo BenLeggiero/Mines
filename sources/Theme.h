@@ -13,8 +13,9 @@ Released under the terms of the GNU General Public License v3. */
 #define kThemeIndexGoodFlag  2
 #define kThemeIndexMine	     3
 #define kThemeIndexExplosion 4
-#define kThemeIndexClean     5
-#define kThemeIndexWarning   6
+#define kThemeIndexWarning   5
+#define kThemeIndexClean     6
+
 
 #define kThemePropertyGrid		      0
 #define kThemePropertyGridColor		      1

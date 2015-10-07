@@ -114,9 +114,49 @@ Released under the terms of the GNU General Public License v3. */
 		}
 
 
+	- (void) disableNonUsedThemeControls
+		{
+		if (!_theme.grid)
+			{
+			gridColorWell.enabled = NO;
+			//gridColorWell.color = [NSColor clearColor];
+			}
+
+		if (!_theme.cellBorder)
+			{
+			cellBorderSizeSlider.enabled = NO;
+			cellBorderSizeSlider.doubleValue = 12.5;
+
+			for (NSUInteger i = 107; i < 119; i++)
+				[[cellsBox viewWithTag: i] setEnabled: NO];
+			}
+
+		if (!_theme.alternateCoveredCells && !_theme.alternateUncoveredCells)
+			cellBrightnessDeltaSlider.enabled = NO;
+		}
+
+
 	- (void) updateThemeControlsContent
 		{
+		gridCheck.state			   = _theme.grid		    ? NSOnState : NSOffState;
+		cellBorderCheck.state		   = _theme.cellBorder		    ? NSOnState : NSOffState;
+		alternateCoveredCellsCheck.state   = _theme.alternateCoveredCells   ? NSOnState : NSOffState;
+		alternateUncoveredCellsCheck.state = _theme.alternateUncoveredCells ? NSOnState : NSOffState;
+
+
+		NSLog(@"updateThemeControlsContent");
 		NSColor *color;
+		NSArray* colors = _theme.cellColors;
+		NSUInteger colorCount = colors.count;
+
+
+		if (colorCount == 19)
+			{
+			}
+
+		for (NSUInteger i = 0; i < colorCount; i++)
+			[[cellsBox viewWithTag: i + 100] setColor: [colors objectAtIndex: i]];
+
 
 //		coveredColorWell.color	     = [_theme colorForKey: kThemeColorKeyCovered      ];
 //		cleanColorWell.color	     = [_theme colorForKey: kThemeColorKeyClean	       ];
@@ -247,6 +287,7 @@ Released under the terms of the GNU General Public License v3. */
 		themeList.delegate = self;
 		[self updateThemeControlsContent];
 		[self updateThemeControlsState];
+		if ([_userThemes containsObject: _theme]) [self disableNonUsedThemeControls];
 		}
 
 
@@ -312,6 +353,7 @@ Released under the terms of the GNU General Public License v3. */
 
 		[self updateThemeControlsContent];
 		[self updateThemeControlsState];
+		if ([_userThemes containsObject: _theme]) [self disableNonUsedThemeControls];
 		[_board setTheme: theme images: _themeImages];
 		}
 
@@ -487,7 +529,7 @@ Released under the terms of the GNU General Public License v3. */
 
 			if (oldImage != resultData->image)
 				{
-				NSColorWell* imageColorWell = [imagesBox viewWithTag: _imageIndex];
+				NSColorWell* imageColorWell = [imagesBox viewWithTag: _imageIndex + 30];
 				id color;
 
 				if (resultData->isInternal)
@@ -751,7 +793,7 @@ Released under the terms of the GNU General Public License v3. */
 	- (IBAction) setCellColor: (NSColorWell *) sender
 		{
 		NSColor *color = sender.color.opaqueSRGBColor;
-		NSUInteger index = sender.tag;
+		NSUInteger index = sender.tag - 100;
 
 		[_theme.cellColors replaceObjectAtIndex: index withObject: color];
 		sender.color = color;
@@ -833,6 +875,8 @@ Released under the terms of the GNU General Public License v3. */
 		Class imageClass = [NSImage class];
 		NSImage *image;
 
+		_imageIndex = sender.tag - 10;
+
 		for (NSUInteger i = 0; i < 4; i++)
 			if ([(image = [_themeImages objectAtIndex: i]) isKindOfClass: imageClass])
 				[preloadedImages setObject: image forKey: [_theme.imageFileNames objectAtIndex: i]];
@@ -840,10 +884,9 @@ Released under the terms of the GNU General Public License v3. */
 		_imagePicker = [[ImagePicker alloc]
 			initWithDelegate:      self
 			preloadedImages:       preloadedImages
-			selectedImageFileName: [_theme.imageFileNames objectAtIndex: sender.tag]];
+			selectedImageFileName: [_theme.imageFileNames objectAtIndex: _imageIndex]];
 
 		[preloadedImages release];
-		_imageIndex = sender.tag;
 		[_imagePicker runModalForWindow: self.window];
 		}
 

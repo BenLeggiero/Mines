@@ -337,7 +337,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <colorWell id="52">
+                            <colorWell tag="100" id="52">
                                 <rect key="frame" x="33" y="172" width="23" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -346,7 +346,7 @@
                                     <action selector="setCellColor:" target="-2" id="L4X-H0-mip"/>
                                 </connections>
                             </colorWell>
-                            <colorWell tag="7" id="Qdy-WT-VMZ">
+                            <colorWell tag="107" id="Qdy-WT-VMZ">
                                 <rect key="frame" x="33" y="194" width="23" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -355,7 +355,7 @@
                                     <action selector="setCellColor:" target="-2" id="Gzx-rZ-fHh"/>
                                 </connections>
                             </colorWell>
-                            <colorWell tag="10" id="PUl-EE-ZPi">
+                            <colorWell tag="110" id="PUl-EE-ZPi">
                                 <rect key="frame" x="18" y="172" width="16" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -364,7 +364,7 @@
                                     <action selector="setCellColor:" target="-2" id="ALN-Ca-DvI"/>
                                 </connections>
                             </colorWell>
-                            <colorWell tag="8" id="L5d-RH-cDo">
+                            <colorWell tag="108" id="L5d-RH-cDo">
                                 <rect key="frame" x="55" y="172" width="16" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -373,7 +373,7 @@
                                     <action selector="setCellColor:" target="-2" id="PCY-xo-feB"/>
                                 </connections>
                             </colorWell>
-                            <colorWell tag="9" id="kSp-4p-me6">
+                            <colorWell tag="109" id="kSp-4p-me6">
                                 <rect key="frame" x="33" y="157" width="23" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -411,7 +411,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <colorWell tag="2" id="aeM-Bc-xqd">
+                            <colorWell tag="102" id="aeM-Bc-xqd">
                                 <rect key="frame" x="184" y="172" width="23" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -420,7 +420,7 @@
                                     <action selector="setCellColor:" target="-2" id="38s-DW-duo"/>
                                 </connections>
                             </colorWell>
-                            <colorWell tag="15" id="wcQ-vA-GW1">
+                            <colorWell tag="115" id="wcQ-vA-GW1">
                                 <rect key="frame" x="184" y="194" width="23" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -429,7 +429,7 @@
                                     <action selector="setCellColor:" target="-2" id="lk6-q1-3Kc"/>
                                 </connections>
                             </colorWell>
-                            <colorWell tag="18" id="g5Y-l4-SvT">
+                            <colorWell tag="118" id="g5Y-l4-SvT">
                                 <rect key="frame" x="169" y="172" width="16" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -438,7 +438,7 @@
                                     <action selector="setCellColor:" target="-2" id="NMj-sa-pHE"/>
                                 </connections>
                             </colorWell>
-                            <colorWell tag="16" id="Vrn-51-X7S">
+                            <colorWell tag="116" id="Vrn-51-X7S">
                                 <rect key="frame" x="206" y="172" width="16" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -447,7 +447,7 @@
                                     <action selector="setCellColor:" target="-2" id="1s4-dd-zBD"/>
                                 </connections>
                             </colorWell>
-                            <colorWell tag="17" id="3qx-xd-Iup">
+                            <colorWell tag="117" id="3qx-xd-Iup">
                                 <rect key="frame" x="184" y="157" width="23" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -515,7 +515,7 @@
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <colorWell tag="1" id="wOn-lc-3dp">
+                            <colorWell tag="101" id="wOn-lc-3dp">
                                 <rect key="frame" x="109" y="172" width="23" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -524,7 +524,7 @@
                                     <action selector="setCellColor:" target="-2" id="fY8-1B-dbT"/>
                                 </connections>
                             </colorWell>
-                            <colorWell tag="11" id="Pep-GI-FJW">
+                            <colorWell tag="111" id="Pep-GI-FJW">
                                 <rect key="frame" x="109" y="194" width="23" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -533,7 +533,7 @@
                                     <action selector="setCellColor:" target="-2" id="A5R-gG-OYl"/>
                                 </connections>
                             </colorWell>
-                            <colorWell tag="14" id="Oqe-er-Vm7">
+                            <colorWell tag="114" id="Oqe-er-Vm7">
                                 <rect key="frame" x="94" y="172" width="16" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -542,7 +542,7 @@
                                     <action selector="setCellColor:" target="-2" id="fFC-4f-Q8X"/>
                                 </connections>
                             </colorWell>
-                            <colorWell tag="12" id="Y6k-ov-eOI">
+                            <colorWell tag="112" id="Y6k-ov-eOI">
                                 <rect key="frame" x="131" y="172" width="16" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -551,7 +551,7 @@
                                     <action selector="setCellColor:" target="-2" id="PbA-YC-OgL"/>
                                 </connections>
                             </colorWell>
-                            <colorWell tag="13" id="fAN-4W-c7c">
+                            <colorWell tag="113" id="fAN-4W-c7c">
                                 <rect key="frame" x="109" y="157" width="23" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
@@ -881,7 +881,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" id="RjR-eA-Sag" customClass="TableView">
-                                <rect key="frame" x="0.0" y="0.0" width="168" height="482"/>
+                                <rect key="frame" x="0.0" y="0.0" width="168" height="19"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <animations/>
                                 <size key="intercellSpacing" width="3" height="2"/>
