@@ -1,8 +1,8 @@
 /* Mines - ImagePicker.m
- __  __
-|  \/  | __  ____  ___	___
-|      |(__)|    |/ -_)/_  \
-|__\/__||__||__|_|\___/ /__/
+   __  __
+  /  \/  \  __ ___  ____  _____
+ /	  \(__)   \/  -_)_\  _/
+/___/__/__/__/__/_/\___/____/
 Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.
 Released under the terms of the GNU General Public License v3. */
 
