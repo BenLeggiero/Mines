@@ -1,4 +1,4 @@
-/* Minesweeper Game Logic - Minesweeper.c
+/* Minesweeper Kit - Minesweeper.c
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -8,20 +8,26 @@ Released under the terms of the GNU General Public License v3. */
 
 #include <Z/functions/base/Z2DValue.h>
 
-#ifdef USE_LOCAL_HEADER_MINESWEEPER
+#if defined(MINESWEEPER_BUILDING_DYNAMIC)
+#	define MINESWEEPER_API Z_API_EXPORT
+#else
+#	define MINESWEEPER_API
+#endif
+
+#ifdef MINESWEEPER_USE_LOCAL_HEADER
 #	include "Minesweeper.h"
 #else
 #	include <games/puzzle/Minesweeper.h>
 #endif
 
-#ifdef USE_POSIX_API
+#ifdef MINESWEEPER_USE_POSIX
 #	include <stdlib.h>
 #	include <string.h>
 
 #	define z_deallocate(block)			  free(block)
 #	define z_reallocate(block, block_size)		  realloc(block, block_size)
 #	define z_copy(block, block_size, output)	  memcpy(output, block, block_size)
-#	define z_int8_block_set(block, block_size, value) memset(block, value, block_size)
+#	define z_block_int8_set(block, block_size, value) memset(block, value, block_size)
 #	define RANDOM					  ((zsize)random())
 #else
 #	include <ZBase/allocation.h>
@@ -44,21 +50,21 @@ Released under the terms of the GNU General Public License v3. */
 #define Y(pointer)	    ((c - object->cells) / object->size.x)
 #define CELLS_END	    (object->cells + object->size.x * object->size.y)
 
-#ifndef DONT_USE_MINESWEEPER_CALLBACKS
+#ifdef MINESWEEPER_USE_CALLBACK
 #	define UPDATED(x, y, cell) \
 	object->cell_updated(object->cell_updated_context, object, z_2d_type(SIZE)(x, y), cell)
 #endif
 
 typedef struct {zint8 x, y;} Offset;
 
-Z_PRIVATE Offset const offsets[] = {
+static Offset const offsets[] = {
 	{-1, -1}, {0, -1}, {1, -1},
 	{-1,  0},	   {1,	0},
 	{-1,  1}, {0,  1}, {1,	1}
 };
 
 
-Z_PRIVATE void place_mines(Minesweeper *object, zsize but_x, zsize but_y)
+static void place_mines(Minesweeper *object, zsize but_x, zsize but_y)
 	{
 	MinesweeperCell *c, *nc;
 	zsize n = object->mine_count, x, y, nx, ny;
@@ -106,7 +112,7 @@ Z_PRIVATE void place_mines(Minesweeper *object, zsize but_x, zsize but_y)
 	}
 
 
-Z_PRIVATE void disclose_cell(Minesweeper *object, zsize x, zsize y)
+static void disclose_cell(Minesweeper *object, zsize x, zsize y)
 	{
 	MinesweeperCell *c = &CELL(x, y);
 
@@ -115,7 +121,7 @@ Z_PRIVATE void disclose_cell(Minesweeper *object, zsize x, zsize y)
 		*c |= DISCLOSED;
 		object->remaining_count--;
 
-#		ifndef DONT_USE_MINESWEEPER_CALLBACKS
+#		ifdef MINESWEEPER_USE_CALLBACK
 			if (object->cell_updated != NULL) UPDATED(x, y, *c);
 #		endif
 
@@ -135,7 +141,7 @@ Z_PRIVATE void disclose_cell(Minesweeper *object, zsize x, zsize y)
 	}
 
 
-Z_PRIVATE void count_hint_cases(Minesweeper *object, zsize *counts)
+static void count_hint_cases(Minesweeper *object, zsize *counts)
 	{
 	zsize x, y, nx, ny;
 	MinesweeperCell *c = CELLS_END;
@@ -176,7 +182,7 @@ Z_PRIVATE void count_hint_cases(Minesweeper *object, zsize *counts)
 	}
 
 
-Z_PRIVATE Z2DSize case0_hint(Minesweeper *object, zsize index)
+static Z2DSize case0_hint(Minesweeper *object, zsize index)
 	{
 	zsize x, y, nx, ny;
 	MinesweeperCell *c = CELLS_END;
@@ -210,7 +216,7 @@ Z_PRIVATE Z2DSize case0_hint(Minesweeper *object, zsize index)
 	}
 
 
-Z_PRIVATE Z2DSize case1_hint(Minesweeper *object, zsize index)
+static Z2DSize case1_hint(Minesweeper *object, zsize index)
 	{
 	MinesweeperCell *c = CELLS_END;
 
@@ -229,7 +235,7 @@ Z_PRIVATE Z2DSize case1_hint(Minesweeper *object, zsize index)
 	}
 
 
-Z_PRIVATE Z2DSize case2_hint(Minesweeper *object, zsize index)
+static Z2DSize case2_hint(Minesweeper *object, zsize index)
 	{
 	MinesweeperCell *c = CELLS_END;
 
@@ -256,8 +262,11 @@ void minesweeper_initialize(Minesweeper *object)
 	object->size.y		     = 0;
 	object->mine_count	     = 0;
 	object->cells		     = NULL;
-	object->cell_updated	     = NULL;
-	object->cell_updated_context = NULL;
+
+#	ifdef MINESWEEPER_USE_CALLBACK
+		object->cell_updated	     = NULL;
+		object->cell_updated_context = NULL;
+#	endif
 	}
 
 
@@ -292,7 +301,7 @@ ZStatus minesweeper_set_snapshot(Minesweeper *object, void *snapshot, zsize snap
 	object->remaining_count = cell_count - object->mine_count;
 
 	if (object->state <= MINESWEEPER_STATE_PRISTINE)
-		z_int8_block_set(object->cells, cell_count, 0);
+		z_block_int8_set(object->cells, cell_count, 0);
 
 	else	{
 		z_copy(snapshot + HEADER_SIZE, cell_count, object->cells);
@@ -356,7 +365,7 @@ ZStatus minesweeper_prepare(Minesweeper *object, Z2DSize size, zsize mine_count)
 	object->flag_count	= 0;
 	object->remaining_count = cell_count - (object->mine_count = mine_count);
 
-	z_int8_block_set(object->cells, cell_count, 0);
+	z_block_int8_set(object->cells, cell_count, 0);
 	return Z_OK;
 	}
 
@@ -456,7 +465,7 @@ MinesweeperResult minesweeper_toggle_flag(
 		*c |= FLAG;
 		}
 
-#	ifndef DONT_USE_MINESWEEPER_CALLBACKS
+#	ifdef MINESWEEPER_USE_CALLBACK
 		if (object->cell_updated != NULL) UPDATED(coordinates.x, coordinates.y, *c);
 #	endif
 
@@ -470,7 +479,7 @@ void minesweeper_disclose_all_mines(Minesweeper *object)
 	{
 	MinesweeperCell *c = CELLS_END;
 
-#	ifndef DONT_USE_MINESWEEPER_CALLBACKS
+#	ifdef MINESWEEPER_USE_CALLBACK
 		if (object->cell_updated != NULL)
 			{
 			zsize x = object->size.x, y;
@@ -499,7 +508,7 @@ void minesweeper_flag_all_mines(Minesweeper *object)
 	{
 	MinesweeperCell *c = CELLS_END;
 
-#	ifndef DONT_USE_MINESWEEPER_CALLBACKS
+#	ifdef MINESWEEPER_USE_CALLBACK
 		if (object->cell_updated != NULL)
 			{
 			zsize x = object->size.x, y;
@@ -559,7 +568,7 @@ void minesweeper_resolve(Minesweeper *object)
 	{
 	MinesweeperCell *c = CELLS_END;
 
-#	ifndef DONT_USE_MINESWEEPER_CALLBACKS
+#	ifdef MINESWEEPER_USE_CALLBACK
 		if (object->cell_updated != NULL)
 			{
 			zsize x = object->size.x, y;
@@ -584,27 +593,27 @@ void minesweeper_resolve(Minesweeper *object)
 	}
 
 
-#ifndef DONT_USE_MINESWEEPER_CALLBACKS
+#ifdef MINESWEEPER_USE_CALLBACK
 
-MINESWEEPER_API
-void minesweeper_set_cell_updated_callback(
-	Minesweeper* object,
-	void*	     cell_updated,
-	void*	     cell_updated_context
-)
-	{
-	object->cell_updated	     = cell_updated;
-	object->cell_updated_context = cell_updated_context;
-	}
+	MINESWEEPER_API
+	void minesweeper_set_cell_updated_callback(
+		Minesweeper* object,
+		void*	     cell_updated,
+		void*	     cell_updated_context
+	)
+		{
+		object->cell_updated	     = cell_updated;
+		object->cell_updated_context = cell_updated_context;
+		}
 
 #endif
 
 
-#ifndef USE_POSIX_API
+#ifndef MINESWEEPER_USE_POSIX
 
-MINESWEEPER_API
-void minesweeper_set_random(Minesweeper *object, void *random)
-	{object->random = random;}
+	MINESWEEPER_API
+	void minesweeper_set_random(Minesweeper *object, void *random)
+		{object->random = random;}
 
 #endif
 

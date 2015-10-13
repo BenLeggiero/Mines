@@ -1,4 +1,4 @@
-/* Minesweeper Game Logic API - Minesweeper.h
+/* Minesweeper Kit C API - Minesweeper.h
 	      __	   __
   _______ ___/ /______ ___/ /__
  / __/ -_) _  / __/ _ \ _  / -_)
@@ -12,17 +12,13 @@ Released under the terms of the GNU General Public License v3. */
 #include <Z/types/base.h>
 #include <Z/keys/status.h>
 
-#if defined(BUILDING_DYNAMIC_MINESWEEPER)
-#	define MINESWEEPER_API Z_API_EXPORT
-#elif defined(BUILDING_STATIC_MINESWEEPER)
-#	define MINESWEEPER_API Z_PUBLIC
-#elif defined(USE_STATIC_MINESWEEPER)
-#	define MINESWEEPER_API
-#else
-#	define MINESWEEPER_API Z_API
+#ifndef MINESWEEPER_API
+#	if defined(MINESWEEPER_USE_STATIC)
+#		define MINESWEEPER_API
+#	else
+#		define MINESWEEPER_API Z_API
+#	endif
 #endif
-
-Z_C_SYMBOLS_BEGIN
 
 #define MINESWEEPER_MINIMUM_X_SIZE     4
 #define MINESWEEPER_MINIMUM_Y_SIZE     4
@@ -59,7 +55,7 @@ typedef zuint8 MinesweeperResult;
 
 typedef struct Minesweeper Minesweeper;
 
-# ifndef DONT_USE_MINESWEEPER_CALLBACKS
+#ifdef MINESWEEPER_USE_CALLBACK
 	typedef void (* MinesweeperCellUpdated) (void*		 context,
 						 Minesweeper*	 minesweeper,
 						 Z2DSize	 cell_coordinates,
@@ -67,12 +63,12 @@ typedef struct Minesweeper Minesweeper;
 #endif
 
 struct Minesweeper {
-#	ifndef DONT_USE_MINESWEEPER_CALLBACKS
+#	ifdef MINESWEEPER_USE_CALLBACK
 		MinesweeperCellUpdated cell_updated;
 		void*		       cell_updated_context;
 #	endif
 
-#	ifndef USE_POSIX_API
+#	ifdef MINESWEEPER_USE_POSIX
 		zsize (* random)(void);
 #	endif
 
@@ -90,6 +86,8 @@ Z_DEFINE_STRICT_STRUCTURE(
 	zuint64 mine_count;
 	zuint8	state;
 ) MinesweeperSnapshotHeader;
+
+Z_C_SYMBOLS_BEGIN
 
 MINESWEEPER_API void		  minesweeper_initialize	 (Minesweeper* object);
 
@@ -141,13 +139,13 @@ MINESWEEPER_API zboolean	  minesweeper_hint		 (Minesweeper* object,
 
 MINESWEEPER_API void		  minesweeper_resolve		 (Minesweeper* object);
 
-#ifndef DONT_USE_MINESWEEPER_CALLBACKS
+#ifdef MINESWEEPER_USE_CALLBACK
 	MINESWEEPER_API void minesweeper_set_cell_updated_callback (Minesweeper* object,
 								    void*	 cell_updated,
 								    void*	 cell_updated_context);
 #endif
 
-#ifndef USE_POSIX_API
+#ifndef MINESWEEPER_USE_POSIX
 	MINESWEEPER_API void minesweeper_set_random (Minesweeper* object,
 						     void*	  random);
 #endif

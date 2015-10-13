@@ -180,7 +180,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		CTFontGetGlyphsForCharacters((CTFontRef)font, &numbers_[number], &glyph, 1);
 		//NSLog(@"%@", [font _defaultGlyphForChar: numbers[number]] == glyph ? @"YES" : @"NO");
 
-#		if DEBUG_GEOMETRY
+#		ifdef DEBUG_GEOMETRY
 			[[NSColor grayColor] setFill];
 #		else
 			[[NSColor clearColor] setFill];
@@ -194,7 +194,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		[path appendBezierPathWithGlyph: glyph inFont: font];
 		frame = path.controlPointBounds;
 
-#		if DEBUG_GEOMETRY
+#		ifdef DEBUG_GEOMETRY
 			[[NSColor yellowColor] setFill];
 
 			NSRectFill(NSMakeRect
@@ -423,7 +423,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			glEnable(GL_TEXTURE_2D);
 			glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE);
 
-#			if DEBUG_GEOMETRY
+#			ifdef DEBUG_GEOMETRY
 				glClearColor
 					(palette[paletteIndex][kThemeColorKeyClean * 3],
 					 palette[paletteIndex][kThemeColorKeyClean * 3 + 1],

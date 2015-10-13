@@ -147,7 +147,7 @@ static const GradientData leopardGradientData = {
 
 			[_ballImage = [[NSImage alloc] initWithSize: self.bounds.size] lockFocus];
 
-	#		if DEBUG_GEOMETRY
+	#		ifdef DEBUG_GEOMETRY
 				[[NSColor greenColor] setFill];
 				NSRectFill(self.bounds);
 	#		endif

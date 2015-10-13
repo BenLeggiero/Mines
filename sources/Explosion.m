@@ -104,7 +104,7 @@ Released under the terms of the GNU General Public License v3. */
 			backing:	     NSBackingStoreBuffered
 			defer:		     YES];
 
-#		if DEBUG_GEOMETRY
+#		ifdef DEBUG_GEOMETRY
 			_window.backgroundColor = [NSColor
 				colorWithCalibratedRed: 0.0 green: 0.0 blue: 0.0 alpha: 0.5];
 #		else

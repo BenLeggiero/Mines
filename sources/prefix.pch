@@ -6,11 +6,10 @@
 Copyright © 2013-2015 Betty Lab.
 Released under the terms of the GNU General Public License v3. */
 
-#define USE_POSIX_API
-#define USE_STATIC_MINESWEEPER
-#define USE_LOCAL_HEADER_MINESWEEPER
-#define DEBUG_GEOMETRY FALSE
-//#define DEBUG_GEOMETRY TRUE
+#define MINESWEEPER_USE_POSIX
+#define MINESWEEPER_USE_STATIC
+#define MINESWEEPER_USE_LOCAL_HEADER
+//#define DEBUG_GEOMETRY
 
 #ifdef __OBJC__
 
