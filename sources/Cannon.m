@@ -3,12 +3,12 @@
   /  \/  \  __ ___  ____  _____
  /	  \(__)   \/  -_)_\  _/
 /___/__/__/__/__/_/\___/____/
-Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.
+Copyright © 2013-2015 Betty Lab.
 Released under the terms of the GNU General Public License v3. */
 
 #import "Cannon.h"
-#import "NSBezierPath+CocoPlus.h"
-#import "NSWindow+CocoPlus.h"
+#import "NSBezierPath+BL.h"
+#import "NSWindow+BL.h"
 #import "geometry.h"
 
 #define kStepDuration	(1.0 / 60.0)

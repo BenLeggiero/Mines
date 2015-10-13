@@ -3,9 +3,9 @@
   /  \/  \  __ ___  ____  _____
  /	  \(__)   \/  -_)_\  _/
 /___/__/__/__/__/_/\___/____/
-Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.
+Copyright © 2013-2015 Betty Lab.
 Released under the terms of the GNU General Public License v3. */
 
 CFBundleName		 = "Mines";
 CFBundleDisplayName	 = "Mines";
-NSHumanReadableCopyright = "Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.\nDistributed under the GNU General Public License v3.";
+NSHumanReadableCopyright = "Copyright © 2013-2015 Betty Lab.\nDistributed under the GNU General Public License v3.";

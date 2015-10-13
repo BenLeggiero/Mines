@@ -3,15 +3,15 @@
   /  \/  \  __ ___  ____  _____
  /	  \(__)   \/  -_)_\  _/
 /___/__/__/__/__/_/\___/____/
-Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.
+Copyright © 2013-2015 Betty Lab.
 Released under the terms of the GNU General Public License v3. */
 
 #import "PreferencesWindowController.h"
 #import "ImagePicker.h"
-#import "NSWindow+CocoPlus.h"
-#import "NSColor+CocoPlus.h"
-#import "NSImage+CocoPlus.h"
-#import "NSString+CocoPlus.h"
+#import "NSWindow+BL.h"
+#import "NSColor+BL.h"
+#import "NSImage+BL.h"
+#import "NSString+BL.h"
 #import "helpers.h"
 #import "geometry.h"
 

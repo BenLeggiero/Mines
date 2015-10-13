@@ -13,7 +13,7 @@
 		6400E82616C86D9B00EDDBC7 /* Moon.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6400E82516C86D9B00EDDBC7 /* Moon.pdf */; };
 		6400E82816C86DA500EDDBC7 /* Paper Boat.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6400E82716C86DA500EDDBC7 /* Paper Boat.pdf */; };
 		640211CB16C9AC4A00687609 /* Ta Dah.wav in Resources */ = {isa = PBXBuildFile; fileRef = 640211CA16C9AC4A00687609 /* Ta Dah.wav */; };
-		6405EEBF1857E8670029AFE4 /* NSString+CocoPlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 6405EEBE1857E8670029AFE4 /* NSString+CocoPlus.m */; };
+		6405EEBF1857E8670029AFE4 /* NSString+BL.m in Sources */ = {isa = PBXBuildFile; fileRef = 6405EEBE1857E8670029AFE4 /* NSString+BL.m */; };
 		640710E016387EC90017CFB2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 640710E216387EC90017CFB2 /* Localizable.strings */; };
 		641033181603B5EA0017F0FF /* Explosion.wav in Resources */ = {isa = PBXBuildFile; fileRef = 641033161603B5EA0017F0FF /* Explosion.wav */; };
 		64194F8017598A3200D18FAC /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 64194F7F17598A3200D18FAC /* AudioToolbox.framework */; };
@@ -28,14 +28,14 @@
 		6454476216BF61FE00D3B28F /* Preferences - Effects.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 6454476116BF61FE00D3B28F /* Preferences - Effects.pdf */; };
 		64585F9F175066940009470D /* About.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64585F9E175066940009470D /* About.xib */; };
 		64585FA217507ABE0009470D /* AboutWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 64585FA117507ABE0009470D /* AboutWindowController.m */; };
-		645A14B916A50E5500F1DF60 /* NSImage+CocoPlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 645A14B816A50E5500F1DF60 /* NSImage+CocoPlus.m */; };
+		645A14B916A50E5500F1DF60 /* NSImage+BL.m in Sources */ = {isa = PBXBuildFile; fileRef = 645A14B816A50E5500F1DF60 /* NSImage+BL.m */; };
 		645C42F21756A7D8005A720F /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 645C42F11756A7D8005A720F /* OpenAL.framework */; };
 		645C42F51756AA34005A720F /* ALSound.m in Sources */ = {isa = PBXBuildFile; fileRef = 645C42F41756AA34005A720F /* ALSound.m */; };
 		647E9BF916A1FE420049B9B0 /* helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = 647E9BF816A1FE420049B9B0 /* helpers.m */; };
 		647F4EEA16C3FBC900E79B31 /* Laser.wav in Resources */ = {isa = PBXBuildFile; fileRef = 647F4EE916C3FBC900E79B31 /* Laser.wav */; };
 		64827ACC175BC81E00AE54D8 /* Disclose.wav in Resources */ = {isa = PBXBuildFile; fileRef = 64827ACB175BC81E00AE54D8 /* Disclose.wav */; };
 		648460691636E6BA0079E869 /* PreferencesWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 648460681636E6BA0079E869 /* PreferencesWindowController.m */; };
-		648C8FC21640296F005A72B7 /* NSWindow+CocoPlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 648C8FC11640296F005A72B7 /* NSWindow+CocoPlus.m */; };
+		648C8FC21640296F005A72B7 /* NSWindow+BL.m in Sources */ = {isa = PBXBuildFile; fileRef = 648C8FC11640296F005A72B7 /* NSWindow+BL.m */; };
 		6494736D163CAC4B00B9C32D /* Typical Games.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6494736C163CAC4B00B9C32D /* Typical Games.plist */; };
 		649FD1DE16C1A029004267D7 /* Skull and Bones.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 649FD1D716C1A029004267D7 /* Skull and Bones.pdf */; };
 		649FD1DF16C1A029004267D7 /* Heart.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 649FD1D816C1A029004267D7 /* Heart.pdf */; };
@@ -46,12 +46,12 @@
 		64A235B018AEB14200CE24A0 /* Font Dialog.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 64A235AF18AEB14200CE24A0 /* Font Dialog.pdf */; };
 		64A8FDF01648496C00CB7FE5 /* Fireworks.m in Sources */ = {isa = PBXBuildFile; fileRef = 64A8FDEF1648496C00CB7FE5 /* Fireworks.m */; };
 		64A8FDF216485E3800CB7FE5 /* Fireworks Particle.png in Resources */ = {isa = PBXBuildFile; fileRef = 64A8FDF116485E3800CB7FE5 /* Fireworks Particle.png */; };
-		64ABB545164EB8E400E86E92 /* NSColor+CocoPlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB544164EB8E400E86E92 /* NSColor+CocoPlus.m */; };
+		64ABB545164EB8E400E86E92 /* NSColor+BL.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ABB544164EB8E400E86E92 /* NSColor+BL.m */; };
 		64ABB5481650309F00E86E92 /* Included Textures.plist in Resources */ = {isa = PBXBuildFile; fileRef = 64ABB5471650309F00E86E92 /* Included Textures.plist */; };
 		64AC63B216A73C3600856C2E /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64AC63B416A73C3600856C2E /* Preferences.xib */; };
 		64AC63BE16A7962000856C2E /* ImagePicker.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64AC63C016A7962000856C2E /* ImagePicker.xib */; };
 		64ACE5EB16929FA300283CDA /* GameOverView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64ACE5EA16929FA300283CDA /* GameOverView.m */; };
-		64B760721687A98E005F124C /* NSBezierPath+CocoPlus.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B760711687A98D005F124C /* NSBezierPath+CocoPlus.m */; };
+		64B760721687A98E005F124C /* NSBezierPath+BL.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B760711687A98D005F124C /* NSBezierPath+BL.m */; };
 		64C198A21A02B8CF00E086FE /* migrations.m in Sources */ = {isa = PBXBuildFile; fileRef = 64C198A11A02B8CF00E086FE /* migrations.m */; };
 		64C7DBFD169119FB00B0F1EF /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64C7DBFC169119FA00B0F1EF /* MainWindow.xib */; };
 		64C7DC0716912B2F00B0F1EF /* NewGame.xib in Resources */ = {isa = PBXBuildFile; fileRef = 64C7DC0916912B2F00B0F1EF /* NewGame.xib */; };
@@ -84,8 +84,8 @@
 		6400E82516C86D9B00EDDBC7 /* Moon.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Moon.pdf; sourceTree = "<group>"; };
 		6400E82716C86DA500EDDBC7 /* Paper Boat.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Paper Boat.pdf"; sourceTree = "<group>"; };
 		640211CA16C9AC4A00687609 /* Ta Dah.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Ta Dah.wav"; sourceTree = "<group>"; };
-		6405EEBD1857E8670029AFE4 /* NSString+CocoPlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CocoPlus.h"; sourceTree = "<group>"; };
-		6405EEBE1857E8670029AFE4 /* NSString+CocoPlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CocoPlus.m"; sourceTree = "<group>"; };
+		6405EEBD1857E8670029AFE4 /* NSString+BL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+BL.h"; sourceTree = "<group>"; };
+		6405EEBE1857E8670029AFE4 /* NSString+BL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+BL.m"; sourceTree = "<group>"; };
 		640710E116387EC90017CFB2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		640710E316387ED00017CFB2 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		641033161603B5EA0017F0FF /* Explosion.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Explosion.wav; sourceTree = "<group>"; };
@@ -107,8 +107,8 @@
 		64585F9E175066940009470D /* About.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = About.xib; sourceTree = "<group>"; };
 		64585FA017507ABE0009470D /* AboutWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutWindowController.h; sourceTree = "<group>"; };
 		64585FA117507ABE0009470D /* AboutWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutWindowController.m; sourceTree = "<group>"; };
-		645A14B716A50E5500F1DF60 /* NSImage+CocoPlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+CocoPlus.h"; sourceTree = "<group>"; };
-		645A14B816A50E5500F1DF60 /* NSImage+CocoPlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+CocoPlus.m"; sourceTree = "<group>"; };
+		645A14B716A50E5500F1DF60 /* NSImage+BL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+BL.h"; sourceTree = "<group>"; };
+		645A14B816A50E5500F1DF60 /* NSImage+BL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+BL.m"; sourceTree = "<group>"; };
 		645C42F11756A7D8005A720F /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = /System/Library/Frameworks/OpenAL.framework; sourceTree = "<absolute>"; };
 		645C42F31756AA34005A720F /* ALSound.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALSound.h; sourceTree = "<group>"; };
 		645C42F41756AA34005A720F /* ALSound.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALSound.m; sourceTree = "<group>"; };
@@ -123,8 +123,8 @@
 		648460671636E6BA0079E869 /* PreferencesWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PreferencesWindowController.h; sourceTree = "<group>"; };
 		648460681636E6BA0079E869 /* PreferencesWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PreferencesWindowController.m; sourceTree = "<group>"; };
 		648A510716D56D0200C75986 /* pt */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = pt; path = pt.lproj/Localizable.strings; sourceTree = "<group>"; };
-		648C8FC01640296F005A72B7 /* NSWindow+CocoPlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+CocoPlus.h"; sourceTree = "<group>"; };
-		648C8FC11640296F005A72B7 /* NSWindow+CocoPlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+CocoPlus.m"; sourceTree = "<group>"; };
+		648C8FC01640296F005A72B7 /* NSWindow+BL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSWindow+BL.h"; sourceTree = "<group>"; };
+		648C8FC11640296F005A72B7 /* NSWindow+BL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+BL.m"; sourceTree = "<group>"; };
 		648EA99816D41F1C00C8ACFA /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		648EA99916D41F2200C8ACFA /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		648EA99E16D41F9D00C8ACFA /* de */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = de; path = de.lproj/NewGame.xib; sourceTree = "<group>"; };
@@ -146,8 +146,8 @@
 		64A8FDEE1648496C00CB7FE5 /* Fireworks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Fireworks.h; sourceTree = "<group>"; };
 		64A8FDEF1648496C00CB7FE5 /* Fireworks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Fireworks.m; sourceTree = "<group>"; };
 		64A8FDF116485E3800CB7FE5 /* Fireworks Particle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Fireworks Particle.png"; sourceTree = "<group>"; };
-		64ABB543164EB8E400E86E92 /* NSColor+CocoPlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+CocoPlus.h"; sourceTree = "<group>"; };
-		64ABB544164EB8E400E86E92 /* NSColor+CocoPlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+CocoPlus.m"; sourceTree = "<group>"; };
+		64ABB543164EB8E400E86E92 /* NSColor+BL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+BL.h"; sourceTree = "<group>"; };
+		64ABB544164EB8E400E86E92 /* NSColor+BL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+BL.m"; sourceTree = "<group>"; };
 		64ABB5471650309F00E86E92 /* Included Textures.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Included Textures.plist"; sourceTree = "<group>"; };
 		64AC63A716A6521D00856C2E /* constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
 		64AC63B316A73C3600856C2E /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/Preferences.xib; sourceTree = "<group>"; };
@@ -157,8 +157,8 @@
 		64AC63CE16A8707C00856C2E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		64ACE5E916929FA300283CDA /* GameOverView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameOverView.h; sourceTree = "<group>"; };
 		64ACE5EA16929FA300283CDA /* GameOverView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameOverView.m; sourceTree = "<group>"; };
-		64B760701687A98D005F124C /* NSBezierPath+CocoPlus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBezierPath+CocoPlus.h"; sourceTree = "<group>"; };
-		64B760711687A98D005F124C /* NSBezierPath+CocoPlus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBezierPath+CocoPlus.m"; sourceTree = "<group>"; };
+		64B760701687A98D005F124C /* NSBezierPath+BL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBezierPath+BL.h"; sourceTree = "<group>"; };
+		64B760711687A98D005F124C /* NSBezierPath+BL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBezierPath+BL.m"; sourceTree = "<group>"; };
 		64B7607E1687F31A005F124C /* geometry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = geometry.h; sourceTree = "<group>"; };
 		64C198A11A02B8CF00E086FE /* migrations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = migrations.m; sourceTree = "<group>"; };
 		64C198A31A02B8E800E086FE /* migrations.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = migrations.h; sourceTree = "<group>"; };
@@ -399,16 +399,16 @@
 				6434A70518270E3D008AB487 /* Theme.m */,
 				645C42F31756AA34005A720F /* ALSound.h */,
 				645C42F41756AA34005A720F /* ALSound.m */,
-				6405EEBD1857E8670029AFE4 /* NSString+CocoPlus.h */,
-				6405EEBE1857E8670029AFE4 /* NSString+CocoPlus.m */,
-				648C8FC01640296F005A72B7 /* NSWindow+CocoPlus.h */,
-				648C8FC11640296F005A72B7 /* NSWindow+CocoPlus.m */,
-				64ABB543164EB8E400E86E92 /* NSColor+CocoPlus.h */,
-				64ABB544164EB8E400E86E92 /* NSColor+CocoPlus.m */,
-				64B760701687A98D005F124C /* NSBezierPath+CocoPlus.h */,
-				64B760711687A98D005F124C /* NSBezierPath+CocoPlus.m */,
-				645A14B716A50E5500F1DF60 /* NSImage+CocoPlus.h */,
-				645A14B816A50E5500F1DF60 /* NSImage+CocoPlus.m */,
+				6405EEBD1857E8670029AFE4 /* NSString+BL.h */,
+				6405EEBE1857E8670029AFE4 /* NSString+BL.m */,
+				648C8FC01640296F005A72B7 /* NSWindow+BL.h */,
+				648C8FC11640296F005A72B7 /* NSWindow+BL.m */,
+				64ABB543164EB8E400E86E92 /* NSColor+BL.h */,
+				64ABB544164EB8E400E86E92 /* NSColor+BL.m */,
+				64B760701687A98D005F124C /* NSBezierPath+BL.h */,
+				64B760711687A98D005F124C /* NSBezierPath+BL.m */,
+				645A14B716A50E5500F1DF60 /* NSImage+BL.h */,
+				645A14B816A50E5500F1DF60 /* NSImage+BL.m */,
 			);
 			name = Sources;
 			path = sources;
@@ -562,19 +562,19 @@
 				64D396D6160398E300C0DD1F /* Laser.m in Sources */,
 				648460691636E6BA0079E869 /* PreferencesWindowController.m in Sources */,
 				64229888163A076100B5B574 /* ImagePicker.m in Sources */,
-				648C8FC21640296F005A72B7 /* NSWindow+CocoPlus.m in Sources */,
+				648C8FC21640296F005A72B7 /* NSWindow+BL.m in Sources */,
 				6448786D18372948008B7276 /* TableView.m in Sources */,
 				64DF6AB71646D8BA0021B0EB /* Explosion.m in Sources */,
 				64A8FDF01648496C00CB7FE5 /* Fireworks.m in Sources */,
-				64ABB545164EB8E400E86E92 /* NSColor+CocoPlus.m in Sources */,
+				64ABB545164EB8E400E86E92 /* NSColor+BL.m in Sources */,
 				2B5C587A19B0CD320054459C /* ImageStore.m in Sources */,
 				641ACA83185ABE5F006411CB /* SeparatorCell.m in Sources */,
-				64B760721687A98E005F124C /* NSBezierPath+CocoPlus.m in Sources */,
+				64B760721687A98E005F124C /* NSBezierPath+BL.m in Sources */,
 				64ACE5EB16929FA300283CDA /* GameOverView.m in Sources */,
 				6434A70618270E3D008AB487 /* Theme.m in Sources */,
-				6405EEBF1857E8670029AFE4 /* NSString+CocoPlus.m in Sources */,
+				6405EEBF1857E8670029AFE4 /* NSString+BL.m in Sources */,
 				647E9BF916A1FE420049B9B0 /* helpers.m in Sources */,
-				645A14B916A50E5500F1DF60 /* NSImage+CocoPlus.m in Sources */,
+				645A14B916A50E5500F1DF60 /* NSImage+BL.m in Sources */,
 				64585FA217507ABE0009470D /* AboutWindowController.m in Sources */,
 				645C42F51756AA34005A720F /* ALSound.m in Sources */,
 				64C198A21A02B8CF00E086FE /* migrations.m in Sources */,

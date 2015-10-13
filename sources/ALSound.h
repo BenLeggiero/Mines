@@ -1,9 +1,9 @@
 /* ALSound.h
-	      __	   __
-  _______ ___/ /______ ___/ /__
- / __/ -_) _  / __/ _ \ _  / -_)
-/_/  \__/\_,_/\__/\___/_,_/\__/
-Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.
+   ____        ___  ___		  ____	      ___ 
+  /  _ ) ____ /  /_/  /_ __ __	 /   / _____ /	/
+ /  _  \/  -_)	__/  __/  /  /	/   /_/  _ //  _ \
+/______/\___/\__/ \__/ \__  /  /_____/\__,_/_____/
+© 2013-2015 Betty Lab. /___/
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -12,8 +12,8 @@ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 copies of the Software, and to permit persons to whom the Software is
 furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+The above copyright notice and this permission notice shall be included
+UNALTERED in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
@@ -28,15 +28,12 @@ SOFTWARE. */
 #import <OpenAL/alc.h>
 
 @interface ALSound : NSObject {
-	ALuint		_sourceID;
-	ALuint		_bufferID;
-	uint16_t*	_buffer;
+	ALuint	  _sourceID;
+	ALuint	  _bufferID;
+	uint16_t* _buffer;
 }
-
 	+ (ALSound *) soundNamed: (NSString *) soundFileName;
 
 	- (void) play;
-
 	- (void) stop;
-
 @end
