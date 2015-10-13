@@ -31,14 +31,6 @@ Mines is a simple and elegant implementation of the classic game [Minesweeper](h
 Buy it on the [Mac App Store](https://itunes.apple.com/us/app/mines/id602009455)!  
   
 If you want to improve the game or add any feature, your code is welcome.
-Alternatively you can make a small donation to support the development of this software.
-
-CURRENCY|ADDRESS
-:---:|:---:
-[Bitcoin](https://bitcoin.org)|`16Nu1Smx6Dymj9onnWmehPkACqs6xF3Bj4`
-[Litecoin](https://litecoin.org)|`LM31aXyh2nNJDNWF7j2Ds8QNemuP8eUHuN`
-[DogeCoin](http://dogecoin.com)|`DMpowbgKbgUbU73ABW9NwaVkvcc4fG5bUc`
-[MaxCoin](http://www.maxcoin.co.uk)|`mSk8Ji1K6YBqfrKHk1uMsjpnjx91hcCDwR`
 
 ### History
 
