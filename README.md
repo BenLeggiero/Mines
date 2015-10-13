@@ -36,13 +36,13 @@ If you want to improve the game or add any feature, your code is welcome.
 
 * __v3.0__ _(Under development)_
 
-* __[v2.1](http://github.com/redcode/Mines/releases/tag/v2.1)__ _(2014-12-21)_
+* __[v2.1](http://github.com/BettyLab/Mines/releases/tag/v2.1)__ _(2014-12-21)_
     * UI fixes for Snow Leopard.
     * Fixed a bug related to the font selection dialog.
     * Improved default theme.
     * Several minor improvements and bug fixes.
 
-* __[v2.0](http://github.com/redcode/Mines/releases/tag/v2.0)__ _(2014-11-05)_
+* __[v2.0](http://github.com/BettyLab/Mines/releases/tag/v2.0)__ _(2014-11-05)_
     * Yosemite support.
     * Retina Display support.
     * Russian language support.
