@@ -1,7 +1,7 @@
 /* Mines - MainController.h
    __  __
-  /  \/  \  __ ___  ____  _____
- /	  \(__)   \/  -_)_\  _/
+  /  \/  \  __ ___  ____   ____
+ /	  \(__)   \/  -_)_/  _/
 /___/__/__/__/__/_/\___/____/
 Copyright © 2013-2015 Betty Lab.
 Released under the terms of the GNU General Public License v3. */
@@ -85,7 +85,7 @@ Released under the terms of the GNU General Public License v3. */
 	ALSound*		     _explosionSound;
 	ALSound*		     _laserBeamSound;
 	ALSound*		     _taDahSound;
-	Z2DSize			     _hintCoordinates;
+	Z2DUInt			     _hintCoordinates;
 	NSUInteger		     _allowedTime;
 	NSUInteger		     _timeLeft;
 	NSTimer*		     _gameOverTimer;

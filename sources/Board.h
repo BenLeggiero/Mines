@@ -1,7 +1,7 @@
 /* Mines - Board.h
    __  __
-  /  \/  \  __ ___  ____  _____
- /	  \(__)   \/  -_)_\  _/
+  /  \/  \  __ ___  ____   ____
+ /	  \(__)   \/  -_)_/  _/
 /___/__/__/__/__/_/\___/____/
 Copyright © 2013-2015 Betty Lab.
 Released under the terms of the GNU General Public License v3. */
@@ -14,9 +14,9 @@ Released under the terms of the GNU General Public License v3. */
 @class Board;
 
 typedef struct {
-	NSUInteger width;
-	NSUInteger height;
-	NSUInteger mineCount;
+	zuint width;
+	zuint height;
+	zuint mineCount;
 } GameValues;
 
 typedef uint8_t BoardState;
@@ -48,7 +48,7 @@ NS_INLINE BOOL GameValuesAreEqual(GameValues *a, const GameValues *b)
 BOOL GameSnapshotTest	(void*	     snapshot,
 			 size_t	     snapshotSize);
 
-BOOL GameSnapshotValues	(void*	     snapshot,
+void GameSnapshotValues	(void*	     snapshot,
 			 size_t	     snapshotSize,
 			 GameValues* values);
 
@@ -61,7 +61,7 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 	- (void) boardDidWin: (Board *) board;
 
 	- (void) board:			       (Board *) board
-		 didDiscloseMineAtCoordinates: (Z2DSize) coordinates;
+		 didDiscloseMineAtCoordinates: (Z2DUInt) coordinates;
 
 @end
 
@@ -80,7 +80,7 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 	GLfloat		  _cellColors[19][3];
 	GLfloat		  _alternateCellColors[7][3];
 	BoardState	  _state;
-	Z2DSize		  _coordinates;
+	Z2DUInt		  _coordinates;
 	BoardButtonAction _leftButtonAction;
 
 	struct {BOOL flat	     :1;
@@ -90,11 +90,11 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 	} _flags;
 }
 	@property (nonatomic, readonly ) BoardState	   state;
-	@property (nonatomic, readonly ) NSUInteger	   width;
-	@property (nonatomic, readonly ) NSUInteger	   height;
-	@property (nonatomic, readonly ) NSUInteger	   mineCount;
-	@property (nonatomic, readonly ) NSUInteger	   flagCount;
-	@property (nonatomic, readonly ) NSUInteger	   clearedCount;
+	@property (nonatomic, readonly ) zuint		   width;
+	@property (nonatomic, readonly ) zuint		   height;
+	@property (nonatomic, readonly ) zuint		   mineCount;
+	@property (nonatomic, readonly ) zuint		   flagCount;
+	@property (nonatomic, readonly ) zuint		   clearedCount;
 	@property (nonatomic, readwrite) BOOL		   showMines;
 	@property (nonatomic, readwrite) BOOL		   showGoodFlags;
 	@property (nonatomic, readwrite) BoardButtonAction leftButtonAction;
@@ -112,9 +112,9 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 
 	- (void) restart;
 
-	- (BOOL) hintCoordinates: (Z2DSize *) coordinates;
+	- (BOOL) hintCoordinates: (Z2DUInt *) coordinates;
 
-	- (void) discloseHintCoordinates: (Z2DSize) coordinates;
+	- (void) discloseHintCoordinates: (Z2DUInt) coordinates;
 
 	- (size_t) snapshotSize;
 
@@ -123,7 +123,7 @@ BOOL GameSnapshotValues	(void*	     snapshot,
 	- (void) setSnapshot: (void *) snapshot
 		 ofSize:      (size_t) snapshotSize;
 
-	- (NSRect) frameForCoordinates: (Z2DSize) coordinates;
+	- (NSRect) frameForCoordinates: (Z2DUInt) coordinates;
 @end
 
 // EOF

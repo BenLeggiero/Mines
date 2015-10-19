@@ -1,7 +1,7 @@
 /* Mines - Board.m
    __  __
-  /  \/  \  __ ___  ____  _____
- /	  \(__)   \/  -_)_\  _/
+  /  \/  \  __ ___  ____   ____
+ /	  \(__)   \/  -_)_/  _/
 /___/__/__/__/__/_/\___/____/
 Copyright © 2013-2015 Betty Lab.
 Released under the terms of the GNU General Public License v3. */
@@ -41,19 +41,16 @@ BOOL GameSnapshotTest(void *snapshot, size_t snapshotSize)
 	{return (BOOL)!minesweeper_snapshot_test(snapshot, snapshotSize);}
 
 
-BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
+void GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	{
-	Z2DSize size;
-	zsize mineCount;
+	Z2DUInt size;
+	zuint mineCount;
 
-	if (minesweeper_snapshot_values(snapshot, snapshotSize, &size, &mineCount, NULL))
-		return NO;
+	minesweeper_snapshot_values(snapshot, &snapshotSize, &size, &mineCount, NULL);
 
-	values->width	  = (NSUInteger)size.x;
-	values->height	  = (NSUInteger)size.y;
-	values->mineCount = (NSUInteger)mineCount;
-
-	return YES;
+	values->width	  = size.x;
+	values->height	  = size.y;
+	values->mineCount = mineCount;
 	}
 
 
@@ -277,14 +274,14 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		}
 
 
-	- (Z2DSize) cellCoordinatesOfEvent: (NSEvent *) event
+	- (Z2DUInt) cellCoordinatesOfEvent: (NSEvent *) event
 		{
 		NSPoint point = [self convertPoint: [event locationInWindow] fromView: nil];
 		NSSize size   = self.bounds.size;
 
-		return z_2d_type(SIZE)
-			((zsize)(point.x / (size.width  / (CGFloat)_values.width )),
-			 (zsize)(point.y / (size.height / (CGFloat)_values.height)));
+		return z_2d_type(UINT)
+			((zuint)(point.x / (size.width  / (CGFloat)_values.width )),
+			 (zuint)(point.y / (size.height / (CGFloat)_values.height)));
 		}
 
 
@@ -320,7 +317,8 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	- (void) toggleFlag
 		{
 		if (	_game.state == MINESWEEPER_STATE_PLAYING &&
-			!MINESWEEPER_CELL_DISCLOSED(minesweeper_cell(&_game, _coordinates))
+			!MINESWEEPER_CELL_DISCLOSED
+				(_game.matrix[_game.size.x * _coordinates.y + _coordinates.x])
 		)
 			{
 			minesweeper_toggle_flag(&_game, _coordinates, NULL);
@@ -345,13 +343,13 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	@synthesize themeImages      = _themeImages;
 
 
-	- (NSUInteger)	width		{return _values.width;}
-	- (NSUInteger)	height		{return _values.height;}
-	- (NSUInteger)	mineCount	{return _values.mineCount;}
-	- (NSUInteger)	flagCount	{return (NSUInteger)minesweeper_flag_count     (&_game);}
-	- (NSUInteger)	clearedCount	{return (NSUInteger)minesweeper_disclosed_count(&_game);}
-	- (BOOL)	showMines	{return _flags.showMines;}
-	- (BOOL)	showGoodFlags	{return _flags.showGoodFlags;}
+	- (zuint) width		{return _values.width;}
+	- (zuint) height	{return _values.height;}
+	- (zuint) mineCount	{return _values.mineCount;}
+	- (zuint) flagCount	{return _game.flag_count;}
+	- (zuint) clearedCount	{return minesweeper_disclosed_count(&_game);}
+	- (BOOL)  showMines	{return _flags.showMines;}
+	- (BOOL)  showGoodFlags	{return _flags.showGoodFlags;}
 
 
 	- (void) setShowMines: (BOOL) value
@@ -530,7 +528,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 					{
 					for (x = 0; x < _values.width; x++, paletteIndex = !paletteIndex)
 						{
-						cell = minesweeper_cell(&_game, z_2d_type(SIZE)(x, y));
+						cell = _game.matrix[_game.size.x * y + x];
 
 						if (CELL_IS(DISCLOSED))
 							{
@@ -678,7 +676,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	- (void) mouseUp: (NSEvent *) event
 		{
 		if (	_state == kBoardStateGame &&
-			z_2d_type_are_equal(SIZE)(_coordinates, [self cellCoordinatesOfEvent: event])
+			z_2d_type_are_equal(UINT)(_coordinates, [self cellCoordinatesOfEvent: event])
 		)
 			{
 			if ([event clickCount] > 1 || _leftButtonAction == kBoardButtonActionReveal)
@@ -694,7 +692,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	- (void) rightMouseUp: (NSEvent *) event
 		{
 		if (	_state == kBoardStateGame &&
-			z_2d_type_are_equal(SIZE)(_coordinates, [self cellCoordinatesOfEvent: event])
+			z_2d_type_are_equal(UINT)(_coordinates, [self cellCoordinatesOfEvent: event])
 		)
 			[self toggleFlag];
 		}
@@ -795,7 +793,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		{
 		GameValues oldValues = _values;
 
-		minesweeper_prepare(&_game, z_2d_type(SIZE)(values.width, values.height), values.mineCount);
+		minesweeper_prepare(&_game, z_2d_type(UINT)(values.width, values.height), values.mineCount);
 		_values = values;
 		_state = kBoardStateGame;
 
@@ -809,19 +807,19 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 	- (void) restart
 		{
 		minesweeper_prepare
-			(&_game, z_2d_type(SIZE)(_values.width, _values.height),
-			 minesweeper_mine_count(&_game));
+			(&_game, z_2d_type(UINT)((zuint)_values.width, (zuint)_values.height),
+			 _game.mine_count);
 
 		_state = kBoardStateGame;
 		self.needsDisplay = YES;
 		}
 
 
-	- (BOOL) hintCoordinates: (Z2DSize *) coordinates
+	- (BOOL) hintCoordinates: (Z2DUInt *) coordinates
 		{return minesweeper_hint(&_game, coordinates);}
 
 
-	- (void) discloseHintCoordinates: (Z2DSize) coordinates
+	- (void) discloseHintCoordinates: (Z2DUInt) coordinates
 		{
 		minesweeper_disclose(&_game, coordinates);
 
@@ -848,10 +846,9 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		{
 		minesweeper_set_snapshot(&_game, snapshot, snapshotSize);
 
-		Z2DSize size = minesweeper_size(&_game);
-		_values.width	  = size.x;
-		_values.height	  = size.y;
-		_values.mineCount = minesweeper_mine_count(&_game);
+		_values.width	  = _game.size.x;
+		_values.height	  = _game.size.y;
+		_values.mineCount = _game.mine_count;
 
 		if ((_state = _game.state) == MINESWEEPER_STATE_PRISTINE)
 			_state = kBoardStateGame;
@@ -861,7 +858,7 @@ BOOL GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		}
 
 
-	- (NSRect) frameForCoordinates: (Z2DSize) coordinates
+	- (NSRect) frameForCoordinates: (Z2DUInt) coordinates
 		{
 		NSSize size = self.bounds.size;
 

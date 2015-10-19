@@ -1,7 +1,7 @@
 /* Mines - MainController.m
    __  __
-  /  \/  \  __ ___  ____  _____
- /	  \(__)   \/  -_)_\  _/
+  /  \/  \  __ ___  ____   ____
+ /	  \(__)   \/  -_)_/  _/
 /___/__/__/__/__/_/\___/____/
 Copyright © 2013-2015 Betty Lab.
 Released under the terms of the GNU General Public License v3. */
@@ -232,9 +232,9 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 		 time:				(NSUInteger *) time
 		{
 		*time		  = timeLimitButton.state ? timeLimitTextField.stringValue.integerValue * 60 : 0;
-		values->width	  = boardCustomWidthTextField.stringValue.integerValue;
-		values->height	  = boardCustomHeightTextField.stringValue.integerValue;
-		values->mineCount = boardCustomMineCountTextField.stringValue.integerValue;
+		values->width	  = (zuint)boardCustomWidthTextField.stringValue.integerValue;
+		values->height	  = (zuint)boardCustomHeightTextField.stringValue.integerValue;
+		values->mineCount = (zuint)boardCustomMineCountTextField.stringValue.integerValue;
 		}
 
 
@@ -611,9 +611,9 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 			{
 			game = [games objectAtIndex: --index];
 
-			typicalGames[index].width     = [(NSNumber *)[game objectForKey: @"Width"    ] unsignedIntegerValue];
-			typicalGames[index].height    = [(NSNumber *)[game objectForKey: @"Height"   ] unsignedIntegerValue];
-			typicalGames[index].mineCount = [(NSNumber *)[game objectForKey: @"MineCount"] unsignedIntegerValue];
+			typicalGames[index].width     = [(NSNumber *)[game objectForKey: @"Width"    ] unsignedIntValue];
+			typicalGames[index].height    = [(NSNumber *)[game objectForKey: @"Height"   ] unsignedIntValue];
+			typicalGames[index].mineCount = [(NSNumber *)[game objectForKey: @"MineCount"] unsignedIntValue];
 			}
 
 		//-----------------------.
@@ -857,10 +857,10 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 				NSScreen*	screen	 = nil;
 				NSUserDefaults*	defaults = [NSUserDefaults standardUserDefaults];
 
-				values.width	 = [defaults integerForKey: @"Width"	];
-				values.height	 = [defaults integerForKey: @"Height"	];
-				values.mineCount = [defaults integerForKey: @"MineCount"];
-				time		 = [defaults integerForKey: @"Time"	];
+				values.width	 = (zuint)[defaults integerForKey: @"Width"	];
+				values.height	 = (zuint)[defaults integerForKey: @"Height"	];
+				values.mineCount = (zuint)[defaults integerForKey: @"MineCount"];
+				time		 = (zuint)[defaults integerForKey: @"Time"	];
 
 				if (	![self areValidGameValues: &values time: time] ||
 					(!(screen = [self suitableScreenForGameValues: &values]) &&
@@ -1192,7 +1192,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 
 	- (void) board:			       (Board *) sender
-		 didDiscloseMineAtCoordinates: (Z2DSize) coordinates;
+		 didDiscloseMineAtCoordinates: (Z2DUInt) coordinates;
 		{
 		[self stopTimer];
 		[self updateLabels];
