@@ -606,7 +606,7 @@ void GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 			glDisable(GL_BLEND);
 			}
 
-		[[self openGLContext] flushBuffer];
+		[self.openGLContext flushBuffer];
 		}
 
 

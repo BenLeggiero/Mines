@@ -515,24 +515,24 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 		// Creamos el cañón láser. |
 		//-------------------------'
 		(_cannon = [[Cannon alloc] initWithFrame: hintToolbarItem.view.bounds]).delegate = self;
-		[hintToolbarItem setView: _cannon];
+		hintToolbarItem.view = _cannon;
 		[_cannon release];
 
 		//--------------------------------------------------------.
 		// Insertamos los contadores en la barra de herramientas. |
 		//--------------------------------------------------------'
-		[leftCounterToolbarItem	 setView: leftCounterView ];
+		leftCounterToolbarItem.view = leftCounterView;
 		[leftCounterView release];
-		[rightCounterToolbarItem setView: rightCounterView];
+		rightCounterToolbarItem.view = rightCounterView;
 		[rightCounterView release];
 
 		//------------------------------------------------------------------------------.
 		// Añadimos efecto de incrustación a las etiquetas de la barra de herramientas. |
 		//------------------------------------------------------------------------------'
-		[leftCounterTitleTextField.cell	 setBackgroundStyle: NSBackgroundStyleRaised];
-		[leftCounterValueTextField.cell	 setBackgroundStyle: NSBackgroundStyleRaised];
-		[rightCounterTitleTextField.cell setBackgroundStyle: NSBackgroundStyleRaised];
-		[rightCounterValueTextField.cell setBackgroundStyle: NSBackgroundStyleRaised];
+		leftCounterTitleTextField.cell.backgroundStyle	= NSBackgroundStyleRaised;
+		leftCounterValueTextField.cell.backgroundStyle	= NSBackgroundStyleRaised;
+		rightCounterTitleTextField.cell.backgroundStyle	= NSBackgroundStyleRaised;
+		rightCounterValueTextField.cell.backgroundStyle	= NSBackgroundStyleRaised;
 
 		//---------------------------------------------------------------------------------.
 		// Configuramos las imágenes de los botones de la barra de estado como plantillas. |
@@ -557,11 +557,11 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 			//------------------------------------------------------------------------.
 			// Añadimos efecto de incrustación a las etiquetas de la barra de estado. |
 			//------------------------------------------------------------------------'
-			[totalMinesSymbolButton.cell	 setBackgroundStyle: NSBackgroundStyleRaised];
-			[totalMinesValueTextField.cell	 setBackgroundStyle: NSBackgroundStyleRaised];
-			[currentFlagsSymbolButton.cell	 setBackgroundStyle: NSBackgroundStyleRaised];
-			[currentFlagsValueTextField.cell setBackgroundStyle: NSBackgroundStyleRaised];
-			[timeElapsedValueTextField.cell	 setBackgroundStyle: NSBackgroundStyleRaised];
+			totalMinesSymbolButton.cell.backgroundStyle	= NSBackgroundStyleRaised;
+			totalMinesValueTextField.cell.backgroundStyle	= NSBackgroundStyleRaised;
+			currentFlagsSymbolButton.cell.backgroundStyle	= NSBackgroundStyleRaised;
+			currentFlagsValueTextField.cell.backgroundStyle	= NSBackgroundStyleRaised;
+			timeElapsedValueTextField.cell.backgroundStyle	= NSBackgroundStyleRaised;
 			}
 
 		if (IS_BELOW_LION)
@@ -593,7 +593,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 		//-----------------------------------------------------------------------.
 		// Añadimos el slider de transparencia al diálogo de selección de color. |
 		//-----------------------------------------------------------------------'
-		[[NSColorPanel sharedColorPanel] setShowsAlpha: YES];
+		[NSColorPanel sharedColorPanel].showsAlpha = YES;
 
 		//--------------------------------------.
 		// Cargamos la lista de juegos típicos. |
@@ -694,14 +694,13 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 				if (error)
 					{
-					[[NSAlert alertWithError: error] runModal];
+					[NSApp presentError: error];
 					error = nil;
 					}
 
-				[[NSAlert alertWithError: Error
+				[NSApp presentError: Error
 					(_("Error.PreviousVersionTheme.Title"),
-					 _("Error.PreviousVersionTheme.Body"))]
-						runModal];
+					 _("Error.PreviousVersionTheme.Body"))];
 
 				[dictionary release];
 				dictionary = nil;
@@ -742,7 +741,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 
 				if (!themesPath)
 					{
-					if (error) [[NSAlert alertWithError: error] runModal];
+					if (error) [NSApp presentError: error];
 					goto restore_default_theme;
 					}
 
@@ -768,16 +767,15 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 				Class errorClass = [NSError class];
 
 				for (NSError *error in themeImages) if ([error isKindOfClass: errorClass])
-					[[NSAlert alertWithError: error] runModal];
+					[NSApp presentError: error];
 				}
 
 			if (errorFound) FatalBundleCorruption();
 
 			restore_default_theme:
 
-			[[NSAlert alertWithError:
-				Error(_("Error.InitialTheme.Title"), _("Error.InitialTheme.Body"))]
-					runModal];
+			[NSApp presentError:
+				Error(_("Error.InitialTheme.Title"), _("Error.InitialTheme.Body"))];
 
 			errorFound = YES;
 			dictionary = nil;
@@ -857,10 +855,10 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 				NSScreen*	screen	 = nil;
 				NSUserDefaults*	defaults = [NSUserDefaults standardUserDefaults];
 
-				values.width	 = (zuint)[defaults integerForKey: @"Width"	];
-				values.height	 = (zuint)[defaults integerForKey: @"Height"	];
+				values.width	 = (zuint)[defaults integerForKey: @"Width"    ];
+				values.height	 = (zuint)[defaults integerForKey: @"Height"   ];
 				values.mineCount = (zuint)[defaults integerForKey: @"MineCount"];
-				time		 = (zuint)[defaults integerForKey: @"Time"	];
+				time		 = (zuint)[defaults integerForKey: @"Time"     ];
 
 				if (	![self areValidGameValues: &values time: time] ||
 					(!(screen = [self suitableScreenForGameValues: &values]) &&
@@ -1033,7 +1031,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 				return YES;
 				}
 
-			if (error) [[NSAlert alertWithError: error] runModal];
+			if (error) [NSApp presentError: error];
 			}
 
 		return NO;
@@ -1321,7 +1319,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 				_snapshotPath = [path retain];
 				}
 
-			else if (error) [[NSAlert alertWithError: error] runModal];
+			else if (error) [NSApp presentError: error];
 			}
 		}
 
@@ -1333,7 +1331,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 			NSError *error;
 
 			if (![self saveSnapshotAtPath: _snapshotPath error: &error])
-				[[NSAlert alertWithError: error] runModal];
+				[NSApp presentError: error];
 			}
 
 		else [self saveAs: sender];
@@ -1376,7 +1374,7 @@ static void UpdateSound(NSString *fileName, BOOL enable, ALSound **sound)
 					_snapshotPath = [path retain];
 					}
 
-				else [[NSAlert alertWithError: error] runModal];
+				else [NSApp presentError: error];
 				}
 
 			[self startTimerIfNeeded];
