@@ -54,17 +54,6 @@ static const GradientData leopardGradientData = {
 
 @implementation Cannon
 
-
-#	pragma mark - Accessors
-
-	@synthesize delegate		= _delegate;
-	@synthesize rotationVelocity	= _rotationVelocity;
-	@synthesize beamVelocity	= _beamVelocity;
-	@synthesize blazeDuration	= _blazeDuration;
-	@synthesize blazeRadius		= _blazeRadius;
-	@synthesize laserWidth		= _laserWidth;
-
-
 #	pragma mark - Helpers
 
 
@@ -129,7 +118,7 @@ static const GradientData leopardGradientData = {
 		}
 
 
-#	pragma mark - Life Cycle
+#	pragma mark - Overwritten
 
 
 	- (id) initWithFrame: (NSRect) frame
@@ -300,9 +289,6 @@ static const GradientData leopardGradientData = {
 		}
 
 
-#	pragma mark - Drawing
-
-
 	- (void) drawRect: (NSRect) frame
 		{
 		NSSize size = self.bounds.size;
@@ -360,9 +346,6 @@ static const GradientData leopardGradientData = {
 		}
 
 
-#	pragma mark - Input
-
-
 	- (BOOL) mouseDownCanMoveWindow
 		{return NO;}
 
@@ -393,7 +376,14 @@ static const GradientData leopardGradientData = {
 		}
 
 
-#	pragma mark - Control
+#	pragma mark - Public
+
+	@synthesize delegate		= _delegate;
+	@synthesize rotationVelocity	= _rotationVelocity;
+	@synthesize beamVelocity	= _beamVelocity;
+	@synthesize blazeDuration	= _blazeDuration;
+	@synthesize blazeRadius		= _blazeRadius;
+	@synthesize laserWidth		= _laserWidth;
 
 
 	- (void) shootToPoint: (NSPoint) point

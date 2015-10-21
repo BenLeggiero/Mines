@@ -16,8 +16,20 @@ Released under the terms of the GNU General Public License v3. */
 
 @implementation Theme
 
+#	pragma mark - Overwritten
 
-#	pragma mark - Accessors
+
+	- (void) dealloc
+		{
+		[_cellColors	 release];
+		[_numberColors	 release];
+		[_imageColors	 release];
+		[_imageFileNames release];
+		[super dealloc];
+		}
+
+
+#	pragma mark - Public
 
 	@synthesize name		= _name;
 	@synthesize laserColor		= _laserColor;
@@ -41,22 +53,6 @@ Released under the terms of the GNU General Public License v3. */
 	- (void) setCellBorder:		     (BOOL) value {_flags.cellBorder		  = value;}
 	- (void) setAlternateCoveredCells:   (BOOL) value {_flags.alternateCoveredCells	  = value;}
 	- (void) setAlternateUncoveredCells: (BOOL) value {_flags.alternateUncoveredCells = value;}
-
-
-#	pragma mark - Overwritten
-
-
-	- (void) dealloc
-		{
-		[_cellColors	 release];
-		[_numberColors	 release];
-		[_imageColors	 release];
-		[_imageFileNames release];
-		[super dealloc];
-		}
-
-
-#	pragma mark - Public
 
 
 	+ (NSArray *) internalDictionaries

@@ -20,13 +20,6 @@ Released under the terms of the GNU General Public License v3. */
 
 @implementation GameOverView
 
-
-#	pragma mark - Accessors
-
-	@synthesize target = _target;
-	@synthesize action = _action;
-
-
 #	pragma mark - Overwritten
 
 
@@ -213,6 +206,9 @@ Released under the terms of the GNU General Public License v3. */
 
 
 #	pragma mark - Public
+
+	@synthesize target = _target;
+	@synthesize action = _action;
 
 
 	- (void) youLose

@@ -61,7 +61,7 @@ Released under the terms of the GNU General Public License v3. */
 @implementation ImagePicker
 
 
-#	pragma mark - Listeners
+#	pragma mark - Callbacks
 
 
 	- (void) observeValueForKeyPath: (NSString     *) keyPath

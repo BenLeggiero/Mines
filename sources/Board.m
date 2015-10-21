@@ -333,39 +333,6 @@ void GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 		}
 
 
-#	pragma mark - Accessors
-
-
-	@synthesize state	     = _state;
-	@synthesize values	     = _values;
-	@synthesize leftButtonAction = _leftButtonAction;
-	@synthesize theme	     = _theme;
-	@synthesize themeImages      = _themeImages;
-
-
-	- (zuint) width		{return _values.width;}
-	- (zuint) height	{return _values.height;}
-	- (zuint) mineCount	{return _values.mineCount;}
-	- (zuint) flagCount	{return _game.flag_count;}
-	- (zuint) clearedCount	{return minesweeper_disclosed_count(&_game);}
-	- (BOOL)  showMines	{return _flags.showMines;}
-	- (BOOL)  showGoodFlags	{return _flags.showGoodFlags;}
-
-
-	- (void) setShowMines: (BOOL) value
-		{
-		_flags.showMines = value;
-		self.needsDisplay = YES;
-		}
-
-
-	- (void) setShowGoodFlags: (BOOL) value
-		{
-		_flags.showGoodFlags = value;
-		self.needsDisplay = YES;
-		}
-
-
 #	pragma mark - Overwritten
 
 
@@ -699,6 +666,35 @@ void GameSnapshotValues(void *snapshot, size_t snapshotSize, GameValues *values)
 
 
 #	pragma mark - Public
+
+	@synthesize state	     = _state;
+	@synthesize values	     = _values;
+	@synthesize leftButtonAction = _leftButtonAction;
+	@synthesize theme	     = _theme;
+	@synthesize themeImages      = _themeImages;
+
+
+	- (zuint) width		{return _values.width;}
+	- (zuint) height	{return _values.height;}
+	- (zuint) mineCount	{return _values.mineCount;}
+	- (zuint) flagCount	{return _game.flag_count;}
+	- (zuint) clearedCount	{return minesweeper_disclosed_count(&_game);}
+	- (BOOL)  showMines	{return _flags.showMines;}
+	- (BOOL)  showGoodFlags	{return _flags.showGoodFlags;}
+
+
+	- (void) setShowMines: (BOOL) value
+		{
+		_flags.showMines = value;
+		self.needsDisplay = YES;
+		}
+
+
+	- (void) setShowGoodFlags: (BOOL) value
+		{
+		_flags.showGoodFlags = value;
+		self.needsDisplay = YES;
+		}
 
 
 	- (void) setTheme: (Theme	   *) theme
