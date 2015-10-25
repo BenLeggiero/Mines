@@ -52,7 +52,6 @@ Released under the terms of the GNU General Public License v3. */
 	NSMutableArray*	_userThemes;
 	Theme*		_theme;
 	NSMutableArray* _themeImages;
-	NSView*		_currentView;
 	NSUInteger	_imageIndex;
 	NSColor*	_imageBackgroundColor;
 	ImagePicker*	_imagePicker;

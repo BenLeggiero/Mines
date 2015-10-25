@@ -623,7 +623,7 @@ Released under the terms of the GNU General Public License v3. */
 		[_board	      release];
 		[_imagePicker release];
 
-		if (_currentView == themeView) [self finalizeThemeTab];
+		if (self.window.contentView == themeView) [self finalizeThemeTab];
 
 		if ([defaultsController hasUnappliedChanges])
 			{
@@ -658,7 +658,6 @@ Released under the terms of the GNU General Public License v3. */
 		window.title = _("Preferences.WindowTitle.General");
 		window.toolbar.selectedItemIdentifier =  @"General";
 		[window replaceContentViewWithView: generalView animate: NO];
-		_currentView = generalView;
 		}
 
 
@@ -667,8 +666,8 @@ Released under the terms of the GNU General Public License v3. */
 
 	- (IBAction) tab: (NSToolbarItem *) sender
 		{
-		NSView *newView;
 		NSWindow *window = self.window;
+		NSView *currentView = window.contentView, *newView;
 		NSString *title;
 
 		switch (sender.tag)
@@ -686,13 +685,12 @@ Released under the terms of the GNU General Public License v3. */
 			break;
 			}
 
-		if (newView != _currentView)
+		if (newView != currentView)
 			{
-			if (_currentView == themeView) [self finalizeThemeTab];
+			if (currentView == themeView) [self finalizeThemeTab];
 			else if (newView == themeView) [self prepareThemeTab];
 			window.title = title;
 			[window replaceContentViewWithView: newView animate: YES];
-			_currentView = newView;
 			}
 		}
 
@@ -816,7 +814,7 @@ Released under the terms of the GNU General Public License v3. */
 
 	- (IBAction) setFont: (NSFontManager *) sender
 		{
-		if (_currentView == themeView && ![_bundleThemes containsObject: _theme])
+		if (self.window.contentView == themeView && ![_bundleThemes containsObject: _theme])
 			{
 			NSFont *font = [sender convertFont: [NSFont systemFontOfSize: 11.0]];
 
