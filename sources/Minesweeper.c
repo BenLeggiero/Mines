@@ -142,7 +142,7 @@ static void disclose_cell(Minesweeper *object, zuint x, zuint y)
 	}
 
 
-static void count_hint_cases(Minesweeper *object, zuint *counts)
+static void count_hint_cases(Minesweeper const *object, zuint *counts)
 	{
 	MinesweeperCell *c = MATRIX_END;
 	const Offset *p, *e;
@@ -178,7 +178,7 @@ static void count_hint_cases(Minesweeper *object, zuint *counts)
 	}
 
 
-static Z2DUInt case0_hint(Minesweeper *object, zuint index)
+static Z2DUInt case0_hint(Minesweeper const *object, zuint index)
 	{
 	MinesweeperCell *c = MATRIX_END;
 	const Offset *p, *e;
@@ -206,7 +206,7 @@ static Z2DUInt case0_hint(Minesweeper *object, zuint index)
 	}
 
 
-static Z2DUInt case1_hint(Minesweeper *object, zuint index)
+static Z2DUInt case1_hint(Minesweeper const *object, zuint index)
 	{
 	MinesweeperCell *c = MATRIX_END;
 
@@ -217,7 +217,7 @@ static Z2DUInt case1_hint(Minesweeper *object, zuint index)
 	}
 
 
-static Z2DUInt case2_hint(Minesweeper *object, zuint index)
+static Z2DUInt case2_hint(Minesweeper const *object, zuint index)
 	{
 	MinesweeperCell *c = MATRIX_END;
 
@@ -290,12 +290,12 @@ ZStatus minesweeper_prepare(Minesweeper *object, Z2DUInt size, zuint mine_count)
 
 
 MINESWEEPER_API
-zuint minesweeper_covered_count(Minesweeper *object)
+zuint minesweeper_covered_count(Minesweeper const *object)
 	{return object->size.x * object->size.y - minesweeper_disclosed_count(object);}
 
 
 MINESWEEPER_API
-zuint minesweeper_disclosed_count(Minesweeper *object)
+zuint minesweeper_disclosed_count(Minesweeper const *object)
 	{
 	return	((object->size.x * object->size.y) - object->mine_count) -
 		object->remaining_count;
@@ -483,7 +483,7 @@ void minesweeper_resolve(Minesweeper *object)
 
 
 MINESWEEPER_API
-zsize minesweeper_snapshot_size(Minesweeper *object)
+zsize minesweeper_snapshot_size(Minesweeper const *object)
 	{
 	return object->state > MINESWEEPER_STATE_PRISTINE
 		? HEADER_SIZE + object->size.x * object->size.y
@@ -492,7 +492,7 @@ zsize minesweeper_snapshot_size(Minesweeper *object)
 
 
 MINESWEEPER_API
-void minesweeper_snapshot(Minesweeper *object, void *output)
+void minesweeper_snapshot(Minesweeper const *object, void *output)
 	{
 	HEADER(output)->x	   = z_uint64_big_endian(object->size.x);
 	HEADER(output)->y	   = z_uint64_big_endian(object->size.y);
@@ -563,7 +563,7 @@ ZStatus minesweeper_set_snapshot(Minesweeper *object, void *snapshot, zsize snap
 
 
 MINESWEEPER_API
-ZStatus minesweeper_snapshot_test(void *snapshot, zsize snapshot_size)
+ZStatus minesweeper_snapshot_test(void const *snapshot, zsize snapshot_size)
 	{
 	Z2DUInt64	 size;
 	zuint64		 mine_count;
@@ -600,8 +600,8 @@ ZStatus minesweeper_snapshot_test(void *snapshot, zsize snapshot_size)
 
 	if (state != MINESWEEPER_STATE_PRISTINE)
 		{
-		MinesweeperCell *matrix = snapshot + HEADER_SIZE, *c;
-		const Offset *p, *e;
+		MinesweeperCell const *matrix = snapshot + HEADER_SIZE, *c;
+		Offset const *p, *e;
 		zuint real_mine_count, exploded_count, x, y, nx, ny;
 		zuint8 w;
 
@@ -676,7 +676,7 @@ ZStatus minesweeper_snapshot_test(void *snapshot, zsize snapshot_size)
 
 MINESWEEPER_API
 void minesweeper_snapshot_values(
-	void*		  snapshot,
+	void const*	  snapshot,
 	zsize*		  snapshot_size,
 	Z2DUInt*	  size,
 	zuint*		  mine_count,

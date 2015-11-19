@@ -85,42 +85,42 @@ Z_DEFINE_STRICT_STRUCTURE(
 
 Z_C_SYMBOLS_BEGIN
 
-MINESWEEPER_API void		  minesweeper_initialize	 (Minesweeper* object);
+MINESWEEPER_API void		  minesweeper_initialize	 (Minesweeper*	     object);
 
-MINESWEEPER_API void		  minesweeper_finalize		 (Minesweeper* object);
+MINESWEEPER_API void		  minesweeper_finalize		 (Minesweeper*	     object);
 
-MINESWEEPER_API ZStatus		  minesweeper_prepare		 (Minesweeper* object,
-								  Z2DUInt      size,
-								  zuint        mine_count);
+MINESWEEPER_API ZStatus		  minesweeper_prepare		 (Minesweeper*	     object,
+								  Z2DUInt	     size,
+								  zuint		     mine_count);
 
-MINESWEEPER_API zuint		  minesweeper_covered_count	 (Minesweeper* object);
+MINESWEEPER_API zuint		  minesweeper_covered_count	 (Minesweeper const* object);
 
-MINESWEEPER_API zuint		  minesweeper_disclosed_count	 (Minesweeper* object);
+MINESWEEPER_API zuint		  minesweeper_disclosed_count	 (Minesweeper const* object);
 
-MINESWEEPER_API MinesweeperResult minesweeper_disclose		 (Minesweeper* object,
-								  Z2DUInt      coordinates);
+MINESWEEPER_API MinesweeperResult minesweeper_disclose		 (Minesweeper*	     object,
+								  Z2DUInt	     coordinates);
 
-MINESWEEPER_API MinesweeperResult minesweeper_toggle_flag	 (Minesweeper* object,
-								  Z2DUInt      coordinates,
-								  zboolean*    new_state);
+MINESWEEPER_API MinesweeperResult minesweeper_toggle_flag	 (Minesweeper*	     object,
+								  Z2DUInt	     coordinates,
+								  zboolean*	     new_state);
 
-MINESWEEPER_API void		  minesweeper_disclose_all_mines (Minesweeper* object);
+MINESWEEPER_API void		  minesweeper_disclose_all_mines (Minesweeper*	     object);
 
-MINESWEEPER_API void		  minesweeper_flag_all_mines	 (Minesweeper* object);
+MINESWEEPER_API void		  minesweeper_flag_all_mines	 (Minesweeper*	     object);
 
-MINESWEEPER_API zboolean	  minesweeper_hint		 (Minesweeper* object,
-								  Z2DUInt*     coordinates);
+MINESWEEPER_API zboolean	  minesweeper_hint		 (Minesweeper*	     object,
+								  Z2DUInt*	     coordinates);
 
-MINESWEEPER_API void		  minesweeper_resolve		 (Minesweeper* object);
+MINESWEEPER_API void		  minesweeper_resolve		 (Minesweeper*	     object);
 
-MINESWEEPER_API zsize		  minesweeper_snapshot_size	 (Minesweeper* object);
+MINESWEEPER_API zsize		  minesweeper_snapshot_size	 (Minesweeper const* object);
 
-MINESWEEPER_API void		  minesweeper_snapshot		 (Minesweeper* object,
-								  void*        output);
+MINESWEEPER_API void		  minesweeper_snapshot		 (Minesweeper const* object,
+								  void*		     output);
 
-MINESWEEPER_API ZStatus		  minesweeper_set_snapshot	 (Minesweeper* object,
-								  void*        snapshot,
-								  zsize        snapshot_size);
+MINESWEEPER_API ZStatus		  minesweeper_set_snapshot	 (Minesweeper*	     object,
+								  void*		     snapshot,
+								  zsize		     snapshot_size);
 
 #ifdef MINESWEEPER_USE_CALLBACK
 	MINESWEEPER_API void minesweeper_set_cell_updated_callback (Minesweeper* object,
@@ -128,10 +128,10 @@ MINESWEEPER_API ZStatus		  minesweeper_set_snapshot	 (Minesweeper* object,
 								    void*	 cell_updated_context);
 #endif
 
-MINESWEEPER_API ZStatus minesweeper_snapshot_test   (void* snapshot,
-						     zsize snapshot_size);
+MINESWEEPER_API ZStatus minesweeper_snapshot_test   (void const*       snapshot,
+						     zsize	       snapshot_size);
 
-MINESWEEPER_API void	minesweeper_snapshot_values (void*	       snapshot,
+MINESWEEPER_API void	minesweeper_snapshot_values (void const*       snapshot,
 						     zsize*	       snapshot_size,
 						     Z2DUInt*	       size,
 						     zuint*	       mine_count,
