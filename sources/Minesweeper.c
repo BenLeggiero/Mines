@@ -35,77 +35,62 @@ Released under the terms of the GNU Lesser General Public License v3. */
 #	include <ZSystem/random.h>
 #endif
 
-#define RANDOM		    ((zuint)z_random())
-#define EXPLODED	    MINESWEEPER_CELL_MASK_EXPLODED
-#define DISCLOSED	    MINESWEEPER_CELL_MASK_DISCLOSED
-#define MINE		    MINESWEEPER_CELL_MASK_MINE
-#define FLAG		    MINESWEEPER_CELL_MASK_FLAG
-#define WARNING		    MINESWEEPER_CELL_MASK_WARNING
-#define HEADER(p)	    ((MinesweeperSnapshotHeader *)(p))
-#define HEADER_SIZE	    ((zsize)sizeof(MinesweeperSnapshotHeader))
-#define CELL(cx, cy)	    object->matrix[cy * object->size.x + cx]
-#define VALID(cx, cy)	    (cx < object->size.x && cy < object->size.y)
-#define LOCAL_CELL(cx, cy)  matrix[cy * size.x + cx]
-#define LOCAL_VALID(cx, cy) (cx < size.x && cy < size.y)
-#define X(pointer)	    (((zuint)(c - object->matrix)) % object->size.x)
-#define Y(pointer)	    (((zuint)(c - object->matrix)) / object->size.x)
-#define MATRIX_END	    (object->matrix + object->size.x * object->size.y)
+#define RANDOM			    ((zuint)z_random())
+#define EXPLODED		    MINESWEEPER_CELL_MASK_EXPLODED
+#define DISCLOSED		    MINESWEEPER_CELL_MASK_DISCLOSED
+#define MINE			    MINESWEEPER_CELL_MASK_MINE
+#define FLAG			    MINESWEEPER_CELL_MASK_FLAG
+#define WARNING			    MINESWEEPER_CELL_MASK_WARNING
+#define HEADER(p)		    ((MinesweeperSnapshotHeader *)(p))
+#define HEADER_SIZE		    ((zsize)sizeof(MinesweeperSnapshotHeader))
+#define CELL(	    cell_x, cell_y) object->matrix[cell_y * object->size.x + cell_x]
+#define CELL_LOCAL( cell_x, cell_y) matrix[(cell_y) * size.x + (cell_x)]
+#define VALID(	    cell_x, cell_y) ((cell_x) < object->size.x && (cell_y) < object->size.y)
+#define VALID_LOCAL(cell_x, cell_y) ((cell_x) < size.x && (cell_y) < size.y)
+#define X(pointer)		    (((zuint)(pointer - object->matrix)) % object->size.x)
+#define Y(pointer)		    (((zuint)(pointer - object->matrix)) / object->size.x)
+#define MATRIX_END		    (object->matrix + object->size.x * object->size.y)
 
 #ifdef MINESWEEPER_USE_CALLBACK
-#	define UPDATED(x, y, cell) \
-	object->cell_updated(object->cell_updated_context, object, z_2d_type(UINT)(x, y), cell)
+#	define	UPDATED(cell_point, cell) \
+		object->cell_updated(object->cell_updated_context, object, cell_point, cell)
 #endif
 
-typedef struct {zint8 x, y;} Offset;
-
-static Offset const offsets[] = {
+static Z2DInt8 const offsets[] = {
 	{-1, -1}, {0, -1}, {1, -1},
 	{-1,  0},	   {1,	0},
 	{-1,  1}, {0,  1}, {1,	1}
 };
 
 
-static void place_mines(Minesweeper *object, zuint but_x, zuint but_y)
+static void place_mines(Minesweeper *object, Z2DUInt but)
 	{
-	MinesweeperCell *c, *nc;
-	const Offset *p, *e;
-	zboolean valid;
-	zuint x, y, nx, ny, n = object->mine_count;
+	MinesweeperCell *cell, *near;
+	Z2DInt8 const *offset;
+	zuint x, y, near_x, near_y, count = object->mine_count;
 
-	while (n)
+	while (count)
 		{
+		random_point:
 		x = RANDOM % object->size.x;
 		y = RANDOM % object->size.y;
 
-		if (!(x == but_x && y == but_y) && !(*(c = &CELL(x, y)) & MINE))
+		if (!(x == but.x && y == but.y) && !(*(cell = &CELL(x, y)) & MINE))
 			{
-			valid = TRUE;
+			for (offset = offsets + 8; offset-- != offsets;)
+				if (x == but.x + offset->x && y == but.y + offset->y)
+					goto random_point;
 
-			for (p = offsets, e = p + 8; p != e; p++)
-				if (x == but_x + p->x && y == but_y + p->y)
+			*cell |= MINE;
+
+			for (offset = offsets + 8; offset-- != offsets;)
+				if (VALID(near_x = x + offset->x, near_y = y + offset->y))
 					{
-					valid = FALSE;
-					break;
+					near = &CELL(near_x, near_y);
+					*near = (*near & ~WARNING) | (*near &  WARNING) + 1;
 					}
 
-			if (valid)
-				{
-				*c |= MINE;
-
-				for (p = offsets, e = p + 8; p != e; p++)
-					{
-					nx = x + p->x;
-					ny = y + p->y;
-
-					if (VALID(nx, ny))
-						{
-						nc = &CELL(nx, ny);
-						*nc = (*nc & ~WARNING) | (*nc &  WARNING) + 1;
-						}
-					}
-
-				n--;
-				}
+			count--;
 			}
 		}
 
@@ -113,30 +98,29 @@ static void place_mines(Minesweeper *object, zuint but_x, zuint but_y)
 	}
 
 
-static void disclose_cell(Minesweeper *object, zuint x, zuint y)
+static void disclose_cell(Minesweeper *object, Z2DUInt point)
 	{
-	MinesweeperCell *c = &CELL(x, y);
+	MinesweeperCell *cell = &CELL(point.x, point.y);
 
-	if (!(*c & (DISCLOSED | FLAG)))
+	if (!(*cell & (DISCLOSED | FLAG)))
 		{
-		*c |= DISCLOSED;
+		*cell |= DISCLOSED;
 		object->remaining_count--;
 
 #		ifdef MINESWEEPER_USE_CALLBACK
-			if (object->cell_updated != NULL) UPDATED(x, y, *c);
+			if (object->cell_updated != NULL) UPDATED(point, *cell);
 #		endif
 
-		if (!(*c & WARNING))
+		if (!(*cell & WARNING))
 			{
-			const Offset *p = offsets, *e = p + 8;
-			zuint nx, ny;
+			Z2DInt8 const *offset = offsets + 8;
+			Z2DUInt near;
 
-			for (; p != e; p++)
-				{
-				nx = x + p->x;
-				ny = y + p->y;
-				if (VALID(nx, ny)) disclose_cell(object, nx, ny);
-				}
+			while (offset-- != offsets) if (
+				VALID	(near.x = point.x + offset->x,
+					 near.y = point.y + offset->y)
+			)
+				disclose_cell(object, near);
 			}
 		}
 	}
@@ -144,34 +128,31 @@ static void disclose_cell(Minesweeper *object, zuint x, zuint y)
 
 static void count_hint_cases(Minesweeper const *object, zuint *counts)
 	{
-	MinesweeperCell *c = MATRIX_END;
-	const Offset *p, *e;
-	zuint x, y, nx, ny;
+	MinesweeperCell const *cell = MATRIX_END;
+	Z2DInt8 const *offset;
+	zuint x, y, near_x, near_y;
 
 	counts[0] = 0;
 	counts[1] = 0;
 	counts[2] = 0;
 
-	while (c-- != object->matrix) if (!(*c & (DISCLOSED | FLAG | MINE)))
+	while (cell-- != object->matrix) if (!(*cell & (DISCLOSED | FLAG | MINE)))
 		{
 		counts[2]++;
 
-		if (*c & WARNING)
+		if (*cell & WARNING)
 			{
 			counts[1]++;
-			y = Y(c);
-			x = X(c);
+			y = Y(cell);
+			x = X(cell);
 
-			for (p = offsets, e = p + 8; p != e; p++)
+			for (offset = offsets + 8; offset-- != offsets;) if (
+				VALID(near_x = x + offset->x, near_y = y + offset->y) &&
+				(CELL(near_x, near_y) & DISCLOSED)
+			)
 				{
-				nx = x + p->x;
-				ny = y + p->y;
-
-				if (VALID(nx, ny) && (CELL(nx, ny) & DISCLOSED))
-					{
-					counts[0]++;
-					break;
-					}
+				counts[0]++;
+				break;
 				}
 			}
 		}
@@ -180,27 +161,25 @@ static void count_hint_cases(Minesweeper const *object, zuint *counts)
 
 static Z2DUInt case0_hint(Minesweeper const *object, zuint index)
 	{
-	MinesweeperCell *c = MATRIX_END;
-	const Offset *p, *e;
-	zuint x, y, nx, ny;
+	MinesweeperCell const *cell = MATRIX_END;
+	Z2DInt8 const *offset;
+	zuint x, y, near_x, near_y;
 
-	while (c-- != object->matrix) if (!(*c & (DISCLOSED | FLAG | MINE)) && (*c & WARNING))
-		{
-		y = Y(c);
-		x = X(c);
-
-		for (p = offsets, e = p + 8; p != e; p++)
+	while (cell-- != object->matrix)
+		if (!(*cell & (DISCLOSED | FLAG | MINE)) && (*cell & WARNING))
 			{
-			nx = x + p->x;
-			ny = y + p->y;
+			y = Y(cell);
+			x = X(cell);
 
-			if (VALID(nx, ny) && (CELL(nx, ny) & DISCLOSED))
+			for (offset = offsets + 8; offset-- != offsets;) if (
+				VALID(near_x = x + offset->x, near_y = y + offset->y) &&
+				(CELL(near_x, near_y) & DISCLOSED)
+			)
 				{
 				if (!index--) return z_2d_type(UINT)(x, y);
 				break;
 				}
 			}
-		}
 
 	return z_2d_type_zero(UINT);
 	}
@@ -208,10 +187,11 @@ static Z2DUInt case0_hint(Minesweeper const *object, zuint index)
 
 static Z2DUInt case1_hint(Minesweeper const *object, zuint index)
 	{
-	MinesweeperCell *c = MATRIX_END;
+	MinesweeperCell const *cell = MATRIX_END;
 
-	while (c-- != object->matrix) if (!(*c & (DISCLOSED | FLAG | MINE)) && (*c & WARNING))
-		if (!index--) return z_2d_type(UINT)(X(c), Y(c));
+	while (cell-- != object->matrix)
+		if (!(*cell & (DISCLOSED | FLAG | MINE)) && (*cell & WARNING) && !index--)
+			return z_2d_type(UINT)(X(cell), Y(cell));
 
 	return z_2d_type_zero(UINT);
 	}
@@ -219,17 +199,11 @@ static Z2DUInt case1_hint(Minesweeper const *object, zuint index)
 
 static Z2DUInt case2_hint(Minesweeper const *object, zuint index)
 	{
-	MinesweeperCell *c = MATRIX_END;
+	MinesweeperCell const *cell = MATRIX_END;
 
-	while (c != object->matrix)
-		{
-		c--;
-
-		if (!(*c & (DISCLOSED | FLAG | MINE)))
-			{
-			if (!index--) return z_2d_type(UINT)(X(c), Y(c));
-			}
-		}
+	while (cell-- != object->matrix)
+		if (!(*cell & (DISCLOSED | FLAG | MINE)) && !index--)
+			return z_2d_type(UINT)(X(cell), Y(cell));
 
 	return z_2d_type_zero(UINT);
 	}
@@ -259,7 +233,7 @@ void minesweeper_finalize(Minesweeper *object)
 MINESWEEPER_API
 ZStatus minesweeper_prepare(Minesweeper *object, Z2DUInt size, zuint mine_count)
 	{
-	zuint cell_count = size.x * size.y;
+	zuint cell_count;
 
 	if (size.x < MINESWEEPER_MINIMUM_X_SIZE || size.y < MINESWEEPER_MINIMUM_Y_SIZE)
 		return Z_ERROR_TOO_SMALL;
@@ -267,12 +241,12 @@ ZStatus minesweeper_prepare(Minesweeper *object, Z2DUInt size, zuint mine_count)
 	if (z_type_multiplication_overflow(UINT)(size.x, size.y))
 		return Z_ERROR_TOO_BIG;
 
-	if (mine_count < MINESWEEPER_MINIMUM_MINE_COUNT || mine_count > cell_count - 1)
+	if (	mine_count < MINESWEEPER_MINIMUM_MINE_COUNT ||
+		mine_count > (cell_count = size.x * size.y) - 9
+	)
 		return Z_ERROR_INVALID_ARGUMENT;
 
-	if (	z_2d_type_inner_product(UINT)(object->size) !=
-		z_2d_type_inner_product(UINT)(size)
-	)
+	if (object->size.x * object->size.y != cell_count)
 		{
 		void *matrix = z_reallocate(object->matrix, cell_count);
 
@@ -284,7 +258,8 @@ ZStatus minesweeper_prepare(Minesweeper *object, Z2DUInt size, zuint mine_count)
 	object->size		= size;
 	object->state		= MINESWEEPER_STATE_PRISTINE;
 	object->flag_count	= 0;
-	object->remaining_count = cell_count - (object->mine_count = mine_count);
+	object->mine_count	= mine_count;
+	object->remaining_count = cell_count - mine_count;
 	return Z_OK;
 	}
 
@@ -305,22 +280,20 @@ zuint minesweeper_disclosed_count(Minesweeper const *object)
 MINESWEEPER_API
 MinesweeperResult minesweeper_disclose(Minesweeper *object, Z2DUInt coordinates)
 	{
-	MinesweeperCell *c = &CELL(coordinates.x, coordinates.y);
+	MinesweeperCell *cell = &CELL(coordinates.x, coordinates.y);
 
-	if (object->state == MINESWEEPER_STATE_PRISTINE)
-		place_mines(object, coordinates.x, coordinates.y);
+	if (object->state == MINESWEEPER_STATE_PRISTINE) place_mines(object, coordinates);
+	if (*cell & DISCLOSED) return MINESWEEPER_RESULT_ALREADY_DISCLOSED;
+	if (*cell & FLAG     ) return MINESWEEPER_RESULT_IS_FLAG;
 
-	if (*c & DISCLOSED) return MINESWEEPER_RESULT_ALREADY_DISCLOSED;
-	if (*c & FLAG	  ) return MINESWEEPER_RESULT_IS_FLAG;
-
-	if (*c & MINE)
+	if (*cell & MINE)
 		{
-		*c |= DISCLOSED | EXPLODED;
+		*cell |= DISCLOSED | EXPLODED;
 		object->state = MINESWEEPER_STATE_EXPLODED;
 		return MINESWEEPER_RESULT_MINE_FOUND;
 		}
 
-	disclose_cell(object, coordinates.x, coordinates.y);
+	disclose_cell(object, coordinates);
 
 	if (!object->remaining_count)
 		{
@@ -339,26 +312,26 @@ MinesweeperResult minesweeper_toggle_flag(
 	zboolean*    new_value
 )
 	{
-	MinesweeperCell *c = &CELL(coordinates.x, coordinates.y);
+	MinesweeperCell *cell = &CELL(coordinates.x, coordinates.y);
 
-        if (*c & DISCLOSED) return MINESWEEPER_RESULT_ALREADY_DISCLOSED;
+        if (*cell & DISCLOSED) return MINESWEEPER_RESULT_ALREADY_DISCLOSED;
 
-	if (*c & FLAG)
+	if (*cell & FLAG)
 		{
 		object->flag_count--;
-		*c &= ~FLAG;
+		*cell &= ~FLAG;
 		}
 
 	else	{
 		object->flag_count++;
-		*c |= FLAG;
+		*cell |= FLAG;
 		}
 
 #	ifdef MINESWEEPER_USE_CALLBACK
-		if (object->cell_updated != NULL) UPDATED(coordinates.x, coordinates.y, *c);
+		if (object->cell_updated != NULL) UPDATED(coordinates, *cell);
 #	endif
 
-	if (new_value != NULL) *new_value = !!(*c & FLAG);
+	if (new_value != NULL) *new_value = !!(*cell & FLAG);
 	return Z_OK;
 	}
 
@@ -366,58 +339,52 @@ MinesweeperResult minesweeper_toggle_flag(
 MINESWEEPER_API
 void minesweeper_disclose_all_mines(Minesweeper *object)
 	{
-	MinesweeperCell *c = MATRIX_END;
+	MinesweeperCell *cell = MATRIX_END;
 
 #	ifdef MINESWEEPER_USE_CALLBACK
 		if (object->cell_updated != NULL)
 			{
-			zuint x = object->size.x, y;
+			Z2DUInt point;
 
-			while (x) for (x--, y = object->size.y; y;)
-				{
-				y--; c--;
-
-				if (*c & MINE)
-					{
-					*c |= DISCLOSED;
-					UPDATED(x, y, *c);
-					}
-				}
+			for (point.x = object->size.x; point.x--;)
+				for (point.y = object->size.y; point.y--;)
+					if (*--cell & MINE)
+						{
+						*cell |= DISCLOSED;
+						UPDATED(point, *cell);
+						}
 			}
 
 		else
 #	endif
 
-	while (c != object->matrix) if (*--c & MINE) *c |= DISCLOSED;
+	while (cell != object->matrix) if (*--cell & MINE) *cell |= DISCLOSED;
 	}
 
 
 MINESWEEPER_API
 void minesweeper_flag_all_mines(Minesweeper *object)
 	{
-	MinesweeperCell *c = MATRIX_END;
+	MinesweeperCell *cell = MATRIX_END;
 
 #	ifdef MINESWEEPER_USE_CALLBACK
 		if (object->cell_updated != NULL)
 			{
-			zuint x = object->size.x, y;
+			Z2DUInt point;
 
-			while (x) for (x--, y = object->size.y; y;)
-				{
-				y--; c--;
-
-				if (*c & MINE)
-					{
-					*c |= FLAG;
-					UPDATED(x, y, *c);
-					}
-				}
+			for (point.x = object->size.x; point.x--;)
+				for (point.y = object->size.y; point.y--;)
+					if (*--cell & MINE)
+						{
+						*cell |= FLAG;
+						UPDATED(point, *cell);
+						}
 			}
 
 		else
 #	endif
 
-	while (c != object->matrix) if (*--c & MINE) *c |= FLAG;
+	while (cell != object->matrix) if (*--cell & MINE) *cell |= FLAG;
 	}
 
 
@@ -434,16 +401,13 @@ zboolean minesweeper_hint(Minesweeper *object, Z2DUInt *coordinates)
 
 	if (object->state == MINESWEEPER_STATE_PRISTINE)
 		{
-		place_mines
-			(object,
-			 coordinates->x = RANDOM % object->size.x,
-			 coordinates->y = RANDOM % object->size.y);
+		place_mines(object, *coordinates = z_2d_type
+			(UINT)(RANDOM % object->size.x, RANDOM % object->size.y));
 
 		return TRUE;
 		}
 
 	count_hint_cases(object, counts);
-
 	if	(counts[0]) *coordinates = case0_hint(object, RANDOM % counts[0]);
 	else if (counts[1]) *coordinates = case1_hint(object, RANDOM % counts[1]);
 	else if (counts[2]) *coordinates = case2_hint(object, RANDOM % counts[2]);
@@ -455,29 +419,26 @@ zboolean minesweeper_hint(Minesweeper *object, Z2DUInt *coordinates)
 MINESWEEPER_API
 void minesweeper_resolve(Minesweeper *object)
 	{
-	MinesweeperCell *c = MATRIX_END;
+	MinesweeperCell *cell = MATRIX_END;
 
 #	ifdef MINESWEEPER_USE_CALLBACK
 		if (object->cell_updated != NULL)
 			{
-			zuint x = object->size.x, y;
+			Z2DUInt point;
 
-			while (x) for (x--, y = object->size.y; y;)
-				{
-				y--; c--;
-
-				if (!(*c & (MINE | DISCLOSED)))
-					{
-					*c |= DISCLOSED;
-					UPDATED(x, y, *c);
-					}
-				}
+			for (point.x = object->size.x; point.x--;)
+				for (point.y = object->size.y; point.y--;)
+					if (!(*--cell & (MINE | DISCLOSED)))
+						{
+						*cell |= DISCLOSED;
+						UPDATED(point, *cell);
+						}
 			}
 
 		else
 #	endif
 
-	while (c != object->matrix) if (!(*--c & (MINE | DISCLOSED))) *c |= DISCLOSED;
+	while (cell != object->matrix) if (!(*--cell & (MINE | DISCLOSED))) *cell |= DISCLOSED;
 	object->remaining_count = 0;
 	}
 
@@ -507,21 +468,23 @@ void minesweeper_snapshot(Minesweeper const *object, void *output)
 MINESWEEPER_API
 ZStatus minesweeper_set_snapshot(Minesweeper *object, void *snapshot, zsize snapshot_size)
 	{
-	MinesweeperCell *p, *e;
+	MinesweeperCell *cell, *matrix;
 
 	Z2DUInt size = z_2d_type(UINT)
 		((zuint)z_uint64_big_endian(HEADER(snapshot)->x),
 		 (zuint)z_uint64_big_endian(HEADER(snapshot)->y));
 
-	zuint cell_count = z_2d_type_inner_product(UINT)(size);
+	zuint cell_count = size.x * size.y;
 
-	if (cell_count != z_2d_type_inner_product(UINT)(object->size))
+	if (cell_count != object->size.x * object->size.y)
 		{
-		if ((p = z_reallocate(object->matrix, cell_count)) == NULL)
+		if ((matrix = z_reallocate(object->matrix, cell_count)) == NULL)
 			return Z_ERROR_NOT_ENOUGH_MEMORY;
 
-		object->matrix = p;
+		object->matrix = matrix;
 		}
+
+	else matrix = object->matrix;
 
 	object->size		= size;
 	object->mine_count	= (zuint)z_uint64_big_endian(HEADER(snapshot)->mine_count);
@@ -530,15 +493,15 @@ ZStatus minesweeper_set_snapshot(Minesweeper *object, void *snapshot, zsize snap
 	object->remaining_count = cell_count - object->mine_count;
 
 	if (object->state <= MINESWEEPER_STATE_PRISTINE)
-		z_block_int8_set(object->matrix, cell_count, 0);
+		z_block_int8_set(matrix, cell_count, 0);
 
 	else	{
-		z_copy(snapshot + HEADER_SIZE, cell_count, object->matrix);
+		z_copy(snapshot + HEADER_SIZE, cell_count, matrix);
 
-		for (p = object->matrix, e = p + cell_count; p != e; p++)
+		for (cell = matrix + cell_count; cell-- != matrix;)
 			{
-			if (*p & FLAG) object->flag_count++;
-			if ((*p & DISCLOSED) && !(*p & MINE)) object->remaining_count--;
+			if (*cell & FLAG) object->flag_count++;
+			if ((*cell & DISCLOSED) && !(*cell & MINE)) object->remaining_count--;
 			}
 		}
 
@@ -600,70 +563,67 @@ ZStatus minesweeper_snapshot_test(void const *snapshot, zsize snapshot_size)
 
 	if (state != MINESWEEPER_STATE_PRISTINE)
 		{
-		MinesweeperCell const *matrix = snapshot + HEADER_SIZE, *c;
-		Offset const *p, *e;
-		zuint real_mine_count, exploded_count, x, y, nx, ny;
-		zuint8 w;
+		MinesweeperCell const *matrix = snapshot + HEADER_SIZE, *cell;
+		Z2DInt8 const *offset;
+		zuint real_mine_count, exploded_count, x, y, near_x, near_y;
+		zuint8 warning;
 
 		if (snapshot_size != HEADER_SIZE + cell_count) return Z_ERROR_INVALID_SIZE;
 
 		real_mine_count = 0;
 		exploded_count	= 0;
 
-		for (c = matrix + cell_count; c != matrix;)
+		for (cell = matrix + cell_count; cell != matrix;)
 			{
-			c--;
+			cell--;
 
 			/*-----------------------------------.
 			| The flags can not be disclosed and |
 			| only 1 exploded cell is allowed.   |
 			'-----------------------------------*/
-			if (	(*c & FLAG && *c & DISCLOSED) ||
-				(*c & EXPLODED && ++exploded_count > 1)
+			if (	(*cell & FLAG && *cell & DISCLOSED) ||
+				(*cell & EXPLODED && ++exploded_count > 1)
 			)
 				return Z_ERROR_INVALID_DATA;
 
 			/*------------------------------------------.
 			| The mines must be surrounded by warnings. |
 			'------------------------------------------*/
-			if (*c & MINE)
+			if (*cell & MINE)
 				{
 				real_mine_count++;
 
-				x = (zuint)(c - matrix) % size.x;
-				y = (zuint)(c - matrix) / size.x;
+				x = (zuint)(cell - matrix) % size.x;
+				y = (zuint)(cell - matrix) / size.x;
 
-				for (p = offsets, e = p + 8; p != e; p++)
-					{
-					nx = x + p->x;
-					ny = y + p->y;
-
-					if (	LOCAL_VALID(nx, ny) &&
-						!(LOCAL_CELL(nx, ny) & WARNING)
-					)
-						return Z_ERROR_INVALID_DATA;
-					}
+				for (offset = offsets + 8; offset-- != offsets;) if (
+					VALID_LOCAL
+						(near_x = x + offset->x,
+						 near_y = y + offset->y)
+					&& !(CELL_LOCAL(near_x, near_y) & WARNING)
+				)
+					return Z_ERROR_INVALID_DATA;
 				}
 
 			/*---------------------------------------.
 			| The warning numbers must be surrounded |
 			| by the correct amount of mines.	 |
 			'---------------------------------------*/
-			if (*c & WARNING)
+			if (*cell & WARNING)
 				{
-				x = (zuint)(c - matrix) % size.x;
-				y = (zuint)(c - matrix) / size.x;
+				x = (zuint)(cell - matrix) % size.x;
+				y = (zuint)(cell - matrix) / size.x;
+				warning = 0;
 
-				for (w = 0, p = offsets, e = p + 8; p != e; p++)
-					{
-					nx = x + p->x;
-					ny = y + p->y;
+				for (offset = offsets + 8; offset-- != offsets;) if (
+					VALID_LOCAL
+						(near_x = x + offset->x,
+						 near_y = y + offset->y)
+					&& (CELL_LOCAL(near_x, near_y) & MINE)
+				)
+					warning++;
 
-					if (LOCAL_VALID(nx, ny) && (LOCAL_CELL(nx, ny) & MINE))
-						w++;
-					}
-
-				if (w != (*c & WARNING)) return Z_ERROR_INVALID_DATA;
+				if (warning != (*cell & WARNING)) return Z_ERROR_INVALID_DATA;
 				}
 			}
 
@@ -686,8 +646,7 @@ void minesweeper_snapshot_values(
 	zuint64	size_x = z_uint64_big_endian(HEADER(snapshot)->x);
 	zuint64 size_y = z_uint64_big_endian(HEADER(snapshot)->y);
 
-	if (snapshot_size != NULL)
-		*snapshot_size = HEADER_SIZE + (zuintptr)size_x + (zuintptr)size_y;
+	if (snapshot_size != NULL) *snapshot_size = HEADER_SIZE + (zsize)(size_x * size_y);
 
 	if (size != NULL)
 		{

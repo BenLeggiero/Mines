@@ -56,10 +56,10 @@ typedef zuint8 MinesweeperResult;
 typedef struct Minesweeper Minesweeper;
 
 #ifdef MINESWEEPER_USE_CALLBACK
-	typedef void (* MinesweeperCellUpdated) (void*		 context,
-						 Minesweeper*	 minesweeper,
-						 Z2DUInt	 cell_coordinates,
-						 MinesweeperCell cell_value);
+	typedef void (* MinesweeperCellUpdated) (void*		    context,
+						 Minesweeper const* minesweeper,
+						 Z2DUInt	    cell_coordinates,
+						 MinesweeperCell    cell_value);
 #endif
 
 struct Minesweeper {

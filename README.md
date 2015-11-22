@@ -1,6 +1,6 @@
 # Mines
 A Minesweeper Game for OS X.  
-Copyright © 2013-2015 Manuel Sainz de Baranda y Goñi.  
+Copyright © 2013-2015 Betty Lab.  
 Released under the terms of the [GNU General Public License v3](http://www.gnu.org/copyleft/gpl.html).
 
 ![alt tag](screenshots/Main Window.png)
