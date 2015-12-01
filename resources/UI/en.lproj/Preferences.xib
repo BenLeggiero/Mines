@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15A282b" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="8191" systemVersion="15B42" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="1060" identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8191"/>
@@ -70,7 +70,7 @@
                     <toolbarItem reference="81"/>
                 </defaultToolbarItems>
             </toolbar>
-            <point key="canvasLocation" x="-187" y="198.5"/>
+            <point key="canvasLocation" x="-187" y="197.5"/>
         </window>
         <customView id="124" userLabel="General">
             <rect key="frame" x="0.0" y="0.0" width="370" height="158"/>
@@ -338,7 +338,7 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell tag="100" id="52">
-                                <rect key="frame" x="33" y="172" width="23" height="23"/>
+                                <rect key="frame" x="33" y="168" width="23" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -347,7 +347,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell tag="107" id="Qdy-WT-VMZ">
-                                <rect key="frame" x="33" y="194" width="23" height="16"/>
+                                <rect key="frame" x="33" y="190" width="23" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -356,7 +356,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell tag="110" id="PUl-EE-ZPi">
-                                <rect key="frame" x="18" y="172" width="16" height="23"/>
+                                <rect key="frame" x="18" y="168" width="16" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -365,7 +365,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell tag="108" id="L5d-RH-cDo">
-                                <rect key="frame" x="55" y="172" width="16" height="23"/>
+                                <rect key="frame" x="55" y="168" width="16" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -374,7 +374,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell tag="109" id="kSp-4p-me6">
-                                <rect key="frame" x="33" y="157" width="23" height="16"/>
+                                <rect key="frame" x="33" y="153" width="23" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -383,7 +383,7 @@
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="A5J-mE-FSw">
-                                <rect key="frame" x="17" y="140" width="54" height="14"/>
+                                <rect key="frame" x="17" y="136" width="54" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Unknown" id="Lpg-TL-LVw">
@@ -393,7 +393,7 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell tag="3" id="mb5-fL-Hxr">
-                                <rect key="frame" x="71" y="93" width="23" height="23"/>
+                                <rect key="frame" x="55" y="94" width="23" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -402,7 +402,7 @@
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="RsR-9m-NFV">
-                                <rect key="frame" x="67" y="71" width="30" height="14"/>
+                                <rect key="frame" x="51" y="76" width="30" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Mine" id="RcP-cE-wH9">
@@ -412,7 +412,7 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell tag="102" id="aeM-Bc-xqd">
-                                <rect key="frame" x="184" y="172" width="23" height="23"/>
+                                <rect key="frame" x="184" y="168" width="23" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -421,7 +421,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell tag="115" id="wcQ-vA-GW1">
-                                <rect key="frame" x="184" y="194" width="23" height="16"/>
+                                <rect key="frame" x="184" y="190" width="23" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -430,7 +430,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell tag="118" id="g5Y-l4-SvT">
-                                <rect key="frame" x="169" y="172" width="16" height="23"/>
+                                <rect key="frame" x="169" y="168" width="16" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -439,7 +439,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell tag="116" id="Vrn-51-X7S">
-                                <rect key="frame" x="206" y="172" width="16" height="23"/>
+                                <rect key="frame" x="206" y="168" width="16" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -448,7 +448,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell tag="117" id="3qx-xd-Iup">
-                                <rect key="frame" x="184" y="157" width="23" height="16"/>
+                                <rect key="frame" x="184" y="153" width="23" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -469,7 +469,7 @@
                                 </connections>
                             </button>
                             <colorWell tag="4" id="bdV-gn-rgr">
-                                <rect key="frame" x="184" y="32" width="23" height="23"/>
+                                <rect key="frame" x="162" y="94" width="23" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -478,7 +478,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell tag="6" id="QfJ-Nq-UyB">
-                                <rect key="frame" x="33" y="32" width="23" height="23"/>
+                                <rect key="frame" x="162" y="32" width="23" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -487,7 +487,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell tag="5" id="IdT-Gu-11t">
-                                <rect key="frame" x="109" y="32" width="23" height="23"/>
+                                <rect key="frame" x="55" y="32" width="23" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -495,18 +495,8 @@
                                     <action selector="setCellColor:" target="-2" id="bPU-u2-OQZ"/>
                                 </connections>
                             </colorWell>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="8rM-lL-HLw">
-                                <rect key="frame" x="25" y="14" width="39" height="14"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <animations/>
-                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Clean" id="IQE-wE-m3k">
-                                    <font key="font" metaFont="smallSystem"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="EIf-M8-bGa">
-                                <rect key="frame" x="96" y="14" width="48" height="14"/>
+                                <rect key="frame" x="42" y="14" width="48" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Warning" id="F0Z-6B-D2d">
@@ -516,7 +506,7 @@
                                 </textFieldCell>
                             </textField>
                             <colorWell tag="101" id="wOn-lc-3dp">
-                                <rect key="frame" x="109" y="172" width="23" height="23"/>
+                                <rect key="frame" x="109" y="168" width="23" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -525,7 +515,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell tag="111" id="Pep-GI-FJW">
-                                <rect key="frame" x="109" y="194" width="23" height="16"/>
+                                <rect key="frame" x="109" y="190" width="23" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -534,7 +524,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell tag="114" id="Oqe-er-Vm7">
-                                <rect key="frame" x="94" y="172" width="16" height="23"/>
+                                <rect key="frame" x="94" y="168" width="16" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -543,7 +533,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell tag="112" id="Y6k-ov-eOI">
-                                <rect key="frame" x="131" y="172" width="16" height="23"/>
+                                <rect key="frame" x="131" y="168" width="16" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -552,7 +542,7 @@
                                 </connections>
                             </colorWell>
                             <colorWell tag="113" id="fAN-4W-c7c">
-                                <rect key="frame" x="109" y="157" width="23" height="16"/>
+                                <rect key="frame" x="109" y="153" width="23" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -561,7 +551,7 @@
                                 </connections>
                             </colorWell>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="duW-NY-6d7">
-                                <rect key="frame" x="107" y="140" width="27" height="14"/>
+                                <rect key="frame" x="107" y="136" width="27" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Flag" id="VtC-wY-dLQ">
@@ -571,7 +561,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Onv-Mm-hEb">
-                                <rect key="frame" x="167" y="14" width="56" height="14"/>
+                                <rect key="frame" x="145" y="76" width="56" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Explosion" id="tzo-zY-Jdv">
@@ -617,7 +607,7 @@
                                 <rect key="frame" x="18" y="244" width="204" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
-                                <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="-10" maxValue="10" doubleValue="4.8717948717948705" tickMarkPosition="below" sliderType="linear" id="LFs-Ry-avX"/>
+                                <sliderCell key="cell" controlSize="small" continuous="YES" state="on" alignment="left" minValue="-10" maxValue="10" tickMarkPosition="below" sliderType="linear" id="LFs-Ry-avX"/>
                                 <connections>
                                     <action selector="setCellBrightnessDelta:" target="-2" id="YIr-oy-vZ7"/>
                                 </connections>
@@ -653,7 +643,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="o7W-vL-E1b">
-                                <rect key="frame" x="167" y="140" width="56" height="14"/>
+                                <rect key="frame" x="167" y="136" width="56" height="14"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <animations/>
                                 <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Good flag" id="r54-R2-TJy">
@@ -674,6 +664,16 @@
                                     <action selector="toggleAlternateUncoveredCells:" target="-2" id="CLj-Dk-Ivz"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="8rM-lL-HLw">
+                                <rect key="frame" x="154" y="14" width="39" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <animations/>
+                                <textFieldCell key="cell" controlSize="small" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Clean" id="IQE-wE-m3k">
+                                    <font key="font" metaFont="smallSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <animations/>
                     </view>
@@ -877,7 +877,7 @@
                     <rect key="frame" x="20" y="40" width="170" height="484"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" id="cdU-jH-bOj">
-                        <rect key="frame" x="1" y="1" width="168" height="482"/>
+                        <rect key="frame" x="1" y="1" width="168" height="467"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView focusRingType="none" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" id="RjR-eA-Sag" customClass="TableView">
@@ -908,8 +908,8 @@
                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </clipView>
                     <animations/>
-                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="p2S-KL-sHu">
-                        <rect key="frame" x="1" y="119" width="223" height="15"/>
+                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="p2S-KL-sHu">
+                        <rect key="frame" x="1" y="468" width="168" height="15"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <animations/>
                     </scroller>

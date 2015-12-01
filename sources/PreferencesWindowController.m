@@ -25,6 +25,13 @@ Released under the terms of the GNU General Public License v3. */
 #	pragma mark - Helpers
 
 
+	- (void) sortUserThemes
+		{
+		[_userThemes sortUsingComparator: ^NSComparisonResult(Theme *a, Theme *b)
+			{return [a.name localizedCaseInsensitiveCompare: b.name];}];
+		}
+
+
 	- (NSImage *) imageFromImage: (NSImage *) image
 		      tintColor:      (NSColor *) color
 		{
@@ -99,8 +106,109 @@ Released under the terms of the GNU General Public License v3. */
 		}
 
 
+	- (void) updateThemeControlsContent
+		{
+		NSColor *color;
+		CGFloat value;
+
+		//-------------.
+		// Effects box |
+		//-------------'
+		laserColorWell.color = _theme.laserColor;
+		[mineFoundAnimationButton selectItemWithTag: 0]; // Cambiar
+
+		//-----------.
+		// Cells box |
+		//-----------'
+		if ((color = _theme.gridColor))
+			{
+			gridCheck.state = NSOnState;
+			gridColorWell.color = color;
+			}
+
+		else	{
+			gridCheck.state = NSOffState;
+			gridColorWell.color = [NSColor blackColor];
+			}
+
+		if ((value = _theme.cellBorderSize) != 0.0)
+			{
+			cellBorderCheck.state = NSOnState;
+			cellBorderSizeSlider.doubleValue = value * 100.0;
+			}
+
+		else	{
+			cellBorderCheck.state = NSOffState;
+			cellBorderSizeSlider.doubleValue = 12.5;
+			}
+
+		BOOL alternateCoveredCells   = _theme.alternateCoveredCells;
+		BOOL alternateUncoveredCells = _theme.alternateUncoveredCells;
+
+		alternateCoveredCellsCheck.state   = alternateCoveredCells   ? NSOnState : NSOffState;
+		alternateUncoveredCellsCheck.state = alternateUncoveredCells ? NSOnState : NSOffState;
+
+		cellBrightnessDeltaSlider.doubleValue = alternateCoveredCells || alternateUncoveredCells
+			? _theme.cellBrightnessDelta * 100.0
+			: 0.0;
+
+		NSArray* colors = _theme.cellColors;
+		NSInteger tag = 100;
+
+		for (color in colors) [[cellsBox viewWithTag: tag++] setColor: color];
+
+		if (tag == 107)
+			{
+			color = [colors objectAtIndex: 0];
+			while (tag < 111) [[cellsBox viewWithTag: tag++] setColor: color];
+			color = [colors objectAtIndex: 1];
+			while (tag < 115) [[cellsBox viewWithTag: tag++] setColor: color];
+			color = [colors objectAtIndex: 2];
+			while (tag < 119) [[cellsBox viewWithTag: tag++] setColor: color];
+			}
+
+		//---------------------.
+		// Warning numbers box |
+		//---------------------'
+		tag = 0;
+		for (color in _theme.numberColors) [[numbersBox viewWithTag: tag++] setColor: color];
+
+		numberFontSizeSlider.doubleValue    = _theme.numberFontScale;
+		numberFontNameTextField.stringValue = [NSFont fontWithName: _theme.numberFontName size: 11.0].displayName;
+
+		//------------.
+		// Images box |
+		//------------'
+		NSColor *black = nil;
+		NSNull *null = [NSNull null];
+
+		for (tag = 0; tag < 4; tag++)
+			{
+			NSColorWell* colorWell = [imagesBox viewWithTag: 30 + tag];
+			NSButton*    checkBox  = [imagesBox viewWithTag: 20 + tag];
+
+			if ((color = [_theme.imageColors objectAtIndex: tag]) != (id)null)
+				{
+				checkBox.state	= NSOnState;
+				colorWell.color = color;
+				}
+
+			else	{
+				checkBox.state	= NSOffState;
+				colorWell.color = black ? black : (black = [NSColor blackColor]);
+				}
+
+			[[imagesBox viewWithTag: tag] setImage:
+				[self imageFromImage: [_themeImages objectAtIndex: tag] tintColor: color]];
+			}
+		}
+
+
 	- (void) updateThemeControlsState
 		{
+		//------------------------------------------------------------------------------.
+		// First enable or disable all controls according to if the theme is read-only. |
+		//------------------------------------------------------------------------------'
 		BOOL enabled = ![_bundleThemes containsObject: _theme];
 		Class boxClass = [NSBox class];
 
@@ -111,95 +219,32 @@ Released under the terms of the GNU General Public License v3. */
 						[control setEnabled: enabled];
 
 		[themeActionsSegmentedControl setEnabled: enabled forSegment: 1];
-		}
 
-
-	- (void) disableNonUsedThemeControls
-		{
-		if (!_theme.grid)
+		//----------------------------------------------------------------------.
+		// Then, if the theme is not read-only, disable those optional controls |
+		// which depend on others to be enabled if needed.			|
+		//----------------------------------------------------------------------'
+		if (enabled)
 			{
-			gridColorWell.enabled = NO;
-			//gridColorWell.color = [NSColor clearColor];
-			}
+			if (!_theme.gridColor) gridColorWell.enabled = NO;
 
-		if (!_theme.cellBorder)
-			{
-			cellBorderSizeSlider.enabled = NO;
-			cellBorderSizeSlider.doubleValue = 12.5;
-
-			for (NSUInteger i = 107; i < 119; i++)
-				[[cellsBox viewWithTag: i] setEnabled: NO];
-			}
-
-		if (!_theme.alternateCoveredCells && !_theme.alternateUncoveredCells)
-			cellBrightnessDeltaSlider.enabled = NO;
-		}
-
-
-	- (void) updateThemeControlsContent
-		{
-		gridCheck.state			   = _theme.grid		    ? NSOnState : NSOffState;
-		cellBorderCheck.state		   = _theme.cellBorder		    ? NSOnState : NSOffState;
-		alternateCoveredCellsCheck.state   = _theme.alternateCoveredCells   ? NSOnState : NSOffState;
-		alternateUncoveredCellsCheck.state = _theme.alternateUncoveredCells ? NSOnState : NSOffState;
-
-
-		NSLog(@"updateThemeControlsContent");
-		NSColor *color;
-		NSArray* colors = _theme.cellColors;
-		NSUInteger colorCount = colors.count;
-
-
-		if (colorCount == 19)
-			{
-			}
-
-		for (NSUInteger i = 0; i < colorCount; i++)
-			[[cellsBox viewWithTag: i + 100] setColor: [colors objectAtIndex: i]];
-
-
-//		coveredColorWell.color	     = [_theme colorForKey: kThemeColorKeyCovered      ];
-//		cleanColorWell.color	     = [_theme colorForKey: kThemeColorKeyClean	       ];
-//		flagColorWell.color	     = [_theme colorForKey: kThemeColorKeyFlag	       ];
-//		confirmedFlagColorWell.color = [_theme colorForKey: kThemeColorKeyConfirmedFlag];
-//		mineColorWell.color	     = [_theme colorForKey: kThemeColorKeyMine	       ];
-//		warningColorWell.color	     = [_theme colorForKey: kThemeColorKeyWarning      ];
-
-		for (NSUInteger i = 0; i < 8; i++)
-			[[numbersBox viewWithTag: i] setColor: [_theme.numberColors objectAtIndex: i]];
-
-		//cellBrightnessDeltaSlider.doubleValue = [_theme cellBrightnessDelta];
-		//fontScalingSlider.doubleValue	      = [_theme fontScaling];
-
-		for (NSUInteger i = 0; i < 4; i++)
-			{
-			NSColorWell *colorWell = [imagesBox viewWithTag: 30 + i];
-			NSButton *checkBox = [imagesBox viewWithTag: 20 + i];
-
-			if ((color = [_theme.imageColors objectAtIndex: i]))
+			if (_theme.cellBorderSize == 0.0)
 				{
-				checkBox.state = NSOnState;
-				colorWell.color = color;
-				[colorWell setHidden: NO];
+				cellBorderSizeSlider.enabled = NO;
+
+				for (NSUInteger tag = 107; tag < 119; tag++)
+					[[cellsBox viewWithTag: tag] setEnabled: NO];
 				}
 
-			else	{
-				checkBox.state = NSOffState;
-				[colorWell setHidden: YES];
-				}
+			if (!_theme.alternateCoveredCells && !_theme.alternateUncoveredCells)
+				cellBrightnessDeltaSlider.enabled = NO;
 
-			[[imagesBox viewWithTag: i] setImage:
-				[self imageFromImage: [_themeImages objectAtIndex: i] tintColor: color]];
+			NSNull *null = [NSNull null];
+			NSInteger tag = 30;
+
+			for (NSColor *color in _theme.imageColors) if (color == (id)null)
+				[[imagesBox viewWithTag: tag++] setEnabled: NO];
 			}
-
-		numberFontNameTextField.stringValue = [NSFont fontWithName: _theme.numberFontName size: 11.0].displayName;
-		}
-
-
-	- (void) sortUserThemes
-		{
-		[_userThemes sortUsingComparator: ^NSComparisonResult(Theme *a, Theme *b)
-			{return [a.name localizedCaseInsensitiveCompare: b.name];}];
 		}
 
 

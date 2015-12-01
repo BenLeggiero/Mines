@@ -46,18 +46,14 @@ Released under the terms of the GNU General Public License v3. */
 	NSMutableArray*	_imageColors;
 	BOOL		_imageInclusions[4];
 
-	struct {BOOL grid		     :1;
-		BOOL cellBorder		     :1;
-		BOOL alternateCoveredCells   :1;
+	struct {BOOL alternateCoveredCells   :1;
 		BOOL alternateUncoveredCells :1;
 	} _flags;
 }
 	@property (nonatomic, retain  ) NSString*	name;
 	@property (nonatomic, retain  ) NSColor*	laserColor;
 	@property (nonatomic, retain  ) NSString*	mineFoundAnimation;
-	@property (nonatomic, assign  ) BOOL		grid;
 	@property (nonatomic, retain  ) NSColor*	gridColor;
-	@property (nonatomic, assign  ) BOOL		cellBorder;
 	@property (nonatomic, assign  ) CGFloat		cellBorderSize;
 	@property (nonatomic, assign  ) BOOL		alternateCoveredCells;
 	@property (nonatomic, assign  ) BOOL		alternateUncoveredCells;

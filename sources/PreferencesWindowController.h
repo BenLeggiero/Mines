@@ -35,7 +35,6 @@ Released under the terms of the GNU General Public License v3. */
 	IBOutlet NSButton*	     gridCheck;
 	IBOutlet NSColorWell*	     gridColorWell;
 	IBOutlet NSButton*	     cellBorderCheck;
-	IBOutlet NSButton*	     mineCellBorderCheck;
 	IBOutlet NSSlider*	     cellBorderSizeSlider;
 	IBOutlet NSButton*	     alternateCoveredCellsCheck;
 	IBOutlet NSButton*	     alternateUncoveredCellsCheck;
@@ -70,7 +69,6 @@ Released under the terms of the GNU General Public License v3. */
 	- (IBAction) toggleGrid:		    (id) sender;
 	- (IBAction) setGridColor:		    (id) sender;
 	- (IBAction) toggleCellBorder:		    (id) sender;
-	- (IBAction) toggleMineCellBorder:	    (id) sender;
 	- (IBAction) setBorderSize:		    (id) sender;
 	- (IBAction) toggleAlternateCoveredCells:   (id) sender;
 	- (IBAction) toggleAlternateUncoveredCells: (id) sender;
