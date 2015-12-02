@@ -256,6 +256,7 @@ Released under the terms of the GNU General Public License v3. */
 		NSString*	name;
 		Theme*		theme;
 
+		_separatorCell	      = [[SeparatorCell alloc] init];
 		_themeImages	      = _board.themeImages;
 		_bundleThemes	      = [[NSMutableArray alloc] init];
 		_userThemes	      = [[NSMutableArray alloc] init];
@@ -303,8 +304,7 @@ Released under the terms of the GNU General Public License v3. */
 				![names containsObject: name = [dictionary objectForKey: @"Name"]]
 			)
 				{
-				if ([themeName isEqualToString: name])
-					[_userThemes addObject: theme = _theme];
+				if ([themeName isEqualToString: name]) [_userThemes addObject: theme = _theme];
 
 				else	{
 					[_userThemes addObject: theme = [[Theme alloc] initWithDictionary: dictionary]];
@@ -318,7 +318,6 @@ Released under the terms of the GNU General Public License v3. */
 		[names release];
 		[self sortUserThemes];
 		themeList.dataSource = self;
-		_separatorCell = [[SeparatorCell alloc] init];
 
 		//-------------------------------------------.
 		// Seleccionamos en la lista el tema activo. |
@@ -332,7 +331,6 @@ Released under the terms of the GNU General Public License v3. */
 		themeList.delegate = self;
 		[self updateThemeControlsContent];
 		[self updateThemeControlsState];
-		if ([_userThemes containsObject: _theme]) [self disableNonUsedThemeControls];
 		}
 
 
@@ -398,10 +396,8 @@ Released under the terms of the GNU General Public License v3. */
 
 		[self updateThemeControlsContent];
 		[self updateThemeControlsState];
-		if ([_userThemes containsObject: _theme]) [self disableNonUsedThemeControls];
 		[_board setTheme: theme images: _themeImages];
 		}
-
 
 
 	- (BOOL) saveTheme
@@ -574,34 +570,14 @@ Released under the terms of the GNU General Public License v3. */
 
 			if (oldImage != resultData->image)
 				{
-				NSColorWell* imageColorWell = [imagesBox viewWithTag: _imageIndex + 30];
-				id color;
-
-				if (resultData->isInternal)
-					{
-					if (!(color = [_theme.imageColors objectAtIndex: _imageIndex]))
-						{
-						color = DEFAULT_TEMPLATE_IMAGE_COLOR;
-						imageColorWell.color = color;
-						}
-
-					[imageColorWell setHidden: NO];
-					}
-
-				else	{
-					color = nil;
-					[imageColorWell setHidden: YES];
-					}
+				NSColor *color = [_theme.imageColors objectAtIndex: _imageIndex];
 
 				//------------------------------------------------------.
 				// Actualizamos la información de la imágen en el tema. |
 				//------------------------------------------------------'
 				[_themeImages replaceObjectAtIndex: _imageIndex withObject: resultData->image];
-
 				[_theme.imageFileNames replaceObjectAtIndex: _imageIndex withObject: resultData->fileName];
-				[_theme.imageColors    replaceObjectAtIndex: _imageIndex withObject: color ? color : [NSNull null]];
 				_theme.imageInclusions[_imageIndex] = resultData->isInternal;
-
 				_flags.themeHasChanged = YES;
 
 				//--------------------------------------------------------.
@@ -609,7 +585,7 @@ Released under the terms of the GNU General Public License v3. */
 				//--------------------------------------------------------'
 				[[imagesBox viewWithTag: _imageIndex] setImage: [self
 					imageFromImage:	 resultData->image
-					tintColor:	 color]];
+					tintColor:	 color == (id)[NSNull null] ? nil : color]];
 
 				[_board didChangeThemeProperty: kThemePropertyImage valueAtIndex: _imageIndex];
 				}
